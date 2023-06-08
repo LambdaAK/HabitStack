@@ -7,6 +7,7 @@ import { User, UserCredential, signOut } from "firebase/auth";
 import { Database, onValue, ref, set } from "firebase/database";
 import firebase from "firebase/compat/app";
 import firebaseConfig from "./firebaseConfig";
+import Nav from "./components/Nav";
 
 
 
@@ -27,6 +28,22 @@ function logOut() {
         // An error happened.
         alert(error.message)
       })
+}
+
+
+function Header() {
+  return (
+    <h1 className = "mt-48 flex justify-center items-center text-9xl">habit tracker</h1>
+
+  )
+}
+
+function Description() {
+  return (
+    <div className = "mt-36 flex justify-center items-center text-4xl">
+      An easy, sustainable way to keep track of your habits.
+    </div>
+  )
 }
 
 export default function Home() {
@@ -61,11 +78,10 @@ export default function Home() {
 
     return (
         <>
-            <h1 className="text-3xl font-bold underline">habit tracker</h1>
-            <h2>Home</h2>
-            <h3>{em}</h3>
-            <h3>{username}</h3>
-            <button onClick={logOut}>Log Out</button>
+          <Nav/>
+            <Header/>
+            <Description/>
+            
         </>
     )
 }
