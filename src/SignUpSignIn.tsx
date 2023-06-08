@@ -27,6 +27,21 @@ async function createUser (email: string, password: string, username: string): P
   window.location.replace("/");
 }
 
+// sign in user
+function signInUser(email: string, password: string) {
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential: UserCredential) => {
+      // Signed in
+      
+      alert(`Signed in with email ${userCredential.user.email}`)
+      window.location.replace("/");
+    })
+    .catch((error: Error) => {
+      alert (error.message)
+  
+  })
+}
+
 
 export default function SignUp () {
 

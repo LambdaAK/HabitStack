@@ -61,7 +61,7 @@ export default function Home() {
 
     return (
         <>
-            <h1>habit tracker</h1>
+            <h1 className="text-3xl font-bold underline">habit tracker</h1>
             <h2>Home</h2>
             <h3>{em}</h3>
             <h3>{username}</h3>
