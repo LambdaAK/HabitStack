@@ -48,40 +48,11 @@ function Description() {
 
 export default function Home() {
 
-    const [em, setEm] = useState('no user logged in')
-    const [username, setUsername] = useState('no user logged in')
-
-
-    useEffect(() => {
-    auth.onAuthStateChanged((user: User) => {
-        if (user) {
-            // User is signed in.
-            setEm(user.email)
-         
-            // get the username from the database
-            const r = ref(getDatabase(), 'users/' + user.uid)
-            onValue(r, (snapshot) => {
-                const data = snapshot.val()
-                //print the data in the console
-                console.log(data)
-                setUsername(data.username)
-            })
-
-        } else {
-          // User is signed out.
-
-        }
-      });
-
-    }, [])
-  
-
     return (
         <>
           <Nav/>
-            <Header/>
-            <Description/>
-            
+          <Header/>
+          <Description/>  
         </>
     )
 }
