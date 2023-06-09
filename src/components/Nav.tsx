@@ -65,8 +65,12 @@ export default function Nav() {
 
 
     return (
-        <div className = "flex justify-center items-center mt-10">
-            <div className = "grid grid-cols-9">
+            <>
+            <div style = {{height: "2vh"}}></div>
+            <div className = "grid grid-cols-9"
+            
+            style = {{height: "3vh"}}
+            >
                 <SignInOrSignOutComponent signedIn = {signedIn}/>
                 <div className = "col-span-2"></div>
                 <a href = "/" className="mx-20 col-span-1 text-3xl font-bold underline">Home</a>
@@ -75,6 +79,7 @@ export default function Nav() {
                 <div className = "col-span-2"></div>
                 <a href = "/settings" className="mx-20 col-span-1 text-3xl font-bold underline">Settings</a>
             </div>
-        </div>
+            </>
+      
     )
 }
