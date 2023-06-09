@@ -49,35 +49,30 @@ export default function SignUpSignIn () {
     <>
       <Nav/>
 
-      <div id = "signupsignin" className = "flex" style = {{height: "95vh"}}>
-        <div id = "signup" className = "flex flex-col items-center border-8 p-8" style = {{margin: "auto"}}>
+      <div id = "signupsignin" className = "flex flex-row justify-evenly items-start" style = {{height: "95vh"}}>
+        <div className = "border-2 border-red-500 rounded-md flex flex-col">
+          <h1 className = "te">
+            Sign Up
+          </h1>
 
+          <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="email"/>
+          <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="password"/>
+          <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="confirm password"/>
+          <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="username"/>
 
-        <h1 className = "mb-7 text-7xl">Sign Up</h1>
-        
+        </div>
 
-            <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="email"/>
-            <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="password"/>
-            <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="confirm password"/>
-            <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="username"/>
-            <button className = "my-8 text-4xl text-left border-4 rounded-md duration-200 transform hover:scale-125">Create Account</button>
-        
+        <div className = "border-2 border-red-500 rounded-md flex flex-col">
+          <h1 className = "">
+            Sign In
+          </h1>
+
+          <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="email"/>
+          <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="password"/>
 
 
         </div>
-        <div id = "signin" className = "flex flex-col items-center justify-evenly border-8 p-8" style = {{margin: "auto"}}>
 
-
-      <h1 className = "mb-7 text-7xl">Sign In</h1>
-
-
-      <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="email"/>
-      <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="password"/>
-    
-      <button className = "my-8 text-4xl text-left border-4 rounded-md duration-200 transform hover:scale-125">Sign In</button>
-
-
-      </div>
         
       </div>
       
