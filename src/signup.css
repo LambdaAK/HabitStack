@@ -1,0 +1,143 @@
+:root {
+   --slate-color: #DDDDDD;
+   --dark-slate: #535353;
+   --green-color: #8BFECA;
+}
+
+.signup-box {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 7%;
+    width:min-content;
+    padding: 2%;
+    background-color: var(--slate-color);
+
+}
+
+.signup-box-header {
+    margin-bottom: 2%;
+    margin-top: 1%;
+}
+
+.signup-box-input {
+    margin-top: 7%;
+    margin-bottom: 7%;
+    font-size: 30pt;
+    background-color: var(--slate-color);
+    
+}
+
+.signup-box-input-selected {
+    outline: none;
+    animation: input-activation;
+    animation-play-state: running;
+    animation-iteration-count: 1;
+    animation-delay: 0s;
+    animation-timing-function: ease;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    color: var(--slate-color)
+}
+
+.signup-box-input-not-selected {
+    outline: none;
+    animation: input-deactivation;
+    animation-play-state: running;
+    animation-iteration-count: 1;
+    animation-delay: 0s;
+    animation-timing-function: ease;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    
+
+}
+
+
+@keyframes input-activation {
+    from {
+        background-color: var(--slate-color);
+        color: var(--slate-color)
+    }
+
+    to {
+        background-color: var(--dark-slate);
+        
+    }
+}
+
+@keyframes input-deactivation {
+    to {
+        background-color: var(--slate-color);
+    }
+
+    from {
+        background-color: var(--dark-slate);
+    }
+  
+}
+
+
+.signup-box-button {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border-color: var(--dark-slate);
+    border-width: 2px;
+    border-style: solid;
+    padding: 10px;
+    align-self: flex-end;
+    margin-right: 5%;
+    background-color: var(--slate-color);
+
+}
+
+.signup-box-button-hover {
+    animation: button-hover;
+    animation-play-state: running;
+    animation-iteration-count: 1;
+    animation-delay: 0s;
+    animation-timing-function: ease;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+
+}
+
+
+.signup-box-button-no-hover {
+    animation: button-no-hover;
+    animation-play-state: running;
+    animation-iteration-count: 1;
+    animation-delay: 0s;
+    animation-timing-function: ease;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes button-hover {
+    from {
+        background-color: var(--slate-color);
+    }
+
+    to {
+        background-color: var(--dark-slate);
+    }
+}
+
+@keyframes button-no-hover {
+    from {
+        background-color: var(--dark-slate);
+    }
+
+    to {
+        background-color: var(--slate-color);
+    }
+    
+}
+
+.signup-description {
+    width: 100%;
+    margin-top: 2%;
+    
+}
