@@ -43,61 +43,42 @@ function signInUser(email: string, password: string) {
 }
 
 
-function SignUpComponent () {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [username, setUsername] = useState('')
-
-  return (
-    
-
-      <div className = "grid grid-rows-4">
-        <input className = "text-6xl border-8 rounded-md" type="text" placeholder="email" onChange={(e) => setEmail(e.target.value)} />
-        <input className = "text-6xl border-8 rounded-md" type="text" placeholder="password" onChange={(e) => setPassword(e.target.value)} />
-        <input className = "text-6xl border-8 rounded-md" type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)} />
-        <button className = "text-6xl text-left border-8 rounded-md">Create Account</button>
-      </div>
-
-      
-    
-  )
-  
-}
-
-
-
 export default function SignUpSignIn () {
-
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [username, setUsername] = useState('')
-
 
   return (
     <>
       <Nav/>
 
-      <div id = "signupsignin" className = "flex justify-evenly" style = {{height: "95vh"}}>
-        <div id = "signup" className = "flex flex-col items-center justify-evenly border-8 p-8" style = {{margin: "auto"}}>
+      <div id = "signupsignin" className = "flex" style = {{height: "95vh"}}>
+        <div id = "signup" className = "flex flex-col items-center border-8 p-8" style = {{margin: "auto"}}>
 
 
         <h1 className = "mb-7 text-7xl">Sign Up</h1>
         
 
-            <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="email" onChange={(e) => setEmail(e.target.value)} />
-            <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="password" onChange={(e) => setPassword(e.target.value)} />
+            <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="email"/>
+            <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="password"/>
             <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="confirm password"/>
-            <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)} />
-            <button className = "my-8 text-4xl text-left border-4 rounded-md" onClick = {() => createUser(email, password, username)}>Create Account</button>
+            <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="username"/>
+            <button className = "my-8 text-4xl text-left border-4 rounded-md duration-200 transform hover:scale-125">Create Account</button>
         
 
 
-
         </div>
+        <div id = "signin" className = "flex flex-col items-center justify-evenly border-8 p-8" style = {{margin: "auto"}}>
 
 
+      <h1 className = "mb-7 text-7xl">Sign In</h1>
 
-        <div id = "log in" style = {{height: "100px", width: "100px", backgroundColor: "blue", margin: "auto"}}></div>
+
+      <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="email"/>
+      <input className = "my-2 text-4xl border-4 rounded-md" type="text" placeholder="password"/>
+    
+      <button className = "my-8 text-4xl text-left border-4 rounded-md duration-200 transform hover:scale-125">Sign In</button>
+
+
+      </div>
+        
       </div>
       
     </>
