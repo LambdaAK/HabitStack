@@ -47,13 +47,25 @@ function Description() {
   )
 }
 
+function SubDescription() {
+  return (
+    <div className = "home-sub-description mt-36 flex justify-center items-center text-4xl">
+      Sign up to start tracking your habits and learning more about yourself.
+    </div>
+  )
+}
+
 export default function Home() {
 
     return (
         <>
           <Nav/>
           <Header/>
-          <Description/>  
+          <Description/>
+          <SubDescription/>
+          <div className = "flex justify-center items-center text-9xl mt-20">
+            Add a logo here
+          </div>
         </>
     )
 }
