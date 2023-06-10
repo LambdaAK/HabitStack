@@ -9,6 +9,7 @@
     margin-right: auto;
     display: flex;
     flex-direction: column;
+    border-radius: 8px;
     align-items: center;
     margin-top: 7%;
     width:min-content;
@@ -30,10 +31,13 @@
 
     transition-property: background-color;
     transition-duration: 0.5s;
+    appearance: none;
+    border-radius: 8px;
 }
 
 .signup-box-input:focus {
     background-color: var(--dark-slate);
+    outline: none;
 }
 
 
@@ -48,6 +52,7 @@
     align-self: flex-end;
     margin-right: 5%;
     background-color: var(--slate-color);
+    border-radius: 8px;
 
     transition: background-color 0.5s ease;
 

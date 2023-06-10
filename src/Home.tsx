@@ -18,7 +18,6 @@ const database = getDatabase(app)
 const auth = getAuth()
 
 
-
 // log out function
 function logOut() {
     signOut(auth).then(() => {

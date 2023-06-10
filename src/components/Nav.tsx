@@ -9,6 +9,8 @@ import { getAuth } from "firebase/auth"
 import { initializeApp } from "firebase/app"
 import { DataSnapshot, getDatabase, onValue, ref } from "firebase/database"
 
+import "./nav.css"
+
 const app = initializeApp(firebaseConfig)
 const database = getDatabase(app)
 const auth = getAuth(app)
@@ -35,17 +37,16 @@ function SignInOrSignOutComponent (props: SignInOrSignOutProps) {
 
     if (props.signedIn) {
         return (
-            <a onClick = {signOutUser}className="mx-20 col-span-1 text-3xl font-bold underline">Sign Out</a>
+            <a onClick = {signOutUser}className="nav-link mx-20 col-span-1 text-3xl font-bold">Sign Out</a>
         )
     }
 
     else {
         return (
-            <a href = "/signin" className="mx-20 col-span-1 text-3xl font-bold underline">Sign In</a>
+            <a href = "/signin" className="nav-link mx-20 col-span-1 text-3xl font-bold">Sign In</a>
         )
     }
 }
-
 
 
 export default function Nav() {
@@ -73,11 +74,11 @@ export default function Nav() {
             >
                 <SignInOrSignOutComponent signedIn = {signedIn}/>
                 <div className = "col-span-2"></div>
-                <a href = "/" className="mx-20 col-span-1 text-3xl font-bold underline">Home</a>
-                 <a href = "/dashboard" className="mx-20 col-span-1 text-3xl font-bold underline">Dashboard</a>
-                <a href = "/social" className="mx-20 first-line:col-span-1 text-3xl font-bold underline">Social</a>
+                <a href = "/" className="nav-link mx-20 col-span-1 text-3xl font-bold">Home</a>
+                 <a href = "/dashboard" className="nav-link mx-20 col-span-1 text-3xl font-bold">Dashboard</a>
+                <a href = "/social" className="nav-link mx-20 first-line:col-span-1 text-3xl font-bold">Social</a>
                 <div className = "col-span-2"></div>
-                <a href = "/settings" className="mx-20 col-span-1 text-3xl font-bold underline">Settings</a>
+                <a href = "/settings" className="nav-link mx-20 col-span-1 text-3xl font-bold">Settings</a>
             </div>
             </>
       
