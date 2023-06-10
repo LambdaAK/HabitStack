@@ -8,10 +8,12 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "tailwind": "npx tailwindcss -i ./src/index.css -o ./src/style.css --watch"
+    "tailwind": "npx tailwindcss -i ./src/index.css -o ./src/style.css --watch",
+    "sass": "sass --watch src"
   },
   "dependencies": {
     "firebase": "^9.22.1",
+    "jquery": "^3.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.12.0"

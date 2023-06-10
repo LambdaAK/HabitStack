@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 import { User, UserCredential, signOut } from "firebase/auth";
 import { Database, onValue, ref, set } from "firebase/database";
 import firebase from "firebase/compat/app";
-import firebaseConfig from "./firebaseConfig";
-import Nav from "./components/Nav";
+import firebaseConfig from "../../firebaseConfig";
+import Nav from "../components/Nav";
 import "./home.css"
 
 
@@ -33,14 +33,14 @@ function logOut() {
 
 function Header() {
   return (
-    <h1 className = "home-header mt-48 flex justify-center items-center text-9xl">Habit Tracker</h1>
+    <h1 className = "home-header">Habit Tracker</h1>
 
   )
 }
 
 function Description() {
   return (
-    <div className = "home-description mt-36 flex justify-center items-center text-4xl">
+    <div className = "home-description">
       An easy, sustainable way to keep track of your habits
     </div>
   )
@@ -48,7 +48,7 @@ function Description() {
 
 function SubDescription() {
   return (
-    <div className = "home-sub-description mt-36 flex justify-center items-center text-4xl">
+    <div className = "home-sub-description">
       Sign up to start tracking your habits and learning more about yourself.
     </div>
   )
@@ -62,9 +62,6 @@ export default function Home() {
           <Header/>
           <Description/>
           <SubDescription/>
-          <div className = "flex justify-center items-center text-9xl mt-20">
-            Add a logo here
-          </div>
         </>
     )
 }

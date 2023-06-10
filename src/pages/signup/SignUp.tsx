@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import Nav from "./components/Nav"
+import Nav from "./../components/Nav"
 import "./signup.css"
 
 export default function SignUpSignIn () {

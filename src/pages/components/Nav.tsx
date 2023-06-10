@@ -3,13 +3,15 @@
 
 import { onAuthStateChanged, signOut } from "firebase/auth"
 import { useEffect, useState } from "react"
-import firebaseConfig from "../firebaseConfig"
+import firebaseConfig from "../../firebaseConfig"
 
 import { getAuth } from "firebase/auth"
 import { initializeApp } from "firebase/app"
 import { DataSnapshot, getDatabase, onValue, ref } from "firebase/database"
+import $ from "jquery"
 
 import "./nav.css"
+import navButton from "./../../assets/burger-menu-svgrepo-com.svg"
 
 const app = initializeApp(firebaseConfig)
 const database = getDatabase(app)
@@ -37,13 +39,13 @@ function SignInOrSignOutComponent (props: SignInOrSignOutProps) {
 
     if (props.signedIn) {
         return (
-            <a onClick = {signOutUser}className="nav-link mx-20 col-span-1 text-3xl font-bold">Sign Out</a>
+            <a onClick = {signOutUser}className="nav-link mx-20 col-span-1">Sign Out</a>
         )
     }
 
     else {
         return (
-            <a href = "/signin" className="nav-link mx-20 col-span-1 text-3xl font-bold">Sign In</a>
+            <a href = "/signin" className="nav-link mx-20 col-span-1">Sign In</a>
         )
     }
 }
@@ -64,21 +66,48 @@ export default function Nav() {
         }
     })
 
+    useEffect(() => {
+        $('#nav-button').on('click', function() {
+            if ($('#div-container').css('display') === 'none') {
+                $('#div-container').css('display', 'flex')
+            }
+            else {
+                $('#div-container').css('display', 'none')
+            }
+        })
+
+        $(window).resize(function() {
+            if (window.innerWidth <= 450 && $('#div-container').css('display') === 'flex') {
+                $('#div-container').css('display', 'none')
+            }
+
+            else if (window.innerWidth > 450) {
+                $('#div-container').css('display', 'flex')
+              
+            }
+        })
+
+    })
 
     return (
             <>
             <div style = {{height: "2vh"}}></div>
-            <div className = "grid grid-cols-9"
             
-            style = {{height: "3vh"}}
+                <img id = "nav-button" src={navButton} alt="" />
+                
+           
+            <div id = "div-container"
+            
+            
             >
                 <SignInOrSignOutComponent signedIn = {signedIn}/>
+
                 <div className = "col-span-2"></div>
-                <a href = "/" className="nav-link mx-20 col-span-1 text-3xl font-bold">Home</a>
-                 <a href = "/dashboard" className="nav-link mx-20 col-span-1 text-3xl font-bold">Dashboard</a>
-                <a href = "/social" className="nav-link mx-20 first-line:col-span-1 text-3xl font-bold">Social</a>
+                <a href = "/" className="nav-link mx-20 col-span-1">Home</a>
+                <a href = "/dashboard" className="nav-link mx-20 col-span-1">Dashboard</a>
+                <a href = "/social" className="nav-link mx-20 first-line:col-span-1">Social</a>
                 <div className = "col-span-2"></div>
-                <a href = "/settings" className="nav-link mx-20 col-span-1 text-3xl font-bold">Settings</a>
+                <a href = "/settings" className="nav-link mx-20 col-span-1">Settings</a>
             </div>
             </>
       
