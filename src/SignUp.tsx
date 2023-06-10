@@ -4,34 +4,6 @@ import "./signup.css"
 
 export default function SignUpSignIn () {
 
-
-    useEffect(() => {
-        const signupBoxButton = document.getElementById("signup-box-button")
-        signupBoxButton?.addEventListener("mouseover", () => {
-            signupBoxButton.classList.remove("signup-box-button-no-hover")
-            signupBoxButton.classList.add("signup-box-button-hover")
-        })
-        signupBoxButton?.addEventListener("mouseout", () => {
-            signupBoxButton.classList.remove("signup-box-button-hover")
-            signupBoxButton.classList.add("signup-box-button-no-hover")
-        })
-
-        const inputs = document.getElementsByClassName("signup-box-input")
-        for (let i = 0; i < inputs.length; i++) {
-            inputs[i].addEventListener("focus", () => {
-               
-                inputs[i].classList.remove("signup-box-input-not-selected")
-                inputs[i].classList.add("signup-box-input-selected")
-            })
-            inputs[i].addEventListener("blur", () => {
-                inputs[i].classList.remove("signup-box-input-selected")
-                inputs[i].classList.add("signup-box-input-not-selected")
-            })
-
-         
-        }
-    })
-
     return (
         <>
         <Nav/>

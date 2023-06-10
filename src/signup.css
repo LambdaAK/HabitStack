@@ -27,57 +27,15 @@
     margin-bottom: 7%;
     font-size: 30pt;
     background-color: var(--slate-color);
-    
+
+    transition-property: background-color;
+    transition-duration: 0.5s;
 }
 
-.signup-box-input-selected {
-    outline: none;
-    animation: input-activation;
-    animation-play-state: running;
-    animation-iteration-count: 1;
-    animation-delay: 0s;
-    animation-timing-function: ease;
-    animation-duration: 0.5s;
-    animation-fill-mode: forwards;
-    color: var(--slate-color)
+.signup-box-input:focus {
+    background-color: var(--dark-slate);
 }
 
-.signup-box-input-not-selected {
-    outline: none;
-    animation: input-deactivation;
-    animation-play-state: running;
-    animation-iteration-count: 1;
-    animation-delay: 0s;
-    animation-timing-function: ease;
-    animation-duration: 0.5s;
-    animation-fill-mode: forwards;
-    
-
-}
-
-
-@keyframes input-activation {
-    from {
-        background-color: var(--slate-color);
-        color: var(--slate-color)
-    }
-
-    to {
-        background-color: var(--dark-slate);
-        
-    }
-}
-
-@keyframes input-deactivation {
-    to {
-        background-color: var(--slate-color);
-    }
-
-    from {
-        background-color: var(--dark-slate);
-    }
-  
-}
 
 
 .signup-box-button {
@@ -91,50 +49,15 @@
     margin-right: 5%;
     background-color: var(--slate-color);
 
-}
-
-.signup-box-button-hover {
-    animation: button-hover;
-    animation-play-state: running;
-    animation-iteration-count: 1;
-    animation-delay: 0s;
-    animation-timing-function: ease;
-    animation-duration: 0.5s;
-    animation-fill-mode: forwards;
+    transition: background-color 0.5s ease;
 
 }
 
-
-.signup-box-button-no-hover {
-    animation: button-no-hover;
-    animation-play-state: running;
-    animation-iteration-count: 1;
-    animation-delay: 0s;
-    animation-timing-function: ease;
-    animation-duration: 0.5s;
-    animation-fill-mode: forwards;
+.signup-box-button:hover {
+    background-color: var(--dark-slate);
 }
 
-@keyframes button-hover {
-    from {
-        background-color: var(--slate-color);
-    }
 
-    to {
-        background-color: var(--dark-slate);
-    }
-}
-
-@keyframes button-no-hover {
-    from {
-        background-color: var(--dark-slate);
-    }
-
-    to {
-        background-color: var(--slate-color);
-    }
-    
-}
 
 .signup-description {
     width: 550px;
