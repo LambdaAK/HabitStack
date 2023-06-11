@@ -31,8 +31,9 @@
 .signup-box-input {
     margin-top: 7%;
     margin-bottom: 7%;
-    font-size: 30pt;
+    font-size: 22pt;
     background-color: $slate;
+    padding: 4px;
 
     transition-property: background-color;
     transition-duration: 0.5s;
@@ -94,7 +95,7 @@
     margin-top: 5%;
 }
 
-.signin-button {
+#signin-button {
     margin-top: 2%;
     margin-bottom: 2%;
     border-color: $dark-slate;
@@ -114,8 +115,6 @@
         background-color: $dark-slate;
     }
 
-    
-
 }
 
 .already-have-account-description {
@@ -128,4 +127,5 @@
 .divider {
     border: 2px solid $dark-slate;
     width: 100%;
+    margin-top: 5%;
   }

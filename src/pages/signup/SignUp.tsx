@@ -26,7 +26,7 @@ export default function SignUpSignIn () {
                 <hr className = "divider"/>
                 <div className = "already-have-account-container">
                     <div className = "already-have-account-description">Already have an account?</div>
-                    <button className = "signin-button">Sign In</button>
+                    <button id = "signin-button">Sign In</button>
                 </div>
             </span>
         </>
