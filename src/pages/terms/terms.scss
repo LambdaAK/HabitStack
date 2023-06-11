@@ -1,15 +1,32 @@
 @import "./../../css\ modules/variables";
 
+
+
+// mixin for fly in from left
+@mixin fly-in-left {
+    animation: fly-in-left 1s ease;
+}
+
+@keyframes fly-in-left {
+    // fly in from the left
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+
 #terms-container {
     height: 90vh;
     width: 100%;
     display: flex;
     flex-direction: row;
-
-
 }
 
 #terms-bar {
+    @include fly-in-left;
     height: fit-content;
     width: 10%;
 
@@ -23,22 +40,33 @@
     display: flex;
     flex-direction: column;
     gap: 1%;
-    
 
 }
 
 .terms-content {
     height: fit-content;
-    width: 75%;
+    width: 90%;
     border-radius: 8px;
     border-color: $slate;
     border-style: solid;
     border-width: 4px;
-    font-size: 75px;
+    font-size: 50px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    animation: load-content 1s ease;
+
+}
+
+@keyframes load-content {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .term-header {
@@ -107,6 +135,8 @@
     display: flex;
     flex-direction: row;
     gap: 25px;
+
+
 }
 
 

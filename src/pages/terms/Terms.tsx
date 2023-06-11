@@ -62,7 +62,7 @@ function TermsContent(props: {currentTerm: term, termSetter: Function}) {
     const currentTerm = props.currentTerm;
     return (
       <>
-        <div className = "terms-content">
+        <div className = "terms-content" key = {currentTerm.name}>
           <div className = "term-header">
             {currentTerm.name}
           </div>
