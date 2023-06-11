@@ -7,7 +7,7 @@ import { User, UserCredential, signOut } from "firebase/auth";
 import { Database, onValue, ref, set } from "firebase/database";
 import firebase from "firebase/compat/app";
 import firebaseConfig from "../../firebaseConfig";
-import Nav from "../components/Nav";
+import Nav from "../../components/nav/Nav";
 import "./home.css"
 
 

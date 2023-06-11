@@ -1,5 +1,13 @@
 .nav-link {
   text-decoration: none;
+  margin-left: 20px;
+  margin-right: 20px;
+  column-span: 1;
+  color: black;
+}
+
+.nav-seperator {
+  column-span: 2;
 }
 
 #div-container {
@@ -7,7 +15,7 @@
   flex-direction: row;
   justify-content: space-between;
   height: min-content;
-  width: min-content;
+  width: 75%;
   border-radius: 8px;
   margin: auto;
   font-size: 36px;
@@ -20,7 +28,7 @@
   height: 100px;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 480px) {
   #div-container {
     flex-direction: column;
     display: none;

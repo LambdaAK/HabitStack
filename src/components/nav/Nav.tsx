@@ -39,13 +39,13 @@ function SignInOrSignOutComponent (props: SignInOrSignOutProps) {
 
     if (props.signedIn) {
         return (
-            <a onClick = {signOutUser}className="nav-link mx-20 col-span-1">Sign Out</a>
+            <a onClick = {signOutUser}className="nav-link">Sign Out</a>
         )
     }
 
     else {
         return (
-            <a href = "/signin" className="nav-link mx-20 col-span-1">Sign In</a>
+            <a href = "/signup" className="nav-link">Sign Up</a>
         )
     }
 }
@@ -77,11 +77,11 @@ export default function Nav() {
         })
 
         $(window).resize(function() {
-            if (window.innerWidth <= 450 && $('#div-container').css('display') === 'flex') {
+            if (window.innerWidth <= 480 && $('#div-container').css('display') === 'flex') {
                 $('#div-container').css('display', 'none')
             }
 
-            else if (window.innerWidth > 450) {
+            else if (window.innerWidth > 480) {
                 $('#div-container').css('display', 'flex')
               
             }
@@ -102,12 +102,12 @@ export default function Nav() {
             >
                 <SignInOrSignOutComponent signedIn = {signedIn}/>
 
-                <div className = "col-span-2"></div>
-                <a href = "/" className="nav-link mx-20 col-span-1">Home</a>
-                <a href = "/dashboard" className="nav-link mx-20 col-span-1">Dashboard</a>
-                <a href = "/social" className="nav-link mx-20 first-line:col-span-1">Social</a>
-                <div className = "col-span-2"></div>
-                <a href = "/settings" className="nav-link mx-20 col-span-1">Settings</a>
+                <div className = "nav-seperator"></div>
+                <a href = "/" className="nav-link">Home</a>
+                <a href = "/dashboard" className="nav-link">Dashboard</a>
+                <a href = "/social" className="nav-link">Social</a>
+                <div className = "nav-seperator"></div>
+                <a href = "/settings" className="nav-link">Settings</a>
             </div>
             </>
       

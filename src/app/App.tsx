@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Home from "./../home/Home"
-import SignUpSignIn from "./../../SignUpSignIn"
-import Terms from "./../terms/Terms"
-import Dashboard from "./../dashboard/dashboard"
-import Social from "./../social/Social"
-import Settings from "./../settings/Settings"
-import SignUp from "./../signup/SignUp"
+import Home from "../pages/home/Home"
+import SignUpSignIn from "../SignUpSignIn"
+import Terms from "../pages/terms/Terms"
+import Dashboard from "../pages/dashboard/dashboard"
+import Social from "../pages/social/Social"
+import Settings from "../pages/settings/Settings"
+import SignUp from "../pages/signup/SignUp"
 
 
 export default function App() {
