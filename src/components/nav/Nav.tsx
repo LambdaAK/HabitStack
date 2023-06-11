@@ -97,16 +97,16 @@ export default function Nav() {
             <div style = {{height: "2vh"}}></div>
             
                 <img id = "nav-button" src={navButton} alt="" />
-                
-           
+
             <div id = "div-container"
             
             
             >
+                <a href = "/" className="nav-link">Home</a>
                 <SignInOrSignOutComponent signedIn = {signedIn}/>
 
                 <div className = "nav-seperator"></div>
-                <a href = "/" className="nav-link">Home</a>
+                
                 <a href = "/dashboard" className="nav-link">Dashboard</a>
                 <a href = "/social" className="nav-link">Social</a>
                 <a href="/terms" className="nav-link">Terms</a>

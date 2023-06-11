@@ -1,0 +1,48 @@
+#terms-container {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+#terms-bar {
+  height: fit-content;
+  width: 10%;
+  border-radius: 8px;
+  border-color: #DDDDDD;
+  border-style: solid;
+  border-width: 4px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1%;
+}
+
+#terms-content {
+  height: 100%;
+  width: 75%;
+  border-radius: 8px;
+  border-color: #DDDDDD;
+  border-style: solid;
+  border-width: 4px;
+}
+
+.term-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+.term-name:hover {
+  background-color: #535353;
+  color: #54F291;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=terms.css.map */
