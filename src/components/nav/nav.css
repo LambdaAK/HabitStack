@@ -32,7 +32,7 @@
   #div-container {
     flex-direction: column;
     display: none;
-    background-color: var(--slate-color);
+    background-color: #DDDDDD;
   }
   #nav-button {
     display: block;

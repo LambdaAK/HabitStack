@@ -8,7 +8,7 @@
   margin-top: 7%;
   width: min-content;
   padding: 2%;
-  background-color: var(--slate-color);
+  background-color: #DDDDDD;
 }
 @media (max-width: 480px) {
   .signup-box {
@@ -31,14 +31,14 @@
   margin-top: 7%;
   margin-bottom: 7%;
   font-size: 30pt;
-  background-color: var(--slate-color);
+  background-color: #DDDDDD;
   transition-property: background-color;
   transition-duration: 0.5s;
   appearance: none;
   border-radius: 8px;
 }
 .signup-box-input:focus {
-  background-color: var(--dark-slate);
+  background-color: #535353;
   outline: none;
 }
 @media (max-width: 480px) {
@@ -52,18 +52,18 @@
 .signup-box-button {
   margin-top: 2%;
   margin-bottom: 2%;
-  border-color: var(--dark-slate);
+  border-color: #535353;
   border-width: 2px;
   border-style: solid;
   padding: 10px;
   align-self: flex-end;
   margin-right: 5%;
-  background-color: var(--slate-color);
+  background-color: #DDDDDD;
   border-radius: 8px;
   transition: background-color 0.5s ease;
 }
 .signup-box-button:hover {
-  background-color: var(--dark-slate);
+  background-color: #535353;
 }
 
 .signup-description {
