@@ -3,6 +3,7 @@ import Nav from "../../components/nav/Nav"
 import "./signin.css"
 import $ from "jquery"
 import Title from "../../components/title/Title"
+import logo from "../../assets/small-logo.png"
 
 export default function SignIn () {
 
@@ -19,9 +20,7 @@ export default function SignIn () {
             <Nav/>
             <span className = "signin-box">
                 <h1 className = "signin-box-header">Sign Up</h1>
-                <div className = "signin-description">
-                    To sign in, enter your email address and password.
-                </div>
+                <img className = "signin-box-logo" src = {logo} alt = "logo"/>
                 <hr className = "divider"/>
                 <input className = "signin-box-input" type="text" placeholder="Email"></input>
                 <input className = "signin-box-input" type="text" placeholder="Password"></input>

@@ -1,7 +1,7 @@
-$blue-color: #4DC7F1;
+$green: #54F291;
 
 .home-description {
-    color: $blue-color;
+    color: $green;
     animation: description-animation;
     animation-play-state: running;
     animation-iteration-count: 1;
@@ -9,11 +9,11 @@ $blue-color: #4DC7F1;
     animation-timing-function: ease;
     animation-duration: 2s;
     font-size: 36px;
-    margin-top: 36px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 5%;
 }
 
 .home-header {

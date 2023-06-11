@@ -4,6 +4,7 @@ import "./signup.css"
 
 import $ from "jquery"
 import Title from "../../components/title/Title"
+import logo from "../../assets/small-logo.png"
 
 export default function SignUpSignIn () {
 
@@ -19,10 +20,7 @@ export default function SignUpSignIn () {
         <Nav/>
             <span className = "signup-box">
                 <h1 className = "signup-box-header">Sign Up</h1>
-                <div className = "signup-description">
-                    To sign up, select a username and provide a valid email address. Then, create a secure password.
-                    Click the Sign Up button to proceed.
-                </div>
+                <img className = "signup-box-logo" src = {logo} alt = "logo"/>
                 <hr className = "divider"/>
                 <input className = "signup-box-input" type="text" placeholder="Username"></input>
                 <input className = "signup-box-input" type="text" placeholder="Email"></input>

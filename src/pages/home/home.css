@@ -1,5 +1,5 @@
 .home-description {
-  color: #4DC7F1;
+  color: #54F291;
   animation: description-animation;
   animation-play-state: running;
   animation-iteration-count: 1;
@@ -7,11 +7,11 @@
   animation-timing-function: ease;
   animation-duration: 2s;
   font-size: 36px;
-  margin-top: 36px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 5%;
 }
 
 .home-header {
