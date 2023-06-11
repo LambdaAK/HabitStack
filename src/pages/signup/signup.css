@@ -71,5 +71,43 @@
   margin-top: 2%;
   font-size: 20px;
 }
+.already-have-account-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin-top: 5%;
+}
+
+.signin-button {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  border-color: #535353;
+  border-width: 2px;
+  border-style: solid;
+  padding: 10px;
+  align-self: flex-end;
+  margin-right: 5%;
+  background-color: #DDDDDD;
+  border-radius: 8px;
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.5s ease;
+}
+.signin-button:hover {
+  background-color: #535353;
+}
+
+.already-have-account-description {
+  margin-top: 2%;
+  font-size: 20px;
+  margin-bottom: 2%;
+}
+
+.divider {
+  border: 2px solid #535353;
+  width: 100%;
+}
 
 /*# sourceMappingURL=signup.css.map */

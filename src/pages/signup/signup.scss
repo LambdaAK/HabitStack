@@ -84,3 +84,48 @@
     }
     
 }
+
+.already-have-account-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.signin-button {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border-color: $dark-slate;
+    border-width: 2px;
+    border-style: solid;
+    padding: 10px;
+    align-self: flex-end;
+    margin-right: 5%;
+    background-color: $slate;
+    border-radius: 8px;
+    text-decoration: none;
+    color: black;
+
+    transition: background-color 0.5s ease;
+
+    &:hover {
+        background-color: $dark-slate;
+    }
+
+    
+
+}
+
+.already-have-account-description {
+    margin-top: 2%;
+    font-size: 20px;
+    margin-bottom: 2%;
+}
+
+
+.divider {
+    border: 2px solid $dark-slate;
+    width: 100%;
+  }
