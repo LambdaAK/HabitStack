@@ -1,5 +1,5 @@
-
-const terms = [
+import term from "term"
+const terms: term[] = [
 
     {
         name: "Term1",
@@ -10,7 +10,7 @@ const terms = [
     {
         name: "Term2",
         definition: "This is the definition of term 2",
-        related: ["Term1", "Term 3"]
+        related: ["Term1", "Term3"]
     }
     ,
     {

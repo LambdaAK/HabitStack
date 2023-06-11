@@ -1,3 +1,9 @@
+.divider {
+  border: 2px solid #535353;
+  width: 100%;
+  margin-top: 5%;
+}
+
 .signup-box {
   margin-left: auto;
   margin-right: auto;
@@ -104,12 +110,6 @@
   margin-top: 2%;
   font-size: 20px;
   margin-bottom: 2%;
-}
-
-.divider {
-  border: 2px solid #535353;
-  width: 100%;
-  margin-top: 5%;
 }
 
 /*# sourceMappingURL=signup.css.map */

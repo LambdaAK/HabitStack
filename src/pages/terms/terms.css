@@ -1,3 +1,9 @@
+.divider {
+  border: 2px solid #535353;
+  width: 100%;
+  margin-top: 5%;
+}
+
 #terms-container {
   height: 90vh;
   width: 100%;
@@ -18,14 +24,32 @@
   gap: 1%;
 }
 
-#terms-content {
-  height: 100%;
+.terms-content {
+  height: fit-content;
   width: 75%;
   border-radius: 8px;
   border-color: #DDDDDD;
   border-style: solid;
   border-width: 4px;
   font-size: 75px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.term-header {
+  font-size: 100px;
+  color: white;
+  margin-top: 20px;
+  text-align: center;
+  background-color: #535353;
+  box-shadow: 5px 5px #DDDDDD;
+  border-radius: 8px;
+  border-color: #DDDDDD;
+  border-style: solid;
+  border-width: 4px;
+  padding: 8px;
+  width: 20vw;
 }
 
 .term-name {
@@ -36,14 +60,55 @@
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px;
-  border-radius: 8px;
   text-align: center;
+  border-radius: 8px;
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 .term-name:hover {
   background-color: #535353;
   color: #54F291;
   cursor: pointer;
+}
+
+.related-terms-wrapper {
+  margin-top: 50px;
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.related-terms-header {
+  background-color: #535353;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 10px;
+  color: white;
+  margin-bottom: 25px;
+  margin-top: 150px;
+  font-size: 68px;
+}
+
+.related-terms {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+}
+
+.term-link {
+  width: fit-content;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #535353;
+  font-size: 36px;
+  color: white;
+  margin-bottom: 25px;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+.term-link:hover {
+  cursor: pointer;
+  color: #54F291;
 }
 
 /*# sourceMappingURL=terms.css.map */

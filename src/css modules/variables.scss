@@ -3,3 +3,8 @@ $slate: #DDDDDD;
 $dark-slate: #535353;
 $green: #54F291;
 
+.divider {
+    border: 2px solid $dark-slate;
+    width: 100%;
+    margin-top: 5%;
+}

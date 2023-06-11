@@ -1,3 +1,9 @@
+.divider {
+  border: 2px solid #535353;
+  width: 100%;
+  margin-top: 5%;
+}
+
 .home-description {
   color: #54F291;
   animation: description-animation;
