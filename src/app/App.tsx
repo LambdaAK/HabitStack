@@ -8,11 +8,13 @@ import Settings from "../pages/settings/Settings"
 import SignUp from "../pages/signup/SignUp"
 import SignIn from "../pages/signin/SignIn"
 import Nav from "../components/nav/Nav"
+import UserLoggedIn from "../components/userloggedin/UserLoggedIn"
 
 
 export default function App() {
     return (
         <>
+        <UserLoggedIn/>
         <Nav />
         <BrowserRouter>
         <Routes>

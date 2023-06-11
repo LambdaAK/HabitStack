@@ -6,6 +6,10 @@
     column-span: 1;
     color: black;
 
+    &:hover {
+        cursor: pointer;
+    }
+
 }
 
 .nav-seperator {
@@ -37,6 +41,7 @@
 
 @media (max-width: $breakpoint) {
     #div-container {
+        @include shadow;
         flex-direction: column;
         display: none;
         background-color: $slate;
@@ -46,3 +51,4 @@
         display: block;
     }
 }
+

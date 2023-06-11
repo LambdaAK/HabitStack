@@ -39,7 +39,7 @@ function SignInOrSignOutComponent (props: SignInOrSignOutProps) {
 
     if (props.signedIn) {
         return (
-            <a onClick = {signOutUser}className="nav-link">Sign Out</a>
+            <a onClick = {signOutUser} className="nav-link">Sign Out</a>
         )
     }
 
@@ -52,7 +52,6 @@ function SignInOrSignOutComponent (props: SignInOrSignOutProps) {
         )
     }
 }
-
 
 export default function Nav() {
 
@@ -90,7 +89,7 @@ export default function Nav() {
             }
         })
 
-    })
+    }, [])
 
     return (
             <>
