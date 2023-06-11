@@ -7,6 +7,17 @@
     animation: fly-in-left 1s ease;
 }
 
+@mixin shadow-text-large-on-hover ($original-font-size){
+    &:hover {
+        @include shadow;
+        cursor: pointer;
+        font-size: $original-font-size * 1.4;
+
+    }
+    transition: box-shadow 0.5s ease, font-size 0.5s ease;
+}
+
+
 @keyframes fly-in-left {
     // fly in from the left
     0% {
@@ -27,6 +38,7 @@
 
 #terms-bar {
     @include fly-in-left;
+    @include shadow;
     height: 50vh;
     width: 10%;
 
@@ -41,10 +53,12 @@
     flex-direction: column;
     gap: 1%;
     overflow-y: auto;
+    background-color: $slate;
 
 }
 
 .terms-content {
+    @include shadow;
     height: fit-content;
     width: 90%;
     border-radius: 8px;
@@ -58,6 +72,7 @@
     align-items: center;
 
     animation: load-content 1s ease;
+    background-color: $slate;
 
 }
 
@@ -71,14 +86,14 @@
 }
 
 .term-header {
-    font-size: 100px;
+    @include shadow;
+    font-size: 140px;
     // make it look cool
     color: white;
     margin-top: 20px;
     text-align: center;
     background-color: $dark-slate;
     // shadow around the background
-    box-shadow: 5px 5px $slate;
     border-radius: 8px;
     border-color: $slate;
     border-style: solid;
@@ -88,6 +103,7 @@
 }
 
 .term-name {
+    @include shadow-text-large-on-hover($original-font-size: 24px);
     font-size: 24px;
     font-weight: bold;
     margin-left: 10px;
@@ -98,13 +114,6 @@
     text-align: center;
     border-radius: 8px;
     
-    // do a transformation where the background changes on hover
-    &:hover {
-        background-color: $dark-slate;
-        color: $green;
-        cursor: pointer;
-    }
-    transition: background-color 0.5s ease, color 0.5s ease;
 
 }
 
@@ -129,6 +138,7 @@
     margin-bottom: 25px;
     margin-top: 150px;
     font-size: 68px;
+    
 }
 
 
@@ -142,6 +152,7 @@
 
 
 .term-link {
+    @include shadow-text-large-on-hover($original-font-size: 36px);
     width: fit-content;
     border-radius: 8px;
     padding: 10px;
@@ -149,9 +160,5 @@
     font-size: 36px;
     color: white;
     margin-bottom: 25px;
-    &:hover {
-        cursor: pointer;
-        color: $green;
-    }
-    transition: background-color 0.5s ease, color 0.5s ease;
+   
 }
