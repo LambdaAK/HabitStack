@@ -70,7 +70,7 @@ function TermsContent(props: {currentTerm: term, termSetter: Function}) {
           <div className = "term-definition">
             {`${currentTerm.definition}`}
           </div>
-
+          <hr className = "term-divider"/>
           <RelatedTermsList relatedTerms = {currentTerm.related} termSetter = {props.termSetter}/>
           
         </div>
@@ -86,9 +86,9 @@ export default function Terms() {
       return (
         <div
           className="term-name"
-          onClick={() => {
-            setCurrentTerm(props.term);
-          }}
+          onClick={() => 
+              setCurrentTerm(props.term)
+          }
         >
           {props.term.name}
         </div>
