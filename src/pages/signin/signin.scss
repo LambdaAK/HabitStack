@@ -1,6 +1,6 @@
 @import "./../../css\ modules/variables";
 
-.signup-box {
+.signin-box {
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -19,7 +19,7 @@
 
 }
 
-.signup-box-header {
+.signin-box-header {
     margin-bottom: 2%;
     margin-top: 1%;
     font-size: 48px;
@@ -29,7 +29,7 @@
     }
 }
 
-.signup-box-input {
+.signin-box-input {
     margin-top: 7%;
     margin-bottom: 7%;
     font-size: 22pt;
@@ -56,7 +56,7 @@
 
 
 
-.signup-box-button {
+.signin-box-button {
     margin-top: 2%;
     margin-bottom: 2%;
     border-color: $dark-slate;
@@ -76,7 +76,7 @@
 }
 
 
-.signup-description {
+.signin-description {
     width: auto;
     margin-top: 2%;
     font-size: 20px;
@@ -87,40 +87,34 @@
     
 }
 
-.already-have-account-container {
+.dont-have-account-container {
+    margin-top: 4%;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    width: 100%;
     align-items: center;
-    margin-top: 5%;
+    width: 100%;
+    
 }
 
-#signin-button {
-    margin-top: 2%;
-    margin-bottom: 2%;
+.dont-have-account-description {
+
+    font-size: 20px;
+
+}
+
+#signup-button {
     border-color: $dark-slate;
     border-width: 2px;
     border-style: solid;
     padding: 10px;
-    align-self: flex-end;
+
     background-color: $slate;
     border-radius: 8px;
-    text-decoration: none;
-    color: black;
-
     transition: background-color 0.5s ease;
 
     &:hover {
         background-color: $dark-slate;
     }
-
-}
-
-.already-have-account-description {
-    margin-top: 2%;
-    font-size: 20px;
-    margin-bottom: 2%;
 }
 
 

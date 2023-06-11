@@ -1,4 +1,4 @@
-.signup-box {
+.signin-box {
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -12,23 +12,23 @@
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
 @media (max-width: 480px) {
-  .signup-box {
+  .signin-box {
     max-width: 480px;
   }
 }
 
-.signup-box-header {
+.signin-box-header {
   margin-bottom: 2%;
   margin-top: 1%;
   font-size: 48px;
 }
 @media (max-width: 480px) {
-  .signup-box-header {
+  .signin-box-header {
     font-size: 24px;
   }
 }
 
-.signup-box-input {
+.signin-box-input {
   margin-top: 7%;
   margin-bottom: 7%;
   font-size: 22pt;
@@ -39,20 +39,20 @@
   appearance: none;
   border-radius: 8px;
 }
-.signup-box-input:focus {
+.signin-box-input:focus {
   background-color: #535353;
   outline: none;
   color: white;
 }
 @media (max-width: 480px) {
-  .signup-box-input {
+  .signin-box-input {
     font-size: 24px;
     margin-top: 4%;
     margin-bottom: 4%;
   }
 }
 
-.signup-box-button {
+.signin-box-button {
   margin-top: 2%;
   margin-bottom: 2%;
   border-color: #535353;
@@ -64,46 +64,38 @@
   border-radius: 8px;
   transition: background-color 0.5s ease;
 }
-.signup-box-button:hover {
+.signin-box-button:hover {
   background-color: #535353;
 }
 
-.signup-description {
+.signin-description {
   width: auto;
   margin-top: 2%;
   font-size: 20px;
 }
-.already-have-account-container {
+.dont-have-account-container {
+  margin-top: 4%;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
-  width: 100%;
   align-items: center;
-  margin-top: 5%;
+  width: 100%;
 }
 
-#signin-button {
-  margin-top: 2%;
-  margin-bottom: 2%;
+.dont-have-account-description {
+  font-size: 20px;
+}
+
+#signup-button {
   border-color: #535353;
   border-width: 2px;
   border-style: solid;
   padding: 10px;
-  align-self: flex-end;
   background-color: #DDDDDD;
   border-radius: 8px;
-  text-decoration: none;
-  color: black;
   transition: background-color 0.5s ease;
 }
-#signin-button:hover {
+#signup-button:hover {
   background-color: #535353;
-}
-
-.already-have-account-description {
-  margin-top: 2%;
-  font-size: 20px;
-  margin-bottom: 2%;
 }
 
 .divider {
@@ -112,4 +104,4 @@
   margin-top: 5%;
 }
 
-/*# sourceMappingURL=signup.css.map */
+/*# sourceMappingURL=signin.css.map */

@@ -2,7 +2,16 @@ import { useEffect } from "react"
 import Nav from "../../components/nav/Nav"
 import "./signup.css"
 
+import $ from "jquery"
+
 export default function SignUpSignIn () {
+
+    useEffect(() => {
+        $("#signin-button").click(function() {
+            window.location.replace("/signin")
+        })
+
+    })
 
     return (
         <>

@@ -6,6 +6,7 @@ import Dashboard from "../pages/dashboard/dashboard"
 import Social from "../pages/social/Social"
 import Settings from "../pages/settings/Settings"
 import SignUp from "../pages/signup/SignUp"
+import SignIn from "../pages/signin/SignIn"
 
 
 export default function App() {
@@ -14,7 +15,7 @@ export default function App() {
             <Routes>
 
               <Route path="/" element={<Home/>} />
-              <Route path="signin" element= {<SignUpSignIn/>}></Route>
+              <Route path="signin" element= {<SignIn/>}></Route>
               <Route path="signup" element= {<SignUp/>}></Route>
               <Route path="terms" element={<Terms/>}></Route>
               <Route path="dashboard" element={<Dashboard/>}></Route>
