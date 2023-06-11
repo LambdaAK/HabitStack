@@ -45,7 +45,7 @@
     @include fly-in-left;
     @include shadow;
     height: 50vh;
-    width: 8vw;
+    min-width: 10vw;
 
     border-radius: 8px;
     border-color: $slate;
