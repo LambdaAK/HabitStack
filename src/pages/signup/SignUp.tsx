@@ -3,6 +3,7 @@ import Nav from "../../components/nav/Nav"
 import "./signup.css"
 
 import $ from "jquery"
+import Title from "../../components/title/Title"
 
 export default function SignUpSignIn () {
 

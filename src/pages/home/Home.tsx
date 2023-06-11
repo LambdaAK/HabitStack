@@ -1,4 +1,3 @@
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
 import { getDatabase} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
 import {getAuth } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"
@@ -8,6 +7,7 @@ import { Database, onValue, ref, set } from "firebase/database";
 import firebase from "firebase/compat/app";
 import firebaseConfig from "../../firebaseConfig";
 import Nav from "../../components/nav/Nav";
+import Title from "../../components/title/Title";
 import "./home.css"
 
 
@@ -59,7 +59,7 @@ export default function Home() {
     return (
         <>
           <Nav/>
-          <Header/>
+          <Title animate={true}/>
           <Description/>
           <SubDescription/>
         </>

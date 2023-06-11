@@ -45,10 +45,10 @@ function SignInOrSignOutComponent (props: SignInOrSignOutProps) {
 
     else {
         return (
-            [
-            <a href = "/signup" className="nav-link">Sign Up</a>,
+            <>
+            <a href = "/signup" className="nav-link">Sign Up</a>
             <a href = "/signin" className="nav-link">Sign In</a>
-            ]
+            </>
         )
     }
 }
@@ -109,6 +109,7 @@ export default function Nav() {
                 <a href = "/" className="nav-link">Home</a>
                 <a href = "/dashboard" className="nav-link">Dashboard</a>
                 <a href = "/social" className="nav-link">Social</a>
+                <a href="/terms" className="nav-link">Terms</a>
                 <div className = "nav-seperator"></div>
                 <a href = "/settings" className="nav-link">Settings</a>
             </div>

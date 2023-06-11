@@ -1,0 +1,19 @@
+#title {
+  font-size: 128px;
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.animate-title {
+  animation: header-animation;
+  animation-play-state: running;
+  animation-iteration-count: 1;
+  animation-delay: 0s;
+  animation-timing-function: ease;
+  animation-duration: 1s;
+}
+
+/*# sourceMappingURL=title.css.map */
