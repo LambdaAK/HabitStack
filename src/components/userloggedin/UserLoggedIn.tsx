@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { ref, onValue, DataSnapshot, getDatabase } from "firebase/database"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import firebaseConfig from "../../firebaseConfig"
 import "./userLoggedIn.css"
 
@@ -10,28 +10,11 @@ const database = getDatabase(app)
 const auth = getAuth(app)
 
 
-export default function UserLoggedIn(): JSX.Element {
- 
-        // get the username of the user
-    const [loggedIn, setLoggedIn] = useState(false)
-    const [username, setUsername] = useState("")
-
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            // signed in
-            const uid = user.uid
-            const userRef = ref(database, `users/${uid}/username`)
-            onValue(userRef, (snapshot: DataSnapshot) => {
-                setLoggedIn(true)
-                setUsername(snapshot.val())
-            })
-        }
-    })
-
-    if (loggedIn) {
+function C(props: { signedIn: boolean; username: string; }) {
+    if (props.signedIn) {
         return (
             <div className="user-logged-in">
-                <p>Logged in as {username}</p>
+                <p>Logged in as {props.username}</p>
             </div>
         )
     }
@@ -43,5 +26,39 @@ export default function UserLoggedIn(): JSX.Element {
             </div>
         )
     }
+}
+
+export default function UserLoggedIn(): JSX.Element {
+ 
+        // get the username of the user
+    const [loggedIn, setLoggedIn] = useState(false)
+    const [username, setUsername] = useState("")
+
+
+    useEffect (() => {
+        const database = getDatabase(app)
+        const auth = getAuth(app)
+        onAuthStateChanged(auth, (user) => {
+        if (user) {
+            console.log('logged in')
+            // signed in
+            const uid = user.uid
+            const userRef = ref(database, `users/${uid}/username`)
+            onValue(userRef, (snapshot: DataSnapshot) => {
+                setLoggedIn(true)
+                setUsername(snapshot.val())
+            })
+        }
+        else {
+            console.log('not logged in')
+            // not signed in
+            setLoggedIn(false)
+        }
+        })
+    }, [])
+
+    return (
+        <C signedIn = {loggedIn} username = {username}/>
+    )
 
 }
