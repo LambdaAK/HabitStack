@@ -17,7 +17,6 @@ export default function SignUpSignIn () {
 
     return (
         <>
-        <Nav/>
             <span className = "signup-box">
                 <h1 className = "signup-box-header">Sign Up</h1>
                 <img className = "signup-box-logo" src = {logo} alt = "logo"/>

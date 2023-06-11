@@ -58,7 +58,6 @@ export default function Home() {
 
     return (
         <>
-          <Nav/>
           <Title animate={true}/>
           <Description/>
           <SubDescription/>

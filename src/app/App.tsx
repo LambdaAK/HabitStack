@@ -7,24 +7,28 @@ import Social from "../pages/social/Social"
 import Settings from "../pages/settings/Settings"
 import SignUp from "../pages/signup/SignUp"
 import SignIn from "../pages/signin/SignIn"
+import Nav from "../components/nav/Nav"
 
 
 export default function App() {
     return (
+        <>
+        <Nav />
         <BrowserRouter>
-            <Routes>
+        <Routes>
 
-              <Route path="/" element={<Home/>} />
-              <Route path="signin" element= {<SignIn/>}></Route>
-              <Route path="signup" element= {<SignUp/>}></Route>
-              <Route path="terms" element={<Terms/>}></Route>
-              <Route path="dashboard" element={<Dashboard/>}></Route>
-              <Route path="social" element={<Social/>}></Route>
-              <Route path="settings" element={<Settings/>}></Route>
-              
-            </Routes>
-          
-          
-          </BrowserRouter>
+          <Route path="/" element={<Home />} />
+          <Route path="signin" element={<SignIn />}></Route>
+          <Route path="signup" element={<SignUp />}></Route>
+          <Route path="terms" element={<Terms />}></Route>
+          <Route path="dashboard" element={<Dashboard />}></Route>
+          <Route path="social" element={<Social />}></Route>
+          <Route path="settings" element={<Settings />}></Route>
+
+        </Routes>
+
+
+      </BrowserRouter>
+      </>
     )
 }

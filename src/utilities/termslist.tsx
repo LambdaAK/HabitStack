@@ -1,27 +1,22 @@
-interface term {
-    name: string;
-    definition: string;
-    related: string[];
-}
 
-const terms: term[] = [
+const terms = [
 
     {
-        name: "Term 1",
+        name: "Term1",
         definition: "This is the definition of term 1",
-        related: ["Term 2", "Term 3"]
+        related: ["Term2", "Term3"]
     }
     ,
     {
-        name: "Term 2",
+        name: "Term2",
         definition: "This is the definition of term 2",
-        related: ["Term 1", "Term 3"]
+        related: ["Term1", "Term 3"]
     }
     ,
     {
-        name: "Term 3",
+        name: "Term3",
         definition: "This is the definition of term 3",
-        related: ["Term 1", "Term 2"]
+        related: ["Term1", "Term2"]
     }
 
 ]
