@@ -1,6 +1,10 @@
 @import "./../../css\ modules/variables";
 
 .home-description {
+    @include shadow;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
     color: $green;
     animation: description-animation;
     animation-play-state: running;
@@ -16,22 +20,11 @@
     margin-top: 5%;
 }
 
-.home-header {
-    animation: header-animation;
-    animation-play-state: running;
-    animation-iteration-count: 1;
-    animation-delay: 0s;
-    animation-timing-function: ease;
-    animation-duration: 1s;
-    font-size: 128px;
-    margin-top: 48px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 .home-sub-description {
+    @include shadow;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
     animation: sub-description-animation;
     animation-play-state: running;
     animation-iteration-count: 1;

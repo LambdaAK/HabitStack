@@ -17,7 +17,7 @@ export default function Title (props: TitleProps) {
   
   return (
           <div id = "title">
-            <img src = {logo} alt = "logo" 
+            <img className = "title" src = {logo} alt = "logo" 
             style = {{height: "300px"}}
             />
           </div>
