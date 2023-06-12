@@ -1,6 +1,6 @@
 @import "./../../css\ modules/variables";
 
-.signup-box {
+#settings-box {
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -8,19 +8,20 @@
     border-radius: 8px;
     align-items: center;
     margin-top: 7%;
-    width:min-content;
+    width: fit-content;
     padding: 2%;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
 
     @media (max-width: $breakpoint) {
         max-width: $breakpoint;
     }
-
 }
 
-.signup-box-header {
+.settings-box-header {
     margin-bottom: 2%;
     margin-top: 1%;
+    margin-left: auto;
+    margin-right: auto;
     font-size: 48px;
     
     @media (max-width: $breakpoint) {
@@ -28,7 +29,7 @@
     }
 }
 
-.signup-box-input {
+.settings-box-input {
     margin-top: 7%;
     margin-bottom: 7%;
     font-size: 22pt;
@@ -39,6 +40,7 @@
     transition-duration: 0.5s;
     appearance: none;
     border-radius: 8px;
+    text-align: center;
 
     &:focus {
         background-color: $dark-slate;
@@ -53,18 +55,17 @@
     }
 }
 
-
-
-.signup-box-button {
+.settings-box-button {
     margin-top: 2%;
     margin-bottom: 2%;
     border-color: $dark-slate;
     border-width: 2px;
     border-style: solid;
     padding: 10px;
-    align-self: flex-end;
     background-color: $slate;
     border-radius: 8px;
+    font-size: 32px;
+    min-width: fit-content;
 
     transition: background-color 0.5s ease;
 
@@ -75,68 +76,46 @@
 
 }
 
-
-.signup-description {
-    width: auto;
-    margin-top: 2%;
-    font-size: 20px;
-
-    @media (max-width: $breakpoint) {
-        
-    }
-    
-}
-
-.already-have-account-container {
+.button-input-pair {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
-    margin-top: 5%;
+    justify-content: space-evenly;
+    gap: 14px;
 }
 
-#signin-button {
-    margin-top: 2%;
-    margin-bottom: 2%;
-    border-color: $dark-slate;
-    border-width: 2px;
-    border-style: solid;
+.change-username-button {
+    @extend .settings-box-button;
+    width: 25%;
+}
+
+
+.reset-password-button {
+    @extend .settings-box-button;
+    width: 84%;
+    text-align: center;
+}
+
+.change-email-button {
+    @extend .settings-box-button;
+}
+
+.change-username-input {
+    @extend .settings-box-input;
+}
+
+#not-logged-in {
+    @include shadow;
+    @include float;
+    text-align: center;
+    font-size: 48px;
+    margin-top: 10vh;
+    margin-bottom: 0;
+    width: fit-content;
     padding: 10px;
-    align-self: flex-end;
-    background-color: $slate;
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 8px;
-    text-decoration: none;
-    color: black;
-
-    transition: background-color 0.5s ease;
-
-    &:hover {
-        background-color: $dark-slate;
-        cursor: pointer;
-    }
-
-}
-
-#passwords-do-not-match {
-    color: red;
-    font-size: 20px;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    color: $dark-slate;
+    font-weight: bold;
     display: none;
 }
-
-#password-requirements {
-    color: red;
-    font-size: 20px;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    display: none;
-}
-
-.already-have-account-description {
-    margin-top: 2%;
-    font-size: 20px;
-    margin-bottom: 2%;
-}
-

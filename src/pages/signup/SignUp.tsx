@@ -7,7 +7,7 @@ import $ from "jquery"
 import Title from "../../components/title/Title"
 import logo from "../../assets/small-logo.png"
 import { FirebaseApp, initializeApp } from "firebase/app"
-import { Auth, UserCredential, createUserWithEmailAndPassword, getAuth } from "firebase/auth"
+import { Auth, UserCredential, createUserWithEmailAndPassword, getAuth, updateEmail } from "firebase/auth"
 import { Database, getDatabase, ref, set } from "firebase/database"
 
 const app: FirebaseApp = initializeApp(firebaseConfig);
@@ -48,6 +48,7 @@ function updatePasswordWarnings() {
         }
     }
 }
+
 
 async function signUpProcedure() {
     // get the values of the inputs

@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebas
 import { getDatabase} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
 import {getAuth } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"
 import { useEffect, useState } from "react";
-import { User, UserCredential, signOut } from "firebase/auth";
+import { User, UserCredential, sendPasswordResetEmail, signOut } from "firebase/auth";
 import { Database, onValue, ref, set } from "firebase/database";
 import firebase from "firebase/compat/app";
 import firebaseConfig from "../../firebaseConfig";
@@ -55,6 +55,7 @@ function SubDescription() {
 }
 
 export default function Home() {
+
 
     return (
         <>

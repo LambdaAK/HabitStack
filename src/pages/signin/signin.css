@@ -71,6 +71,7 @@
 }
 .signin-box-button:hover {
   background-color: #535353;
+  cursor: pointer;
 }
 
 .dont-have-account-container {
@@ -96,6 +97,7 @@
 }
 #signup-button:hover {
   background-color: #535353;
+  cursor: pointer;
 }
 
 .term-divider {

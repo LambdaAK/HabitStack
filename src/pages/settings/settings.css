@@ -1,0 +1,127 @@
+.divider {
+  border: 2px solid #535353;
+  width: 100%;
+  margin-top: 5%;
+}
+
+#settings-box {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  align-items: center;
+  margin-top: 7%;
+  width: fit-content;
+  padding: 2%;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+@media (max-width: 480px) {
+  #settings-box {
+    max-width: 480px;
+  }
+}
+
+.settings-box-header {
+  margin-bottom: 2%;
+  margin-top: 1%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 48px;
+}
+@media (max-width: 480px) {
+  .settings-box-header {
+    font-size: 24px;
+  }
+}
+
+.settings-box-input, .change-username-input {
+  margin-top: 7%;
+  margin-bottom: 7%;
+  font-size: 22pt;
+  background-color: #DDDDDD;
+  padding: 4px;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  appearance: none;
+  border-radius: 8px;
+  text-align: center;
+}
+.settings-box-input:focus, .change-username-input:focus {
+  background-color: #535353;
+  outline: none;
+  color: white;
+}
+@media (max-width: 480px) {
+  .settings-box-input, .change-username-input {
+    font-size: 24px;
+    margin-top: 4%;
+    margin-bottom: 4%;
+  }
+}
+
+.settings-box-button, .change-email-button, .reset-password-button, .change-username-button {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  border-color: #535353;
+  border-width: 2px;
+  border-style: solid;
+  padding: 10px;
+  background-color: #DDDDDD;
+  border-radius: 8px;
+  font-size: 32px;
+  min-width: fit-content;
+  transition: background-color 0.5s ease;
+}
+.settings-box-button:hover, .change-email-button:hover, .reset-password-button:hover, .change-username-button:hover {
+  background-color: #535353;
+  cursor: pointer;
+}
+
+.button-input-pair {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 14px;
+}
+
+.change-username-button {
+  width: 25%;
+}
+
+.reset-password-button {
+  width: 84%;
+  text-align: center;
+}
+
+#not-logged-in {
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+  animation: floating-animation 2s ease-in-out 0s infinite;
+  text-align: center;
+  font-size: 48px;
+  margin-top: 10vh;
+  margin-bottom: 0;
+  width: fit-content;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 8px;
+  color: #535353;
+  font-weight: bold;
+  display: none;
+}
+@keyframes floating-animation {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/*# sourceMappingURL=settings.css.map */
