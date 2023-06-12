@@ -81,6 +81,12 @@
     flex-direction: row;
     justify-content: space-evenly;
     gap: 14px;
+    
+    @media (max-width: $breakpoint) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .change-username-button {

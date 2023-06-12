@@ -84,6 +84,13 @@
   justify-content: space-evenly;
   gap: 14px;
 }
+@media (max-width: 480px) {
+  .button-input-pair {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
 
 .change-username-button {
   width: 25%;
