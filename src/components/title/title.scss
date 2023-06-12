@@ -15,10 +15,32 @@
 }
 
 .animate-title {
-    animation: header-animation;
-    animation-play-state: running;
-    animation-iteration-count: 1;
-    animation-delay: 0s;
-    animation-timing-function: ease;
-    animation-duration: 1s;
+    animation: header-animation 1s ease-in-out, second-header-animation 2s ease-in-out 1s infinite;
+}
+
+@keyframes header-animation {
+    0% {
+      opacity: 0;
+      transform: translateY(-100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+}
+
+@keyframes second-header-animation {
+    0% {
+        // go down
+        transform: translateY(0px);
+    }
+
+    50% {
+        // go up
+        transform: translateY(-10px);
+    }
+    
+    100% {
+        transform: translateY(0px);
+    }
 }

@@ -30,6 +30,12 @@
     font-size: 36px;
     font-weight: bold;
 
+    @media (max-width: $breakpoint) {
+        @include shadow;
+        flex-direction: column;
+        display: none;
+    }
+
 }
 
 
@@ -37,17 +43,8 @@
     display: none;
     width: 100px;
     height: 100px;
-}
 
-@media (max-width: $breakpoint) {
-    #div-container {
-        @include shadow;
-        flex-direction: column;
-        display: none;
-        background-color: $slate;
-    }
-
-    #nav-button {
+    @media (max-width: $breakpoint) {
         display: block;
     }
 }

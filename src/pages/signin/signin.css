@@ -14,7 +14,6 @@
   margin-top: 7%;
   width: min-content;
   padding: 2%;
-  background-color: #DDDDDD;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
 @media (max-width: 480px) {
@@ -38,16 +37,16 @@
   margin-top: 7%;
   margin-bottom: 7%;
   font-size: 22pt;
-  background-color: #DDDDDD;
   padding: 4px;
+  outline: none;
   transition-property: background-color;
   transition-duration: 0.5s;
   appearance: none;
   border-radius: 8px;
+  background-color: #DDDDDD;
 }
 .signin-box-input:focus {
   background-color: #535353;
-  outline: none;
   color: white;
 }
 @media (max-width: 480px) {
@@ -74,11 +73,6 @@
   background-color: #535353;
 }
 
-.signin-description {
-  width: auto;
-  margin-top: 2%;
-  font-size: 20px;
-}
 .dont-have-account-container {
   margin-top: 4%;
   display: flex;
