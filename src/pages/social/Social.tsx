@@ -16,7 +16,7 @@ import $ from "jquery"
 function getCookie(name: string) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
+    for(var i = 0;i < ca.length;i++) {
         var c = ca[i];
         while (c.charAt(0)==' ') c = c.substring(1,c.length);
         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
@@ -57,7 +57,7 @@ function appendToArrayLikeObject(object: object, value: any): object {
 
 
 
-function ServerButton(props: {serverId: string}) {
+function ServerButton(props: {serverId: string, currentServerIdSetter: Function}) {
 
     const [serverName, setServerName] = useState <string> ("")
 
@@ -74,7 +74,15 @@ function ServerButton(props: {serverId: string}) {
 
     return (
         <>
-            <div className = "server-button" key = {props.serverId}>
+            <div className = "server-button" key = {props.serverId}
+            
+            onClick = {
+                () => {
+                alert("clicked")
+                props.currentServerIdSetter(props.serverId)
+                }
+            }
+            >
                 {serverName}
             </div>
         </>
@@ -85,28 +93,27 @@ function MessagesSection (props: {serverId: string}) {
     const [messages, setMessages] = useState <{content: string, author: string}[]> ([])
 
     useEffect(() => {
+
         // get the messages
         const messagesRef = ref(database, "servers/" + props.serverId + "/messages")
-
-        get(messagesRef).then((snapshot: DataSnapshot) => {
+        onValue(messagesRef, (snapshot: DataSnapshot) => {
             const _messages = snapshot.val()
-            setMessages(_messages)
+            
+            if (_messages) {
+                setMessages(_messages)
+            }
+            else {
+                setMessages([])
+            }
         })
-    })
 
-    if (messages == null) {
-        return (
-            <div className = "server-messages">
-                messages is null
-            </div>
-        )
-    }
-    
+
+    })
 
     return (
         <div className = "server-messages">
             {
-                messages.map((message: {content: string, author: string}) =>
+                messages.map((message) =>
                     <Message content = {message.content} author = {message.author}/>
                 )
             }
@@ -179,9 +186,6 @@ async function sendMessage(serverId: string) {
     msgList = appendToArrayLikeObject(msgList, {"content" : messageContent, "author" : currentUserId})
     
     set(messagesRef, msgList)
-    .then(() => {
-        alert("message sent")
-    })
     .catch((error: Error) => {
         alert(error.message)
     })
@@ -196,11 +200,15 @@ export default function Social() {
 
 
     useEffect(() => {
+        alert("current server id changed to " + currentServerId)
+    }, [currentServerId])
+
+
+    useEffect(() => {
         
         // get the current user
 
         const user = getCookie("user")
-        alert(user)
 
         if (user != null) {
             // logged in
@@ -231,7 +239,7 @@ export default function Social() {
                     {
                         serversUserIn.map((serverId) => 
                              
-                            <ServerButton serverId = {serverId}/>
+                            <ServerButton serverId = {serverId} currentServerIdSetter={setCurrentServerId}/>
                              
                         )
                     }
