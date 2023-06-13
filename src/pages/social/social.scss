@@ -77,18 +77,23 @@
 
 .message {
     @include shadow;
-    width: 90%;
+    width: fit-content;
     height: fit-content;
     border-radius: 8px;
     padding: 1rem;
-    font-size: 2rem;
+    font-size: 1.25rem;
     background-color: $dark-slate;
     color: white;
+    align-self: flex-start;
+}
+
+.message-from-current-user {
+    align-self: flex-end;
 }
 
 
 .message-author {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: bold;
     color: $green;
 }

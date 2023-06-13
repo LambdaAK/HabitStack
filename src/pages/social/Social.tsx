@@ -132,10 +132,16 @@ function Message(props: {content: string, author: string}) {
             setAuthorName(authorName)
         })
     }
-    , [])
+    , [props.content, props.author])
+
+    let extraClasses = ""
+
+    if (props.author == getCookie("user")) {
+        extraClasses += " message-from-current-user"
+    }
 
     return (
-        <div className = "message" key = {props.author}>
+        <div className = {"message" + extraClasses} key = {props.author}>
             <div className = "message-author">
                 {authorName}
             </div>
@@ -205,11 +211,22 @@ export default function Social() {
             // get the uuids of the servers the user is in
             const userServersRef = ref(database, "users/" + user + "/servers")
             // sets an event listener for a change in the value of the user's servers
-            get(userServersRef) // probably should be using onValue() here
-            .then((snapshot: DataSnapshot) => {
+            
+            onValue(userServersRef, (snapshot: DataSnapshot) => {
                 const userServers = snapshot.val()
-                setServersUserIn(userServers)
-                setCurrentServerId(userServers[0])
+
+                if (userServers == null) {
+                    setServersUserIn([])
+                    setCurrentServerId("")
+                }
+
+                else {
+                    setServersUserIn(userServers)
+                    if (currentServerId == "" && userServers.length > 0) {
+                        setCurrentServerId(userServers[0])
+                    }
+                }
+
             })
         }
 
