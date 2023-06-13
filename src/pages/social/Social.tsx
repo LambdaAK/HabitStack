@@ -12,6 +12,19 @@ import $ from "jquery"
 
 */
 
+
+function getCookie(name: string) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+
 const app: FirebaseApp = initializeApp(firebaseConfig);
 const database: Database = getDatabase(app)
 const auth: Auth = getAuth()
@@ -69,17 +82,17 @@ function ServerButton(props: {serverId: string}) {
 }
 
 function MessagesSection (props: {serverId: string}) {
-    alert("passed into MessagesSection is " + props.serverId)
     const [messages, setMessages] = useState <{content: string, author: string}[]> ([])
 
     useEffect(() => {
         // get the messages
         const messagesRef = ref(database, "servers/" + props.serverId + "/messages")
+
         get(messagesRef).then((snapshot: DataSnapshot) => {
             const _messages = snapshot.val()
             setMessages(_messages)
         })
-    }, [])
+    })
 
     if (messages == null) {
         return (
@@ -165,11 +178,13 @@ async function sendMessage(serverId: string) {
     // add the new message
     msgList = appendToArrayLikeObject(msgList, {"content" : messageContent, "author" : currentUserId})
     
-    // send the new message
-    console.log(msgList);console.log(msgList);console.log(msgList);console.log(msgList);console.log(msgList);console.log(msgList);console.log(msgList)
-    
-
     set(messagesRef, msgList)
+    .then(() => {
+        alert("message sent")
+    })
+    .catch((error: Error) => {
+        alert(error.message)
+    })
 
 }
 
@@ -183,13 +198,18 @@ export default function Social() {
 
     useEffect(() => {
         $("#message-input").keyup((event: KeyboardEvent) => {
-            if (event.keyCode === 13) {
-                if (currentServerId != null) {
+            if (event.keyCode == 13) { // change to a form
+                if (currentServerId != "") {
                     sendMessage(currentServerId)
+                }
+                else {
+                    alert("no current server")
                 }
 
             }
         });
+        
+        // get the current user
 
         onAuthStateChanged(auth, async (user) => {
             if (user) {
@@ -197,9 +217,8 @@ export default function Social() {
                 // get the uuids of the servers the user is in
                 const userServersRef = ref(database, "users/" + user.uid + "/servers")
                 // sets an event listener for a change in the value of the user's servers
-                const serversUserInSnapshot: DataSnapshot = await get(userServersRef)
+                const serversUserInSnapshot: DataSnapshot = await get(userServersRef) // probably should be using onValue() here
                 const userServers = serversUserInSnapshot.val()
-                alert('got user servers')
                 setServersUserIn(userServers)
                 setCurrentServerId(userServers[0])
             }
@@ -227,8 +246,9 @@ export default function Social() {
                 </div>
                 <div className = "open-server">
                 {
+                   
                     (function() {
-                        if (currentServerId != null) {
+                        if (currentServerId != "") {
                             return (
                                 <>
                                     <MessagesSection serverId = {currentServerId}/>
@@ -239,12 +259,13 @@ export default function Social() {
                             return (
                                 <>
                                     <div className = "server-messages">
-                                        No current server
+                                        
                                     </div>
                                 </>
                             )
                         }
                     })()
+                
                 }
                     <input id = "message-input">
 
