@@ -12,7 +12,6 @@ import $ from "jquery"
 
 */
 
-
 function getCookie(name: string) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
@@ -56,7 +55,6 @@ function appendToArrayLikeObject(object: object, value: any): object {
 }
 
 
-
 function ServerButton(props: {serverId: string, currentServerIdSetter: Function}) {
 
     const [serverName, setServerName] = useState <string> ("")
@@ -78,7 +76,6 @@ function ServerButton(props: {serverId: string, currentServerIdSetter: Function}
             
             onClick = {
                 () => {
-                alert("clicked")
                 props.currentServerIdSetter(props.serverId)
                 }
             }
@@ -93,12 +90,11 @@ function MessagesSection (props: {serverId: string}) {
     const [messages, setMessages] = useState <{content: string, author: string}[]> ([])
 
     useEffect(() => {
-
+        console.log("messages section")
         // get the messages
         const messagesRef = ref(database, "servers/" + props.serverId + "/messages")
         onValue(messagesRef, (snapshot: DataSnapshot) => {
             const _messages = snapshot.val()
-            
             if (_messages) {
                 setMessages(_messages)
             }
@@ -108,7 +104,7 @@ function MessagesSection (props: {serverId: string}) {
         })
 
 
-    })
+    }, [props.serverId])
 
     return (
         <div className = "server-messages">
@@ -197,12 +193,6 @@ export default function Social() {
 
     let [serversUserIn, setServersUserIn] = useState <string[]> ([])
     let [currentServerId, setCurrentServerId] = useState <string> ("")
-
-
-    useEffect(() => {
-        alert("current server id changed to " + currentServerId)
-    }, [currentServerId])
-
 
     useEffect(() => {
         
