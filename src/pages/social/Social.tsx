@@ -191,45 +191,37 @@ async function sendMessage(serverId: string) {
 
 export default function Social() {
 
-
     let [serversUserIn, setServersUserIn] = useState <string[]> ([])
     let [currentServerId, setCurrentServerId] = useState <string> ("")
 
 
     useEffect(() => {
-        $("#message-input").keyup((event: KeyboardEvent) => {
-            if (event.keyCode == 13) { // change to a form
-                if (currentServerId != "") {
-                    sendMessage(currentServerId)
-                }
-                else {
-                    alert("no current server")
-                }
-
-            }
-        });
         
         // get the current user
 
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                // logged in
-                // get the uuids of the servers the user is in
-                const userServersRef = ref(database, "users/" + user.uid + "/servers")
-                // sets an event listener for a change in the value of the user's servers
-                const serversUserInSnapshot: DataSnapshot = await get(userServersRef) // probably should be using onValue() here
-                const userServers = serversUserInSnapshot.val()
+        const user = getCookie("user")
+        alert(user)
+
+        if (user != null) {
+            // logged in
+            // get the uuids of the servers the user is in
+            const userServersRef = ref(database, "users/" + user + "/servers")
+            // sets an event listener for a change in the value of the user's servers
+            get(userServersRef) // probably should be using onValue() here
+            .then((snapshot: DataSnapshot) => {
+                const userServers = snapshot.val()
                 setServersUserIn(userServers)
                 setCurrentServerId(userServers[0])
-            }
+            })
+        }
 
-            else {
-                alert('not logged in social')
-                // not logged in
-                setServersUserIn([])
-            }
+        else {
+            alert('not logged in social')
+            // not logged in
+            setServersUserIn([])
+        }
 
-        })
+        
     }, [])
 
     return (
@@ -267,7 +259,16 @@ export default function Social() {
                     })()
                 
                 }
-                    <input id = "message-input">
+                    <input id = "message-input" onKeyUp={(e) => {
+                        if (e.key == "Enter") {
+                            if (currentServerId != "") {
+                                sendMessage(currentServerId)
+                            }
+                            else {
+                                alert("not in a server")
+                            }
+                        }
+                    }}>
 
                     </input>
                 </div>
