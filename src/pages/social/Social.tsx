@@ -63,7 +63,8 @@ function ServerButton(props: {serverId: string, currentServerIdSetter: Function}
     useEffect(() => {
         // get the server name
         const serverNameRef = ref(database, "servers/" + props.serverId + "/name")
-        onValue(serverNameRef, (snapshot: DataSnapshot) => {
+        return onValue(serverNameRef, (snapshot: DataSnapshot) => {
+            //alert("server name ref")
             const serverName = snapshot.val()
             setServerName(serverName)
         })
@@ -90,17 +91,23 @@ function MessagesSection (props: {serverId: string}) {
     const [messages, setMessages] = useState <{content: string, author: string}[]> ([])
 
     useEffect(() => {
-        console.log("messages section")
         // get the messages
         const messagesRef = ref(database, "servers/" + props.serverId + "/messages")
-        onValue(messagesRef, (snapshot: DataSnapshot) => {
+        return onValue(messagesRef, (snapshot: DataSnapshot) => {
+            //alert("messages ref")
             const _messages = snapshot.val()
-            if (_messages) {
+            if (_messages != null) {
                 setMessages(_messages)
             }
             else {
                 setMessages([])
             }
+
+            const serverMessages = document.getElementsByClassName("server-messages")[0]
+            // scroll to the bottom of the messages
+            setTimeout(() => {
+                serverMessages.scrollTop = serverMessages.scrollHeight
+            }, 1)
         })
 
 
@@ -153,7 +160,7 @@ function Message(props: {content: string, author: string}) {
     
 }
 
-async function sendMessage(serverId: string) {
+async function sendMessage(serverId: string): Promise<void> {
     // get the content of the message
     const messageContent: string = $("#message-input").val() as string
     // trim leading spaces
@@ -192,6 +199,9 @@ async function sendMessage(serverId: string) {
         alert(error.message)
     })
 
+    // empty the chat bar
+    $("#message-input").val("")
+
 }
 
 
@@ -199,6 +209,13 @@ export default function Social() {
 
     let [serversUserIn, setServersUserIn] = useState <string[]> ([])
     let [currentServerId, setCurrentServerId] = useState <string> ("")
+
+    useEffect(() => {
+        // scroll down to the bottom of the messages
+        const serverMessages = document.getElementsByClassName("server-messages")[0]
+        serverMessages.scrollTop = serverMessages.scrollHeight
+    })
+
 
     useEffect(() => {
         
@@ -213,6 +230,7 @@ export default function Social() {
             // sets an event listener for a change in the value of the user's servers
             
             onValue(userServersRef, (snapshot: DataSnapshot) => {
+                //alert("user servers ref")
                 const userServers = snapshot.val()
 
                 if (userServers == null) {
@@ -236,7 +254,6 @@ export default function Social() {
             setServersUserIn([])
         }
 
-        
     }, [])
 
     return (
