@@ -2,11 +2,38 @@ $breakpoint: 480px;
 $slate: #DDDDDD;
 $dark-slate: #535353;
 $green: #54F291;
+$light-blue: #54CFF2;
 
 .divider {
-    border: 2px solid $dark-slate;
+    border: 3px solid $dark-slate;
     width: 100%;
     margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+}
+
+.vertical-divider {
+    border-left: 6px solid $dark-slate;
+    border-radius: 8px;
+    height: 200px;
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+@mixin visible-only-below-breakpoint ($standard-display) {
+    display: $standard-display;
+    @media (min-width: $breakpoint) {
+        display: none;
+    }
+}
+
+@mixin visible-only-above-breakpoint ($standard-display) {
+    display: none;
+    @media (min-width: $breakpoint) {
+        display: $standard-display;
+    }
 }
 
 @mixin shadow {

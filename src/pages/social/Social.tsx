@@ -249,10 +249,10 @@ function openOrCloseServerCreationWindow() {
 
 function CreateNewServerButton() {
     return (
-        <button className = "create-new-server-button"
+        <div className = "create-new-server-button"
         onClick = {openOrCloseServerCreationWindow}>
             Create new server
-        </button>
+        </div>
     )
 }
 
@@ -385,6 +385,8 @@ export default function Social() {
                              
                         )
                     }
+                    <hr className = "server-bar-divider-horizontal"/>
+                    <div className = "server-bar-divider-vertical"> </div>
                     <CreateNewServerButton/>
                 </div>
                 <div className = "open-server">

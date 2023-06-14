@@ -16,7 +16,7 @@
 
 .servers-bar {
     @include shadow;
-    width: 8%;
+    width: 12%;
     height: 83vh;
     border-radius: 8px;
     margin-left: 0.5rem;
@@ -24,6 +24,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden;
 
     @media (max-width: $breakpoint) {
         flex-direction: row;
@@ -38,7 +39,7 @@
 
 .open-server {
     @include shadow;
-    width: 88%;
+    width: 84%;
     height: 83vh;
     border-radius: 8px;
     margin-right: 0.5rem;
@@ -81,6 +82,8 @@
     height: 90%;
     overflow-y: scroll;
     width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 #message-input {
@@ -152,11 +155,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: fit-content;
     height: fit-content;
     padding: 10px;
     border-radius: 8px;
-    font-family: "Quicksand", sans-serif;
+    background-color: $slate;
 
     font-size: 1.55rem;
 
@@ -164,11 +167,12 @@
 
     &:hover {
         cursor: pointer;
-        background-color: $slate;
+        background-color: $dark-slate;
+        color: white;
         @include shadow;
     }
 
-    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, padding 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, padding 0.2s ease-in-out, color 0.2s ease-in-out; 
 }
 
 .server-creation-window-header {
@@ -256,4 +260,15 @@
     padding: 10px;
     margin-top: 2rem;
     font-size: 2rem;
+    font-family: "Quicksand", sans-serif;
+}
+
+.server-bar-divider-horizontal {
+    @include visible-only-above-breakpoint(flex);
+    @extend .divider;
+}
+
+.server-bar-divider-vertical {
+    @include visible-only-below-breakpoint (flex);
+    @extend .vertical-divider;
 }
