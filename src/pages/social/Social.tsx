@@ -1,10 +1,11 @@
 import { FirebaseApp, initializeApp } from "firebase/app";
-import { Auth, Unsubscribe, getAuth, onAuthStateChanged } from "firebase/auth";
+import { Auth, Unsubscribe, User, getAuth, onAuthStateChanged } from "firebase/auth";
 import { DataSnapshot, Database, get, getDatabase, onValue, ref, set, update } from "firebase/database";
 import firebaseConfig from "../../firebaseConfig";
 import "./social.css"
 import { useEffect, useState } from "react";
 import $ from "jquery"
+import {v4 as uuidv4} from 'uuid';
 
 /*
 
@@ -221,7 +222,7 @@ function ServerCreationWindow() {
             <div className = "server-creation-server-name-header">
                 Server Name
             </div>
-            <input type="text" className = "text-input" placeholder="Server Name" />
+            <input type="text" id = "server-name-input" className = "text-input" placeholder="Server Name" />
 
             <FinishCreatingServerButton/>
         </div>
@@ -257,10 +258,68 @@ function CreateNewServerButton() {
 
 function FinishCreatingServerButton() {
     return (
-        <button className = "finish-creating-server-button">
+        <button className = "finish-creating-server-button"
+        onClick = {createServer}
+        >
             Create
         </button>
     )
+}
+
+async function createServer() {
+    // first, get the name of the server
+    const serverName = $("#server-name-input").val() as string
+    // if it's empty, alert and return
+    if (serverName == "") {
+        alert("Server name is empty")
+        return
+    }
+
+    // get the current user
+    const currentUserUUID: string | null = getCookie("user")
+
+    if (currentUserUUID == null) {
+        alert("not logged in, trying to create server")
+        return
+    }
+
+    // first, add the server to the servers list, with it's name
+
+    // generate a uuid for the server
+
+    const serverUUID = uuidv4();
+
+    // send the server to the database
+
+    const serverData = {
+        "name" : serverName,
+    }
+    
+    const newServerRef = ref(database, "servers/" + serverUUID)
+
+    await set(newServerRef, serverData)
+
+    // now, add the server to the user's servers list
+
+    const userServersRef = ref(database, "users/" + currentUserUUID + "/servers")
+
+    // get the list of servers the user is in
+
+    const userServersSnapshot = await get(userServersRef)
+
+    let userServers = userServersSnapshot.val()
+
+    // append the new server to the list
+
+    userServers = appendToArrayLikeObject(userServers, serverUUID)
+
+    // send the new list to the database
+
+    await set(userServersRef, userServers)
+
+
+
+
 }
 
 
