@@ -277,3 +277,19 @@
 .join-server-button {
     @extend .create-new-server-button;
 }
+
+#join-server-window {
+    @extend #server-creation-window;
+}
+
+.join-server-header {
+    @extend .server-creation-window-header;
+}
+
+.server-join-server-invite-header {
+    @extend .server-creation-server-name-header;
+}
+
+.finish-joining-server-button {
+    @extend .finish-creating-server-button;
+}

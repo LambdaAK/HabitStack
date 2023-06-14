@@ -229,6 +229,38 @@ function ServerCreationWindow() {
     )
 }
 
+function JoinServerWindow() {
+    return (
+        <div id = "join-server-window">
+            <button className = "exit-server-creation-window-button"
+            onClick = {openOrCloseJoinServerWindow}
+            >✖️</button>
+            <div className = "join-server-header">
+                Join A Server
+            </div>
+            <div className = "server-join-server-invite-header">
+                Code
+            </div>
+             <input type="text" id = "server-invite-input" className = "text-input" placeholder="Server Invite Code" />
+            <FinishJoiningServerButton/>
+        </div>
+    )
+}
+
+function FinishJoiningServerButton() {
+    return (
+        <div className = "finish-joining-server-button"
+        onClick = {joinServer}
+        >
+            Join
+        </div>
+    )
+}
+
+function joinServer() {
+
+}
+
 
 function openOrCloseServerCreationWindow() {
 // if the server creation window is invisible, make it visible
@@ -244,7 +276,18 @@ function openOrCloseServerCreationWindow() {
                     window.css("display", "none")
                     $("#social-container").css("opacity", "1")
                 }
+}
 
+function openOrCloseJoinServerWindow() {
+    const window = $("#join-server-window")
+    if (window.css("display") == "none") {
+        window.css("display", "flex")
+        $("#social-container").css("opacity", "0.5")
+    }
+    else if (window.css("display") == "flex") {
+        window.css("display", "none")
+        $("#social-container").css("opacity", "1")
+    }
 }
 
 function CreateNewServerButton() {
@@ -258,7 +301,9 @@ function CreateNewServerButton() {
 
 function JoinServerButton() {
     return (
-        <div className = "join-server-button">
+        <div className = "join-server-button"
+        onClick = {openOrCloseJoinServerWindow}
+        >
             Join server
         </div>
     )
@@ -325,9 +370,6 @@ async function createServer() {
     // send the new list to the database
 
     await set(userServersRef, userServers)
-
-
-
 
 }
 
@@ -435,6 +477,7 @@ export default function Social() {
                 </div>
             </div>
             <ServerCreationWindow/>
+            <JoinServerWindow/>
         </>
     )
 }
