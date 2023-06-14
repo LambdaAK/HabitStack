@@ -55,6 +55,17 @@ function appendToArrayLikeObject(object: object, value: any): object {
     return object;
 }
 
+function ArrayLikeObjectToArray(object: object) {
+    if (object == null) return []
+    let array: any[] = []
+    for (let i = 0; i < Object.keys(object).length; i++) {
+        const key = Object.keys(object)[i]
+        const property = object[key]
+        array.push(property)
+    }
+    return array
+}
+
 
 function ServerButton(props: {serverId: string, currentServerIdSetter: Function}) {
 
@@ -85,7 +96,6 @@ function ServerButton(props: {serverId: string, currentServerIdSetter: Function}
     return (
         <>
             <div className = "server-button" key = {props.serverId}
-            
             onClick = {
                 () => {
                 // if the server options window is open, close it
@@ -339,8 +349,6 @@ function JoinServerButton() {
     )
 }
 
-
-
 function FinishCreatingServerButton() {
     return (
         <div className = "finish-creating-server-button"
@@ -350,7 +358,6 @@ function FinishCreatingServerButton() {
         </div>
     )
 }
-
 
 async function createServer() {
     // first, get the name of the server
@@ -460,6 +467,7 @@ function ServerInfoBar(props: {serverId: string}) {
 
 function ServerOptionsWindow(props: {serverId: string}) {
     const [serverName, setServerName] = useState <string> ("")
+    const [serverInvites, setServerInvites] = useState <string[]> ([])
 
     useEffect(() => {
         // set the placeholder of the server name input to the current server name
@@ -470,6 +478,19 @@ function ServerOptionsWindow(props: {serverId: string}) {
         })
     }, [props.serverId])
 
+    useEffect(() => {
+        // get the list of server invites
+        const serverInvitesRef = ref(database, "servers/" + props.serverId + "/invites")
+        return onValue(serverInvitesRef, (snapshot: DataSnapshot) => {
+            const serverInvites = snapshot.val()
+            if (serverInvites != null) {
+                setServerInvites(serverInvites)
+            }
+            else {
+                setServerInvites([])
+            }
+        })
+    }, [props.serverId])
 
     return (
         <div id = "server-options-window">
@@ -480,6 +501,65 @@ function ServerOptionsWindow(props: {serverId: string}) {
                 Server Options
             </div>
             <input type = "text" id = "server-options-window-server-name-input" placeholder = {serverName}/>
+            <ul id = "server-options-window-server-invite-list">
+                <li className = "server-options-window-server-invite-list-header">
+                    Invites
+                </li>
+                
+                {
+                    // make a list of the server invites from the object
+                    (function() {
+                        const arrayOfServerInvites = ArrayLikeObjectToArray(serverInvites)
+
+                        return (
+                            arrayOfServerInvites.map((serverInvite) =>
+                                <li className = "server-options-window-server-invite-list-item">
+                                    {serverInvite}
+                                    <div className = "server-options-window-remove-invite-button"
+                                    onClick = {() => {
+                                        // delete the invite
+                                        const serverInvitesRef = ref(database, "servers/" + props.serverId + "/invites")
+                                        // get the current invites
+                                        get(serverInvitesRef)
+                                        .then((snapshot: DataSnapshot) => {
+                                            let serverInvites = snapshot.val()
+                                            // remove the invite from the list
+                                            serverInvites = serverInvites.filter((invite: string) => invite != serverInvite)
+                                            // send the new list to the database
+                                            set(serverInvitesRef, serverInvites)
+                                        })
+                                    }}
+                                    >
+                                        ✖️
+                                    </div>
+                                </li>
+                            )
+                        )
+                    })()
+                }
+                <div className = "server-options-window-add-invite-button"
+                onClick = {
+                    () => {
+                        // create the invite
+                        const invite = uuidv4()
+                        // send it to the database
+                        const serverInvitesRef = ref(database, "servers/" + props.serverId + "/invites")
+                        // get the current invites
+                        get(serverInvitesRef)
+                        .then((snapshot: DataSnapshot) => {
+                            let serverInvites = snapshot.val()
+                            // add the new invite to the list
+                            serverInvites = appendToArrayLikeObject(serverInvites, invite)
+                            // send the new list to the database
+                            set(serverInvitesRef, serverInvites)
+                        })
+                    }
+                }
+                >
+                +
+                </div>
+            </ul>
+            
 
             <div id = "server-options-window-apply-changes-button"
             onClick = {() => applyServerChanges(props.serverId)}

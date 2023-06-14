@@ -202,7 +202,7 @@
   }
 }
 
-.create-new-server-button, .server-options-button, .join-server-button, .finish-creating-server-button, #server-options-window-apply-changes-button, .finish-joining-server-button {
+.create-new-server-button, .server-options-window-add-invite-button, .server-options-window-remove-invite-button, .server-options-button, .join-server-button, .finish-creating-server-button, #server-options-window-apply-changes-button, .finish-joining-server-button {
   box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
   border-radius: 8px;
   padding: 15px;
@@ -218,7 +218,7 @@
   margin: 1rem 1rem 1rem 1rem;
   transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, padding 0.2s ease-in-out, color 0.2s ease-in-out;
 }
-.create-new-server-button:hover, .server-options-button:hover, .join-server-button:hover, .finish-creating-server-button:hover, #server-options-window-apply-changes-button:hover, .finish-joining-server-button:hover {
+.create-new-server-button:hover, .server-options-window-add-invite-button:hover, .server-options-window-remove-invite-button:hover, .server-options-button:hover, .join-server-button:hover, .finish-creating-server-button:hover, #server-options-window-apply-changes-button:hover, .finish-joining-server-button:hover {
   cursor: pointer;
   background-color: #535353;
   color: white;
@@ -264,7 +264,7 @@
   cursor: text;
 }
 
-.server-creation-server-name-header, .server-join-server-invite-header {
+.server-creation-server-name-header, .server-options-window-server-invite-list-header, .server-join-server-invite-header {
   box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
   border-radius: 8px;
   padding: 15px;
@@ -376,6 +376,15 @@
   color: white;
 }
 
+#server-options-window {
+  width: 80%;
+  height: 80%;
+  top: auto;
+  left: auto;
+  bottom: 10%;
+  right: 10%;
+}
+
 #server-options-window-server-name-input {
   margin-top: 2rem;
   text-align: center;
@@ -383,6 +392,103 @@
 
 #server-options-window-apply-changes-button {
   margin-top: auto;
+}
+
+#server-options-window-server-invite-list {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 40%;
+  background-color: white;
+  border-radius: 8px;
+  align-self: flex-start;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  margin-left: 2rem;
+}
+#server-options-window-server-invite-list::-webkit-scrollbar {
+  display: none;
+}
+
+.server-options-window-server-invite-list-item {
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+  max-width: 75%;
+  height: fit-content;
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 1.25rem;
+  background-color: #DDDDDD;
+  color: white;
+  align-self: flex-start;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+}
+
+.server-options-window-remove-invite-button {
+  background-color: #DDDDDD;
+  color: white;
+  margin-top: auto;
+}
+.server-options-window-remove-invite-button:hover {
+  cursor: pointer;
+  background-color: #535353;
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.server-options-window-server-invite-list-header {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  width: fit-content;
+  height: fit-content;
+  background-color: #535353;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 3rem;
+}
+
+.server-options-window-add-invite-button {
+  background-color: #535353;
+  color: white;
+  margin-bottom: auto;
+  font-size: 5rem;
+  width: 6rem;
+  height: 6rem;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.server-options-window-add-invite-button:hover {
+  cursor: pointer;
+  background-color: #DDDDDD;
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
 }
 
 /*# sourceMappingURL=social.css.map */

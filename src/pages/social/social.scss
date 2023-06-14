@@ -351,6 +351,13 @@
 
 #server-options-window {
     @extend #server-creation-window;
+    // make it larger than the other windows
+    width: 80%;
+    height: 80%;
+    top: auto;
+    left: auto;
+    bottom: 10%;
+    right: 10%;
 }
 
 .server-options-header {
@@ -374,4 +381,91 @@
 #server-options-window-apply-changes-button {
     @extend .finish-creating-server-button;
     margin-top: auto;
+}
+
+#server-options-window-server-invite-list {
+    @include hide-scrollbar;
+    @include shadow;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 40%;
+    background-color: white;
+    border-radius: 8px;
+    align-self: flex-start;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    margin-left: 2rem;
+}
+
+.server-options-window-server-invite-list-item {
+    @include shadow;
+    max-width: 75%;
+    height: fit-content;
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 1.25rem;
+    background-color: $slate;
+    color: white;
+    align-self: flex-start;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: black;
+}
+
+.server-options-window-remove-invite-button {
+    @extend .create-new-server-button;
+    background-color: $slate;
+    color: white;
+    margin-top: auto;
+    &:hover {
+        cursor: pointer;
+        background-color: $dark-slate;
+        @include shadow;
+    }
+}
+
+.server-options-window-server-invite-list-header {
+    @extend .server-creation-server-name-header;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: fit-content;
+    height: fit-content;
+    background-color: $dark-slate;
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 3rem;
+    
+}
+
+.server-options-window-add-invite-button {
+    @extend .create-new-server-button;
+    background-color: $dark-slate;
+    color: white;
+    margin-bottom: auto;
+    &:hover {
+        cursor: pointer;
+        background-color: $slate;
+        @include shadow;
+    }
+    font-size: 5rem;
+    width: 6rem;
+    height: 6rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
