@@ -1,9 +1,12 @@
 @import "./../../css\ modules/variables";
 
-.social-container {
+#social-container {
     display: flex;
     flex-direction: row;
     gap: 1.5rem;
+
+    transition: opacity 0.2s ease-in-out;
+    
 }
 
 .servers-bar {
@@ -16,7 +19,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .open-server {
@@ -29,6 +31,7 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    left: 11%;
 }
 
 .server-button {
@@ -97,4 +100,142 @@
     font-size: 1.25rem;
     font-weight: bold;
     color: $green;
+}
+
+#server-creation-window {
+    @include shadow;
+    position: fixed;
+    width: 50%;
+    height: 50%;
+    top: 25%;
+    left: 25%;
+    background-color: white;
+    border-radius: 8px;
+
+    @keyframes fly-in {
+        0% {
+   
+            opacity: 0%;
+        }
+        100% {
+        
+            opacity: 90%;
+        }
+    }
+
+    animation: fly-in 1s ease;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-new-server-button {
+    @include shadow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    padding: 10px;
+    border-radius: 8px;
+    font-family: "Quicksand", sans-serif;
+
+    font-size: 1.55rem;
+
+    margin: 1rem 1rem 1rem 1rem;
+
+    &:hover {
+        cursor: pointer;
+        background-color: $slate;
+        @include shadow;
+    }
+
+    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, padding 0.2s ease-in-out;
+}
+
+.server-creation-window-header {
+    @include shadow;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    font-size: 3rem;
+    font-weight: bold;
+    color: black;
+    width: fit-content;
+    height: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+
+}
+
+.text-input {
+    @include shadow;
+    margin-top: 1rem;
+    width: 90%;
+    height: 5%;
+    border-radius: 8px;
+    font-size: 2rem;
+    color: black;
+    background-color: $slate;
+    font-family: "Quicksand", sans-serif;
+    width: 75%;
+    align-self: center;
+
+    &:focus {
+        cursor: text;
+    }
+
+}
+
+.server-creation-server-name-header {
+    @include shadow;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    font-size: 1.55rem;
+    font-weight: bold;
+    color: black;
+    width: fit-content;
+    height: fit-content;
+    margin-top: 3rem;
+    align-self: center;
+    
+}
+
+.exit-server-creation-window-button {
+
+    
+    background-color: $slate;
+    border-radius: 8px;
+    font-size: 3rem;align-self: flex-start;
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+
+    text-align: center;
+
+    width: 4rem;
+    height: 4rem;
+
+    opacity: 50%;
+
+    &:hover {
+        cursor: pointer;
+        opacity: 100%;
+    }
+
+    transition: opacity 0.3s ease;
+
+}
+
+.finish-creating-server-button {
+    @extend .create-new-server-button;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    margin-top: 2rem;
+    font-size: 2rem;
 }

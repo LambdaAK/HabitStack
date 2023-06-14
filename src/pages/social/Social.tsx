@@ -204,6 +204,65 @@ async function sendMessage(serverId: string): Promise<void> {
 
 }
 
+function ServerCreationWindow() {
+    return (
+        <div id = "server-creation-window">
+
+   
+            <button className = "exit-server-creation-window-button"
+            onClick = {openOrCloseServerCreationWindow}
+            >✖️</button>
+            <div className = "server-creation-window-header">
+                Create new server
+            </div>
+         
+
+            
+            <div className = "server-creation-server-name-header">
+                Server Name
+            </div>
+            <input type="text" className = "text-input" placeholder="Server Name" />
+
+            <FinishCreatingServerButton/>
+        </div>
+    )
+}
+
+
+function openOrCloseServerCreationWindow() {
+// if the server creation window is invisible, make it visible
+                // if it's visible, make it invisible
+                const window = $("#server-creation-window")
+                if (window.css("display") == "none") {
+                    // make the rest of the page darker
+                    window.css("display", "flex")
+                    $("#social-container").css("opacity", "0.5")
+
+                }
+                else if (window.css("display") == "flex") {
+                    window.css("display", "none")
+                    $("#social-container").css("opacity", "1")
+                }
+
+}
+
+function CreateNewServerButton() {
+    return (
+        <button className = "create-new-server-button"
+        onClick = {openOrCloseServerCreationWindow}>
+            Create new server
+        </button>
+    )
+}
+
+function FinishCreatingServerButton() {
+    return (
+        <button className = "finish-creating-server-button">
+            Create
+        </button>
+    )
+}
+
 
 export default function Social() {
 
@@ -258,7 +317,7 @@ export default function Social() {
 
     return (
         <>
-            <div className = "social-container">
+            <div id = "social-container">
                 <div className = "servers-bar">
                     {
                         serversUserIn.map((serverId) => 
@@ -267,6 +326,7 @@ export default function Social() {
                              
                         )
                     }
+                    <CreateNewServerButton/>
                 </div>
                 <div className = "open-server">
                 {
@@ -305,6 +365,7 @@ export default function Social() {
                     </input>
                 </div>
             </div>
+            <ServerCreationWindow/>
         </>
     )
 }

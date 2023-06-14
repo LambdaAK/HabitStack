@@ -4,10 +4,11 @@
   margin-top: 5%;
 }
 
-.social-container {
+#social-container {
   display: flex;
   flex-direction: row;
   gap: 1.5rem;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .servers-bar {
@@ -36,6 +37,7 @@
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  left: 11%;
 }
 
 .server-button {
@@ -104,6 +106,136 @@
   font-size: 1.25rem;
   font-weight: bold;
   color: #54F291;
+}
+
+#server-creation-window {
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+  position: fixed;
+  width: 50%;
+  height: 50%;
+  top: 25%;
+  left: 25%;
+  background-color: white;
+  border-radius: 8px;
+  animation: fly-in 1s ease;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+@keyframes fly-in {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 90%;
+  }
+}
+
+.create-new-server-button, .finish-creating-server-button {
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.55rem;
+  margin: 1rem 1rem 1rem 1rem;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, padding 0.2s ease-in-out;
+}
+.create-new-server-button:hover, .finish-creating-server-button:hover {
+  cursor: pointer;
+  background-color: #DDDDDD;
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.server-creation-window-header {
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  font-size: 3rem;
+  font-weight: bold;
+  color: black;
+  width: fit-content;
+  height: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+}
+
+.text-input {
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 1rem;
+  width: 90%;
+  height: 5%;
+  border-radius: 8px;
+  font-size: 2rem;
+  color: black;
+  background-color: #DDDDDD;
+  font-family: "Quicksand", sans-serif;
+  width: 75%;
+  align-self: center;
+}
+.text-input:focus {
+  cursor: text;
+}
+
+.server-creation-server-name-header {
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  font-size: 1.55rem;
+  font-weight: bold;
+  color: black;
+  width: fit-content;
+  height: fit-content;
+  margin-top: 3rem;
+  align-self: center;
+}
+
+.exit-server-creation-window-button {
+  background-color: #DDDDDD;
+  border-radius: 8px;
+  font-size: 3rem;
+  align-self: flex-start;
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  text-align: center;
+  width: 4rem;
+  height: 4rem;
+  opacity: 50%;
+  transition: opacity 0.3s ease;
+}
+.exit-server-creation-window-button:hover {
+  cursor: pointer;
+  opacity: 100%;
+}
+
+.finish-creating-server-button {
+  width: fit-content;
+  height: fit-content;
+  padding: 10px;
+  margin-top: 2rem;
+  font-size: 2rem;
 }
 
 /*# sourceMappingURL=social.css.map */
