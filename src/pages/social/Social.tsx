@@ -289,7 +289,7 @@ function JoinServerWindow() {
 
 function FinishJoiningServerButton() {
     return (
-        <div className = "finish-joining-server-button"
+        <div id = "finish-joining-server-button"
         onClick = {joinServer}
         >
             Join
@@ -297,10 +297,51 @@ function FinishJoiningServerButton() {
     )
 }
 
-function joinServer() {
+async function joinServer() {
+    // get the invite code from the field
+    const inviteCode = $("#server-invite-input").val() as string
+    // now, find the corresponding server
+    const serverInvitesRef = ref(database, "servers")
+    // get the list of servers
+    const serverInvitesSnapshot = await get(serverInvitesRef)
+    const serverInvites = serverInvitesSnapshot.val()
 
+    // iterate through the servers
+    for (let i = 0; i < Object.keys(serverInvites).length; i++) {
+        const serverId = Object.keys(serverInvites)[i]
+        const server = serverInvites[serverId]
+        // check the server's list of invites
+        if (server.invites == null) continue
+     
+        // if the server's list of invites contains the invite code
+        if (server.invites.includes(inviteCode)) {
+            // add the server to the user's list of servers
+            const currentUserUUID = getCookie("user")
+            if (currentUserUUID == null) {
+                alert("not logged in, trying to join a server")
+                return
+            }
+            const userServersRef = ref(database, "users/" + currentUserUUID + "/servers")
+            // get the current list of servers
+            const userServersSnapshot = await get(userServersRef)
+            let userServers = userServersSnapshot.val()
+            // append the server to the list
+            userServers = appendToArrayLikeObject(userServers, serverId)
+            // send the new list to the database
+            await set(userServersRef, userServers)
+            // close the window
+            openOrCloseJoinServerWindow()
+            // make the input field empty
+            $("#server-invite-input").val("")
+            // return
+            return
+        }
+        
+    }
+    // the server invite was not valid
+    alert("Invalid server invite")
 }
-
+// 163ccfc4-7a2d-453b-b7bd-306942e3be45
 
 function openOrCloseServerCreationWindow() {
 // if the server creation window is invisible, make it visible
