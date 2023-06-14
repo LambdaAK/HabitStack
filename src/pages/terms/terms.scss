@@ -45,6 +45,7 @@
 #terms-bar {
     @include fly-in-left;
     @include shadow;
+    @include styled-scrollbar;
     height: 50vh;
     min-width: 10vw;
     margin-left: 1vw;

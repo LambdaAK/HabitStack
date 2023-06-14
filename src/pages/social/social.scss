@@ -16,6 +16,7 @@
 
 .servers-bar {
     @include shadow;
+    @include hide-scrollbar;
     width: 12%;
     height: 83vh;
     border-radius: 8px;
@@ -35,6 +36,7 @@
         margin-right: auto;
         
     }
+
 }
 
 .open-server {
@@ -76,6 +78,7 @@
 }
 
 .server-messages {
+    @include styled-scrollbar;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -228,8 +231,6 @@
 }
 
 .exit-server-creation-window-button {
-
-    
     background-color: $slate;
     border-radius: 8px;
     font-size: 3rem;align-self: flex-start;
