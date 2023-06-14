@@ -273,3 +273,7 @@
     @include visible-only-below-breakpoint (flex);
     @extend .vertical-divider;
 }
+
+.join-server-button {
+    @extend .create-new-server-button;
+}

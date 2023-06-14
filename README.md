@@ -1,6 +1,6 @@
 # Todo
 
-- Server settings panel
+- Server options panel
     - Server invites
         - Creating them
         - Entering them to join a server
@@ -8,6 +8,7 @@
     - Renaming a server
     - Entering a server invite
     - Deleting a server
+    - Viewing who is in the server
 
 - Messages
     - Saving the unix time upon saving the message

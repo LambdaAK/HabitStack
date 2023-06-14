@@ -191,7 +191,7 @@
   }
 }
 
-.create-new-server-button, .finish-creating-server-button {
+.create-new-server-button, .join-server-button, .finish-creating-server-button {
   box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
   border-radius: 8px;
   padding: 15px;
@@ -207,7 +207,7 @@
   margin: 1rem 1rem 1rem 1rem;
   transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, padding 0.2s ease-in-out, color 0.2s ease-in-out;
 }
-.create-new-server-button:hover, .finish-creating-server-button:hover {
+.create-new-server-button:hover, .join-server-button:hover, .finish-creating-server-button:hover {
   cursor: pointer;
   background-color: #535353;
   color: white;

@@ -256,15 +256,24 @@ function CreateNewServerButton() {
     )
 }
 
+function JoinServerButton() {
+    return (
+        <div className = "join-server-button">
+            Join server
+        </div>
+    )
+}
+
 function FinishCreatingServerButton() {
     return (
-        <button className = "finish-creating-server-button"
+        <div className = "finish-creating-server-button"
         onClick = {createServer}
         >
             Create
-        </button>
+        </div>
     )
 }
+
 
 async function createServer() {
     // first, get the name of the server
@@ -388,10 +397,10 @@ export default function Social() {
                     <hr className = "server-bar-divider-horizontal"/>
                     <div className = "server-bar-divider-vertical"> </div>
                     <CreateNewServerButton/>
+                    <JoinServerButton/>
                 </div>
                 <div className = "open-server">
                 {
-                   
                     (function() {
                         if (currentServerId != "") {
                             return (
@@ -410,7 +419,6 @@ export default function Social() {
                             )
                         }
                     })()
-                
                 }
                     <input id = "message-input" onKeyUp={(e) => {
                         if (e.key == "Enter") {
