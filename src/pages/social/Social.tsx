@@ -88,6 +88,12 @@ function ServerButton(props: {serverId: string, currentServerIdSetter: Function}
             
             onClick = {
                 () => {
+                // if the server options window is open, close it
+                const serverOptionsWindow = $("#server-options-window")
+                if (serverOptionsWindow.css("display") != "none") {
+                    openOrCloseServerOptionsWindow()
+                }
+                // set the current server id
                 props.currentServerIdSetter(props.serverId)
                 }
             }
