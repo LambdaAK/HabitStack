@@ -5,11 +5,12 @@
     margin-right: 20px;
     column-span: 1;
     color: black;
-    font-size: 24px;
+    font-size: 2rem;
 
     &:hover {
         cursor: pointer;
     }
+
 
 }
 
@@ -36,6 +37,8 @@
         flex-direction: column;
         display: none;
     }
+
+
 
 }
 

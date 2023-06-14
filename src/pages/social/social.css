@@ -10,6 +10,12 @@
   gap: 1.5rem;
   transition: opacity 0.2s ease-in-out;
 }
+@media (max-width: 480px) {
+  #social-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 
 .servers-bar {
   box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
@@ -23,6 +29,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+@media (max-width: 480px) {
+  .servers-bar {
+    flex-direction: row;
+    height: fit-content;
+    overflow-x: scroll;
+    width: 88%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .open-server {
@@ -96,10 +112,13 @@
   background-color: #535353;
   color: white;
   align-self: flex-start;
+  margin-left: 1rem;
 }
 
 .message-from-current-user {
   align-self: flex-end;
+  margin-right: 1rem;
+  margin-left: 0rem;
 }
 
 .message-author {
