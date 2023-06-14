@@ -81,6 +81,7 @@
   border-radius: 8px;
   padding: 15px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: fit-content;
@@ -88,7 +89,11 @@
   padding: 10px;
   border-radius: 8px;
   font-size: 1.55rem;
-  margin: 1rem 1rem 1rem 1rem;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 90%;
   transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, padding 0.2s ease-in-out;
 }
 .server-button:hover {
@@ -314,6 +319,48 @@
   .server-bar-divider-vertical {
     display: none;
   }
+}
+
+.server-info-bar {
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #535353;
+  border-radius: 8px;
+  width: 94%;
+  height: 12%;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#server-info-bar-server-name {
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 2rem;
+  color: black;
+  background-color: white;
+  display: none;
+}
+
+.server-bar-owner-icon {
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+  max-width: 2rem;
+  height: fit-content;
+  background-color: #535353;
+  text-align: center;
+  display: flex;
+  margin-left: 1rem;
+  opacity: 90%;
+  margin-top: 1rem;
 }
 
 /*# sourceMappingURL=social.css.map */
