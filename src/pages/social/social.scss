@@ -69,6 +69,11 @@
     margin-right: 0;
     margin-top: 1rem;
     margin-bottom: 1rem;
+
+    @media (max-width: $breakpoint) {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
     
 
     &:hover {
@@ -328,10 +333,45 @@
     @include shadow;
     max-width: 2rem;
     height: fit-content;
-    background-color: $dark-slate;
+    background-color: white;
     text-align: center;
     display: flex;
     margin-left: 1rem;
     opacity: 90%;
     margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.server-options-button {
+    @extend .create-new-server-button;
+    background-color: $dark-slate;
+    color: white;
+}
+
+#server-options-window {
+    @extend #server-creation-window;
+}
+
+.server-options-header {
+    @extend .server-creation-window-header;
+}
+
+.exit-server-options-window-button {
+    @extend .exit-server-creation-window-button;
+}
+
+.server-options-window-header {
+    @extend .server-creation-window-header;
+}
+
+#server-options-window-server-name-input {
+    @extend .text-input;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+#server-options-window-apply-changes-button {
+    @extend .finish-creating-server-button;
+    margin-top: auto;
 }

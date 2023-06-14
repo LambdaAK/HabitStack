@@ -333,6 +333,8 @@ function JoinServerButton() {
     )
 }
 
+
+
 function FinishCreatingServerButton() {
     return (
         <div className = "finish-creating-server-button"
@@ -401,11 +403,12 @@ async function createServer() {
 function ServerInfoBar(props: {serverId: string}) {
     
     const [serverName, setServerName] = useState <string> ("")
+    const [serverOwner, setServerOwner] = useState <string> ("")
 
     useEffect(() => {
         // get the server name
         const serverNameRef = ref(database, "servers/" + props.serverId + "/name")
-        const unsub: Unsubscribe = onValue(serverNameRef, (snapshot: DataSnapshot) => {
+        return onValue(serverNameRef, (snapshot: DataSnapshot) => {
             const serverName = snapshot.val()
             setServerName(serverName)
             // make the server header visible
@@ -413,13 +416,34 @@ function ServerInfoBar(props: {serverId: string}) {
             
         })
 
-        
+    }, [props.serverId])
 
-
+    useEffect(() => {
+        // get the server owner
+        const serverOwnerRef = ref(database, "servers/" + props.serverId + "/owner")
+        return onValue(serverOwnerRef, (snapshot: DataSnapshot) => {
+            const serverOwner = snapshot.val()
+            setServerOwner(serverOwner)
+        })
     }, [props.serverId])
 
     return (
         <div className = "server-info-bar">
+            {
+                // render the server-options button if and only if the user is the owner of the server
+                (function() {
+                    if (getCookie("user") == serverOwner) {
+                        return (
+                            <>
+                                <ServerOptionsButton/>
+                            </>
+                        )
+                    }
+                    else {
+                        return (<></>)
+                    }
+                })()
+            }
             <div id = "server-info-bar-server-name">
                 {serverName}
             </div>
@@ -428,8 +452,82 @@ function ServerInfoBar(props: {serverId: string}) {
     )
 }
 
-function ServerOptionsButton() {
+function ServerOptionsWindow(props: {serverId: string}) {
+    const [serverName, setServerName] = useState <string> ("")
 
+    useEffect(() => {
+        // set the placeholder of the server name input to the current server name
+        const serverNameRef = ref(database, "servers/" + props.serverId + "/name")
+        return onValue(serverNameRef, (snapshot: DataSnapshot) => {
+            const serverName = snapshot.val()
+            setServerName(serverName)
+        })
+    }, [props.serverId])
+
+
+    return (
+        <div id = "server-options-window">
+            <button className = "exit-server-options-window-button"
+            onClick = {openOrCloseServerOptionsWindow}
+            >✖️</button>
+            <div className = "server-options-window-header">
+                Server Options
+            </div>
+            <input type = "text" id = "server-options-window-server-name-input" placeholder = {serverName}/>
+
+            <div id = "server-options-window-apply-changes-button"
+            onClick = {() => applyServerChanges(props.serverId)}
+            >
+                Apply Changes
+            </div>
+
+        </div>
+    )
+}
+
+function applyServerChanges(serverId: string) {
+    // check if the content of the server name input is not empty
+    const serverName = $("#server-options-window-server-name-input").val() as string
+    if (serverName == "") {
+        alert("Server name is empty")
+        return
+    }
+    // send it to the db
+    const serverNameRef = ref(database, "servers/" + serverId + "/name")
+    set(serverNameRef, serverName)
+    .then(() => {
+        // make the input fields empty
+        $("#server-options-window-server-name-input").val("")
+        // close the window
+        openOrCloseServerOptionsWindow()
+    })
+    .catch((error: Error) => {
+        alert(error.message)
+    })
+}
+
+function openOrCloseServerOptionsWindow() {
+    const window = $("#server-options-window")
+    if (window.css("display") == "none") {
+        window.css("display", "flex")
+        $("#social-container").css("opacity", "0.5")
+    }
+    else if (window.css("display") == "flex") {
+        window.css("display", "none")
+        $("#social-container").css("opacity", "1")
+        // make all fields empty
+        $("#server-options-window-server-name-input").val("")
+    }
+}
+
+function ServerOptionsButton() {
+    return (
+        <div className = "server-options-button"
+        onClick = {openOrCloseServerOptionsWindow}
+        >
+            Options
+        </div>
+    )
 }
 
 export default function Social() {
@@ -537,6 +635,7 @@ export default function Social() {
             </div>
             <ServerCreationWindow/>
             <JoinServerWindow/>
+            <ServerOptionsWindow serverId = {currentServerId}/>
         </>
     )
 }

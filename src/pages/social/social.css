@@ -96,6 +96,12 @@
   width: 90%;
   transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, padding 0.2s ease-in-out;
 }
+@media (max-width: 480px) {
+  .server-button {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
 .server-button:hover {
   cursor: pointer;
   background-color: #DDDDDD;
@@ -171,7 +177,7 @@
   color: #54F291;
 }
 
-#server-creation-window, #join-server-window {
+#server-creation-window, #server-options-window, #join-server-window {
   box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
   border-radius: 8px;
   padding: 15px;
@@ -196,7 +202,7 @@
   }
 }
 
-.create-new-server-button, .join-server-button, .finish-creating-server-button, .finish-joining-server-button {
+.create-new-server-button, .server-options-button, .join-server-button, .finish-creating-server-button, #server-options-window-apply-changes-button, .finish-joining-server-button {
   box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
   border-radius: 8px;
   padding: 15px;
@@ -212,7 +218,7 @@
   margin: 1rem 1rem 1rem 1rem;
   transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, padding 0.2s ease-in-out, color 0.2s ease-in-out;
 }
-.create-new-server-button:hover, .join-server-button:hover, .finish-creating-server-button:hover, .finish-joining-server-button:hover {
+.create-new-server-button:hover, .server-options-button:hover, .join-server-button:hover, .finish-creating-server-button:hover, #server-options-window-apply-changes-button:hover, .finish-joining-server-button:hover {
   cursor: pointer;
   background-color: #535353;
   color: white;
@@ -221,7 +227,7 @@
   padding: 15px;
 }
 
-.server-creation-window-header, .join-server-header {
+.server-creation-window-header, .server-options-window-header, .server-options-header, .join-server-header {
   box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
   border-radius: 8px;
   padding: 15px;
@@ -239,7 +245,7 @@
   background-color: white;
 }
 
-.text-input {
+.text-input, #server-options-window-server-name-input {
   box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
   border-radius: 8px;
   padding: 15px;
@@ -254,7 +260,7 @@
   width: 75%;
   align-self: center;
 }
-.text-input:focus {
+.text-input:focus, #server-options-window-server-name-input:focus {
   cursor: text;
 }
 
@@ -275,7 +281,7 @@
   align-self: center;
 }
 
-.exit-server-creation-window-button {
+.exit-server-creation-window-button, .exit-server-options-window-button {
   background-color: #DDDDDD;
   border-radius: 8px;
   font-size: 3rem;
@@ -289,12 +295,12 @@
   opacity: 50%;
   transition: opacity 0.3s ease;
 }
-.exit-server-creation-window-button:hover {
+.exit-server-creation-window-button:hover, .exit-server-options-window-button:hover {
   cursor: pointer;
   opacity: 100%;
 }
 
-.finish-creating-server-button, .finish-joining-server-button {
+.finish-creating-server-button, #server-options-window-apply-changes-button, .finish-joining-server-button {
   width: fit-content;
   height: fit-content;
   padding: 10px;
@@ -355,12 +361,28 @@
   padding: 15px;
   max-width: 2rem;
   height: fit-content;
-  background-color: #535353;
+  background-color: white;
   text-align: center;
   display: flex;
   margin-left: 1rem;
   opacity: 90%;
   margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.server-options-button {
+  background-color: #535353;
+  color: white;
+}
+
+#server-options-window-server-name-input {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+#server-options-window-apply-changes-button {
+  margin-top: auto;
 }
 
 /*# sourceMappingURL=social.css.map */
