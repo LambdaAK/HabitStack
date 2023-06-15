@@ -746,7 +746,7 @@ export default function Social() {
                         }
                     })()
                 }
-                    <input id = "message-input" onKeyUp={(e) => {
+                    <input id = "message-input" placeholder = "Send Message" onKeyUp={(e) => {
                         if (e.key == "Enter") {
                             if (currentServerId != "") {
                                 sendMessage(currentServerId)
