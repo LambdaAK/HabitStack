@@ -11,3 +11,4 @@ socket.emit("message", {a: "b"})
 socket.on("a", arg => {
     console.log(arg)
 })
+

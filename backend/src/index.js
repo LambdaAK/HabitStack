@@ -1,23 +1,40 @@
 const {Server} = require('socket.io')
 const express = require('express');
+const firebaseConfig = require('./firebaseConfig');
 const bodyParser = require('body-parser');
 
 
-const app = express();
-const expressPort = 3000;
+const { Auth, getAuth, signInWithEmailAndPassword } = require("firebase/auth")
+const { Database, getDatabase, ref, onValue } = require("firebase/database")
+
+const admin = require("firebase-admin");
+const credentials = require("./credentials.json")
+
+admin.initializeApp({
+    credential: admin.credential.cert(credentials),
+})
+
+// firebase client
+const firebase = require('firebase/app');
+const app = firebase.initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+
 
 // express stuff
-app.get('/', (req, res) => {
+const expressApp = express()
+const expressPort = 3000
+expressApp.get('/', (req, res) => {
     res.send('Hello World!');
 })
 
-app.post('/', bodyParser.json(), (req, res) => {
+expressApp.post('/', bodyParser.json(), (req, res) => {
     res.send(JSON.stringify({"user": "Alex"}))
     console.log(req.body)
 });
 
-app.listen(expressPort, () => {
-    console.log(`Running express server on ${expressPort}`)
+expressApp.listen(expressPort, () => {
+    console.log(`Running express server on port ${expressPort}`)
 })
 
 // socket stuff
@@ -34,8 +51,18 @@ io.on('connection', socket => {
     
 })
 
-setInterval(() => {
-    io.emit("a", "aaaa")
-}, 2000)
+console.log(`Running socket server on port ${socketPort}`)
 
-console.log(`Running socket server on port ${socketPort}`) 
+/**
+ * [test (email, password)] logs into the firebase auth system and obtains the id token of the user.
+ * Then, it uses the admin sdk to verify the id token and obtain the user's uuid. 
+ * @param {string} email 
+ * @param {string} password 
+ */
+async function test(email, password) {
+    const userCredentials = await signInWithEmailAndPassword(auth, email, password);
+    const idToken = await userCredentials.user.getIdToken(true);
+    const decodedUser = await admin.auth().verifyIdToken(idToken)
+    const uuid = decodedUser.uid;
+    console.log(uuid)
+}
