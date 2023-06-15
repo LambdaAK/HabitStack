@@ -1,13 +1,13 @@
-import fetch from 'node-fetch';
+import { io } from "socket.io-client"
 
+const socket = io("ws://192.168.1.10:3001")
 
-fetch('http://192.168.1.10:3000/', {
-    method: 'POST',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({"user": "Alex"})
+socket.on("message", arg => {
+    console.log(arg)
 })
-.then(response => response.json())
-.then(response => console.log(JSON.stringify(response)))
+
+socket.emit("message", {a: "b"})
+
+socket.on("a", arg => {
+    console.log(arg)
+})
