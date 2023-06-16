@@ -229,6 +229,66 @@ async function handleServerInviteCreate(req, res) {
 
 }
 
+async function handleServerInviteDelete(req, res) {
+    // verify the id token
+    const uuid = await verifyIdToken(admin, req, res)
+    if (uuid == "") {
+        res.status(401).send(JSON.stringify({"error": "Invalid id token"}))
+        return
+    }
+
+    // get the server id
+    const server = req.body.server
+    if (server == undefined) {
+        res.status(400).send(JSON.stringify({"error": "No server provided"}))
+        return
+    }
+
+    // make sure the server exists
+    if (!await serverExists(database, server, res)) {
+        return
+    }
+
+    // make sure the user is the owner of the server
+    const serverRef = ref(database, `servers/${server}`)
+    const serverSnapshot = await get(serverRef)
+    const serverData = serverSnapshot.val()
+    if (serverData == undefined || serverData == null) {
+        res.status(400).send(JSON.stringify({"error": "Server does not exist"}))
+        return
+    }
+    if (serverData.owner != uuid) {
+        res.status(400).send(JSON.stringify({"error": "User is not the owner of the server"}))
+        return
+    }
+
+    // get the invite id
+    const inviteId = req.body.invite
+    if (inviteId == undefined) {
+        res.status(400).send(JSON.stringify({"error": "No invite provided"}))
+        return
+    }
+
+    // get the server's list of invites
+    const invitesRef = ref(database, `servers/${server}/invites`)
+    const invitesSnapshot = await get(invitesRef)
+    const invites = invitesSnapshot.val()
+
+    // make sure the invite exists
+    if (invites == undefined || invites == null || !invites.includes(inviteId)) {
+        res.status(400).send(JSON.stringify({"error": "Invite does not exist"}))
+        return
+    }
+
+    // remove the invite
+    const newInvites = invites.filter(invite => invite != inviteId)
+    // send the updated list of invites
+    await set(invitesRef, newInvites)
+
+    res.send(JSON.stringify({message: "Invite deleted"}))
+
+}
+
 expressApp.post("/message/send", bodyParser.json(), (req, res) => {
     handleMessageSend(req, res)
 })
@@ -243,6 +303,10 @@ expressApp.post("/user/name/change", bodyParser.json(), (req, res) => {
 
 expressApp.post("/server/invite/create", bodyParser.json(), (req, res) => {
     handleServerInviteCreate(req, res)
+})
+
+expressApp.post("/server/invite/delete", bodyParser.json(), (req, res) => {
+    handleServerInviteDelete(req, res)
 })
 
 expressApp.listen(expressPort, () => {
