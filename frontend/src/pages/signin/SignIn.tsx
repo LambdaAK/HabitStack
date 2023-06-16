@@ -21,8 +21,8 @@ function signInProcedure() {
 
     // sign in the user
     signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-        alert("Signed In")
+    .then((user) => {
+        alert("Signed in successfully")
         window.location.replace("/dashboard")
     })
     .catch((error: Error) => {

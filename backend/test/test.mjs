@@ -44,12 +44,17 @@ const app = firebase.initializeApp(firebaseConfig)
 const auth = getAuth()
 const database = getDatabase(app)
 
-async function main(email, password) {
+/**
+ * 
+ * @param {string} email 
+ * @param {string} password 
+ * @param {string} serverId 
+ * @param {string[]} messages 
+ */
+async function testSendMessage(email, password, serverId, messageContent) {
     const user = await signInWithEmailAndPassword(auth, email, password)
     const idToken = await user.user.getIdToken(true)
     
-    const serverToSendTo = "67890"
-    const messageContent = "a"
 
     fetch('http://192.168.1.10:3000/message/send',{
         method: 'POST',
@@ -59,7 +64,7 @@ async function main(email, password) {
             'id-token': idToken
         },
         body: JSON.stringify({
-            "server": serverToSendTo,
+            "server": serverId,
             "message": messageContent
         })
     })
@@ -71,4 +76,25 @@ async function main(email, password) {
     })
 }
 
-main()
+async function testCreateServer(email, password, name) {
+    const user = await signInWithEmailAndPassword(auth, email, password)
+    const idToken = await user.user.getIdToken(true)
+
+    fetch('http://192.168.1.10:3000/server/create', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'id-token': idToken
+        },
+        body: JSON.stringify({
+            "name": name
+        })
+    })
+    .then(response => {
+        response.json()
+        .then(json => {
+            console.log(json)
+        })
+    })
+}
