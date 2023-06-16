@@ -148,9 +148,33 @@ async function handleServerCreate(req, res) {
     await set(userServersRef, appendToArrayLikeObject(userServers, serverId))
 
     res.status(200).send(JSON.stringify({"message": "Server created", "serverId": serverId}))
+}
 
-    
-    
+/**
+ * 
+ * @param {Request} req 
+ * @param {Response} res 
+ */
+async function handleUserNameChange(req, res) {
+    // verify the id token
+    const uuid = await verifyIdToken(admin, req, res)
+    if (uuid == "") {
+        res.status(401).send(JSON.stringify({"error": "Invalid id token"}))
+        return
+    }
+    // get the new name
+    const newName = req.body.name
+    if (newName == undefined) {
+        res.status(400).send(JSON.stringify({"error": "No new name provided"}))
+        return
+    }
+    // set the new name
+    const userRef = ref(database, `users/${uuid}`)
+    await set(userRef, {
+        "name": newName
+    })
+
+    res.status(200).send(JSON.stringify({"message": "Name changed"}))
 }
 
 expressApp.post("/message/send", bodyParser.json(), (req, res) => {
@@ -159,6 +183,10 @@ expressApp.post("/message/send", bodyParser.json(), (req, res) => {
 
 expressApp.post("/server/create", bodyParser.json(), (req, res) => {
     handleServerCreate(req, res)
+})
+
+expressApp.post("/user/name/change", bodyParser.json(), (req, res) => {
+    handleUserNameChange(req, res)
 })
 
 expressApp.listen(expressPort, () => {
