@@ -182,6 +182,53 @@ async function handleUserNameChange(req, res) {
     res.status(200).send(JSON.stringify({"message": "Name changed"}))
 }
 
+async function handleServerInviteCreate(req, res) {
+    // verify the id token
+    const uuid = await verifyIdToken(admin, req, res)
+    if (uuid == "") {
+        res.status(401).send(JSON.stringify({"error": "Invalid id token"}))
+        return
+    }
+
+    // get the server id
+    const server = req.body.server
+    if (server == undefined) {
+        res.status(400).send(JSON.stringify({"error": "No server provided"}))
+        return
+    }
+
+    // make sure the server exists
+    if (!await serverExists(database, server, res)) {
+        return
+    }
+
+    // make sure the user is the owner of the server
+    const serverRef = ref(database, `servers/${server}`)
+    const serverSnapshot = await get(serverRef)
+    const serverData = serverSnapshot.val()
+    if (serverData == undefined) {
+        res.status(400).send(JSON.stringify({"error": "Server does not exist"}))
+        return
+    }
+    if (serverData.owner != uuid) {
+        res.status(400).send(JSON.stringify({"error": "User is not the owner of the server"}))
+        return
+    }
+
+    // make a new invite
+
+    const inviteId = generateUUID()
+    const invitesRef = ref(database, `servers/${server}/invites`)
+    const invitesSnapshot = await get(invitesRef)
+    const invites = invitesSnapshot.val()
+    
+    // append the invite to the current invites
+    const newInvites = appendToArrayLikeObject(invites, inviteId)
+    await set(invitesRef, newInvites)
+    res.send(JSON.stringify({"message": "Invite created", "inviteId": inviteId}))
+
+}
+
 expressApp.post("/message/send", bodyParser.json(), (req, res) => {
     handleMessageSend(req, res)
 })
@@ -192,6 +239,10 @@ expressApp.post("/server/create", bodyParser.json(), (req, res) => {
 
 expressApp.post("/user/name/change", bodyParser.json(), (req, res) => {
     handleUserNameChange(req, res)
+})
+
+expressApp.post("/server/invite/create", bodyParser.json(), (req, res) => {
+    handleServerInviteCreate(req, res)
 })
 
 expressApp.listen(expressPort, () => {
@@ -213,17 +264,3 @@ io.on('connection', socket => {
 })
 
 console.log(`Running socket server on port ${socketPort}`)
-
-/**
- * [test (email, password)] logs into the firebase auth system and obtains the id token of the user.
- * Then, it uses the admin sdk to verify the id token and obtain the user's uuid. 
- * @param {string} email 
- * @param {string} password 
- */
-async function test(email, password) {
-    const userCredentials = await signInWithEmailAndPassword(auth, email, password);
-    const idToken = await userCredentials.user.getIdToken(true);
-    const decodedUser = await admin.auth().verifyIdToken(idToken)
-    const uuid = decodedUser.uid;
-    console.log(uuid)
-}

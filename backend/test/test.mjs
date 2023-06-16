@@ -99,6 +99,12 @@ async function testCreateServer(email, password, name) {
     })
 }
 
+/**
+ * 
+ * @param {string} email 
+ * @param {string} password 
+ * @param {string} name 
+ */
 async function testUserNameChange(email, password, name) {
     const user = await signInWithEmailAndPassword(auth, email, password)
     const idToken = await user.user.getIdToken(true)
@@ -112,6 +118,29 @@ async function testUserNameChange(email, password, name) {
         },
         body: JSON.stringify({
             "name": name
+        })
+    })
+    .then(response => {
+        response.json()
+        .then(json => {
+            console.log(json)
+        })
+    })
+}
+
+async function testCreateServerInvite(email, password, serverId) {
+    const user = await signInWithEmailAndPassword(auth, email, password)
+    const idToken = await user.user.getIdToken(true)
+
+    fetch('http://192.168.1.10:3000/server/invite/create', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'id-token': idToken
+        },
+        body: JSON.stringify({
+            "server": serverId
         })
     })
     .then(response => {

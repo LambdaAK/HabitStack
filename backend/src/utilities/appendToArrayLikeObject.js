@@ -5,7 +5,7 @@
 */
 module.exports = function appendToArrayLikeObject(object, value) {
 
-   if (object == null) {
+   if (object == null || object == undefined) {
        object = {}
    }
 
@@ -19,6 +19,8 @@ module.exports = function appendToArrayLikeObject(object, value) {
 
    // set the property
    Object.assign(object, {[smallestNaturalNumberNotKey] : value})
+
+   console.log(`new object is ${object}`)
    
    return object;
 }
