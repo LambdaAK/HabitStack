@@ -168,6 +168,11 @@ async function handleUserNameChange(req, res) {
         res.status(400).send(JSON.stringify({"error": "No new name provided"}))
         return
     }
+    // make sure the new nane is not empty
+    if (newName == "") {
+        res.status(400).send(JSON.stringify({"error": "Empty name"}))
+        return
+    }
     // set the new name
     const userRef = ref(database, `users/${uuid}`)
     await set(userRef, {
@@ -192,8 +197,6 @@ expressApp.post("/user/name/change", bodyParser.json(), (req, res) => {
 expressApp.listen(expressPort, () => {
     console.log(`Running express server on port ${expressPort}`)
 })
-
-
 
 // socket stuff
 const socketPort = 3001;
