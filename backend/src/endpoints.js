@@ -312,19 +312,3 @@ expressApp.post("/server/invite/delete", bodyParser.json(), (req, res) => {
 expressApp.listen(expressPort, () => {
     console.log(`Running express server on port ${expressPort}`)
 })
-
-// socket stuff
-const socketPort = 3001;
-const io = new Server(socketPort)
-
-io.on('connection', socket => {
-    console.log("New connection")
-    socket.emit("message", "Hello from server")
-
-    socket.on('message', arg => {
-        console.log(arg)
-    })
-    
-})
-
-console.log(`Running socket server on port ${socketPort}`)

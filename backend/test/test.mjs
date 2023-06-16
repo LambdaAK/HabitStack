@@ -15,31 +15,6 @@ const firebaseConfig = {
     measurementId: "G-G8RP1D6E1Q"
 }
 
-/*
-const socket = io("ws://192.168.1.10:3001")
-
-const expressPort = 3000
-const socketPort = 3001
-
-
-socket.on("message", arg => {
-    console.log(arg)
-})
-
-socket.emit("message", {a: "b"})
-*/
-
-/*
-fetch('http://192.168.1.10:3000/', {
-    method: 'POST',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'id-token': '12345'
-    },
-    body: JSON.stringify({"user": "Alex"})
-})
-*/
 const app = firebase.initializeApp(firebaseConfig)
 const auth = getAuth()
 const database = getDatabase(app)
@@ -173,4 +148,43 @@ async function testDeleteServerInvite(email, password, serverId, invite) {
             console.log(json)
         })
     })
+}
+
+
+async function testListenServerMessages(email, password, server) {
+    const user = await signInWithEmailAndPassword(auth, email, password)
+    const idToken = await user.user.getIdToken(true)
+
+    const socket = io("ws://192.168.1.10:3001")
+
+    const expressPort = 3000
+    const socketPort = 3001
+
+    socket.on("connect", () => {
+        console.log("Connected to socket server")
+        socket.emit("server messages", {
+            "server": server,
+            "idToken": idToken,
+        })
+        socket.on("event", arg => {
+            console.log("new message")
+        })
+    })
+
+    setInterval(() => {
+        // send a message
+        fetch('http://192.168.1.10:3000/message/send', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'id-token': idToken
+            },
+            body: JSON.stringify({
+                "server": server,
+                "message": "Hello"
+            })
+        }).then(res => {console.log("message sent")})
+    }, 2000)
+
 }

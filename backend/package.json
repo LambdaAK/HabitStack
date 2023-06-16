@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "node test/test.mjs",
-    "start": "node src/index.js"
+    "endpoints": "node src/endpoints.js",
+    "server": "node src/socketServer.js"
   },
   "author": "",
   "license": "ISC",
