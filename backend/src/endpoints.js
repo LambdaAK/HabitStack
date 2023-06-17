@@ -385,6 +385,11 @@ async function handleServerNameChange(req, res) {
         return
     }
 
+    if (newName == "") {
+        res.status(400).send(JSON.stringify({"error": "Empty name"}))
+        return
+    }
+
     // make sure the server exists
     if (!await serverExists(database, server, res)) {
         res.status(400).send(JSON.stringify({"error": "Server does not exist"}))
