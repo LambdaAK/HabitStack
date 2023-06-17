@@ -285,3 +285,43 @@ export async function serverNameChangeAPI(auth: Auth, server: string, name: stri
         }
     }
 }
+
+export async function createUserAPI(auth: Auth, username: string): Promise<APIResult> {
+    if (!auth.currentUser) {
+        return {
+            success: false,
+            errorMessage: "Not logged in"
+        }
+    }
+
+    const idToken = await auth.currentUser.getIdToken();
+
+    const response = await fetch(`${backendConfig.url}/user/create`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin':'*',
+            'id-token': idToken
+        },
+        body: JSON.stringify({
+            "username": username
+        })
+    })
+
+    const result = await response.json();
+    
+    if (result.error == undefined || result.error == null) {
+        return {
+            success: true,
+            errorMessage: ""
+        }
+    }
+    else {
+        return {
+            success: false,
+            errorMessage: result.error
+        }
+    }
+}

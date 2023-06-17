@@ -143,7 +143,10 @@ async function handleServerCreate(req, res) {
     const userServersSnapshot = await get(userServersRef)
     const userServers = userServersSnapshot.val()
     if (userServers == undefined) {
-        res.status(400).send(JSON.stringify({"error": "User does not exist"}))
+        // the user is not in any servers yet
+        await set(userServersRef, {
+            [serverId]: true
+        })
         return
     }
 
@@ -432,6 +435,41 @@ async function handleServerNameChange(req, res) {
     console.log("changing server name")
 }
 
+async function handleUserCreate(req, res) {
+    const uuid = await verifyIdToken(admin, req, res)
+    if (uuid == "") {
+        res.status(401).send(JSON.stringify({"error": "Invalid id token"}))
+        return
+    }
+
+    const username = req.body.username
+    if (username == undefined) {
+        res.status(400).send(JSON.stringify({"error": "No username provided"}))
+        return
+    }
+
+    if (username == "") {
+        res.status(400).send(JSON.stringify({"error": "Empty username"}))
+        return
+    }
+
+    // make sure the user hasn't been created yet
+    const userRef = ref(database, `users/${uuid}`)
+    const userSnapshot = await get(userRef)
+    const userData = userSnapshot.val()
+    if (userData != undefined) {
+        res.status(400).send(JSON.stringify({"error": "User already exists"}))
+        return
+    }
+
+    // create the user
+    await set(userRef, {
+        "username": username,
+    })
+
+    res.send(JSON.stringify({"message": "User created"}))
+}
+
 expressApp.post("/message/send", bodyParser.json(), (req, res) => {
     console.log("sending message")
     handleMessageSend(req, res)
@@ -443,6 +481,10 @@ expressApp.post("/server/create", bodyParser.json(), (req, res) => {
 
 expressApp.post("/user/username/change", bodyParser.json(), (req, res) => {
     handleUserNameChange(req, res)
+})
+
+expressApp.post("/user/create", bodyParser.json(), (req, res) => {
+    handleUserCreate(req, res)
 })
 
 expressApp.post("/server/invite/create", bodyParser.json(), (req, res) => {

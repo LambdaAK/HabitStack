@@ -9,6 +9,7 @@ import logo from "../../assets/small-logo.png"
 import { FirebaseApp, initializeApp } from "firebase/app"
 import { Auth, UserCredential, createUserWithEmailAndPassword, getAuth, updateEmail } from "firebase/auth"
 import { Database, getDatabase, ref, set } from "firebase/database"
+import { createUserAPI } from "../../utilities/backendRequests"
 
 const app: FirebaseApp = initializeApp(firebaseConfig);
 const database: Database = getDatabase(app)
@@ -17,11 +18,17 @@ const auth: Auth = getAuth()
 
 async function createUser (email: string, password: string, username: string): Promise<void> {
     const userCredential: UserCredential = await createUserWithEmailAndPassword(auth, email, password)
-    const user = userCredential.user
-    await set(ref(database, 'users/' + user.uid), {
-      username: username
-    })
-    alert(`Signed in with email ${user.email}`)
+    
+    // add the user to the database
+    const result = await createUserAPI(auth, username)
+    if (!result.success) {
+        alert(result.errorMessage)
+        return
+    }
+    else {
+        // redirect to the dashboard
+        window.location.replace("/dashboard")
+    }
 }
 
 function updatePasswordWarnings() {
