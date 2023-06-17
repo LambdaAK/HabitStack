@@ -1,0 +1,21 @@
+{
+    "rules": {
+      ".write": true,
+      "users" : {
+        "$uid" : {
+          "username" : {
+            ".read": true
+          },
+          "servers": {
+            ".read": "$uid == auth.uid"
+          }
+        }
+      },
+      "servers": {
+        "$server_id" : {
+          ".read" : "auth != null && root.child('users').exists()"
+        }
+      }
+  
+    }
+  }

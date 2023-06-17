@@ -1,0 +1,20 @@
+function arrayContains(arr, e) {
+    keys.foreach(k => {
+        if (arr[k] == e) {
+            return true
+        }
+    })
+    return false;
+}
+
+path /servers/{server_id} {
+    read() {
+        const user_servers = root.child('users').child(auth.uid).child('servers')
+        if (arrayContains(user_servers, server_id)) {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+}

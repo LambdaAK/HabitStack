@@ -41,7 +41,6 @@ function handleSocketConnection(socket) {
 
 }
 
-
 async function handleSocketListenServerMessages(socket, arg) {
     console.log("listening for server messages")
 
@@ -71,7 +70,6 @@ async function handleSocketListenServerMessages(socket, arg) {
         return
     }
     const unsubscribe = onValue(ref(database, `servers/${server}/messages`), snapshot => {
-        console.log("aa")
         const messages = snapshot.val()
         socket.emit('event', messages)
     })

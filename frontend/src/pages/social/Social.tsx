@@ -326,7 +326,7 @@ async function joinServer() {
             const userServersSnapshot = await get(userServersRef)
             let userServers = userServersSnapshot.val()
             // append the server to the list
-            userServers = appendToArrayLikeObject(userServers, serverId)
+            Object.assign(userServers, {[serverId] : true})
             // send the new list to the database
             await set(userServersRef, userServers)
             // close the window
@@ -446,7 +446,9 @@ async function createServer() {
 
     // append the new server to the list
 
-    userServers = appendToArrayLikeObject(userServers, serverUUID)
+    //userServers = appendToArrayLikeObject(userServers, serverUUID)
+
+    Object.assign(userServers, {[serverUUID] : true})
 
     // send the new list to the database
 
@@ -554,7 +556,7 @@ function ServerOptionsWindow(props: {serverId: string}) {
 
                         return (
                             arrayOfServerInvites.map((serverInvite) =>
-                                <li className = "server-options-window-server-invite-list-item">
+                                <li className = "server-options-window-server-invite-list-item" key = {serverInvite}>
                                     {serverInvite}
                                     <div className = "server-options-window-remove-invite-button"
                                     onClick = {() => {
@@ -691,9 +693,9 @@ export default function Social() {
                 }
 
                 else {
-                    setServersUserIn(userServers)
-                    if (currentServerId == "" && userServers.length > 0) {
-                        setCurrentServerId(userServers[0])
+                    setServersUserIn(Object.keys(userServers))
+                    if (currentServerId == "" && (Object.keys(userServers)).length > 0) {
+                        setCurrentServerId(Object.keys(userServers)[0])
                     }
                 }
 

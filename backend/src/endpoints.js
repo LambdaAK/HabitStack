@@ -127,7 +127,7 @@ async function handleServerCreate(req, res) {
     }
 
     // make a server id
-    const serverId = generateUUID() // CHANGE THIS LATER
+    const serverId = generateUUID()
     // create the server
     
     const newServerRef = ref(database, `servers/${serverId}`)
@@ -145,7 +145,9 @@ async function handleServerCreate(req, res) {
         return
     }
 
-    await set(userServersRef, appendToArrayLikeObject(userServers, serverId))
+    Object.assign(userServers, {[serverId]: true})
+
+    await set(userServersRef, userServers)
 
     res.status(200).send(JSON.stringify({"message": "Server created", "serverId": serverId}))
 }
@@ -176,7 +178,7 @@ async function handleUserNameChange(req, res) {
     // set the new name
     const userRef = ref(database, `users/${uuid}`)
     await set(userRef, {
-        "name": newName
+        "username": newName
     })
 
     res.status(200).send(JSON.stringify({"message": "Name changed"}))
@@ -297,7 +299,7 @@ expressApp.post("/server/create", bodyParser.json(), (req, res) => {
     handleServerCreate(req, res)
 })
 
-expressApp.post("/user/name/change", bodyParser.json(), (req, res) => {
+expressApp.post("/user/username/change", bodyParser.json(), (req, res) => {
     handleUserNameChange(req, res)
 })
 

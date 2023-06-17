@@ -84,7 +84,7 @@ async function testUserNameChange(email, password, name) {
     const user = await signInWithEmailAndPassword(auth, email, password)
     const idToken = await user.user.getIdToken(true)
 
-    fetch('http://192.168.1.10:3000/user/name/change', {
+    fetch('http://192.168.1.10:3000/user/username/change', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
