@@ -204,3 +204,43 @@ export async function serverInviteDeleteAPI(auth: Auth, server: string, invite: 
         }
     }
 }
+
+export async function serverJoinAPI(auth: Auth, invite: string): Promise<APIResult> {
+    if (!auth.currentUser) {
+        return {
+            success: false,
+            errorMessage: "Not logged in"
+        }
+    }
+
+    const idToken = await auth.currentUser.getIdToken();
+
+    const response = await fetch(`${backendConfig.url}/server/join`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin':'*',
+            'id-token': idToken
+        },
+        body: JSON.stringify({
+            "invite": invite
+        })
+    })
+
+    const result = await response.json();
+    
+    if (result.error == undefined || result.error == null) {
+        return {
+            success: true,
+            errorMessage: ""
+        }
+    }
+    else {
+        return {
+            success: false,
+            errorMessage: result.error
+        }
+    }
+}

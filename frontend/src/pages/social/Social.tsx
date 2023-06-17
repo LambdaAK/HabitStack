@@ -6,7 +6,7 @@ import "./social.css"
 import { useEffect, useState } from "react";
 import $ from "jquery"
 import {v4 as uuidv4} from 'uuid';
-import { sendMessageAPI, serverCreateAPI, APIResult, serverInviteCreateAPI, serverInviteDeleteAPI } from "../../utilities/backendRequests";
+import { sendMessageAPI, serverCreateAPI, APIResult, serverInviteCreateAPI, serverInviteDeleteAPI, serverJoinAPI } from "../../utilities/backendRequests";
 
 /*
 
@@ -287,46 +287,18 @@ function FinishJoiningServerButton() {
 async function joinServer() {
     // get the invite code from the field
     const inviteCode = $("#server-invite-input").val() as string
-    // now, find the corresponding server
-    const serverInvitesRef = ref(database, "servers")
-    // get the list of servers
-    const serverInvitesSnapshot = await get(serverInvitesRef)
-    const serverInvites = serverInvitesSnapshot.val()
 
-    // iterate through the servers
-    for (let i = 0; i < Object.keys(serverInvites).length; i++) {
-        const serverId = Object.keys(serverInvites)[i]
-        const server = serverInvites[serverId]
-        // check the server's list of invites
-        if (server.invites == null) continue
-     
-        // if the server's list of invites contains the invite code
-        if (server.invites.includes(inviteCode)) {
-            // add the server to the user's list of servers
-            const currentUserUUID = getCookie("user")
-            if (currentUserUUID == null) {
-                alert("not logged in, trying to join a server")
-                return
-            }
-            const userServersRef = ref(database, "users/" + currentUserUUID + "/servers")
-            // get the current list of servers
-            const userServersSnapshot = await get(userServersRef)
-            let userServers = userServersSnapshot.val()
-            // append the server to the list
-            Object.assign(userServers, {[serverId] : true})
-            // send the new list to the database
-            await set(userServersRef, userServers)
-            // close the window
-            openOrCloseJoinServerWindow()
-            // make the input field empty
-            $("#server-invite-input").val("")
-            // return
-            return
-        }
-        
+    const result = await serverJoinAPI(auth, inviteCode)
+
+    if (!result.success) {
+        alert(result.errorMessage)
     }
-    // the server invite was not valid
-    alert("Invalid server invite")
+    else {
+        // clear the input
+        $("#server-invite-input").val("")
+        // make the window disappear
+        openOrCloseJoinServerWindow()
+    }
 }
 // 163ccfc4-7a2d-453b-b7bd-306942e3be45
 
