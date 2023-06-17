@@ -6,7 +6,7 @@ import "./social.css"
 import { useEffect, useState } from "react";
 import $ from "jquery"
 import {v4 as uuidv4} from 'uuid';
-import { sendMessageAPI, APIResult } from "../../utilities/backendRequests";
+import { sendMessageAPI, serverCreateAPI, APIResult } from "../../utilities/backendRequests";
 
 /*
 
@@ -404,42 +404,18 @@ async function createServer() {
         return
     }
 
-    // first, add the server to the servers list, with it's name
-
-    // generate a uuid for the server
-
-    const serverUUID = uuidv4();
-
-    // send the server to the database
-
-    const serverData = {
-        "name" : serverName,
-        "owner" : currentUserUUID,
-    }
+    // create the server
+    const result = await serverCreateAPI(auth, serverName)
     
-    const newServerRef = ref(database, "servers/" + serverUUID)
-
-    await set(newServerRef, serverData)
-
-    // now, add the server to the user's servers list
-
-    const userServersRef = ref(database, "users/" + currentUserUUID + "/servers")
-
-    // get the list of servers the user is in
-
-    const userServersSnapshot = await get(userServersRef)
-
-    let userServers = userServersSnapshot.val()
-
-    // append the new server to the list
-
-    //userServers = appendToArrayLikeObject(userServers, serverUUID)
-
-    Object.assign(userServers, {[serverUUID] : true})
-
-    // send the new list to the database
-
-    await set(userServersRef, userServers)
+    if (!result.success) {
+        alert(result.errorMessage)
+    }
+    else {
+        // clear the input
+        $("#server-name-input").val("")
+        // make the window disappear
+        openOrCloseServerCreationWindow()
+    }
 
 }
 
