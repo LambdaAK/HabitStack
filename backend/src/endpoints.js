@@ -291,6 +291,75 @@ async function handleServerInviteDelete(req, res) {
 
 }
 
+async function handleJoinServer(req, res) {
+    // verify the id token
+    const uuid = await verifyIdToken(admin, req, res)
+    if (uuid == "") {
+        res.status(401).send(JSON.stringify({"error": "Invalid id token"}))
+        return
+    }
+
+    // get the invite
+
+    const invite = req.body.invite
+    if (invite == undefined) {
+        res.status(400).send(JSON.stringify({"error": "No invite provided"}))
+        return
+    }
+
+    // get the corresponding server id
+    // first, get the servers object
+    const serversRef = ref(database, `servers`)
+    const serversSnapshot = await get(serversRef)
+    const servers = serversSnapshot.val()
+    if (servers == undefined || servers == null) {
+        res.status(400).send(JSON.stringify({"error": "Server does not exist"}))
+        return
+    }
+
+    // iterate through the servers
+
+    let serverIdToJoin = ""
+
+    for (let i = 0; i < Object.keys(servers).length; i++) {
+        const serverId = Object.keys(servers)[i]
+        const server = servers[serverId]
+        const invites = server.invites
+        if (invites == undefined || invites == null) {
+            continue
+        }
+        if (invites.includes(invite)) {
+            // this is the server
+            serverIdToJoin = serverId
+            break;
+        }
+    }
+
+    if (serverIdToJoin == "") {
+        res.status(400).send(JSON.stringify({"error": "Invite does not exist"}))
+        return
+    }
+
+    // add the server to the user's servers
+    const userServersRef = ref(database, `users/${uuid}/servers`)
+    const userServersSnapshot = await get(userServersRef)
+    const userServers = userServersSnapshot.val()
+    if (userServers == undefined || userServers == null) {
+        // first server
+        await set(userServersRef, {
+            [serverIdToJoin]: true
+        })
+
+    }
+    else {
+        // append the server
+        Object.assign(userServers, {[serverIdToJoin]: true})
+        await set(userServersRef, userServers)
+    }
+    
+    res.send(JSON.stringify({"message": "Server joined"}))
+}
+
 expressApp.post("/message/send", bodyParser.json(), (req, res) => {
     handleMessageSend(req, res)
 })
@@ -309,6 +378,10 @@ expressApp.post("/server/invite/create", bodyParser.json(), (req, res) => {
 
 expressApp.post("/server/invite/delete", bodyParser.json(), (req, res) => {
     handleServerInviteDelete(req, res)
+})
+
+expressApp.post("/server/join", bodyParser.json(), (req, res) => {
+    handleJoinServer(req, res)
 })
 
 expressApp.listen(expressPort, () => {

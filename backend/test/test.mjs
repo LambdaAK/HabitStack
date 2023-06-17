@@ -150,6 +150,29 @@ async function testDeleteServerInvite(email, password, serverId, invite) {
     })
 }
 
+async function testJoinServer(email, password, invite) {
+    const user = await signInWithEmailAndPassword(auth, email, password)
+    const idToken = await user.user.getIdToken(true)
+
+    fetch('http://192.168.1.10:3000/server/join', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'id-token': idToken
+        },
+        body: JSON.stringify({
+            "invite": invite
+        })
+    })
+    .then(response => {
+        response.json()
+        .then(json => {
+            console.log(json)
+        })
+    })
+}
+
 
 async function testListenServerMessages(email, password, server) {
     const user = await signInWithEmailAndPassword(auth, email, password)
@@ -188,3 +211,9 @@ async function testListenServerMessages(email, password, server) {
     }, 2000)
 
 }
+
+testJoinServer(
+    "alex.kozik@yahoo.com",
+    "1234567890",
+    "98812204-d625-45ce-b259-7cf5d86931e5"
+)
