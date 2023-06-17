@@ -179,7 +179,7 @@ async function handleUserNameChange(req, res) {
     }
     // set the new name
     const userRef = ref(database, `users/${uuid}`)
-    await set(userRef, {
+    await update(userRef, {
         "username": newName
     })
 
@@ -228,7 +228,7 @@ async function handleServerInviteCreate(req, res) {
     
     // append the invite to the current invites
     const newInvites = appendToArrayLikeObject(invites, inviteId)
-    await update(invitesRef, newInvites)
+    await set(invitesRef, newInvites)
     res.send(JSON.stringify({"message": "Invite created", "inviteId": inviteId}))
 
 }
