@@ -1,21 +1,24 @@
 {
-    "rules": {
-      ".write": true,
-      "users" : {
-        "$uid" : {
-          "username" : {
-            ".read": true
-          },
-          "servers": {
-            ".read": "$uid == auth.uid"
-          }
-        }
-      },
-      "servers": {
-        "$server_id" : {
-          ".read" : "auth != null && root.child('users').exists()"
+  "rules": {
+    ".write": true,
+    "users" : {
+      "$uid" : {
+        // anyone can view another user's username
+        "username" : {
+          ".read": true
+        },
+        // a user can only read what servers they are in
+        "servers": {
+          ".read": "$uid == auth.uid"
         }
       }
-  
+    },
+    "servers": {
+      "$server_id" : {
+        // a user can access data about a server if and only if they are in the server
+        ".read" : "auth != null && root.child('users').child(auth.uid).child('servers').child($server_id).exists()"
+      }
     }
+
   }
+}

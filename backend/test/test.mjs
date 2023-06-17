@@ -211,9 +211,3 @@ async function testListenServerMessages(email, password, server) {
     }, 2000)
 
 }
-
-testJoinServer(
-    "alex.kozik@yahoo.com",
-    "1234567890",
-    "98812204-d625-45ce-b259-7cf5d86931e5"
-)

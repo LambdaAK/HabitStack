@@ -680,7 +680,7 @@ export default function Social() {
         if (user != null) {
             // logged in
             // get the uuids of the servers the user is in
-            const userServersRef = ref(database, "users/" + user + "/servers")
+            const userServersRef = ref(database, "users/" + user + "/servers") // change here
             // sets an event listener for a change in the value of the user's servers
             
             onValue(userServersRef, (snapshot: DataSnapshot) => {
