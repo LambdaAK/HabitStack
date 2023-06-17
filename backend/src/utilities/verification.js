@@ -34,7 +34,7 @@ async function verifyIdToken(admin, req, res) {
 async function userInServer (database, uuid, serverId, res) {
     const userServersRef = ref(database, `users/${uuid}/servers`)
     const userServersSnapshot = await get(userServersRef)
-    const userServers = userServersSnapshot.val()
+    const userServers = Object.keys(userServersSnapshot.val())
     if (userServers == undefined) {
         res.send(JSON.stringify({"error": "User not in server"}))
         return false

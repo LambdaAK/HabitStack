@@ -6,6 +6,7 @@ import "./social.css"
 import { useEffect, useState } from "react";
 import $ from "jquery"
 import {v4 as uuidv4} from 'uuid';
+import { sendMessageAPI, APIResult } from "../../utilities/backendRequests";
 
 /*
 
@@ -219,29 +220,15 @@ async function sendMessage(serverId: string): Promise<void> {
         return
     }
 
-    const currentUserId = currentUser.uid
-
-    // get the server id
-
     // send the message to the database
-
-    const messagesRef = ref(database, "servers/" + serverId + "/messages")
-    // get the current messages
-
-
-    const messagesSnapshot = await get(messagesRef)
-    let msgList = messagesSnapshot.val()
-
-    // add the new message
-    msgList = appendToArrayLikeObject(msgList, {"content" : messageContent, "author" : currentUserId})
-    
-    set(messagesRef, msgList)
-    .catch((error: Error) => {
-        alert(error.message)
-    })
-
-    // empty the chat bar
-    $("#message-input").val("")
+    const result: APIResult = await sendMessageAPI(auth, messageContent, serverId)
+    if (result.success) {
+        // make the input field empty
+        $("#message-input").val("")
+    }
+    else {
+        alert(result.errorMessage)
+    }
 
 }
 

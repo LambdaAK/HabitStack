@@ -2,6 +2,7 @@ const {Server} = require('socket.io')
 const express = require('express');
 const firebaseConfig = require('./firebaseConfig');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 
 const { Auth, getAuth, signInWithEmailAndPassword } = require("firebase/auth")
@@ -31,6 +32,7 @@ const database = admin.database()
 
 // express stuff
 const expressApp = express()
+expressApp.use(cors())
 const expressPort = 3000
 
 /**
@@ -361,6 +363,7 @@ async function handleJoinServer(req, res) {
 }
 
 expressApp.post("/message/send", bodyParser.json(), (req, res) => {
+    console.log("sending message")
     handleMessageSend(req, res)
 })
 
