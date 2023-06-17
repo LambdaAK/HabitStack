@@ -6,7 +6,7 @@ import "./social.css"
 import { useEffect, useState } from "react";
 import $ from "jquery"
 import {v4 as uuidv4} from 'uuid';
-import { sendMessageAPI, serverCreateAPI, APIResult, serverInviteCreateAPI } from "../../utilities/backendRequests";
+import { sendMessageAPI, serverCreateAPI, APIResult, serverInviteCreateAPI, serverInviteDeleteAPI } from "../../utilities/backendRequests";
 
 /*
 
@@ -522,18 +522,12 @@ function ServerOptionsWindow(props: {serverId: string}) {
                                 <li className = "server-options-window-server-invite-list-item" key = {serverInvite}>
                                     {serverInvite}
                                     <div className = "server-options-window-remove-invite-button"
-                                    onClick = {() => {
+                                    onClick = {async () => {
                                         // delete the invite
-                                        const serverInvitesRef = ref(database, "servers/" + props.serverId + "/invites")
-                                        // get the current invites
-                                        get(serverInvitesRef)
-                                        .then((snapshot: DataSnapshot) => {
-                                            let serverInvites = snapshot.val()
-                                            // remove the invite from the list
-                                            serverInvites = serverInvites.filter((invite: string) => invite != serverInvite)
-                                            // send the new list to the database
-                                            set(serverInvitesRef, serverInvites)
-                                        })
+                                        const result = await serverInviteDeleteAPI(auth, props.serverId, serverInvite)
+                                        if (!result.success) {
+                                            alert(result.errorMessage)
+                                        }
                                     }}
                                     >
                                         ✖️

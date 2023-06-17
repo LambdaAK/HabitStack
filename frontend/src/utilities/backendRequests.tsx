@@ -163,3 +163,44 @@ export async function serverInviteCreateAPI(auth: Auth, server: string): Promise
         }
     }
 }
+
+export async function serverInviteDeleteAPI(auth: Auth, server: string, invite: string): Promise<APIResult> {
+    if (!auth.currentUser) {
+        return {
+            success: false,
+            errorMessage: "Not logged in"
+        }
+    }
+
+    const idToken = await auth.currentUser.getIdToken();
+
+    const response = await fetch(`${backendConfig.url}/server/invite/delete`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin':'*',
+            'id-token': idToken
+        },
+        body: JSON.stringify({
+            "server": server,
+            "invite": invite
+        })
+    })
+
+    const result = await response.json();
+    
+    if (result.error == undefined || result.error == null) {
+        return {
+            success: true,
+            errorMessage: ""
+        }
+    }
+    else {
+        return {
+            success: false,
+            errorMessage: result.error
+        }
+    }
+}
