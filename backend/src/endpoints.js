@@ -6,7 +6,7 @@ const cors = require('cors');
 
 
 const { Auth, getAuth, signInWithEmailAndPassword } = require("firebase/auth")
-const { Database, getDatabase, ref, onValue, get, set } = require("firebase/database")
+const { Database, getDatabase, ref, onValue, get, set, update } = require("firebase/database")
 
 const admin = require("firebase-admin");
 const credentials = require("./credentials.json")
@@ -362,6 +362,71 @@ async function handleJoinServer(req, res) {
     res.send(JSON.stringify({"message": "Server joined"}))
 }
 
+async function handleServerNameChange(req, res) {
+    console.log("handling server name change")
+    // verify the id token
+    const uuid = await verifyIdToken(admin, req, res)
+    if (uuid == "") {
+        res.status(401).send(JSON.stringify({"error": "Invalid id token"}))
+        return
+    }
+
+    // get the server id
+    const server = req.body.server
+    if (server == undefined) {
+        res.status(400).send(JSON.stringify({"error": "No server provided"}))
+        return
+    }
+
+    // get the new name
+    const newName = req.body.name
+    if (newName == undefined) {
+        res.status(400).send(JSON.stringify({"error": "No new name provided"}))
+        return
+    }
+
+    // make sure the server exists
+    if (!await serverExists(database, server, res)) {
+        res.status(400).send(JSON.stringify({"error": "Server does not exist"}))
+        return
+    }
+
+    // make sure the user is in the server
+
+    const userServersRef = ref(database, `users/${uuid}/servers`)
+    const userServersSnapshot = await get(userServersRef)
+    const userServers = Object.keys(userServersSnapshot.val())
+
+    if (!userServers.includes(server)) {
+        res.status(400).send(JSON.stringify({"error": "User is not the owner of the server"}))
+        return
+    }
+
+    // make sure the user is the owner of the server
+
+    const serverRef = ref(database, `servers/${server}`)
+    const serverSnapshot = await get(serverRef)
+    const serverData = serverSnapshot.val()
+    if (serverData == undefined || serverData == null) {
+        res.status(400).send(JSON.stringify({"error": "Server does not exist"}))
+        return
+    }
+    
+    if (serverData.owner != uuid) {
+        res.status(400).send(JSON.stringify({"error": "User is not the owner of the server"}))
+        return
+    }
+
+    // change the name
+
+    await update(serverRef, {
+        "name": newName
+    })
+
+    res.send(JSON.stringify({"message": "Server name changed"}))
+    console.log("changing server name")
+}
+
 expressApp.post("/message/send", bodyParser.json(), (req, res) => {
     console.log("sending message")
     handleMessageSend(req, res)
@@ -385,6 +450,10 @@ expressApp.post("/server/invite/delete", bodyParser.json(), (req, res) => {
 
 expressApp.post("/server/join", bodyParser.json(), (req, res) => {
     handleJoinServer(req, res)
+})
+
+expressApp.post("/server/name/change", bodyParser.json(), (req, res) => {
+    handleServerNameChange(req, res)
 })
 
 expressApp.listen(expressPort, () => {

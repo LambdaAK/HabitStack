@@ -173,6 +173,30 @@ async function testJoinServer(email, password, invite) {
     })
 }
 
+async function testChangeServerName(email, password, server, name) {
+    const user = await signInWithEmailAndPassword(auth, email, password)
+    const idToken = await user.user.getIdToken(true)
+
+    fetch('http://192.168.1.10:3000/server/name/change', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'id-token': idToken
+        },
+        body: JSON.stringify({
+            "name": name,
+            "server": server
+        })
+    })
+    .then(response => {
+        response.json()
+        .then(json => {
+            console.log(json)
+        })
+    })
+}
+
 
 async function testListenServerMessages(email, password, server) {
     const user = await signInWithEmailAndPassword(auth, email, password)
