@@ -167,7 +167,7 @@ async function handleUserNameChange(req, res) {
         return
     }
     // get the new name
-    const newName = req.body.name
+    const newName = req.body.username
     if (newName == undefined) {
         res.status(400).send(JSON.stringify({"error": "No new name provided"}))
         return

@@ -7,6 +7,7 @@ import { Database, getDatabase, ref, set, update } from "firebase/database";
 import firebaseConfig from "../../firebaseConfig";
 import { useEffect } from "react";
 import $ from "jquery"
+import { changeUsernameAPI } from "../../utilities/backendRequests";
 
 
 
@@ -32,21 +33,16 @@ async function sendEmailForResettingPassword() {
 async function changeUserName() {
     if (auth.currentUser == null) return;
     const newUsername: string = $("#change-username-input").val() as string
-    if (newUsername.length == 0) {
-        alert("Your username must have a length greater than 0.")
-        return;
+    
+    const result = await changeUsernameAPI(auth, newUsername)
+    if (result.success) {
+        alert("Username changed successfully")
+        // clear the input field
+        $("#change-username-input").val("")
     }
-    update(ref(database, 'users/' + auth.currentUser.uid), {
-        username: newUsername,
-    })
-    .then(() => {
-        alert("Username changed to " + newUsername)
+    else {
+        alert(result.errorMessage)
     }
-    )
-    .catch(() => {
-        alert("An error occured trying to change your username. Please try again later.")
-    }
-    )
 }
 
 
