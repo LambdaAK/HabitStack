@@ -6,7 +6,7 @@ import "./social.css"
 import { useEffect, useState } from "react";
 import $ from "jquery"
 import {v4 as uuidv4} from 'uuid';
-import { sendMessageAPI, serverCreateAPI, APIResult } from "../../utilities/backendRequests";
+import { sendMessageAPI, serverCreateAPI, APIResult, serverInviteCreateAPI } from "../../utilities/backendRequests";
 
 /*
 
@@ -545,20 +545,13 @@ function ServerOptionsWindow(props: {serverId: string}) {
                 }
                 <div className = "server-options-window-add-invite-button"
                 onClick = {
-                    () => {
+                    async () => {
                         // create the invite
-                        const invite = uuidv4()
-                        // send it to the database
-                        const serverInvitesRef = ref(database, "servers/" + props.serverId + "/invites")
-                        // get the current invites
-                        get(serverInvitesRef)
-                        .then((snapshot: DataSnapshot) => {
-                            let serverInvites = snapshot.val()
-                            // add the new invite to the list
-                            serverInvites = appendToArrayLikeObject(serverInvites, invite)
-                            // send the new list to the database
-                            set(serverInvitesRef, serverInvites)
-                        })
+                        const result = await serverInviteCreateAPI(auth, props.serverId)
+                        if (!result.success) {
+                            alert(result.errorMessage)
+                        }
+
                     }
                 }
                 >

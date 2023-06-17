@@ -228,7 +228,7 @@ async function handleServerInviteCreate(req, res) {
     
     // append the invite to the current invites
     const newInvites = appendToArrayLikeObject(invites, inviteId)
-    await set(invitesRef, newInvites)
+    await update(invitesRef, newInvites)
     res.send(JSON.stringify({"message": "Invite created", "inviteId": inviteId}))
 
 }
