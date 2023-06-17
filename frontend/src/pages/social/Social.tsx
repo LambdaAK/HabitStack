@@ -6,7 +6,7 @@ import "./social.css"
 import { useEffect, useState } from "react";
 import $ from "jquery"
 import {v4 as uuidv4} from 'uuid';
-import { sendMessageAPI, serverCreateAPI, APIResult, serverInviteCreateAPI, serverInviteDeleteAPI, serverJoinAPI } from "../../utilities/backendRequests";
+import { sendMessageAPI, serverCreateAPI, APIResult, serverInviteCreateAPI, serverInviteDeleteAPI, serverJoinAPI, serverNameChangeAPI } from "../../utilities/backendRequests";
 
 /*
 
@@ -536,25 +536,24 @@ function ServerOptionsWindow(props: {serverId: string}) {
     )
 }
 
-function applyServerChanges(serverId: string) {
+async function applyServerChanges(serverId: string) {
     // check if the content of the server name input is not empty
     const serverName = $("#server-options-window-server-name-input").val() as string
-    if (serverName == "") {
-        alert("Server name is empty")
-        return
+    if (serverName != "") {
+        // change the server name
+        const result = await serverNameChangeAPI(auth, serverId, serverName)
+        if (!result.success) {
+            alert(result.errorMessage)
+        }
+        else {
+            // clear the field
+            $("#server-options-window-server-name-input").val("")
+        }
     }
-    // send it to the db
-    const serverNameRef = ref(database, "servers/" + serverId + "/name")
-    set(serverNameRef, serverName)
-    .then(() => {
-        // make the input fields empty
-        $("#server-options-window-server-name-input").val("")
-        // close the window
-        openOrCloseServerOptionsWindow()
-    })
-    .catch((error: Error) => {
-        alert(error.message)
-    })
+
+    // close the window
+    openOrCloseServerOptionsWindow()
+    
 }
 
 function openOrCloseServerOptionsWindow() {
