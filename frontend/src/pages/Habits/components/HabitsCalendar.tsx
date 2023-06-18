@@ -54,7 +54,7 @@ function findDayOfTheWeekFirstDayOfMonth(month: string): string {
 function Sunday() {
     return (
         <div className="week-day-label sunday">
-            Sunday
+            Sun
         </div>
     )
 }
@@ -70,7 +70,7 @@ function Monday() {
 function Tuesday() {
     return (
         <div className="week-day-label tuesday">
-            Sun
+            Tues
         </div>
     )
 }
@@ -215,8 +215,6 @@ export default function HabitsCalendar() {
                 }
 
                 <EmptyCalendarCellEnd columnSpan = {7 - numberOfWeekDay(findDayOfTheWeekFirstDayOfMonth(getMonth())) - getDaysInMonth(getMonth()) % 7} />
-
-                
 
             </div>
             
