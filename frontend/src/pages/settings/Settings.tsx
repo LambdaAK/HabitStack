@@ -95,18 +95,7 @@ export default function settings () {
 
                     </input>
                 </div>
-                <hr className = "divider"/>
-                <div className = "button-input-pair">
-
-                    <div className = "change-email-button">
-                        Change Email
-                    </div>
-
-                    <input className = "change-username-input" placeholder = "new email">
-
-                    </input>
-
-                </div>
+                
 
             </div>
         </>
