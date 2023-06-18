@@ -16,6 +16,14 @@
   margin-right: 5%;
 }
 
+@keyframes fly-in-left {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
 .signup-box {
   margin-left: auto;
   margin-right: auto;

@@ -2,31 +2,6 @@
 
 
 
-// mixin for fly in from left
-@mixin fly-in-left {
-    animation: fly-in-left 1s ease;
-}
-
-@mixin shadow-text-large-on-hover ($original-font-size) {
-    &:hover {
-        @include shadow;
-        cursor: pointer;
-        font-size: $original-font-size * 1.2;
-
-    }
-    transition: box-shadow 0.5s ease, font-size 0.5s ease;
-}
-
-
-@keyframes fly-in-left {
-    // fly in from the left
-    0% {
-        transform: translateX(-100%);
-    }
-    100% {
-        transform: translateX(0%);
-    }
-}
 
 
 #terms-container {

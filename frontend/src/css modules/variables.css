@@ -16,4 +16,13 @@
   margin-right: 5%;
 }
 
+@keyframes fly-in-left {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
 /*# sourceMappingURL=variables.css.map */

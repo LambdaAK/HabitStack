@@ -1,0 +1,92 @@
+@import "./../../css\ modules/variables";
+
+.habits-container {
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 4vw;
+
+    @media (max-width: $breakpoint) {
+        flex-direction: column;
+        height: fit-content;
+    }
+}
+
+#habits-bar {
+    @include fly-in-left;
+    @include shadow;
+    @include styled-scrollbar;
+    height: fit-content;
+    min-width: 10vw;
+    margin-left: 1vw;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1%;
+    overflow-y: auto;
+
+    @media (max-width: $breakpoint) {
+        margin-top: 4vh;
+        margin-bottom: 4vh;
+        width: 100%;
+        height: fit-content;
+        margin-right: auto;
+        margin-left: auto;
+        overflow-x: auto;
+        flex-direction: row;
+    }
+
+}
+
+.habits-bar-link {
+    @include shadow-text-large-on-hover($original-font-size: 24px);
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+#happiness-graph {
+    @include shadow;
+    height: fit-content;
+    width: 35%;
+    margin-top: 1vh;
+    padding: 1vw;
+    border-radius: 8px;
+    height: 50%;
+
+    @media (max-width: $breakpoint) {
+        margin-top: 4vh;
+        margin-bottom: 4vh;
+        width: 100%;
+        height: fit-content;
+        margin-right: auto;
+        margin-left: auto;
+        overflow-x: auto;
+    }
+}
+
+#habits-calendar {
+    @include shadow;
+    height: fit-content;
+    width: 35%;
+    margin-top: 1vh;
+    padding: 1vw;
+    border-radius: 8px;
+    height: 50%;
+
+    @media (max-width: $breakpoint) {
+        margin-top: 4vh;
+        margin-bottom: 4vh;
+        width: 100%;
+        height: fit-content;
+        margin-right: auto;
+        margin-left: auto;
+        overflow-x: auto;
+    }
+}
