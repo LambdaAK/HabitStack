@@ -5,7 +5,6 @@
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    color: $green;
     animation: description-animation;
     animation-play-state: running;
     animation-iteration-count: 1;
@@ -18,6 +17,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 5%;
+    color: green;
 }
 
 .home-sub-description {
