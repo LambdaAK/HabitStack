@@ -391,7 +391,7 @@ async function createServer() {
 
 }
 
-function ServerInfoBar(props: {serverId: string}) {
+function ServerInfoBar(props: {serverId: string, currentServerSetter: Function}) {
     
     const [serverName, setServerName] = useState <string> ("")
     const [serverOwner, setServerOwner] = useState <string> ("")
@@ -403,11 +403,22 @@ function ServerInfoBar(props: {serverId: string}) {
             const serverName = snapshot.val()
             setServerName(serverName)
             // make the server header visible
-            $("#server-info-bar-server-name").css("display", "block")
+            //$("#server-info-bar-server-name").css("display", "block")
             
         })
 
     }, [props.serverId])
+
+    useEffect(() => {
+        // if serverName is "", make the header invisible
+        if (props.serverId == "") {
+            $("#server-info-bar-server-name").css("display", "none")
+        }
+        // otherwise, make it visible
+        else {
+            $("#server-info-bar-server-name").css("display", "block")
+        }
+    }, [serverName])
 
     useEffect(() => {
         // get the server owner
@@ -420,10 +431,18 @@ function ServerInfoBar(props: {serverId: string}) {
 
     return (
         <div className = "server-info-bar">
+            <ExitOpenServerButton 
+                currentServerSetter={props.currentServerSetter}
+                currentServerNameSetter = {setServerName}
+                currentServer = {props.serverId}
+            />
+            <div id = "server-info-bar-server-name">
+                {serverName}
+            </div>
             {
                 // render the server-options button if and only if the user is the owner of the server
                 (function() {
-                    if (getCookie("user") == serverOwner) {
+                    if (getCookie("user") == serverOwner && props.serverId) {
                         return (
                             <>
                                 <ServerOptionsButton/>
@@ -431,14 +450,10 @@ function ServerInfoBar(props: {serverId: string}) {
                         )
                     }
                     else {
-                        return (<></>)
+                        return (<><ServerOptionsButton/></>)
                     }
                 })()
             }
-            <div id = "server-info-bar-server-name">
-                {serverName}
-            </div>
-
         </div>
     )
 }
@@ -446,6 +461,7 @@ function ServerInfoBar(props: {serverId: string}) {
 function ServerOptionsWindow(props: {serverId: string}) {
     const [serverName, setServerName] = useState <string> ("")
     const [serverInvites, setServerInvites] = useState <string[]> ([])
+    const [serverOwner, setServerOwner] = useState <string> ("")
 
     useEffect(() => {
         // set the placeholder of the server name input to the current server name
@@ -453,6 +469,14 @@ function ServerOptionsWindow(props: {serverId: string}) {
         return onValue(serverNameRef, (snapshot: DataSnapshot) => {
             const serverName = snapshot.val()
             setServerName(serverName)
+        })
+    }, [props.serverId])
+
+    useEffect(() => {
+        const serverOwnerRef = ref(database, "servers/" + props.serverId + "/owner")
+        return onValue(serverOwnerRef, (snapshot: DataSnapshot) => {
+            const serverOwner = snapshot.val()
+            setServerOwner(serverOwner)
         })
     }, [props.serverId])
 
@@ -478,8 +502,35 @@ function ServerOptionsWindow(props: {serverId: string}) {
             <div className = "server-options-window-header">
                 Server Options
             </div>
-            <input type = "text" id = "server-options-window-server-name-input" placeholder = {serverName}/>
-            <ul id = "server-options-window-server-invite-list">
+            <input
+            type = "text" 
+            id = "server-options-window-server-name-input" 
+            placeholder = {serverName}
+            style = {
+                (function() {
+                    // if the logged in user is not the owner, don't display this window
+                    if (getCookie("user") != serverOwner) {
+                        return {
+                            "display" : "none"
+                        }
+                    }
+                })()
+            }
+            />
+            <LeaveServerButton currentServer = {props.serverId}/>
+            <ul id = "server-options-window-server-invite-list"
+            style = {
+                (function() {
+                    // if the logged in user is not the owner, don't display this window
+                    if (getCookie("user") != serverOwner) {
+                        return {
+                            "display" : "none"
+                        }
+                    }
+                })()
+            }
+            
+            >
                 <li className = "server-options-window-server-invite-list-header">
                     Invites
                 </li>
@@ -570,12 +621,85 @@ function openOrCloseServerOptionsWindow() {
     }
 }
 
+function ConfirmLeaveServerWindow(props: {serverId: string}) {
+    return (
+        <div id = "confirm-leave-server-window">
+            <div className = "confirm-leave-server-window-header">
+                Are you sure you want to leave this server?
+            </div>
+            <div className = "confirm-leave-server-window-buttons">
+                <div className = "confirm-leave-server-window-yes-button"
+                onClick = {() => {
+                    // leave the server
+                    // close the window
+                    openOrCloseConfirmLeaveServerWindow()
+                }}
+                >
+                    Yes
+                </div>
+                <div className = "confirm-leave-server-window-no-button"
+                onClick = {
+                    () => {
+                        openOrCloseConfirmLeaveServerWindow()
+                    }
+                }
+                >
+                    No
+                </div>
+            </div>
+        </div>
+    )
+}
+
+function openOrCloseConfirmLeaveServerWindow() {
+    const window = $("#confirm-leave-server-window")
+    if (window.css("display") == "none") {
+        window.css("display", "flex")
+    }
+    else if (window.css("display") == "flex") {
+        window.css("display", "none")
+
+    }
+}
+
+
+
 function ServerOptionsButton() {
     return (
         <div className = "server-options-button"
         onClick = {openOrCloseServerOptionsWindow}
         >
             Options
+        </div>
+    )
+}
+
+function ExitOpenServerButton(props: {currentServerSetter: Function, currentServerNameSetter: Function, currentServer: string}) {
+    
+    if (props.currentServer == "") {
+        return (
+            <></>
+        )
+    }
+    
+    return (
+        <div className = "exit-open-server-button"
+        onClick = {() => {
+            props.currentServerSetter("")
+            props.currentServerNameSetter("")
+        }}
+        >
+            ✖️
+        </div>
+    )
+}
+
+function LeaveServerButton(props: {currentServer: string}) {
+    return (
+        <div className = "leave-server-button"
+        onClick = {openOrCloseConfirmLeaveServerWindow}
+        >
+            Leave Server
         </div>
     )
 }
@@ -616,7 +740,7 @@ export default function Social() {
                 else {
                     setServersUserIn(Object.keys(userServers))
                     if (currentServerId == "" && (Object.keys(userServers)).length > 0) {
-                        setCurrentServerId(Object.keys(userServers)[0])
+                        //setCurrentServerId(Object.keys(userServers)[0])
                     }
                 }
 
@@ -647,8 +771,22 @@ export default function Social() {
                     <CreateNewServerButton/>
                     <JoinServerButton/>
                 </div>
-                <div className = "open-server">
-                    <ServerInfoBar serverId = {currentServerId}/>
+                <div className = "open-server" style = {
+                    (function() {
+                        if (currentServerId != "") {
+                            return {
+                                "display" : "flex"
+                            }
+                        }
+                        else {
+                            return {
+                                "display" : "none"
+                            }
+                        }
+                    })()
+                }>
+                    <ServerInfoBar serverId = {currentServerId} currentServerSetter = {setCurrentServerId}/>
+                    
                 {
                     (function() {
                         if (currentServerId != "") {
@@ -686,6 +824,7 @@ export default function Social() {
             <ServerCreationWindow/>
             <JoinServerWindow/>
             <ServerOptionsWindow serverId = {currentServerId}/>
+            <ConfirmLeaveServerWindow serverId = {currentServerId}/>
         </>
     )
 }
