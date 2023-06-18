@@ -616,7 +616,6 @@ function openOrCloseServerOptionsWindow() {
     const window = $("#server-options-window")
     if (window.css("display") == "none") {
         window.css("display", "flex")
-        $("#social-container").css("opacity", "0.5")
     }
     else if (window.css("display") == "flex") {
         window.css("display", "none")

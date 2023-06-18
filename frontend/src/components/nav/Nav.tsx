@@ -106,7 +106,7 @@ export default function Nav() {
 
                 <div className = "nav-seperator"></div>
                 
-                <a href = "/dashboard" className="nav-link">Dashboard</a>
+                <a href = "/habits" className="nav-link">Habits</a>
                 <a href = "/social" className="nav-link">Social</a>
                 <a href="/terms" className="nav-link">Terms</a>
                 <div className = "nav-seperator"></div>

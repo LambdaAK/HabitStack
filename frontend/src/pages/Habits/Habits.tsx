@@ -1,9 +1,9 @@
 import Nav from "../../components/nav/Nav";
 
-export default function Dashboard() {
+export default function Habits() {
     return (
         <>
-            <h1>Dashboard</h1>
+            <h1>Habits</h1>
         </>
     )
 }
