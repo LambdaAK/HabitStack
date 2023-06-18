@@ -1,6 +1,6 @@
 import Nav from "../../components/nav/Nav";
 import "./habits.css";
-
+import HabitsCalendar from "./components/HabitsCalendar"
 
 
 function HabitsBar() {
@@ -33,14 +33,7 @@ function HappinessGraph() {
     )
 }
 
-function HabitsCalendar() {
-    return (
-        <div id = "habits-calendar">
 
-
-        </div>
-    )
-}
 
 function DailyRatingWindow() {
 
@@ -53,8 +46,8 @@ export default function Habits() {
         <>
             <div className = "habits-container">
                 <HabitsBar />
-                <HappinessGraph />
                 <HabitsCalendar />
+                <HappinessGraph />
             </div>
         </>
     )

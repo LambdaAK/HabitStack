@@ -70,23 +70,3 @@
         overflow-x: auto;
     }
 }
-
-#habits-calendar {
-    @include shadow;
-    height: fit-content;
-    width: 35%;
-    margin-top: 1vh;
-    padding: 1vw;
-    border-radius: 8px;
-    height: 50%;
-
-    @media (max-width: $breakpoint) {
-        margin-top: 4vh;
-        margin-bottom: 4vh;
-        width: 100%;
-        height: fit-content;
-        margin-right: auto;
-        margin-left: auto;
-        overflow-x: auto;
-    }
-}

@@ -1,0 +1,87 @@
+.divider {
+  border: 3px solid #535353;
+  width: 100%;
+  margin-top: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 8px;
+}
+
+.vertical-divider {
+  border-left: 6px solid #535353;
+  border-radius: 8px;
+  height: 200px;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+@keyframes fly-in-left {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+#habits-calendar {
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+  height: fit-content;
+  width: 35%;
+  margin-top: 1vh;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.days-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 1fr;
+  gap: 5px;
+  justify-content: center;
+  height: fit-content;
+}
+
+.month-label {
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+
+.week-day-label {
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+
+.calendar-day {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+  border-radius: 8px;
+  background-color: #535353;
+  color: white;
+  height: 5rem;
+  width: max;
+}
+
+.empty-calendar-cell {
+  background-color: #535353;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+/*# sourceMappingURL=habitscalendar.css.map */

@@ -1,0 +1,65 @@
+@import "./../../../css\ modules/variables";
+
+#habits-calendar {
+    @include shadow;
+    height: fit-content;
+    width: 35%;
+    margin-top: 1vh;
+    padding: 2rem;
+    border-radius: 8px;
+
+}
+
+.days-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 1fr;
+    gap: 5px;
+    justify-content: center;
+    height: fit-content;
+}
+
+.month-label {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+.week-day-label {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+.calendar-day {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    $height-and-width: 3rem;
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    border-radius: 8px;
+    background-color: $dark-slate;
+    color: white;
+    height: 5rem;
+    width: max;
+}
+
+.empty-calendar-cell {
+    background-color: $dark-slate;
+    border-radius: 8px;;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+

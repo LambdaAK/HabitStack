@@ -16,6 +16,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "date-and-time": "^3.0.2",
     "firebase": "^9.22.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.7.0",
