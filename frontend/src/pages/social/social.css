@@ -515,6 +515,7 @@
   border-radius: 8px;
   display: flex;
   flex-direction: column;
+  display: none;
 }
 
 .confirm-leave-server-window-buttons {
