@@ -470,6 +470,36 @@ async function handleUserCreate(req, res) {
     res.send(JSON.stringify({"message": "User created"}))
 }
 
+async function handleServerLeave(req, res) {
+    // verify the id token
+    const uuid = await verifyIdToken(admin, req, res)
+    if (uuid == "") {
+        res.status(401).send(JSON.stringify({"error": "Invalid id token"}))
+        return
+    }
+
+    // get the server id
+    const server = req.body.server
+    if (server == undefined) {
+        res.status(400).send(JSON.stringify({"error": "No server provided"}))
+        return
+    }
+
+    const userServersRef = ref(database, `users/${uuid}/servers`)
+    const userServersSnapshot = await get(userServersRef)
+    const userServers = Object.keys(userServersSnapshot.val())
+
+    // make sure the user is in the server
+    if (!userServers.includes(server)) {
+        res.status(400).send(JSON.stringify({"error": "User is not in the server"}))
+        return
+    }
+
+    const refOfUserServerToLeave = ref(database, `users/${uuid}/servers/${server}`)
+    await set(refOfUserServerToLeave, null)
+    res.send(JSON.stringify({"message": "Server left"}))
+}
+
 expressApp.post("/message/send", bodyParser.json(), (req, res) => {
     console.log("sending message")
     handleMessageSend(req, res)
@@ -501,6 +531,10 @@ expressApp.post("/server/join", bodyParser.json(), (req, res) => {
 
 expressApp.post("/server/name/change", bodyParser.json(), (req, res) => {
     handleServerNameChange(req, res)
+})
+
+expressApp.post("/server/leave", bodyParser.json(), (req, res) => {
+    handleServerLeave(req, res)
 })
 
 expressApp.listen(expressPort, () => {

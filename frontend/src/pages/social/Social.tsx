@@ -6,7 +6,7 @@ import "./social.css"
 import { useEffect, useState } from "react";
 import $ from "jquery"
 import {v4 as uuidv4} from 'uuid';
-import { sendMessageAPI, serverCreateAPI, APIResult, serverInviteCreateAPI, serverInviteDeleteAPI, serverJoinAPI, serverNameChangeAPI } from "../../utilities/backendRequests";
+import { sendMessageAPI, serverCreateAPI, APIResult, serverInviteCreateAPI, serverInviteDeleteAPI, serverJoinAPI, serverNameChangeAPI, serverLeaveAPI } from "../../utilities/backendRequests";
 
 /*
 
@@ -404,9 +404,7 @@ function ServerInfoBar(props: {serverId: string, currentServerSetter: Function})
             setServerName(serverName)
             // make the server header visible
             //$("#server-info-bar-server-name").css("display", "block")
-            
         })
-
     }, [props.serverId])
 
     useEffect(() => {
@@ -628,7 +626,7 @@ function openOrCloseServerOptionsWindow() {
     }
 }
 
-function ConfirmLeaveServerWindow(props: {serverId: string}) {
+function ConfirmLeaveServerWindow(props: {serverId: string, currentServerSetter: Function, currentServer: string}) {
     return (
         <div id = "confirm-leave-server-window">
             <div className = "confirm-leave-server-window-header">
@@ -636,10 +634,27 @@ function ConfirmLeaveServerWindow(props: {serverId: string}) {
             </div>
             <div className = "confirm-leave-server-window-buttons">
                 <div className = "confirm-leave-server-window-yes-button"
-                onClick = {() => {
+                onClick = {async () => {
                     // close the window
                     openOrCloseConfirmLeaveServerWindow()
+
+                    // if the options window is open, close it
+                    const serverOptionsWindow = $("#server-options-window")
+                    if (serverOptionsWindow.css("display") != "none") {
+                        openOrCloseServerOptionsWindow()
+                    }
+
+                    // if the server is the current server, set the current server to ""
+                    if (props.currentServer == props.serverId) {
+                        props.currentServerSetter("")
+                    }
+
                     // leave the server
+                    const result = await serverLeaveAPI(auth, props.serverId)
+                    if (!result.success) {
+                        alert(result.errorMessage)
+                    }
+
                 }}
                 >
                     Yes
@@ -832,7 +847,11 @@ export default function Social() {
             <ServerCreationWindow/>
             <JoinServerWindow/>
             <ServerOptionsWindow serverId = {currentServerId}/>
-            <ConfirmLeaveServerWindow serverId = {currentServerId}/>
+            <ConfirmLeaveServerWindow 
+                serverId = {currentServerId} 
+                currentServerSetter={setCurrentServerId} 
+                currentServer= {currentServerId}
+            />
         </>
     )
 }
