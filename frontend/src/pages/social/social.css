@@ -380,14 +380,24 @@
 }
 
 #server-options-window {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
   width: 80%;
   height: fit-content;
-  top: auto;
-  left: auto;
-  bottom: 10%;
-  right: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15rem;
+  bottom: 0%;
+  top: 0%;
+  left: 0%;
+  right: 0%;
   flex-direction: column;
   overflow-y: scroll;
+}
+#server-options-window::-webkit-scrollbar {
+  display: none;
 }
 
 #server-options-window-server-name-input {
