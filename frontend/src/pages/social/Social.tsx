@@ -517,7 +517,14 @@ function ServerOptionsWindow(props: {serverId: string}) {
                 })()
             }
             />
-            <LeaveServerButton currentServer = {props.serverId}/>
+            {
+                // if the user is not the owner of the server, display the leave server button
+                (function() {
+                    if (getCookie("user") != serverOwner) {
+                        return (<LeaveServerButton currentServer = {props.serverId}/>)
+                    }
+                })()
+            }
             <ul id = "server-options-window-server-invite-list"
             style = {
                 (function() {
@@ -630,9 +637,9 @@ function ConfirmLeaveServerWindow(props: {serverId: string}) {
             <div className = "confirm-leave-server-window-buttons">
                 <div className = "confirm-leave-server-window-yes-button"
                 onClick = {() => {
-                    // leave the server
                     // close the window
                     openOrCloseConfirmLeaveServerWindow()
+                    // leave the server
                 }}
                 >
                     Yes
@@ -640,6 +647,7 @@ function ConfirmLeaveServerWindow(props: {serverId: string}) {
                 <div className = "confirm-leave-server-window-no-button"
                 onClick = {
                     () => {
+                        // close the window
                         openOrCloseConfirmLeaveServerWindow()
                     }
                 }
