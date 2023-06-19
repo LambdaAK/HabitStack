@@ -313,8 +313,25 @@ function EmptyCalendarCell(props: {columnSpan: number}) {
 }
 
 function MonthLeftButton(props: {monthNumberSetter: Function, yearNumberSetter: Function, monthNumber: number, yearNumber: number}) {
+    
+    const prevMonthNumber = (function() {
+        if (props.monthNumber == 0) {
+            return 11
+        }
+        else {
+            return props.monthNumber - 1
+        }
+    })()
+    
     return (
         <div id = "month-left-button"
+        style = {
+            // style the button based on the previous month
+            {
+                backgroundColor: colorOfMonth(numberToMonth((prevMonthNumber))),
+                color: textColorOfMonth(numberToMonth(prevMonthNumber))
+            }
+        }
         onClick = {
             () => {
                 // decrement the month by one
@@ -336,8 +353,26 @@ function MonthLeftButton(props: {monthNumberSetter: Function, yearNumberSetter: 
 }
 
 function MonthRightButton(props: {monthNumberSetter: Function, yearNumberSetter: Function, monthNumber: number, yearNumber: number}) {
+    
+    const nextMonthNumber = (function() {
+        if (props.monthNumber == 11) {
+            return 0
+        }
+        else {
+            return props.monthNumber + 1
+        }
+    })()
+   
+   
     return (
         <div id = "month-right-button"
+        style = {
+            // style the button based on the previous month
+            {
+                backgroundColor: colorOfMonth(numberToMonth((nextMonthNumber))),
+                color: textColorOfMonth(numberToMonth(nextMonthNumber))
+            }
+        }
         onClick = {
             () => {
                 // increment the month by one
