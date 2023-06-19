@@ -1,5 +1,6 @@
 import date from "date-and-time"
 import "./habitscalendar.css"
+import { useEffect, useState } from "react"
 
 
 function getDaysInMonth(month: string): number {
@@ -142,8 +143,9 @@ function EmptyCalendarCell(props: {columnSpan: number}) {
         gridColumn: `1 / span ${columnSpan}`
     }
 
+
     return (
-        <div className = "empty-calendar-cell"
+        <div className = "empty-calendar-cell fly-in-from-bottom"
         style = {extraStyle}
         >
             
@@ -151,7 +153,24 @@ function EmptyCalendarCell(props: {columnSpan: number}) {
     )
 }
 
-function EmptyCalendarCellEnd(props: {columnSpan: number}) {
+function EmptyCalendarCellEnd(props: {columnSpan: number, lastDayOfTheMonth: number}) {
+
+    const [extraCSS, setExtraCSS] = useState({
+        opacity: 0
+    })
+
+    const [extraClasses, setExtraClasses] = useState("")
+    
+    useEffect(() => {
+        setTimeout(() => {
+            // make it visible
+            setExtraCSS({
+                opacity: 1
+            })
+            setExtraClasses("fly-in-from-bottom")
+
+        }, props.lastDayOfTheMonth * 100 + 100)
+    }, [])
 
     const columnSpan: number = props.columnSpan
 
@@ -165,11 +184,40 @@ function EmptyCalendarCellEnd(props: {columnSpan: number}) {
         gridColumn: `span ${columnSpan} / -1`
     }
 
+    Object.assign(extraStyle, extraCSS)
+
     return (
-        <div className = "empty-calendar-cell"
+        <div className = {"empty-calendar-cell" + " " + extraClasses}
         style = {extraStyle}
         >
             
+        </div>
+    )
+}
+
+function Day(props: {day: number}) {
+
+    const [extraCSS, setExtraCSS] = useState({
+        opacity: 0,
+    })
+
+    const [extraClasses, setExtraClasses] = useState("")
+
+    useEffect(() => {
+        setTimeout(() => {
+                // make it visible
+            setExtraCSS({
+                opacity: 1
+            })
+            setExtraClasses("fly-in-from-bottom")
+        }, props.day * 100)
+    }, [])
+
+    return (
+        <div className = {"calendar-day" + " " + extraClasses}
+        style = {extraCSS}
+        >
+            {props.day}
         </div>
     )
 }
@@ -205,16 +253,14 @@ export default function HabitsCalendar() {
 
                         const components = eachday.map((day) => {
                             return (
-                                <div className = "calendar-day">
-                                    {day}
-                                </div>
+                                <Day day = {day} />
                             )
                         })
                         return components
                     })()
                 }
 
-                <EmptyCalendarCellEnd columnSpan = {7 - numberOfWeekDay(findDayOfTheWeekFirstDayOfMonth(getMonth())) - getDaysInMonth(getMonth()) % 7} />
+                <EmptyCalendarCellEnd lastDayOfTheMonth = {getDaysInMonth(getMonth())} columnSpan = {7 - numberOfWeekDay(findDayOfTheWeekFirstDayOfMonth(getMonth())) - getDaysInMonth(getMonth()) % 7} />
 
             </div>
             
