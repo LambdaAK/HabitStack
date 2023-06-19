@@ -339,3 +339,145 @@
 #resist-habit-button {
     @extend #create-habit-button;
 }
+
+#habit-stack-creator-window {
+    @extend #habit-creator-window;
+    overflow-y: scroll;
+    height: 80%;
+}
+
+.habit-stack-creator-window-exit-button {
+    @extend .daily-rating-window-exit-button;
+}
+
+.habit-stack-creator-window-header {
+    @extend .daily-rating-window-header;
+}
+
+#habit-stack-area {
+    // this is the area where each individual habit is displayed
+    @include shadow;
+    @include styled-scrollbar;
+    background-color: $slate;
+    margin-top: 2rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+#finish-creating-habit-stack-button {
+    @extend #create-habit-button;
+}
+
+.habit-stack-habit {
+    @include shadow;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    
+}
+
+.habit-stack-move-habit-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.habit-stack-move-habit-button {
+    @include shadow;
+    height: 3.2rem;
+    width: 3.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    background-color: $very-dark-slate;
+    border-radius: 8px;
+    padding: 0px;
+    color: white;
+
+    &:hover {
+        cursor: pointer;
+        transform: translateY(-10px);
+    }
+
+    transition: all 0.2s ease-in-out;
+}
+
+.habit-stack-delete-habit-button {
+    @include shadow;
+    height: 3.2rem;
+    width: 3.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: flex-start;
+    font-size: 3rem;
+    background-color: $very-dark-slate;
+    border-radius: 8px;
+
+    &:hover {
+        cursor: pointer;
+        transform: translateY(-10px);
+    }
+
+    transition: all 0.2s ease-in-out;
+
+}
+
+.habit-stack-habit-name {
+    @include shadow;
+    @include styled-scrollbar;
+    font-size: 2rem;
+    color: white;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    background-color: $very-dark-slate;
+    border-radius: 8px;
+    height: 4rem;
+    overflow-y: scroll;
+    
+}
+
+.habit-stack-habit-creation-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#habit-stack-add-habit-button {
+    @include shadow;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    margin-top: 2rem;
+    background-color: $very-dark-slate;
+    border-radius: 8px;
+    padding: 1.5rem;
+    width: fit-content;
+
+    
+    &:hover {
+        cursor: pointer;
+        transform: translateY(-10px);
+    }
+
+    transition: all 0.2s ease-in-out;
+}
+
+#habit-stack-habit-creation-input {
+    @include shadow;
+    font-size: 2rem;
+    margin-bottom: 1vh;
+    color: white;
+    margin-left: 1.75rem;
+    background-color: $very-dark-slate;
+    border-radius: 8px;
+    width: 100%;
+    height: 4rem;
+    margin-top: 2.5rem;
+}
+

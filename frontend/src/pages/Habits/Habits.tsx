@@ -8,7 +8,9 @@ import { useState } from "react";
 function HabitsBar() {
     return (
         <div id = "habits-bar">
-            <div className = "habits-bar-link">
+            <div className = "habits-bar-link"
+            onClick = {openOrCloseHabitStackCreatorWindow}
+            >
                 Habit Stack Creator
             </div>
             <div className = "habits-bar-link"
@@ -26,8 +28,7 @@ function HabitsBar() {
             >
                 Daily Rating
             </div>
-            <div className = "habits-bar-link"
-            >
+            <div className = "habits-bar-link">
                 Habit Card
             </div>
 
@@ -331,6 +332,97 @@ const dailyRatingEmojis = [
 ]
 
 
+function openOrCloseHabitStackCreatorWindow() {
+    if ($("#habit-stack-creator-window").css("display") === "none") {
+        $("#habit-stack-creator-window").css("display", "flex");
+        $("html").css("overflow", "hidden")
+    } else {
+        $("#habit-stack-creator-window").css("display", "none");
+        $("html").css("overflow", "auto")
+    }
+}
+
+function ExitHabitStacksCreatorWindowButton() {
+    return (
+        <div className = "habit-creator-window-exit-button"
+        onClick = {openOrCloseHabitStackCreatorWindow}
+        >
+           ✖️
+        </div>
+    )
+}
+
+function HabitStackHabit(props: {habit: string}) {
+    return (
+        <div className = "habit-stack-habit">
+            <div className = "habit-stack-move-habit-buttons">
+                <div className = "habit-stack-move-habit-button">
+                ↑
+                </div>
+                <div className = "habit-stack-move-habit-button">
+                ↓
+                </div>
+                
+            </div>
+            <div className = "habit-stack-habit-name">
+                {props.habit}
+            </div>
+            <div className = "habit-stack-delete-habit-button">
+                ✖️
+            </div>
+        </div>
+    )
+}
+
+function HabitStackCreatorWindow() {
+    return (
+        <div id = "habit-stack-creator-window">
+            <ExitHabitStacksCreatorWindowButton />
+            <div className = "habit-stack-creator-window-header">
+                Habit Stack Creator
+            </div>
+            <div id = "habit-stack-area">
+            {
+                (function() {
+                    // TODO: show the habits here
+                    return (
+                        [
+                        <HabitStackHabit habit = "test habit" />,
+                        <HabitStackHabit habit = "test habit" />,
+                        <HabitStackHabit habit = "test habit" />,
+                        <HabitStackHabit habit = "test habit" />,
+                        <HabitStackHabit habit = "test habit" />,
+                        <HabitStackHabit habit = "test habit" />,
+                        <HabitStackHabit habit = "test habit" />,
+                        <HabitStackHabit habit = "test habit" />,
+                        <HabitStackHabit habit = "test habit" />,
+                        <HabitStackHabit habit = "test habit" />,
+                        <HabitStackHabit habit = "test habit" />,
+                        <HabitStackHabit habit = "test habit" />
+                        ]
+                    )
+                })()
+            }
+            
+            </div>
+
+            <div className = "habit-stack-habit-creation-row">
+                <div id = "habit-stack-add-habit-button">
+                    <span>+</span>
+                </div>
+                <input id = "habit-stack-habit-creation-input"
+                placeholder = "Habit Name"
+                ></input>
+            </div>
+            <div id = "finish-creating-habit-stack-button">
+                Create Habit Stack
+            </div>
+            
+            
+        </div>
+    )
+}
+
 
 
 export default function Habits() {
@@ -343,6 +435,7 @@ export default function Habits() {
                 <DailyRatingWindow />
                 <HabitCreatorWindow />
                 <HabitResistorWindow />
+                <HabitStackCreatorWindow />
             </div>
         </>
     )
