@@ -102,7 +102,13 @@ function findDayOfTheWeekFirstDayOfMonth(monthNumber: number, year: number): str
 
 function Sunday() {
     return (
-        <div className="week-day-label sunday">
+        <div className="week-day-label sunday"
+        style = {
+            {
+                backgroundColor: "#A3D6CC"
+            }
+        }
+        >
             Sun
         </div>
     )
@@ -110,7 +116,12 @@ function Sunday() {
 
 function Monday() {
     return (
-        <div className="week-day-label monday">
+        <div className="week-day-label monday"
+        style = {
+            {
+                backgroundColor: "#85C4BA"
+            }
+        }>
             Mon
         </div>
     )
@@ -118,7 +129,12 @@ function Monday() {
 
 function Tuesday() {
     return (
-        <div className="week-day-label tuesday">
+        <div className="week-day-label tuesday"
+        style = {
+            {
+                backgroundColor: "#68B2A9"
+            }
+        }>
             Tues
         </div>
     )
@@ -126,7 +142,12 @@ function Tuesday() {
 
 function Wednesday() {
     return (
-        <div className="week-day-label wednesday">
+        <div className="week-day-label wednesday"
+        style = {
+            {
+                backgroundColor: "#4B9F97"
+            }
+        }>
             Wed
         </div>
     )
@@ -134,7 +155,12 @@ function Wednesday() {
 
 function Thursday() {
     return (
-        <div className="week-day-label thursday">
+        <div className="week-day-label thursday"
+        style = {
+            {
+                backgroundColor: "#2E8D86"
+            }
+        }>
             Thurs
         </div>
     )
@@ -142,7 +168,12 @@ function Thursday() {
 
 function Friday() {
     return (
-        <div className="week-day-label friday">
+        <div className="week-day-label friday"
+        style = {
+            {
+                backgroundColor: "#117B74"
+            }
+        }>
             Fri
         </div>
     )
@@ -150,7 +181,12 @@ function Friday() {
 
 function Saturday() {
     return (
-        <div className="week-day-label saturday">
+        <div className="week-day-label saturday"
+        style = {
+            {
+                backgroundColor: "#006962"
+            }
+        }>
             Sat
         </div>
     )
