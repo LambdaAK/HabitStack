@@ -3,11 +3,17 @@
 #habits-calendar {
     @include shadow;
     height: fit-content;
-    width: 35%;
+    width: fit-content;
     margin-top: 1vh;
-    padding: 2rem;
+    padding: 3rem;
     border-radius: 8px;
     background-color: $dark-slate;
+
+    @media (max-width: $breakpoint) {
+        width: 100%;
+        padding: 1rem;
+    }
+    
 
 }
 
@@ -74,6 +80,10 @@
     border-radius: 8px;
     margin-bottom: 1.5rem;
     color: white;
+
+    @media (max-width: $breakpoint) {
+        font-size: 0.5rem;
+    }
 }
 
 @keyframes fly-in-from-bottom {
@@ -86,6 +96,7 @@
         opacity: 1;
         transform: translateY(0px);
     }
+    
 }
 
 .calendar-day {
@@ -95,7 +106,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    $height-and-width: 3rem;
 
     text-align: center;
     font-weight: bold;
@@ -104,13 +114,19 @@
     color: white;
     height: 5rem;
     width: max;
-    font-size: 2rem;
+    font-size: 1.5rem;
 
     &:hover {
         transform: scale(1.15);
     }
 
     transition: all 0.2s ease;
+
+    @media (max-width: $breakpoint) {
+        height: 3rem;
+        width: 3rem;
+        font-size: 1.5rem;
+    }
 
 }
 

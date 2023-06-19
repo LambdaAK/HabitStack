@@ -53,7 +53,7 @@ html {
   /* Handle on hover */
   height: fit-content;
   min-width: 10vw;
-  margin-left: 1vw;
+  margin-left: 0.5vw;
   display: flex;
   flex-direction: column;
   gap: 1%;
@@ -81,10 +81,10 @@ html {
     margin-bottom: 4vh;
     width: 100%;
     height: fit-content;
-    margin-right: auto;
-    margin-left: auto;
     overflow-x: auto;
     flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -135,10 +135,10 @@ html {
   box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
   border-radius: 8px;
   padding: 15px;
-  height: clamp(30vh, 50%, 50vh);
-  min-width: clamp(30vw, 50%, 50vw);
+  height: clamp(fit-content, 50%, 50vh);
+  min-width: clamp(fit-content, 50%, 50vw);
   margin-top: 1vh;
-  padding: 1vw;
+  padding: 2rem;
   border-radius: 8px;
   background-color: #535353;
   position: fixed;
@@ -149,7 +149,7 @@ html {
   flex-direction: column;
 }
 
-.daily-rating-window-exit-button {
+.daily-rating-window-exit-button, .habit-creator-window-exit-button {
   position: absolute;
   left: 0;
   top: 0;
@@ -260,6 +260,141 @@ html {
   transition: all 0.2s ease-in-out;
 }
 .daily-rating-submit-button:hover {
+  cursor: pointer;
+  transform: translateY(-10px);
+}
+
+#habit-creator-window {
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+  height: 50%;
+  width: 50%;
+  margin-top: 1vh;
+  padding: 2rem;
+  border-radius: 8px;
+  background-color: #535353;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+#habit-creator-window::-webkit-scrollbar {
+  width: 10px;
+}
+#habit-creator-window::-webkit-scrollbar-track {
+  background: #535353;
+}
+#habit-creator-window::-webkit-scrollbar-thumb {
+  background: #2C2C2C;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.habit-creator-window-header {
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1vh;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#habit-creator-window-name-input {
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 2.5rem;
+  margin-bottom: 1vh;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  background-color: #2C2C2C;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.implementation-intention-header, .the-laws-header {
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1vh;
+  color: white;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  text-align: center;
+  width: 94.5%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.implementation-intention-input-area, .the-laws-input-area {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  justify-content: center;
+  align-items: center;
+}
+
+.implementation-intention-sub-label {
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.implementation-intention-input {
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 2rem;
+  margin-bottom: 1vh;
+  color: white;
+  margin-left: 1.75rem;
+  background-color: #2C2C2C;
+  border-radius: 8px;
+  width: max;
+  height: 4rem;
+}
+
+#create-habit-button {
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  background-color: #2C2C2C;
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: fit-content;
+  transition: all 0.2s ease-in-out;
+}
+#create-habit-button:hover {
   cursor: pointer;
   transform: translateY(-10px);
 }

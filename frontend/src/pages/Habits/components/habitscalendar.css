@@ -33,11 +33,17 @@ html {
   border-radius: 8px;
   padding: 15px;
   height: fit-content;
-  width: 35%;
+  width: fit-content;
   margin-top: 1vh;
-  padding: 2rem;
+  padding: 3rem;
   border-radius: 8px;
   background-color: #535353;
+}
+@media (max-width: 480px) {
+  #habits-calendar {
+    width: 100%;
+    padding: 1rem;
+  }
 }
 
 .habits-calendar-top-container {
@@ -105,6 +111,11 @@ html {
   margin-bottom: 1.5rem;
   color: white;
 }
+@media (max-width: 480px) {
+  .week-day-label {
+    font-size: 0.5rem;
+  }
+}
 
 @keyframes fly-in-from-bottom {
   0% {
@@ -132,7 +143,7 @@ html {
   color: white;
   height: 5rem;
   width: max;
-  font-size: 2rem;
+  font-size: 1.5rem;
   transition: all 0.2s ease;
 }
 .calendar-day:hover {
@@ -144,6 +155,13 @@ html {
 }
 .calendar-day:hover {
   transform: scale(1.15);
+}
+@media (max-width: 480px) {
+  .calendar-day {
+    height: 3rem;
+    width: 3rem;
+    font-size: 1.5rem;
+  }
 }
 
 .fly-in-from-bottom {

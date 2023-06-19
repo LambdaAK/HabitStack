@@ -19,7 +19,7 @@
     @include styled-scrollbar;
     height: fit-content;
     min-width: 10vw;
-    margin-left: 1vw;
+    margin-left: 0.5vw;
 
     display: flex;
     flex-direction: column;
@@ -34,10 +34,10 @@
         margin-bottom: 4vh;
         width: 100%;
         height: fit-content;
-        margin-right: auto;
-        margin-left: auto;
         overflow-x: auto;
         flex-direction: row;
+        margin-left: auto;
+        margin-right: auto;
     }
 
 }
@@ -77,10 +77,10 @@
 
 #daily-rating-window {
     @include shadow;
-    height: clamp(30vh, 50%, 50vh);
-    min-width: clamp(30vw, 50%, 50vw);
+    height: clamp(fit-content, 50%, 50vh);
+    min-width: clamp(fit-content, 50%, 50vw);
     margin-top: 1vh;
-    padding: 1vw;
+    padding: 2rem;
     border-radius: 8px;
     background-color: $dark-slate;
     position: fixed;
@@ -202,3 +202,124 @@
     transition: all 0.2s ease-in-out;
 }
 
+#habit-creator-window {
+    @include shadow;
+    @include styled-scrollbar;
+    height: 50%;
+    width: 50%;
+    margin-top: 1vh;
+    padding: 2rem;
+    border-radius: 8px;
+    background-color: $dark-slate;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.habit-creator-window-header {
+    @include shadow;
+    font-size: 3rem;;
+    font-weight: bold;
+    margin-bottom: 1vh;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.habit-creator-window-exit-button {
+    @extend .daily-rating-window-exit-button;
+}
+
+#habit-creator-window-name-input {
+    @include shadow;
+    font-size: 2.5rem;
+    margin-bottom: 1vh;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    background-color: $very-dark-slate;
+    border-radius: 8px;
+    width: fit-content;
+}
+
+.implementation-intention-header {
+    @include shadow;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1vh;
+    color: white;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    text-align: center;
+    width: 94.5%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.implementation-intention-input-area {
+    // I will [BEHAVIOR] at [TIME] in [LOCATION]
+    // grid
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    justify-content: center;
+    align-items: center;
+}
+
+.implementation-intention-sub-label {
+    @include shadow;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+.implementation-intention-input {
+    @include shadow;
+    font-size: 2rem;
+    margin-bottom: 1vh;
+    color: white;
+    margin-left: 1.75rem;
+    background-color: $very-dark-slate;
+    border-radius: 8px;
+    width: max;
+    height: 4rem;
+}
+
+.the-laws-header {
+    @extend .implementation-intention-header;
+}
+
+.the-laws-input-area {
+    @extend .implementation-intention-input-area;
+}
+
+#create-habit-button {
+    @include shadow;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    background-color: $very-dark-slate;
+    border-radius: 8px;
+    padding: 1.5rem;
+    width: fit-content;
+
+    
+    &:hover {
+        cursor: pointer;
+        transform: translateY(-10px);
+    }
+
+    transition: all 0.2s ease-in-out;
+}
