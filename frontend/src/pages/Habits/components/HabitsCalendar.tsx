@@ -3,8 +3,8 @@ import "./habitscalendar.css"
 import { useEffect, useState } from "react"
 
 
-function getDaysInMonth(month: string): number {
-    const year: number = getYear()
+function getDaysInMonth(month: string, year: number): number {
+
     if (month == "Feburary" && date.isLeapYear(year)) {
         return 29
     }
@@ -29,23 +29,71 @@ function getDaysInMonth(month: string): number {
 
 }
 
-function getYear(): number {
-    const now: Date = new Date()
-    const year: number = now.getFullYear()
-    return year
-    
+function numberToMonth(month: number): string {
+    switch (month) {
+        case 0:
+            return "Janurary"
+        case 1:
+            return "Feburary"
+        case 2:
+            return "March"
+        case 3:
+            return "April"
+        case 4:
+            return "May"
+        case 5:
+            return "June"
+        case 6:
+            return "July"
+        case 7:
+            return "August"
+        case 8:
+            return "September"
+        case 9:
+            return "October"
+        case 10:
+            return "November"
+        case 11:
+            return "December"
+        default:
+            return "Janurary"
+    }
+}
+
+function monthToNumber(month: string): number {
+    switch (month) {
+        case "Janurary":
+            return 0
+        case "Feburary":
+            return 1
+        case "March":
+            return 2
+        case "April":
+            return 3
+        case "May":
+            return 4
+        case "June":
+            return 5
+        case "July":
+            return 6
+        case "August":
+            return 7
+        case "September":
+            return 8
+        case "October":
+            return 9
+        case "November":
+            return 10
+        case "December":
+            return 11
+        default:
+            return 0
+    }
 }
 
 
-function getMonth(): string {
-    const now: Date = new Date()
-    const month: string = date.format(now, "MMMM")
-    return month
-}
-
-function findDayOfTheWeekFirstDayOfMonth(month: string): string {
-    const year: number = getYear()
-    const firstDayOfMonth: Date = new Date(year, date.parse(month, "MMMM").getMonth(), 1)
+function findDayOfTheWeekFirstDayOfMonth(monthNumber: number, year: number): string {
+    const firstDayOfMonth: Date = new Date(year, monthNumber, 1)
     const dayOfWeek: string = date.format(firstDayOfMonth, "dddd")
     return dayOfWeek
 }
@@ -153,40 +201,53 @@ function EmptyCalendarCell(props: {columnSpan: number}) {
     )
 }
 
-function MonthLeftButton() {
+function MonthLeftButton(props: {monthNumberSetter: Function, yearNumberSetter: Function, monthNumber: number, yearNumber: number}) {
     return (
-        <div id = "month-left-button">
+        <div id = "month-left-button"
+        onClick = {
+            () => {
+                // decrement the month by one
+                if (props.monthNumber == 0) {
+                    // set the month to 11 and decrement the year
+                    props.monthNumberSetter(11)
+                    props.yearNumberSetter(props.yearNumber - 1)
+                }
+                // otherwise just decrement the month
+                else {
+                    props.monthNumberSetter(props.monthNumber - 1)
+                }
+            }
+        }
+        >
             {"<"}
         </div>
     )
 }
 
-function MonthRightButton() {
+function MonthRightButton(props: {monthNumberSetter: Function, yearNumberSetter: Function, monthNumber: number, yearNumber: number}) {
     return (
-        <div id = "month-right-button">
+        <div id = "month-right-button"
+        onClick = {
+            () => {
+                // increment the month by one
+                if (props.monthNumber == 11) {
+                    // set the month to 0 and increment the year
+                    props.monthNumberSetter(0)
+                    props.yearNumberSetter(props.yearNumber + 1)
+                }
+                // otherwise just increment the month
+                else {
+                    props.monthNumberSetter(props.monthNumber + 1)
+                }
+            }
+        }
+        >
             {">"}
         </div>
     )
 }
 
-function EmptyCalendarCellEnd(props: {columnSpan: number, lastDayOfTheMonth: number}) {
-
-    const [extraCSS, setExtraCSS] = useState({
-        opacity: 0
-    })
-
-    const [extraClasses, setExtraClasses] = useState("")
-    
-    useEffect(() => {
-        setTimeout(() => {
-            // make it visible
-            setExtraCSS({
-                opacity: 1
-            })
-            setExtraClasses("fly-in-from-bottom")
-
-        }, props.lastDayOfTheMonth * 100 + 100)
-    }, [])
+function EmptyCalendarCellEnd(props: {columnSpan: number}) {
 
     const columnSpan: number = props.columnSpan
 
@@ -200,10 +261,8 @@ function EmptyCalendarCellEnd(props: {columnSpan: number, lastDayOfTheMonth: num
         gridColumn: `span ${columnSpan} / -1`
     }
 
-    Object.assign(extraStyle, extraCSS)
-
     return (
-        <div className = {"empty-calendar-cell" + " " + extraClasses}
+        <div className = {"empty-calendar-cell" + " " + "fly-in-from-bottom"}
         style = {extraStyle}
         >
             
@@ -211,7 +270,7 @@ function EmptyCalendarCellEnd(props: {columnSpan: number, lastDayOfTheMonth: num
     )
 }
 
-function Day(props: {day: number}) {
+function Day(props: {day: number, month: number, year: number}) {
 
     const [extraCSS, setExtraCSS] = useState({
         opacity: 0,
@@ -235,7 +294,26 @@ function Day(props: {day: number}) {
             const extraClass: string = possibleExtraClasses[props.day % 4]
             setExtraClasses(extraClass)
         }, props.day * 100)
+
     }, [])
+
+    useEffect(() => {
+        // make the opacity 0
+        setExtraCSS({
+            opacity: 0
+        })
+        // set the extra classes to empty
+        setExtraClasses("")
+        // set the timeout
+        setTimeout(() => {
+            // make it visible
+            setExtraCSS({
+                opacity: 1
+            })
+            const extraClass: string = possibleExtraClasses[props.day % 4]
+            setExtraClasses(extraClass)
+        }, props.day * 15)
+    }, [props.day, props.month, props.year])
 
     return (
         <div className = {"calendar-day" + " " + extraClasses}
@@ -246,20 +324,60 @@ function Day(props: {day: number}) {
     )
 }
 
+function MonthLabel(props: {monthNumber: number, yearNumber: number}) {
+    const monthName: string = numberToMonth(props.monthNumber)
+    const yearNumber: number = props.yearNumber
+
+    return (
+        <div className = "month-label">
+            {
+                `${monthName} ${yearNumber}`
+            }
+        </div>
+    )
+}
+
+
+
 
 export default function HabitsCalendar() {
+
+    // get the current day, month, and year
+
+    const d: Date = new Date()
+
+    const startingDay: number = d.getDate()
+    const startingMonth: number = d.getMonth()
+    const startingYear: number = d.getFullYear()
+
+    const [dayNumber, setDayNumber] = useState(startingDay) // use this to somehow color the the current day
+    const [monthNumber, setMonthNumber] = useState(startingMonth)
+    const [yearNumber, setYearNumber] = useState(startingYear)
+
+    const [animateDays, setAnimateDays] = useState(true)
+
+    useEffect(() => {
+        setAnimateDays(true)
+    }, [])
+
 
     return (
         <div id="habits-calendar">
 
             <div className = "habits-calendar-top-container">
-                <MonthLeftButton />
-                <div className = "month-label">
-                    {
-                        `${getMonth()} ${getYear()}`
-                    }
-                </div>
-                <MonthRightButton />
+                <MonthLeftButton 
+                    monthNumberSetter={setMonthNumber} 
+                    yearNumberSetter={setYearNumber} 
+                    monthNumber = {monthNumber} 
+                    yearNumber = {yearNumber}
+                />
+                <MonthLabel monthNumber = {monthNumber} yearNumber = {yearNumber} />
+                <MonthRightButton 
+                    monthNumberSetter={setMonthNumber} 
+                    yearNumberSetter={setYearNumber} 
+                    monthNumber = {monthNumber} 
+                    yearNumber = {yearNumber}
+                />
             </div>
             
 
@@ -271,28 +389,57 @@ export default function HabitsCalendar() {
                 <Thursday />
                 <Friday />
                 <Saturday />
-                <EmptyCalendarCell columnSpan = {numberOfWeekDay(findDayOfTheWeekFirstDayOfMonth(getMonth()))} />
+                <EmptyCalendarCell columnSpan = {numberOfWeekDay(findDayOfTheWeekFirstDayOfMonth(monthNumber, yearNumber))} />
                 
                 {
                     // render the days of the month
                     (function() {
                         const eachday = []
                         
-                        const daysInMonth: number = getDaysInMonth(getMonth())
+                        const daysInMonth: number = getDaysInMonth(numberToMonth(monthNumber), yearNumber)
                         for (let i = 1; i <= daysInMonth; i++) {
                             eachday.push(i)
                         }
 
                         const components = eachday.map((day) => {
                             return (
-                                <Day day = {day} />
+                                <Day day = {day} month = {monthNumber} year = {yearNumber}/>
                             )
                         })
                         return components
                     })()
                 }
 
-                <EmptyCalendarCellEnd lastDayOfTheMonth = {getDaysInMonth(getMonth())} columnSpan = {7 - numberOfWeekDay(findDayOfTheWeekFirstDayOfMonth(getMonth())) - getDaysInMonth(getMonth()) % 7} />
+                <EmptyCalendarCellEnd 
+                    columnSpan = {
+                        (function() {
+                            // get the day of the week of the last day of the month
+                            const lastDayOfTheMonth: number = getDaysInMonth(numberToMonth(monthNumber), yearNumber)
+                            const d: Date = new Date(yearNumber, monthNumber, lastDayOfTheMonth)
+                            const dayOfTheWeek: string = date.format(d, "dddd")
+                          
+                            switch(dayOfTheWeek) {
+                                case "Sunday":
+                                    return 6
+                                case "Monday":
+                                    return 5
+                                case "Tuesday":
+                                    return 4
+                                case "Wednesday":
+                                    return 3
+                                case "Thursday":
+                                    return 2
+                                case "Friday":
+                                    return 1
+                                case "Saturday":
+                                    return 0
+                                default:
+                                    return 0
+                            }
+                        })()
+                    }
+                        
+                />
 
             </div>
             
