@@ -16,7 +16,9 @@ function HabitsBar() {
             >
                 Habit Creator
             </div>
-            <div className = "habits-bar-link">
+            <div className = "habits-bar-link"
+            onClick = {openOrCloseHabitResistorWindow}
+            >
                 Habit Resistor
             </div>
             <div className = "habits-bar-link"
@@ -79,7 +81,6 @@ function HabitCreatorWindow() {
     I will make it attractive by (attractive)
     I will make it easy by (easy)
     I will make it satisfying by (satisfying)
-
     */
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -133,7 +134,7 @@ function HabitCreatorWindow() {
 
             <div className = "the-laws-header">
                     The Habit Change Laws
-                </div>
+            </div>
             <div className = "the-laws-input-area">
 
                 
@@ -174,6 +175,88 @@ function HabitCreatorWindow() {
     )
 
     
+}
+
+function openOrCloseHabitResistorWindow() {
+    if ($("#habit-resistor-window").css("display") === "none") {
+        $("#habit-resistor-window").css("display", "flex");
+        $("html").css("overflow", "hidden")
+    } else {
+        $("#habit-resistor-window").css("display", "none");
+        $("html").css("overflow", "auto")
+    }
+}
+
+function ExitHabitResistorWindowButton() {
+    return (
+        <div className = "habit-resistor-window-exit-button"
+        onClick = {openOrCloseHabitResistorWindow}
+        >
+           ✖️
+        </div>
+    )
+}
+
+function HabitResistorWindow() {
+    const [name, setName] = useState("")
+    const [invisible, setInvisible] = useState("")
+    const [unattractive, setUnattractive] = useState("")
+    const [difficult, setDifficult] = useState("")
+    const [unsatisfying, setUnsatisfying] = useState("")
+
+    return (
+        <div id = "habit-resistor-window">
+            <ExitHabitResistorWindowButton />
+            <div className = "habit-resistor-window-header">
+                Habit Resistor
+            </div>
+            <input id = "habit-creator-window-name-input"
+            placeholder = "Habit Name"
+            >
+            </input>
+            <div className = "the-laws-header">
+                    The Inversions of the Habit Change Laws
+            </div>
+            <div className = "the-laws-input-area">
+
+                
+                <div className = "implementation-intention-sub-label">
+                    I will make it invisible by
+                </div>
+                <input className = "implementation-intention-input"
+                placeholder = "invisible"
+                >
+                </input>
+                <div className = "implementation-intention-sub-label">
+                    I will make it unattractive by
+                </div>
+                <input className = "implementation-intention-input"
+                placeholder = "unattractive"
+                >
+                </input>
+                <div className = "implementation-intention-sub-label">
+                    I will make it difficult by
+                </div>
+                <input className = "implementation-intention-input"
+                placeholder = "difficult"
+                >
+                </input>
+                <div className = "implementation-intention-sub-label">
+                    I will make it unsatisfying by
+                </div>
+                <input className = "implementation-intention-input"
+                placeholder = "unsatisfying"
+                >
+                </input>
+                
+            </div>
+            <div id = "resist-habit-button">
+                Resist Habit
+            </div>
+
+        </div>
+    )
+
 }
 
 function DailyRatingWindow() {
@@ -255,6 +338,7 @@ export default function Habits() {
                 <HappinessGraph />
                 <DailyRatingWindow />
                 <HabitCreatorWindow />
+                <HabitResistorWindow />
             </div>
         </>
     )

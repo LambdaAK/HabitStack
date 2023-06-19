@@ -149,7 +149,7 @@ html {
   flex-direction: column;
 }
 
-.daily-rating-window-exit-button, .habit-creator-window-exit-button {
+.daily-rating-window-exit-button, .habit-resistor-window-exit-button, .habit-creator-window-exit-button {
   position: absolute;
   left: 0;
   top: 0;
@@ -163,7 +163,7 @@ html {
   padding: 10px;
 }
 
-.daily-rating-window-header {
+.daily-rating-window-header, .habit-resistor-window-header {
   box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
   border-radius: 8px;
   padding: 15px;
@@ -264,7 +264,7 @@ html {
   transform: translateY(-10px);
 }
 
-#habit-creator-window {
+#habit-creator-window, #habit-resistor-window {
   box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
   border-radius: 8px;
   padding: 15px;
@@ -286,13 +286,13 @@ html {
   flex-direction: column;
   overflow-y: scroll;
 }
-#habit-creator-window::-webkit-scrollbar {
+#habit-creator-window::-webkit-scrollbar, #habit-resistor-window::-webkit-scrollbar {
   width: 10px;
 }
-#habit-creator-window::-webkit-scrollbar-track {
+#habit-creator-window::-webkit-scrollbar-track, #habit-resistor-window::-webkit-scrollbar-track {
   background: #535353;
 }
-#habit-creator-window::-webkit-scrollbar-thumb {
+#habit-creator-window::-webkit-scrollbar-thumb, #habit-resistor-window::-webkit-scrollbar-thumb {
   background: #2C2C2C;
   border-radius: 8px;
   margin-top: 5px;
@@ -378,7 +378,7 @@ html {
   height: 4rem;
 }
 
-#create-habit-button {
+#create-habit-button, #resist-habit-button {
   box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
   border-radius: 8px;
   padding: 15px;
@@ -394,7 +394,7 @@ html {
   width: fit-content;
   transition: all 0.2s ease-in-out;
 }
-#create-habit-button:hover {
+#create-habit-button:hover, #resist-habit-button:hover {
   cursor: pointer;
   transform: translateY(-10px);
 }

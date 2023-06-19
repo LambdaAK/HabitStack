@@ -323,3 +323,19 @@
 
     transition: all 0.2s ease-in-out;
 }
+
+#habit-resistor-window {
+    @extend #habit-creator-window;
+}
+
+.habit-resistor-window-exit-button {
+    @extend .daily-rating-window-exit-button;
+}
+
+.habit-resistor-window-header {
+    @extend .daily-rating-window-header;
+}
+
+#resist-habit-button {
+    @extend #create-habit-button;
+}
