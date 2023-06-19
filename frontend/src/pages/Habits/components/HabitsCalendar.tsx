@@ -153,6 +153,22 @@ function EmptyCalendarCell(props: {columnSpan: number}) {
     )
 }
 
+function MonthLeftButton() {
+    return (
+        <div id = "month-left-button">
+            {"<"}
+        </div>
+    )
+}
+
+function MonthRightButton() {
+    return (
+        <div id = "month-right-button">
+            {">"}
+        </div>
+    )
+}
+
 function EmptyCalendarCellEnd(props: {columnSpan: number, lastDayOfTheMonth: number}) {
 
     const [extraCSS, setExtraCSS] = useState({
@@ -227,9 +243,15 @@ export default function HabitsCalendar() {
 
     return (
         <div id="habits-calendar">
-            <div className = "month-label">
-                {getMonth()}
+
+            <div className = "habits-calendar-top-container">
+                <MonthLeftButton />
+                <div className = "month-label">
+                    {getMonth()}
+                </div>
+                <MonthRightButton />
             </div>
+            
 
             <div className = "days-container">
                 <Sunday />
