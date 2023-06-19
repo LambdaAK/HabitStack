@@ -352,20 +352,66 @@ function ExitHabitStacksCreatorWindowButton() {
     )
 }
 
-function HabitStackHabit(props: {habit: string}) {
+function HabitStackHabit(props: {habits: string[], habitsSetter: Function, index: number}) {
+
+    const renderUp: boolean = (function() {
+        if (props.index == 0) return false
+        else return true
+    })()
+
+    const renderDown: boolean = (function() {
+        if (props.index == props.habits.length - 1) return false
+        else return true
+    })()
+    
     return (
         <div className = "habit-stack-habit">
             <div className = "habit-stack-move-habit-buttons">
-                <div className = "habit-stack-move-habit-button">
-                ↑
-                </div>
-                <div className = "habit-stack-move-habit-button">
-                ↓
-                </div>
-                
+                {
+                    (function() {
+                        const components = [];
+                        if (renderUp) {
+                            components.push(
+                                <div className = "habit-stack-move-habit-button"
+                                onClick = {
+                                    () => {
+                                        // swap the habit with the one above it
+                                        const newHabits = [...props.habits];
+                                        const temp = newHabits[props.index - 1];
+                                        newHabits[props.index - 1] = newHabits[props.index];
+                                        newHabits[props.index] = temp;
+                                        props.habitsSetter(newHabits);
+                                    }
+                                }
+                                >
+                                ↑
+                                </div>
+                            )
+                        }
+                        if (renderDown) {
+                            components.push(
+                                <div className = "habit-stack-move-habit-button"
+                                onClick = {
+                                    () => {
+                                        // swap the habit with the one below it
+                                        const newHabits = [...props.habits];
+                                        const temp = newHabits[props.index + 1];
+                                        newHabits[props.index + 1] = newHabits[props.index];
+                                        newHabits[props.index] = temp;
+                                        props.habitsSetter(newHabits);
+                                    }
+                                }
+                                >
+                                ↓
+                                </div>
+                            )
+                        }
+                        return components
+                    })()
+                }                
             </div>
             <div className = "habit-stack-habit-name">
-                {props.habit}
+                {props.habits[props.index]}
             </div>
             <div className = "habit-stack-delete-habit-button">
                 ✖️
@@ -375,6 +421,10 @@ function HabitStackHabit(props: {habit: string}) {
 }
 
 function HabitStackCreatorWindow() {
+
+    const [habits, setHabits] = useState(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
+
+
     return (
         <div id = "habit-stack-creator-window">
             <ExitHabitStacksCreatorWindowButton />
@@ -385,22 +435,15 @@ function HabitStackCreatorWindow() {
             {
                 (function() {
                     // TODO: show the habits here
-                    return (
-                        [
-                        <HabitStackHabit habit = "test habit" />,
-                        <HabitStackHabit habit = "test habit" />,
-                        <HabitStackHabit habit = "test habit" />,
-                        <HabitStackHabit habit = "test habit" />,
-                        <HabitStackHabit habit = "test habit" />,
-                        <HabitStackHabit habit = "test habit" />,
-                        <HabitStackHabit habit = "test habit" />,
-                        <HabitStackHabit habit = "test habit" />,
-                        <HabitStackHabit habit = "test habit" />,
-                        <HabitStackHabit habit = "test habit" />,
-                        <HabitStackHabit habit = "test habit" />,
-                        <HabitStackHabit habit = "test habit" />
-                        ]
-                    )
+                    const components = [];
+                    for (let i = 0; i < habits.length; i++) {
+                        components.push(<HabitStackHabit 
+                            habits = {habits}
+                            habitsSetter = {setHabits}
+                            index = {i}
+                        />)
+                    }
+                    return components
                 })()
             }
             
