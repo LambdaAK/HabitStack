@@ -2,7 +2,7 @@ import Nav from "../../components/nav/Nav";
 import "./habits.css";
 import HabitsCalendar from "./components/HabitsCalendar"
 import $ from "jquery";
-import { useState } from "react";
+import { Key, useEffect, useState } from "react";
 
 
 function HabitsBar() {
@@ -413,7 +413,15 @@ function HabitStackHabit(props: {habits: string[], habitsSetter: Function, index
             <div className = "habit-stack-habit-name">
                 {props.habits[props.index]}
             </div>
-            <div className = "habit-stack-delete-habit-button">
+            <div className = "habit-stack-delete-habit-button"
+            onClick = {
+                () => {
+                    const newHabits = [...props.habits];
+                    newHabits.splice(props.index, 1);
+                    props.habitsSetter(newHabits);
+                }
+            }
+            >
                 ✖️
             </div>
         </div>
@@ -422,7 +430,26 @@ function HabitStackHabit(props: {habits: string[], habitsSetter: Function, index
 
 function HabitStackCreatorWindow() {
 
-    const [habits, setHabits] = useState(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
+    const [habits, setHabits] = useState([])
+
+
+    useEffect(() => {
+        // whenever enter is clicked on the new habit name input, add the habit to the list
+        $("#habit-stack-habit-creation-input").on("keyup", function(event: KeyboardEvent) {
+            if (event.key === "Enter") {
+                const newHabitName: string = $("#habit-stack-habit-creation-input").val() as string;
+                        if (newHabitName == "") {
+                            alert("Please enter a habit name")
+                            return
+                        }
+                        const newHabits = [...habits];
+                        newHabits.push(newHabitName as never);
+                        setHabits(newHabits);
+                        // clear the input
+                        $("#habit-stack-habit-creation-input").val("")
+            }
+        })
+    }, [])
 
 
     return (
@@ -431,6 +458,9 @@ function HabitStackCreatorWindow() {
             <div className = "habit-stack-creator-window-header">
                 Habit Stack Creator
             </div>
+            <input id = "habit-stack-name-input" placeholder = "Habit Stack Name">
+
+            </input>
             <div id = "habit-stack-area">
             {
                 (function() {
@@ -450,7 +480,22 @@ function HabitStackCreatorWindow() {
             </div>
 
             <div className = "habit-stack-habit-creation-row">
-                <div id = "habit-stack-add-habit-button">
+                <div id = "habit-stack-add-habit-button"
+                onClick = {
+                    () => {
+                        const newHabitName: string = $("#habit-stack-habit-creation-input").val() as string;
+                        if (newHabitName == "") {
+                            alert("Please enter a habit name")
+                            return
+                        }
+                        const newHabits = [...habits];
+                        newHabits.push(newHabitName as never);
+                        setHabits(newHabits);
+                        // clear the input
+                        $("#habit-stack-habit-creation-input").val("")
+                    }
+                }
+                >
                     <span>+</span>
                 </div>
                 <input id = "habit-stack-habit-creation-input"
