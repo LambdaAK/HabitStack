@@ -247,7 +247,9 @@ export default function HabitsCalendar() {
             <div className = "habits-calendar-top-container">
                 <MonthLeftButton />
                 <div className = "month-label">
-                    {getMonth()}
+                    {
+                        `${getMonth()} ${getYear()}`
+                    }
                 </div>
                 <MonthRightButton />
             </div>
