@@ -503,3 +503,128 @@
     margin-right: auto;
 }
 
+#habit-card-window {
+    @extend #habit-creator-window;
+    height: 80%;
+}
+
+.habit-card-window-exit-button {
+    @extend .daily-rating-window-exit-button;
+}
+
+.habit-card-window-header {
+    @extend .daily-rating-window-header;
+}
+
+.habit-card-window-habits-field {
+    @include shadow;
+    @include styled-scrollbar;
+    background-color: $slate;
+    margin-top: 2rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.habit-card-window-complete-button {
+    @extend #create-habit-button;
+}
+
+.habit-card-window-add-habit-button {
+    @extend #create-habit-button;
+}
+
+.habit-card-habit {
+    @include shadow;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 1rem;
+}
+
+.habit-card-habit-delete-button {
+    @include shadow;
+    height: 3.2rem;
+    width: 3.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: flex-start;
+    font-size: 3rem;
+    background-color: $very-dark-slate;
+    border-radius: 8px;
+
+    &:hover {
+        cursor: pointer;
+        transform: translateY(-10px);
+    }
+
+    transition: all 0.2s ease-in-out;
+}
+
+.habit-card-habit-rate-buttons {
+    // the field of three buttons
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    background-color: $very-dark-slate;
+    height: 100%;
+    width: fit-content;
+}
+
+.habit-card-habit-rate-button {
+    // the individual button with a + = or - sign
+    flex-grow: 1;
+    font-size: 3rem;
+    color: white;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    background-color: $very-dark-slate;
+    border-radius: 8px;
+
+    &:hover {
+        cursor: pointer;
+        transform: translateY(-10px);
+        @include shadow-no-padding;
+        background-color: $slate;
+        color: black;
+    }
+
+    transition: all 0.2s ease-in-out;
+
+}
+
+.habit-card-habit-rate-button-selected {
+    // these are the properties of the selected rating button
+    @extend .habit-card-habit-rate-button;
+    @include shadow-no-padding;
+    background-color: $slate;
+    color: black;
+    transform: translateY(-10px)
+}
+
+.habit-card-habit-name {
+    @include shadow;
+    flex-grow: 0.85;
+    height: 50%;
+    color: white;
+    background-color: $very-dark-slate;
+    font-size: 2rem;
+    text-align: center;
+    max-width: 80%;
+    
+}
+
+.habit-card-habit-rate-button-divider {
+    border-left: 6px solid $dark-slate;
+    border-radius: 8px;
+    height: 2rem;
+}
+
+

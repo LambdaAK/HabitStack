@@ -28,7 +28,9 @@ function HabitsBar() {
             >
                 Daily Rating
             </div>
-            <div className = "habits-bar-link">
+            <div className = "habits-bar-link"
+            onClick = {openOrCloseHabitCardWindow}
+            >
                 Habit Card
             </div>
 
@@ -433,25 +435,6 @@ function HabitStackCreatorWindow() {
     const [habits, setHabits] = useState([])
 
 
-    useEffect(() => {
-        // whenever enter is clicked on the new habit name input, add the habit to the list
-        $("#habit-stack-habit-creation-input").on("keyup", function(event: KeyboardEvent) {
-            if (event.key === "Enter") {
-                const newHabitName: string = $("#habit-stack-habit-creation-input").val() as string;
-                        if (newHabitName == "") {
-                            alert("Please enter a habit name")
-                            return
-                        }
-                        const newHabits = [...habits];
-                        newHabits.push(newHabitName as never);
-                        setHabits(newHabits);
-                        // clear the input
-                        $("#habit-stack-habit-creation-input").val("")
-            }
-        })
-    }, [])
-
-
     return (
         <div id = "habit-stack-creator-window">
             <ExitHabitStacksCreatorWindowButton />
@@ -464,7 +447,6 @@ function HabitStackCreatorWindow() {
             <div id = "habit-stack-area">
             {
                 (function() {
-                    // TODO: show the habits here
                     const components = [];
                     for (let i = 0; i < habits.length; i++) {
                         components.push(<HabitStackHabit 
@@ -511,7 +493,169 @@ function HabitStackCreatorWindow() {
     )
 }
 
+function openOrCloseHabitCardWindow() {
+    if ($("#habit-card-window").css("display") === "none") {
+        $("#habit-card-window").css("display", "flex");
+        $("html").css("overflow", "hidden")
+    } else {
+        $("#habit-card-window").css("display", "none");
+        $("html").css("overflow", "auto")
+    }
+}
 
+function ExitHabitCardWindowButton() {
+    return (
+        <div className = "habit-card-window-exit-button"
+        onClick = {openOrCloseHabitCardWindow}
+        >
+           ✖️
+        </div>
+    )
+}
+
+function HabitCardHabit(props: {habitsSetter: Function, habits: string[], index: number}) {
+    
+    const [selectedRatingButton, setSelectedRatingButton] = useState(0);
+    const [minusCSS, setMinusCSS] = useState("");
+    const [equalsCSS, setEqualsCSS] = useState("");
+    const [plusCSS, setPlusCSS] = useState("");
+
+    /*
+    0 is not selected
+    - is 1
+    = is 2
+    + is 3
+    */
+
+    useEffect(() => {
+        switch (selectedRatingButton) {
+            case 0:
+                setMinusCSS("")
+                setEqualsCSS("")
+                setPlusCSS("")
+                break
+            case 1:
+                setMinusCSS("habit-card-habit-rate-button-selected")
+                setEqualsCSS("")
+                setPlusCSS("")
+                break
+            case 2:
+                setMinusCSS("")
+                setEqualsCSS("habit-card-habit-rate-button-selected")
+                setPlusCSS("")
+                break
+            case 3:
+                setMinusCSS("")
+                setEqualsCSS("")
+                setPlusCSS("habit-card-habit-rate-button-selected")
+                break
+        }
+    }, [selectedRatingButton])
+
+    
+    
+    return (
+        <div className = "habit-card-habit">
+            <div className = "habit-card-habit-rate-buttons">
+                <div className = {"habit-card-habit-rate-button" + " " + minusCSS}
+                onClick = {
+                    () => {
+                        if (selectedRatingButton == 1) {
+                            setSelectedRatingButton(0);
+                        }
+                        else {
+                            setSelectedRatingButton(1);
+                        }
+
+                    }
+                }
+                >
+                    +
+                </div>
+                <div className = "habit-card-habit-rate-button-divider"></div>
+                <div className = {"habit-card-habit-rate-button" + " " + equalsCSS}
+                onClick = {
+                    () => {
+                        if (selectedRatingButton == 2) {
+                            setSelectedRatingButton(0);
+                        }
+                        else {
+                            setSelectedRatingButton(2);
+                        }
+
+                    }
+                }
+                >
+                    =
+                </div>
+                <div className = "habit-card-habit-rate-button-divider"></div>
+                <div className = {"habit-card-habit-rate-button" + " " + plusCSS}
+                onClick = {
+                    () => {
+                        if (selectedRatingButton == 3) {
+                            setSelectedRatingButton(0);
+                        }
+                        else {
+                            setSelectedRatingButton(3);
+                        }
+                    }
+                }
+                >
+                    -
+                </div>
+            </div>
+            <input className = "habit-card-habit-name" placeholder = "Habit Name">
+       
+            </input>
+            <div className = "habit-card-habit-delete-button">
+                ✖️
+            </div>
+        </div>
+    )
+}
+
+
+function HabitCardWindow() {
+
+
+    const [habits, setHabits] = useState(["First habit"])
+
+
+
+    return (
+        <div id = "habit-card-window">
+            <ExitHabitCardWindowButton />
+            <div className = "habit-card-window-header">
+                Habit Card
+            </div>
+            <div className = "habit-card-window-habits-field">
+                {
+                    (function() {
+                        const components = [];
+                        for (let i = 0; i < habits.length; i++) {
+                            components.push(
+                            <HabitCardHabit 
+                                habitsSetter = {setHabits}
+                                habits = {habits}
+                                index = {i}
+                            />)
+                        }
+                        return components
+                    })()
+                }
+                <div className = "habit-card-window-add-habit-button">
+                    Add a daily habit
+                </div>
+            </div>
+            <div className = "habit-card-window-complete-button">
+                Complete
+            </div>
+            
+            
+
+        </div>
+    )
+}
 
 export default function Habits() {
     return (
@@ -524,6 +668,7 @@ export default function Habits() {
                 <HabitCreatorWindow />
                 <HabitResistorWindow />
                 <HabitStackCreatorWindow />
+                <HabitCardWindow />
             </div>
         </>
     )
