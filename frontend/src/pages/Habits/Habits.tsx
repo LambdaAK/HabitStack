@@ -26,6 +26,10 @@ function HabitsBar() {
             >
                 Daily Rating
             </div>
+            <div className = "habits-bar-link"
+            >
+                Habit Card
+            </div>
 
 
         </div>
