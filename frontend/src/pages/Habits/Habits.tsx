@@ -82,6 +82,9 @@ function DailyRatingWindow() {
                     })()
                 }
             </div>
+            <div className = "daily-rating-submit-button">
+                Submit
+            </div>
 
         </div>
     )
