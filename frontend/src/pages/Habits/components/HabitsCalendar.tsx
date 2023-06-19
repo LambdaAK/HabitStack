@@ -3,6 +3,81 @@ import "./habitscalendar.css"
 import { useEffect, useState } from "react"
 
 
+interface MonthColorMapping {
+    "Janurary": string,
+    "Feburary": string,
+    "March": string,
+    "April": string,
+    "May": string,
+    "June": string,
+    "July": string,
+    "August": string,
+    "September": string,
+    "October": string,
+    "November": string,
+    "December": string
+}
+
+interface MonthTextColorMapping {
+    "Janurary": string,
+    "Feburary": string,
+    "March": string,
+    "April": string,
+    "May": string,
+    "June": string,
+    "July": string,
+    "August": string,
+    "September": string,
+    "October": string,
+    "November": string,
+    "December": string
+}
+
+const monthColors: MonthColorMapping = {
+    "Janurary": "#E6E6FA",
+    "Feburary": "#6495ED",
+    "March": "#00FF7F",
+    "April": "#FFD700",
+    "May": "#9ACD32",
+    "June": "#FF69B4",
+    "July": "#FFA500",
+    "August": "#FFFF00",
+    "September": "#FF4500",
+    "October": "#8B4513",
+    "November": "#FF6347",
+    "December": "#4682B4"
+}
+
+const monthTextColors: MonthTextColorMapping = {
+    "Janurary": "black",
+    "Feburary": "white",
+    "March": "black",
+    "April": "black",
+    "May": "white",
+    "June": "white",
+    "July": "white",
+    "August": "black",
+    "September": "white",
+    "October": "white",
+    "November": "white",
+    "December": "white"
+}
+
+function colorOfMonth(month: string): string {
+    if (!Object.keys(monthColors).includes(month)) {
+        return "#E6E6FA"
+    }
+    return monthColors[month]
+}
+
+function textColorOfMonth(month: string): string {
+    if (!Object.keys(monthTextColors).includes(month)) {
+        return "black"
+    }
+    return monthTextColors[month]
+}
+
+
 function getDaysInMonth(month: string, year: number): number {
 
     if (month == "Feburary" && date.isLeapYear(year)) {
@@ -363,12 +438,91 @@ function Day(props: {day: number, month: number, year: number}) {
     )
 }
 
+/*
+    January (Winter): #E6E6FA (Lavender)
+    February (Winter): #6495ED (Cornflower Blue)
+    March (Spring): #00FF7F (Spring Green)
+    April (Spring): #FFD700 (Gold)
+    May (Spring): #9ACD32 (Yellow Green)
+    June (Summer): #FF69B4 (Hot Pink)
+    July (Summer): #FFA500 (Orange)
+    August (Summer): #FFFF00 (Yellow)
+    September (Autumn/Fall): #FF4500 (Orange Red)
+    October (Autumn/Fall): #8B4513 (Saddle Brown)
+    November (Autumn/Fall): #FF6347 (Tomato)
+    December (Winter): #4682B4 (Steel Blue)
+*/
+
+
+
 function MonthLabel(props: {monthNumber: number, yearNumber: number}) {
     const monthName: string = numberToMonth(props.monthNumber)
     const yearNumber: number = props.yearNumber
 
+    const [color, setColor] = useState("")
+    const [textColor, setTextColor] = useState("")
+
+    useEffect(() => {
+        switch (monthName) {
+            case "Janurary":
+                setColor("#E6E6FA")
+                setTextColor("black")
+                break
+            case "Feburary":
+                setColor("#6495ED")
+                setTextColor("white")
+                break
+            case "March":
+                setColor("#00FF7F")
+                setTextColor("black")
+                break
+            case "April":
+                setColor("#FFD700")
+                setTextColor("black")
+                break
+            case "May":
+                setColor("#9ACD32")
+                setTextColor("white")
+                break
+            case "June":
+                setColor("#FF69B4")
+                setTextColor("white")
+                break
+            case "July":
+                setColor("#FFA500")
+                setTextColor("white")
+                break
+            case "August":
+                setColor("#FFFF00")
+                setTextColor("black")
+                break
+            case "September":
+                setColor("#FF4500")
+                setTextColor("white")
+                break
+            case "October":
+                setColor("#8B4513")
+                break
+            case "November":
+                setColor("#FF6347")
+                break
+            case "December":
+                setColor("#4682B4")
+                break
+            default:
+                setColor("#E6E6FA")
+        }
+    }, [monthName])
+
     return (
-        <div className = "month-label">
+        <div className = "month-label"
+        style = {
+            {
+                backgroundColor: color,
+                color: textColor
+            }
+        }
+        >
             {
                 `${monthName} ${yearNumber}`
             }
