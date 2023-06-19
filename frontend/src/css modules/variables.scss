@@ -1,8 +1,14 @@
 $breakpoint: 480px;
 $slate: #DDDDDD;
+$medium-slate: #A0A0A0;
 $dark-slate: #535353;
+$very-dark-slate: #2C2C2C;
 $green: #54F291;
 $light-blue: #54CFF2;
+
+html {
+    background-color: $very-dark-slate;
+}
 
 .divider {
     border: 3px solid $dark-slate;
@@ -43,6 +49,12 @@ $light-blue: #54CFF2;
     padding: 15px;
 }
 
+@mixin shadow-no-padding {
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,1);
+    //box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.2);
+    border-radius: 8px;
+}
+
 @mixin hide-scrollbar {
     /* Hide scrollbar for Chrome, Safari and Opera */
     &::-webkit-scrollbar {
@@ -62,13 +74,13 @@ $light-blue: #54CFF2;
   
     /* Track */
     &::-webkit-scrollbar-track {
-        background: white;
+        background: $dark-slate;
         
     }
     
     /* Handle */
     &::-webkit-scrollbar-thumb {
-        background: $dark-slate;
+        background: $very-dark-slate;
         border-radius: 8px;
         margin-top: 5px;
         margin-bottom: 5px; 

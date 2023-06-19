@@ -1,3 +1,7 @@
+html {
+  background-color: #2C2C2C;
+}
+
 .divider {
   border: 3px solid #535353;
   width: 100%;
@@ -54,15 +58,17 @@
   flex-direction: column;
   gap: 1%;
   overflow-y: auto;
+  background-color: #535353;
+  color: white;
 }
 #habits-bar::-webkit-scrollbar {
   width: 10px;
 }
 #habits-bar::-webkit-scrollbar-track {
-  background: white;
+  background: #535353;
 }
 #habits-bar::-webkit-scrollbar-thumb {
-  background: #535353;
+  background: #2C2C2C;
   border-radius: 8px;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -111,6 +117,7 @@
   padding: 1vw;
   border-radius: 8px;
   height: 50%;
+  background-color: #535353;
 }
 @media (max-width: 480px) {
   #happiness-graph {

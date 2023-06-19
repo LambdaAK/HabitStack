@@ -1,3 +1,7 @@
+html {
+  background-color: #2C2C2C;
+}
+
 .divider {
   border: 3px solid #535353;
   width: 100%;
@@ -33,6 +37,7 @@
   margin-top: 1vh;
   padding: 2rem;
   border-radius: 8px;
+  background-color: #535353;
 }
 
 .habits-calendar-top-container {
@@ -83,6 +88,7 @@
   margin-left: 2rem;
   margin-right: 2rem;
   font-size: 3rem;
+  color: white;
 }
 
 .week-day-label {
@@ -97,6 +103,7 @@
   font-size: 2rem;
   border-radius: 8px;
   margin-bottom: 1.5rem;
+  color: white;
 }
 
 @keyframes fly-in-from-bottom {

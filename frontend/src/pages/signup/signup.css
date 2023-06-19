@@ -1,3 +1,7 @@
+html {
+  background-color: #2C2C2C;
+}
+
 .divider {
   border: 3px solid #535353;
   width: 100%;
@@ -46,6 +50,7 @@
   margin-bottom: 2%;
   margin-top: 1%;
   font-size: 48px;
+  color: white;
 }
 @media (max-width: 480px) {
   .signup-box-header {
@@ -106,6 +111,7 @@
   width: 100%;
   align-items: center;
   margin-top: 5%;
+  color: white;
 }
 
 #signin-button {

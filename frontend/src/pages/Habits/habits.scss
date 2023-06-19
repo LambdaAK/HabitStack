@@ -26,6 +26,9 @@
     gap: 1%;
     overflow-y: auto;
 
+    background-color: $dark-slate;
+    color: white;
+
     @media (max-width: $breakpoint) {
         margin-top: 4vh;
         margin-bottom: 4vh;
@@ -59,6 +62,7 @@
     padding: 1vw;
     border-radius: 8px;
     height: 50%;
+    background-color: $dark-slate;
 
     @media (max-width: $breakpoint) {
         margin-top: 4vh;

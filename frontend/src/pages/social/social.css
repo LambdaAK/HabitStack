@@ -1,3 +1,7 @@
+html {
+  background-color: #2C2C2C;
+}
+
 .divider, .server-bar-divider-horizontal {
   border: 3px solid #535353;
   width: 100%;
@@ -54,6 +58,7 @@
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
+  background-color: #535353;
 }
 .servers-bar::-webkit-scrollbar {
   display: none;
@@ -82,6 +87,7 @@
   align-items: center;
   gap: 2rem;
   left: 11%;
+  background-color: #535353;
 }
 
 .server-button {
@@ -136,10 +142,10 @@
   width: 10px;
 }
 .server-messages::-webkit-scrollbar-track {
-  background: white;
+  background: #535353;
 }
 .server-messages::-webkit-scrollbar-thumb {
-  background: #535353;
+  background: #2C2C2C;
   border-radius: 8px;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -167,10 +173,10 @@
   border-radius: 8px;
   padding: 1rem;
   font-size: 1.25rem;
-  background-color: #535353;
   color: white;
   align-self: flex-start;
   margin-left: 1rem;
+  background-color: #1365E3;
 }
 
 .message-from-current-user {
@@ -182,7 +188,7 @@
 .message-author {
   font-size: 1.25rem;
   font-weight: bold;
-  color: #54F291;
+  color: black;
 }
 
 #server-creation-window, #confirm-leave-server-window, #server-options-window, #join-server-window {
@@ -194,7 +200,7 @@
   height: 50%;
   top: 25%;
   left: 25%;
-  background-color: white;
+  background-color: #535353;
   border-radius: 8px;
   animation: fly-in 1s ease;
   display: none;
@@ -221,7 +227,8 @@
   height: fit-content;
   padding: 10px;
   border-radius: 8px;
-  background-color: #DDDDDD;
+  background-color: #535353;
+  color: white;
   font-size: 1.55rem;
   margin: 1rem 1rem 1rem 1rem;
   transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, padding 0.2s ease-in-out, color 0.2s ease-in-out;
@@ -245,12 +252,12 @@
   padding: 1rem;
   font-size: 3rem;
   font-weight: bold;
-  color: black;
   width: fit-content;
   height: fit-content;
   margin-left: auto;
   margin-right: auto;
-  background-color: white;
+  background-color: #535353;
+  color: white;
 }
 
 .text-input, #server-options-window-server-name-input {
@@ -391,17 +398,13 @@
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-  width: 80%;
+  width: 50%;
   height: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 15rem;
-  bottom: 0%;
-  top: 0%;
-  left: 0%;
-  right: 0%;
   flex-direction: column;
   overflow-y: scroll;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 #server-options-window::-webkit-scrollbar {
   display: none;
@@ -431,7 +434,7 @@
   overflow-y: scroll;
   overflow-x: hidden;
   width: 40%;
-  background-color: white;
+  background-color: #DDDDDD;
   border-radius: 8px;
   margin-top: 3rem;
   margin-bottom: 3rem;
@@ -457,7 +460,7 @@
   border-radius: 8px;
   padding: 1rem;
   font-size: 1.25rem;
-  background-color: #DDDDDD;
+  background-color: #535353;
   color: white;
   align-self: flex-start;
   margin-top: 1rem;
@@ -467,7 +470,7 @@
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  color: black;
+  color: white;
 }
 
 .server-options-window-remove-invite-button {
