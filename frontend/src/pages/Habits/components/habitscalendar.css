@@ -140,9 +140,51 @@
 }
 
 .fly-in-from-bottom {
-  animation: fly-in-from-bottom 0.2s ease;
+  animation: fly-in-from-bottom 0.5s ease;
 }
 
+.fly-in-from-top {
+  animation: fly-in-from-top 0.5s ease;
+}
+
+.fly-in-from-left {
+  animation: fly-in-from-left 0.5s ease;
+}
+
+.fly-in-from-right {
+  animation: fly-in-from-right 0.5s ease;
+}
+
+@keyframes fly-in-from-top {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+@keyframes fly-in-from-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@keyframes fly-in-from-right {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
 .empty-calendar-cell {
   box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
   border-radius: 8px;

@@ -217,6 +217,13 @@ function Day(props: {day: number}) {
         opacity: 0,
     })
 
+    const possibleExtraClasses = [
+        "fly-in-from-bottom",
+        "fly-in-from-left",
+        "fly-in-from-right",
+        "fly-in-from-top"
+    ]
+
     const [extraClasses, setExtraClasses] = useState("")
 
     useEffect(() => {
@@ -225,7 +232,8 @@ function Day(props: {day: number}) {
             setExtraCSS({
                 opacity: 1
             })
-            setExtraClasses("fly-in-from-bottom")
+            const extraClass: string = possibleExtraClasses[props.day % 4]
+            setExtraClasses(extraClass)
         }, props.day * 100)
     }, [])
 
