@@ -47,7 +47,7 @@ html {
   justify-content: center;
   align-items: center;
   margin-top: 5%;
-  color: green;
+  color: white;
 }
 
 .home-sub-description {
@@ -69,6 +69,7 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 
 @keyframes header-animation {

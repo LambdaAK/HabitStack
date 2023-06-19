@@ -74,3 +74,109 @@
         overflow-x: auto;
     }
 }
+
+#daily-rating-window {
+    @include shadow;
+    height: clamp(30vh, 50%, 50vh);
+    min-width: clamp(30vw, 50%, 50vw);
+    margin-top: 1vh;
+    padding: 1vw;
+    border-radius: 8px;
+    background-color: $dark-slate;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    flex-direction: column;
+
+
+}
+
+.daily-rating-window-exit-button {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 1vw;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    color: white;
+    background-color: $very-dark-slate;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+
+.daily-rating-window-header {
+    @include shadow;
+    font-size: 3rem;;
+    font-weight: bold;
+    margin-bottom: 1vh;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.daily-rating-input-panel {
+    @include shadow;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 1vh;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+    align-items: center;
+    justify-content: center;
+}
+
+.daily-rating-input-button {
+    @include shadow;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1vh;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $very-dark-slate;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    width: fit-content;
+    
+    &:hover {
+        pointer: cursor;
+        transform: translateY(-10px);
+    }
+
+    transition: all 0.2s ease-in-out;
+}
+
+.current-daily-rating-header {
+    @include shadow;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1vh;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.current-daily-rating {
+    @include shadow;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1vh;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 1.25rem;
+    background-color: $very-dark-slate;
+}
+

@@ -93,8 +93,8 @@
     @include shadow-text-large-on-hover($original-font-size: 2rem);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     $height-and-width: 3rem;
 
     text-align: center;
@@ -104,14 +104,13 @@
     color: white;
     height: 5rem;
     width: max;
+    font-size: 2rem;
 
     &:hover {
         transform: scale(1.15);
     }
 
     transition: all 0.2s ease;
-    font-size: 1.75rem;
-
 
 }
 
@@ -169,7 +168,7 @@
 
 .empty-calendar-cell {
     @include shadow;
-    background-color: $slate;
+    background-color: $very-dark-slate;
     border-radius: 8px;;
     display: flex;
     flex-direction: row;

@@ -319,7 +319,10 @@ function Day(props: {day: number, month: number, year: number}) {
         <div className = {"calendar-day" + " " + extraClasses}
         style = {extraCSS}
         >
-            {props.day}
+            <div>
+               {props.day} 
+            </div>
+            
         </div>
     )
 }
