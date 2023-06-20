@@ -498,55 +498,8 @@ function MonthLabel(props: {monthNumber: number, yearNumber: number}) {
     const [textColor, setTextColor] = useState("")
 
     useEffect(() => {
-        switch (monthName) {
-            case "Janurary":
-                setColor("#E6E6FA")
-                setTextColor("black")
-                break
-            case "Feburary":
-                setColor("#6495ED")
-                setTextColor("white")
-                break
-            case "March":
-                setColor("#00FF7F")
-                setTextColor("black")
-                break
-            case "April":
-                setColor("#FFD700")
-                setTextColor("black")
-                break
-            case "May":
-                setColor("#9ACD32")
-                setTextColor("white")
-                break
-            case "June":
-                setColor("#FF69B4")
-                setTextColor("white")
-                break
-            case "July":
-                setColor("#FFA500")
-                setTextColor("white")
-                break
-            case "August":
-                setColor("#FFFF00")
-                setTextColor("black")
-                break
-            case "September":
-                setColor("#FF4500")
-                setTextColor("white")
-                break
-            case "October":
-                setColor("#8B4513")
-                break
-            case "November":
-                setColor("#FF6347")
-                break
-            case "December":
-                setColor("#4682B4")
-                break
-            default:
-                setColor("#E6E6FA")
-        }
+        setColor(colorOfMonth(monthName))
+        setTextColor(textColorOfMonth(monthName))
     }, [monthName])
 
     return (
