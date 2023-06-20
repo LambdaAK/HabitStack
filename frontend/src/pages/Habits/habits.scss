@@ -546,7 +546,7 @@
     margin-top: 1rem;
 }
 
-.habit-card-habit-delete-button {
+.habit-card-habit-add-button {
     @include shadow;
     height: 3.2rem;
     width: 3.2rem;
@@ -554,9 +554,10 @@
     align-items: center;
     justify-content: center;
     justify-self: flex-start;
-    font-size: 3rem;
+    font-size: 5rem;
     background-color: $very-dark-slate;
     border-radius: 8px;
+    color: white;
 
     &:hover {
         cursor: pointer;
@@ -564,6 +565,10 @@
     }
 
     transition: all 0.2s ease-in-out;
+}
+
+.habit-card-habit-delete-button {
+    @extend .habit-card-habit-add-button
 }
 
 .habit-card-habit-rate-buttons {
@@ -609,15 +614,16 @@
     transform: translateY(-10px)
 }
 
-.habit-card-habit-name {
+#habit-card-habit-name-input ,.habit-card-habit-name {
     @include shadow;
-    flex-grow: 0.85;
+    flex-grow: 1;
     height: 50%;
     color: white;
     background-color: $very-dark-slate;
     font-size: 2rem;
     text-align: center;
     max-width: 80%;
+    overflow-x: scroll;
     
 }
 
@@ -625,6 +631,26 @@
     border-left: 6px solid $dark-slate;
     border-radius: 8px;
     height: 2rem;
+}
+
+.habit-card-habit {
+    @include shadow;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 1rem;
+}
+
+.habit-card-habit-rating {
+    @include shadow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $very-dark-slate;
+    color: white;
+    font-size: 4rem;
 }
 
 

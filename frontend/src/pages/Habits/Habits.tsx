@@ -513,7 +513,113 @@ function ExitHabitCardWindowButton() {
     )
 }
 
-function HabitCardHabit(props: {habitsSetter: Function, habits: string[], index: number}) {
+
+function HabitCardHabit(props: {habit: string, rating: number, habits: HabitCardWindowHabitWithRating[], habitSetter: Function, index: number}) {
+
+    const renderUp = (function() {
+        if (props.index == 0) return false
+        else return true
+    })()
+
+    const renderDown = (function() {
+        if (props.index == props.habits.length - 1) return false
+        else return true
+    })()
+
+
+        
+    const ratingString: "" | "+" | "=" | "-" = 
+        (function() {
+        switch (props.rating) {
+            case 1:
+                return "+"
+            case 2:
+                return "="
+            case 3:
+                return "-"
+            default:
+                return ""
+        }
+        })()
+
+    return (
+        <div className = "habit-card-habit">
+
+            <div className = "habit-stack-move-habit-buttons">
+                {
+                    (function() {
+                        const components = [];
+                        if (renderUp) {
+                            components.push(
+                                <div className = "habit-stack-move-habit-button"
+                                onClick = {
+                                    () => {
+                                        // swap the habit with the one above it
+                                        const newHabits = [...props.habits];
+                                        const temp = newHabits[props.index - 1];
+                                        newHabits[props.index - 1] = newHabits[props.index];
+                                        newHabits[props.index] = temp;
+                                        props.habitSetter(newHabits);
+                                    }
+                                }
+                                >
+                                ↑
+                                </div>
+                            )
+                        }
+                        if (renderDown) {
+                            components.push(
+                                <div className = "habit-stack-move-habit-button"
+                                onClick = {
+                                    () => {
+                                        // swap the habit with the one below it
+                                        const newHabits = [...props.habits];
+                                        const temp = newHabits[props.index + 1];
+                                        newHabits[props.index + 1] = newHabits[props.index];
+                                        newHabits[props.index] = temp;
+                                        props.habitSetter(newHabits);
+                                    }
+                                }
+                                >
+                                ↓
+                                </div>
+                            )
+                        }
+                        return components
+                    })()
+                }                
+            </div>
+
+            <div className = "habit-card-habit-rating">
+                {ratingString}
+            </div>
+
+            <div className = "habit-card-habit-name">
+                {props.habit}
+            </div>
+
+            <div className = "habit-card-habit-delete-button"
+            onClick = {
+                () => {
+                    const newHabits = [...props.habits];
+                    newHabits.splice(props.index, 1);
+                    props.habitSetter(newHabits);
+                }
+            }
+            >
+                ✖️
+            </div>
+
+        </div>
+    )
+
+
+
+
+}
+
+
+function HabitCardHabitInput(props: {habitSetter: Function, habits: HabitCardWindowHabitWithRating[]}) {
     
     const [selectedRatingButton, setSelectedRatingButton] = useState(0);
     const [minusCSS, setMinusCSS] = useState("");
@@ -552,8 +658,7 @@ function HabitCardHabit(props: {habitsSetter: Function, habits: string[], index:
         }
     }, [selectedRatingButton])
 
-    
-    
+
     return (
         <div className = "habit-card-habit">
             <div className = "habit-card-habit-rate-buttons">
@@ -604,23 +709,59 @@ function HabitCardHabit(props: {habitsSetter: Function, habits: string[], index:
                     -
                 </div>
             </div>
-            <input className = "habit-card-habit-name" placeholder = "Habit Name">
+            <input id = "habit-card-habit-name-input" placeholder = "Habit Name">
        
             </input>
-            <div className = "habit-card-habit-delete-button">
-                ✖️
+            <div className = "habit-card-habit-add-button"
+            onClick = {
+                () => {
+                    // add the habit to the habit card
+                    const newHabitName: string = $("#habit-card-habit-name-input").val() as string;
+                    if (newHabitName == "") {
+                        alert("Please enter a habit name")
+                        return
+                    }
+                    // make sure a rating button is selected
+                    if (selectedRatingButton == 0) {
+                        alert("Please select a rating")
+                        return
+                    }
+
+                    const newHabitRating: number = selectedRatingButton;
+                    const newHabit = {
+                        name: newHabitName,
+                        rating: newHabitRating
+                    }
+                    const newHabits = [...props.habits];
+                    newHabits.push(newHabit);
+                    props.habitSetter(newHabits);
+                    // empty the input field
+                    $("#habit-card-habit-name-input").val("")
+                    // reset the rating button field
+                    setSelectedRatingButton(0);
+                }
+            }
+            >
+                +
             </div>
         </div>
     )
 }
 
+interface HabitCardWindowHabitWithRating {
+    name: string,
+    rating: number,
+}
 
 function HabitCardWindow() {
 
 
-    const [habits, setHabits] = useState(["First habit"])
+    const [habits, setHabits] =  useState<HabitCardWindowHabitWithRating[]>([])
 
 
+    useEffect(() => {
+        console.log(habits)
+    })
 
     return (
         <div id = "habit-card-window">
@@ -630,23 +771,28 @@ function HabitCardWindow() {
             </div>
             <div className = "habit-card-window-habits-field">
                 {
-                    (function() {
+                    // render each habit
+                    (function(){
                         const components = [];
                         for (let i = 0; i < habits.length; i++) {
-                            components.push(
-                            <HabitCardHabit 
-                                habitsSetter = {setHabits}
+                            components.push(<HabitCardHabit 
+                                habit = {habits[i].name}
+                                rating = {habits[i].rating}
                                 habits = {habits}
+                                habitSetter = {setHabits}
                                 index = {i}
                             />)
                         }
                         return components
                     })()
                 }
-                <div className = "habit-card-window-add-habit-button">
-                    Add a daily habit
-                </div>
+                
             </div>
+            <HabitCardHabitInput
+                habitSetter = {setHabits}
+                habits = {habits}
+            />
+            
             <div className = "habit-card-window-complete-button">
                 Complete
             </div>
