@@ -205,8 +205,8 @@
 #habit-creator-window {
     @include shadow;
     @include styled-scrollbar;
-    height: 50%;
-    width: 50%;
+    height: 90%;
+    width: 75%;
     margin-top: 1vh;
     padding: 2rem;
     border-radius: 8px;
@@ -343,7 +343,7 @@
 #habit-stack-creator-window {
     @extend #habit-creator-window;
     overflow-y: scroll;
-    height: 80%;
+    height: 90%;
 }
 
 .habit-stack-creator-window-exit-button {
@@ -360,7 +360,7 @@
     @include styled-scrollbar;
     background-color: $slate;
     margin-top: 2rem;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -410,13 +410,13 @@
 
 .habit-stack-delete-habit-button {
     @include shadow;
-    height: 3.2rem;
-    width: 3.2rem;
+    height: 2rem;
+    width: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     justify-self: flex-start;
-    font-size: 3rem;
+    font-size: 2rem;
     background-color: $very-dark-slate;
     border-radius: 8px;
 
@@ -568,7 +568,7 @@
 }
 
 .habit-card-habit-delete-button {
-    @extend .habit-card-habit-add-button
+    @extend .habit-stack-delete-habit-button
 }
 
 .habit-card-habit-rate-buttons {
