@@ -644,13 +644,15 @@
 }
 
 .habit-card-habit-rating {
-    @include shadow;
+    @include shadow-no-padding;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: $very-dark-slate;
     color: white;
-    font-size: 4rem;
+    font-size: 3.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 
 
