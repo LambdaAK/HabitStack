@@ -18,11 +18,13 @@
 }
 
 .settings-box-header {
+    @include shadow;
     margin-bottom: 2%;
     margin-top: 1%;
     margin-left: auto;
     margin-right: auto;
     font-size: 48px;
+    color: white;
     
     @media (max-width: $breakpoint) {
         font-size: 24px;
@@ -30,10 +32,11 @@
 }
 
 .settings-box-input {
+    @include shadow;
     margin-top: 7%;
     margin-bottom: 7%;
     font-size: 22pt;
-    background-color: $slate;
+    background-color: $very-dark-slate;
     padding: 4px;
 
     transition-property: background-color;
@@ -41,6 +44,7 @@
     appearance: none;
     border-radius: 8px;
     text-align: center;
+    border: none;
 
     &:focus {
         background-color: $dark-slate;
@@ -56,18 +60,19 @@
 }
 
 .settings-box-button {
+    @include shadow;
     margin-top: 2%;
     margin-bottom: 2%;
-    border-color: $dark-slate;
-    border-width: 2px;
-    border-style: solid;
     padding: 10px;
-    background-color: $slate;
-    border-radius: 8px;
+    background-color: $very-dark-slate;
     font-size: 32px;
     min-width: fit-content;
 
     transition: background-color 0.5s ease;
+
+    color: white;
+    text-align: center;
+    text-justify: center;
 
     &:hover {
         background-color: $dark-slate;
@@ -124,4 +129,8 @@
     color: $dark-slate;
     font-weight: bold;
     display: none;
+}
+
+.signup-box-logo {
+    @include shadow;
 }
