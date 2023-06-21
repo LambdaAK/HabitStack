@@ -104,8 +104,8 @@
 }
 
 .term-name {
-    @include shadow-text-large-on-hover($original-font-size: 24px);
-    font-size: 24px;
+    @include shadow;
+    font-size: 2rem;
     font-weight: bold;
     margin-left: 10px;
     margin-right: 10px;
@@ -115,6 +115,16 @@
     text-align: center;
     border-radius: 8px;
     color: white;
+
+    &:hover {
+        background-color: $slate;
+        color: black;
+        cursor: pointer;
+        transform: translateY(-5px);
+    }
+
+    transition: all 0.2s ease-in-out;
+
 }
 
 
@@ -156,14 +166,24 @@
 
 
 .term-link {
-    @include shadow-text-large-on-hover($original-font-size: 36px);
     @include shadow;
     width: fit-content;
     border-radius: 8px;
     padding: 10px;
-    background-color: $slate;
+    background-color: $dark-slate;
+    color: white;
     font-size: 36px;
     margin-bottom: 25px;
-    color: black;
+
+    &:hover {
+        background-color: $slate;
+        color: black;
+        cursor: pointer;
+        transform: translateY(-5px);
+    }
+
+    transition: all 0.2s ease-in-out;
+
+
    
 }

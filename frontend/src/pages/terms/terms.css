@@ -45,7 +45,7 @@ html {
 
 #terms-bar {
   animation: fly-in-left 1s ease;
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   /* width */
@@ -89,7 +89,7 @@ html {
 }
 
 .terms-content {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   height: fit-content;
@@ -122,7 +122,7 @@ html {
   }
 }
 .term-header {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   font-size: 140px;
@@ -145,8 +145,10 @@ html {
 }
 
 .term-name {
-  transition: box-shadow 0.5s ease, font-size 0.5s ease;
-  font-size: 24px;
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 2rem;
   font-weight: bold;
   margin-left: 10px;
   margin-right: 10px;
@@ -156,13 +158,13 @@ html {
   text-align: center;
   border-radius: 8px;
   color: white;
+  transition: all 0.2s ease-in-out;
 }
 .term-name:hover {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
-  border-radius: 8px;
-  padding: 15px;
+  background-color: #DDDDDD;
+  color: black;
   cursor: pointer;
-  font-size: 28.8px;
+  transform: translateY(-5px);
 }
 
 .related-terms-wrapper {
@@ -175,7 +177,7 @@ html {
 }
 
 .related-terms-header {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   background-color: #535353;
@@ -199,24 +201,23 @@ html {
 }
 
 .term-link {
-  transition: box-shadow 0.5s ease, font-size 0.5s ease;
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   width: fit-content;
   border-radius: 8px;
   padding: 10px;
-  background-color: #DDDDDD;
+  background-color: #535353;
+  color: white;
   font-size: 36px;
   margin-bottom: 25px;
-  color: black;
+  transition: all 0.2s ease-in-out;
 }
 .term-link:hover {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
-  border-radius: 8px;
-  padding: 15px;
+  background-color: #DDDDDD;
+  color: black;
   cursor: pointer;
-  font-size: 43.2px;
+  transform: translateY(-5px);
 }
 
 /*# sourceMappingURL=terms.css.map */

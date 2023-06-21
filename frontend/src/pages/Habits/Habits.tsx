@@ -660,7 +660,7 @@ function HabitCardHabitInput(props: {habitSetter: Function, habits: HabitCardWin
 
 
     return (
-        <div className = "habit-card-habit">
+        <div className = "habit-card-habit-input">
             <div className = "habit-card-habit-rate-buttons">
                 <div className = {"habit-card-habit-rate-button" + " " + minusCSS}
                 onClick = {

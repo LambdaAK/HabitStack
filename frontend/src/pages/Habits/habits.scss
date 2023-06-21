@@ -43,15 +43,24 @@
 }
 
 .habits-bar-link {
-    @include shadow-text-large-on-hover($original-font-size: 24px);
+    @include shadow-no-padding;
     font-size: 24px;
     font-weight: bold;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: center;
     border-radius: 8px;
+
+    &:hover {
+        cursor: pointer;
+        transform: translateY(-10px);
+        background-color: $slate;
+        color: black;
+    }
+
+    transition: all 0.2s ease-in-out;
 }
 
 #happiness-graph {
@@ -249,7 +258,7 @@
 
 .implementation-intention-header {
     @include shadow;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
     margin-bottom: 1vh;
     color: white;
@@ -257,7 +266,7 @@
     margin-bottom: 2rem;
     padding: 2rem;
     text-align: center;
-    width: 94.5%;
+    width: fit-content;
     margin-left: auto;
     margin-right: auto;
 }
@@ -519,7 +528,7 @@
 .habit-card-window-habits-field {
     @include shadow;
     @include styled-scrollbar;
-    background-color: $slate;
+    background-color: $dark-slate;
     margin-top: 2rem;
     height: 100vh;
     display: flex;
@@ -558,6 +567,9 @@
     background-color: $very-dark-slate;
     border-radius: 8px;
     color: white;
+    margin-left: auto;
+    margin-right: auto;
+
 
     &:hover {
         cursor: pointer;
@@ -616,8 +628,9 @@
 
 #habit-card-habit-name-input ,.habit-card-habit-name {
     @include shadow;
+    @include styled-scrollbar;
     flex-grow: 1;
-    height: 50%;
+    height: 70%;
     color: white;
     background-color: $very-dark-slate;
     font-size: 2rem;
@@ -641,6 +654,7 @@
     justify-content: space-between;
     width: 90%;
     margin-top: 1rem;
+    background-color: $very-dark-slate;
 }
 
 .habit-card-habit-rating {
@@ -653,6 +667,20 @@
     font-size: 3.5rem;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+}
+
+.habit-card-habit-input {
+    @include shadow;
+    font-size: 2rem;
+    color: white;
+    background-color: $very-dark-slate;
+    width: 92%;
+    height: 4rem;
+    margin-top: 2.5rem;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 

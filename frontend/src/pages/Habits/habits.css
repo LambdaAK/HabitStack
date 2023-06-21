@@ -44,7 +44,7 @@ html {
 
 #habits-bar {
   animation: fly-in-left 1s ease;
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   /* width */
@@ -89,26 +89,27 @@ html {
 }
 
 .habits-bar-link {
-  transition: box-shadow 0.5s ease, font-size 0.5s ease;
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.2);
+  border-radius: 8px;
   font-size: 24px;
   font-weight: bold;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 50px;
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: center;
   border-radius: 8px;
+  transition: all 0.2s ease-in-out;
 }
 .habits-bar-link:hover {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
-  border-radius: 8px;
-  padding: 15px;
   cursor: pointer;
-  font-size: 28.8px;
+  transform: translateY(-10px);
+  background-color: #DDDDDD;
+  color: black;
 }
 
 #happiness-graph {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   height: fit-content;
@@ -132,7 +133,7 @@ html {
 }
 
 #daily-rating-window {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   height: clamp(fit-content, 50%, 50vh);
@@ -164,7 +165,7 @@ html {
 }
 
 .daily-rating-window-header, .habit-card-window-header, .habit-stack-creator-window-header, .habit-resistor-window-header {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   font-size: 3rem;
@@ -176,7 +177,7 @@ html {
 }
 
 .daily-rating-input-panel {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   font-size: 24px;
@@ -193,7 +194,7 @@ html {
 }
 
 .daily-rating-input-button {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   font-size: 2.5rem;
@@ -214,7 +215,7 @@ html {
 }
 
 .current-daily-rating-header {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   font-size: 2.5rem;
@@ -229,7 +230,7 @@ html {
 }
 
 .current-daily-rating {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   font-size: 2.5rem;
@@ -244,7 +245,7 @@ html {
 }
 
 .daily-rating-submit-button {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   font-size: 2.5rem;
@@ -265,7 +266,7 @@ html {
 }
 
 #habit-creator-window, #habit-card-window, #habit-stack-creator-window, #habit-resistor-window {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   /* width */
@@ -301,7 +302,7 @@ html {
   margin-right: 5px;
 }
 .habit-creator-window-header {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   font-size: 3rem;
@@ -313,7 +314,7 @@ html {
 }
 
 #habit-creator-window-name-input {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   font-size: 2.5rem;
@@ -328,10 +329,10 @@ html {
 }
 
 .implementation-intention-header, .the-laws-header {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bold;
   margin-bottom: 1vh;
   color: white;
@@ -339,7 +340,7 @@ html {
   margin-bottom: 2rem;
   padding: 2rem;
   text-align: center;
-  width: 94.5%;
+  width: fit-content;
   margin-left: auto;
   margin-right: auto;
 }
@@ -352,7 +353,7 @@ html {
 }
 
 .implementation-intention-sub-label {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   font-size: 1.5rem;
@@ -365,7 +366,7 @@ html {
 }
 
 .implementation-intention-input {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   font-size: 2rem;
@@ -379,7 +380,7 @@ html {
 }
 
 #create-habit-button, .habit-card-window-add-habit-button, .habit-card-window-complete-button, #finish-creating-habit-stack-button, #resist-habit-button {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   font-size: 2.5rem;
@@ -405,7 +406,7 @@ html {
 }
 
 #habit-stack-area {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   /* width */
@@ -435,7 +436,7 @@ html {
   margin-right: 5px;
 }
 .habit-stack-habit {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   display: flex;
@@ -452,7 +453,7 @@ html {
 }
 
 .habit-stack-move-habit-button {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   height: 3.2rem;
@@ -473,7 +474,7 @@ html {
 }
 
 .habit-stack-delete-habit-button, .habit-card-habit-delete-button {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   height: 2rem;
@@ -493,7 +494,7 @@ html {
 }
 
 .habit-stack-habit-name {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   /* width */
@@ -536,7 +537,7 @@ html {
 }
 
 #habit-stack-add-habit-button {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   font-size: 2.5rem;
@@ -555,7 +556,7 @@ html {
 }
 
 #habit-stack-habit-creation-input {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   font-size: 2rem;
@@ -570,7 +571,7 @@ html {
 }
 
 #habit-stack-name-input {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   font-size: 2rem;
@@ -590,14 +591,14 @@ html {
 }
 
 .habit-card-window-habits-field {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   /* width */
   /* Track */
   /* Handle */
   /* Handle on hover */
-  background-color: #DDDDDD;
+  background-color: #535353;
   margin-top: 2rem;
   height: 100vh;
   display: flex;
@@ -620,7 +621,7 @@ html {
   margin-right: 5px;
 }
 .habit-card-habit {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   display: flex;
@@ -632,7 +633,7 @@ html {
 }
 
 .habit-card-habit-add-button {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   height: 3.2rem;
@@ -645,6 +646,8 @@ html {
   background-color: #2C2C2C;
   border-radius: 8px;
   color: white;
+  margin-left: auto;
+  margin-right: auto;
   transition: all 0.2s ease-in-out;
 }
 .habit-card-habit-add-button:hover {
@@ -676,14 +679,14 @@ html {
 .habit-card-habit-rate-button:hover, .habit-card-habit-rate-button-selected:hover {
   cursor: pointer;
   transform: translateY(-10px);
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.2);
   border-radius: 8px;
   background-color: #DDDDDD;
   color: black;
 }
 
 .habit-card-habit-rate-button-selected {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.2);
   border-radius: 8px;
   background-color: #DDDDDD;
   color: black;
@@ -691,11 +694,15 @@ html {
 }
 
 #habit-card-habit-name-input, .habit-card-habit-name {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
   flex-grow: 1;
-  height: 50%;
+  height: 70%;
   color: white;
   background-color: #2C2C2C;
   font-size: 2rem;
@@ -703,7 +710,20 @@ html {
   max-width: 80%;
   overflow-x: scroll;
 }
-
+#habit-card-habit-name-input::-webkit-scrollbar, .habit-card-habit-name::-webkit-scrollbar {
+  width: 10px;
+}
+#habit-card-habit-name-input::-webkit-scrollbar-track, .habit-card-habit-name::-webkit-scrollbar-track {
+  background: #535353;
+}
+#habit-card-habit-name-input::-webkit-scrollbar-thumb, .habit-card-habit-name::-webkit-scrollbar-thumb {
+  background: #2C2C2C;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
 .habit-card-habit-rate-button-divider {
   border-left: 6px solid #535353;
   border-radius: 8px;
@@ -711,7 +731,7 @@ html {
 }
 
 .habit-card-habit {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   display: flex;
@@ -720,10 +740,11 @@ html {
   justify-content: space-between;
   width: 90%;
   margin-top: 1rem;
+  background-color: #2C2C2C;
 }
 
 .habit-card-habit-rating {
-  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.2);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -733,6 +754,22 @@ html {
   font-size: 3.5rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.habit-card-habit-input {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 2rem;
+  color: white;
+  background-color: #2C2C2C;
+  width: 92%;
+  height: 4rem;
+  margin-top: 2.5rem;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /*# sourceMappingURL=habits.css.map */
