@@ -366,10 +366,11 @@ html {
   padding: 15px;
   font-size: 2rem;
   color: black;
-  background-color: white;
   display: none;
   width: 50%;
   text-align: center;
+  background-color: #535353;
+  color: white;
 }
 
 .server-bar-owner-icon {

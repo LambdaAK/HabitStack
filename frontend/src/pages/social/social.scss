@@ -73,7 +73,7 @@
     margin-bottom: 1rem;
 
     color: white;
-    
+
     @media (max-width: $breakpoint) {
         margin-left: 0.5rem;
         margin-right: 0.5rem;
@@ -324,16 +324,18 @@
     margin-right: 0px;
     margin-top: 0px;
     margin-bottom: 0px;
+    
 }
 
 #server-info-bar-server-name {
     @include shadow;
     font-size: 2rem;
     color: black;
-    background-color: white;
     display: none;
     width: 50%;
     text-align: center;
+    background-color: $dark-slate;
+    color: white;
 }
 
 .server-bar-owner-icon {
