@@ -7,7 +7,7 @@
     margin-top: 1vh;
     padding: 3rem;
     border-radius: 8px;
-    background-color: $dark-slate;
+    background-color: $very-dark-slate;
 
     @media (max-width: $breakpoint) {
         width: 100%;
@@ -110,7 +110,7 @@
     text-align: center;
     font-weight: bold;
     border-radius: 8px;
-    background-color: $dark-slate;
+    background-color: $very-dark-slate;
     color: white;
     height: 5rem;
     width: max;
@@ -128,7 +128,11 @@
         width: 3rem;
         font-size: 1.5rem;
     }
+}
 
+.calendar-day-today {
+    background-color: #68B2A9;
+    color: black;
 }
 
 .fly-in-from-bottom {

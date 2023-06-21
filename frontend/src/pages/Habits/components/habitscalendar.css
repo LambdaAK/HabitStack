@@ -37,7 +37,7 @@ html {
   margin-top: 1vh;
   padding: 3rem;
   border-radius: 8px;
-  background-color: #535353;
+  background-color: #2C2C2C;
 }
 @media (max-width: 480px) {
   #habits-calendar {
@@ -139,7 +139,7 @@ html {
   text-align: center;
   font-weight: bold;
   border-radius: 8px;
-  background-color: #535353;
+  background-color: #2C2C2C;
   color: white;
   height: 5rem;
   width: max;
@@ -163,6 +163,11 @@ html {
     width: 3rem;
     font-size: 1.5rem;
   }
+}
+
+.calendar-day-today {
+  background-color: #68B2A9;
+  color: black;
 }
 
 .fly-in-from-bottom {

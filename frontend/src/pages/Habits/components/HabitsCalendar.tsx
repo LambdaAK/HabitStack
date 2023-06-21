@@ -417,6 +417,8 @@ function EmptyCalendarCellEnd(props: {columnSpan: number}) {
     )
 }
 
+
+
 function Day(props: {day: number, month: number, year: number}) {
 
     const [extraCSS, setExtraCSS] = useState({
@@ -431,6 +433,27 @@ function Day(props: {day: number, month: number, year: number}) {
     ]
 
     const [extraClasses, setExtraClasses] = useState("")
+
+    // check if this day is today. If so, add the extra CSS class
+
+    const d: Date = new Date()
+    const todayDay: number = d.getDate()
+    const todayMonth: number = d.getMonth()
+    const todayYear: number = d.getFullYear()
+
+    const isToday: boolean = (props.day == todayDay && props.month == todayMonth && props.year == todayYear)
+
+    const todayExtraClass: string = (function() {
+        if (isToday) {
+            return "calendar-day-today"
+        }
+        else {
+            return ""
+        }
+    })()
+
+
+
 
     useEffect(() => {
         setTimeout(() => {
@@ -462,7 +485,7 @@ function Day(props: {day: number, month: number, year: number}) {
     }, [props.day, props.month, props.year])
 
     return (
-        <div className = {"calendar-day" + " " + extraClasses}
+        <div className = {"calendar-day" + " " + extraClasses + " " + todayExtraClass}
         onClick = {
             () => {
                 // make the day info window visible
