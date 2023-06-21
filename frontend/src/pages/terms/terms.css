@@ -55,7 +55,7 @@ html {
   height: 50vh;
   min-width: 10vw;
   margin-left: 1vw;
-  background-color: #535353;
+  background-color: #2C2C2C;
   display: flex;
   flex-direction: column;
   gap: 1%;
@@ -94,12 +94,8 @@ html {
   padding: 15px;
   height: fit-content;
   width: 90%;
-  border-radius: 8px;
-  border-color: #535353;
-  border-style: solid;
-  border-width: 4px;
   font-size: 50px;
-  background-color: #535353;
+  background-color: #2C2C2C;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -129,11 +125,7 @@ html {
   color: white;
   margin-top: 20px;
   text-align: center;
-  background-color: #535353;
-  border-radius: 8px;
-  border-color: #535353;
-  border-style: solid;
-  border-width: 4px;
+  background-color: #2C2C2C;
   padding: 8px;
   min-width: 20vw;
   margin-bottom: 20px;
@@ -180,7 +172,7 @@ html {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  background-color: #535353;
+  background-color: #2C2C2C;
   width: fit-content;
   border-radius: 8px;
   padding: 10px;
@@ -207,7 +199,7 @@ html {
   width: fit-content;
   border-radius: 8px;
   padding: 10px;
-  background-color: #535353;
+  background-color: #2C2C2C;
   color: white;
   font-size: 36px;
   margin-bottom: 25px;

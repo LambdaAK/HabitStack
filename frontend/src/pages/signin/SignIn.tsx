@@ -49,15 +49,15 @@ export default function SignIn () {
                 <hr className = "divider"/>
                 <input id = "signin-box-email-input" className = "signin-box-input" type="text" placeholder="Email"></input>
                 <input id = "signin-box-password-input" className = "signin-box-input" type="text" placeholder="Password"></input>
-                <button id = "signin-box-button" className = "signin-box-button"
+                <div id = "signin-box-button" className = "signin-box-button"
                 onClick = {signInProcedure}
                 
-                >Sign In</button>
+                >Sign In</div>
                 <hr className = "divider"/>
              
                 <div className = "dont-have-account-container">
                     <div className = "dont-have-account-description">Don't have an account?</div>
-                    <button id = "signup-button">Sign Up</button>
+                    <div id = "signup-button">Sign Up</div>
                 </div>
             </span>
         </>
