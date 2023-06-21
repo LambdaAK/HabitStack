@@ -42,6 +42,12 @@ html {
   }
 }
 
+.habits-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+
 #habits-bar {
   animation: fly-in-left 1s ease;
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
@@ -108,12 +114,12 @@ html {
   color: black;
 }
 
-#happiness-graph {
+#happiness-graph, .daily-completion, .todo-list {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   height: fit-content;
-  width: 35%;
+  width: 90%;
   margin-top: 1vh;
   padding: 1vw;
   border-radius: 8px;
@@ -121,7 +127,7 @@ html {
   background-color: #535353;
 }
 @media (max-width: 480px) {
-  #happiness-graph {
+  #happiness-graph, .daily-completion, .todo-list {
     margin-top: 4vh;
     margin-bottom: 4vh;
     width: 100%;
@@ -130,6 +136,19 @@ html {
     margin-left: auto;
     overflow-x: auto;
   }
+}
+
+.happiness-graph-header, .daily-completion-header, .todo-list-header {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1vh;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
 }
 
 #daily-rating-window {

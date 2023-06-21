@@ -13,6 +13,12 @@
     }
 }
 
+.habits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+}
+
 #habits-bar {
     @include fly-in-left;
     @include shadow;
@@ -66,7 +72,7 @@
 #happiness-graph {
     @include shadow;
     height: fit-content;
-    width: 35%;
+    width: 90%;
     margin-top: 1vh;
     padding: 1vw;
     border-radius: 8px;
@@ -82,6 +88,17 @@
         margin-left: auto;
         overflow-x: auto;
     }
+}
+
+.happiness-graph-header {
+    @include shadow;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1vh;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
 }
 
 #daily-rating-window {
@@ -717,4 +734,18 @@
     margin-right: auto;
 }
 
+.todo-list {
+    @extend #happiness-graph;
+}
 
+.todo-list-header {
+    @extend .happiness-graph-header;
+}
+
+.daily-completion {
+    @extend #happiness-graph;
+}
+
+.daily-completion-header {
+    @extend .happiness-graph-header;
+}

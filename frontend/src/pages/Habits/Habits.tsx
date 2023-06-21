@@ -42,7 +42,53 @@ function HabitsBar() {
 function HappinessGraph() {
     return (
         <div id = "happiness-graph">
+            <div className = "happiness-graph-header">
+                Happiness Graph
+            </div>
 
+        </div>
+    )
+}
+
+function ToDoList() {
+    return (
+        <div className = "todo-list">
+            <div className = "todo-list-header">
+                Todo List
+            </div>
+
+        </div>
+    )
+}
+
+function DailyCompletion() {
+    return (
+        <div className = "daily-completion">
+            <div className = "daily-completion-header">
+                Daily Completion
+            </div>
+
+        </div>
+    )
+}
+
+function HabitsYouWantToDo() {
+    return (
+        <div className = "daily-completion">
+            <div className = "daily-completion-header">
+                Habits you want to do
+            </div>
+
+        </div>
+    )
+}
+
+function HabitsYouWantToResist() {
+    return (
+        <div className = "daily-completion">
+            <div className = "daily-completion-header">
+                Habits you want to avoid
+            </div>
 
         </div>
     )
@@ -946,8 +992,16 @@ export default function Habits() {
         <>
             <div className = "habits-container">
                 <HabitsBar />
-                <HabitsCalendar />
-                <HappinessGraph />
+                <div className = "habits-grid">
+                    <HabitsCalendar/>
+                    <HappinessGraph/>
+                    <ToDoList/>
+                    <DailyCompletion/>
+                    <HabitsYouWantToDo/>
+                    <HabitsYouWantToResist/>
+                </div>
+                
+                
                 <DailyRatingWindow />
                 <HabitCreatorWindow />
                 <HabitResistorWindow />
