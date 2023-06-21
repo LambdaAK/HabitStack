@@ -162,7 +162,7 @@ html {
   margin-top: 1vh;
   padding: 2rem;
   border-radius: 8px;
-  background-color: #535353;
+  background-color: #2C2C2C;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -354,7 +354,7 @@ html {
   margin-top: 1vh;
   padding: 2rem;
   border-radius: 8px;
-  background-color: #535353;
+  background-color: #2C2C2C;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -491,7 +491,7 @@ html {
   /* Track */
   /* Handle */
   /* Handle on hover */
-  background-color: #535353;
+  background-color: #2C2C2C;
   margin-top: 2rem;
   height: 100%;
   display: flex;
@@ -679,7 +679,7 @@ html {
   /* Track */
   /* Handle */
   /* Handle on hover */
-  background-color: #535353;
+  background-color: #2C2C2C;
   margin-top: 2rem;
   height: 100vh;
   display: flex;

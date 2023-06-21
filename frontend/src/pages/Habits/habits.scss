@@ -107,7 +107,7 @@
     margin-top: 1vh;
     padding: 2rem;
     border-radius: 8px;
-    background-color: $dark-slate;
+    background-color: $very-dark-slate;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -272,7 +272,7 @@
     margin-top: 1vh;
     padding: 2rem;
     border-radius: 8px;
-    background-color: $dark-slate;
+    background-color: $very-dark-slate;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -422,7 +422,7 @@
     // this is the area where each individual habit is displayed
     @include shadow;
     @include styled-scrollbar;
-    background-color: $dark-slate;
+    background-color: $very-dark-slate;
     margin-top: 2rem;
     height: 100%;
     display: flex;
@@ -586,7 +586,7 @@
 .habit-card-window-habits-field {
     @include shadow;
     @include styled-scrollbar;
-    background-color: $dark-slate;
+    background-color: $very-dark-slate;
     margin-top: 2rem;
     height: 100vh;
     display: flex;
