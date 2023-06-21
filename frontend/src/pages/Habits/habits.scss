@@ -127,10 +127,22 @@
     margin-right: auto;
 }
 
+.daily-rating-window-sub-header {
+    @include shadow;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-top: 1.5vh;
+    margin-bottom: 1vh;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .daily-rating-input-panel {
     @include shadow;
     font-size: 24px;
     font-weight: bold;
+    margin-top: 1.5vh;
     margin-bottom: 1vh;
     color: white;
     margin-left: auto;
@@ -161,6 +173,28 @@
     }
 
     transition: all 0.2s ease-in-out;
+}
+
+.daily-rating-input-button-selected {
+    @extend .daily-rating-input-button;
+    @include shadow-no-padding;
+    background-color: $slate;
+    color: black;
+    transform: translateY(-10px)
+}
+
+.daily-rating-text-input {
+    @include shadow;
+    font-size: 2rem;
+    margin-bottom: 1vh;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $very-dark-slate;
+    border-radius: 8px;
+    width: 90%;
+    height: 4rem;
+    margin-top: 2.5rem;
 }
 
 .current-daily-rating-header {

@@ -176,12 +176,26 @@ html {
   margin-right: auto;
 }
 
+.daily-rating-window-sub-header {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 1.5vh;
+  margin-bottom: 1vh;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .daily-rating-input-panel {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
   font-size: 24px;
   font-weight: bold;
+  margin-top: 1.5vh;
   margin-bottom: 1vh;
   color: white;
   margin-left: auto;
@@ -193,7 +207,7 @@ html {
   justify-content: center;
 }
 
-.daily-rating-input-button {
+.daily-rating-input-button, .daily-rating-input-button-selected {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
@@ -209,9 +223,33 @@ html {
   width: fit-content;
   transition: all 0.2s ease-in-out;
 }
-.daily-rating-input-button:hover {
+.daily-rating-input-button:hover, .daily-rating-input-button-selected:hover {
   cursor: pointer;
   transform: translateY(-10px);
+}
+
+.daily-rating-input-button-selected {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.2);
+  border-radius: 8px;
+  background-color: #DDDDDD;
+  color: black;
+  transform: translateY(-10px);
+}
+
+.daily-rating-text-input {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 2rem;
+  margin-bottom: 1vh;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #2C2C2C;
+  border-radius: 8px;
+  width: 90%;
+  height: 4rem;
+  margin-top: 2.5rem;
 }
 
 .current-daily-rating-header {

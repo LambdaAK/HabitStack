@@ -266,9 +266,107 @@ function HabitResistorWindow() {
 
 }
 
+function ratingOfNumber(number: number) {
+    switch (number) {
+        case 1:
+            return "😭"
+        case 2:
+            return "😢"
+        case 3:
+            return "😞"
+        case 4:
+            return "😔"
+        case 5:
+            return "🙁"
+        case 6:
+            return "😐"
+        case 7:
+            return "🙂"
+        case 8:
+            return "😊"
+        case 9:
+            return "😀"
+        case 10:
+            return "😁"
+    }
+}
+
+function DailyRatingWindowHappinessRatingButton(props: {thisRating: number, ratingSetter: Function, currentRating: number}) {
+    
+    // determine whether this rating button is selected
+    const selected: boolean = (function() {
+        if (props.thisRating == props.currentRating) return true
+        else return false
+    })()
+
+    // if it's selected, add the selected class
+
+    const extraCSS: string = (function() {
+        if (selected) return "daily-rating-input-button-selected"
+        else return ""
+    })()
+    
+    return (
+        <div className = {"daily-rating-input-button" + " " + extraCSS}
+        onClick = {
+            () => {
+                // if it's already selected, set the rating to -1
+                if (selected) {
+                    props.ratingSetter(-1);
+                }
+                else {
+                    props.ratingSetter(props.thisRating);
+                }
+            }
+        }
+        >
+            {
+                ratingOfNumber(props.thisRating)
+            }
+        </div>
+    )
+}
+
+function DailyRatingWindowStandardRatingButton(props: {thisRating: number, ratingSetter: Function, currentRating: number}) {
+    // determine whether this rating button is selected
+    const selected: boolean = (function() {
+        if (props.thisRating == props.currentRating) return true
+        else return false
+    })()
+
+    // if it's selected, add the selected class
+
+    const extraCSS: string = (function() {
+        if (selected) return "daily-rating-input-button-selected"
+        else return ""
+    })()
+    
+    return (
+        <div className = {"daily-rating-input-button" + " " + extraCSS}
+        onClick = {
+            () => {
+                // if it's already selected, set the rating to -1
+                if (selected) {
+                    props.ratingSetter(-1);
+                }
+                else {
+                    props.ratingSetter(props.thisRating);
+                }
+            }
+        }
+        >
+            {
+                props.thisRating
+            }
+        </div>
+    )
+}
+
 function DailyRatingWindow() {
 
-    const [rating, setRating] = useState(6);
+    const [happinessRating, setHappinessRating] = useState(-1);
+    const [stickRating, setStickRating] = useState(-1);
+    const [avoidRating, setAvoidRating] = useState(-1);
 
     return (
         <div id = "daily-rating-window">
@@ -276,12 +374,8 @@ function DailyRatingWindow() {
             <div className = "daily-rating-window-header">
                 Daily Rating
             </div>
-            <div className = "current-daily-rating-header">
-                Current Rating: 
-                <span className = "current-daily-rating">
-                    {dailyRatingEmojis[rating - 1]}
-                </span>
-
+            <div className = "daily-rating-window-sub-header">
+                How happy were you today?
             </div>
             <div className = "daily-rating-input-panel">
                 {
@@ -289,17 +383,61 @@ function DailyRatingWindow() {
                         let buttons = [];
                         for (let i = 1; i <= 10; i++) {
                             buttons.push(
-                                <div className = "daily-rating-input-button"
-                                onClick = {() => setRating(i)}
-                                >
-                                    {dailyRatingEmojis[i - 1]}
-                                </div>
+                                <DailyRatingWindowHappinessRatingButton
+                                thisRating = {i}
+                                ratingSetter = {setHappinessRating}
+                                currentRating = {happinessRating}
+                                />
                             )
                         }
                         return buttons
                     })()
                 }
             </div>
+            <div className = "daily-rating-window-sub-header">
+                How well did you stick to your desired habits today?
+            </div>
+            <div className = "daily-rating-input-panel">
+            {
+                    (function() {
+                        let buttons = [];
+                        for (let i = 1; i <= 5; i++) {
+                            buttons.push(
+                                <DailyRatingWindowStandardRatingButton
+                                thisRating = {i}
+                                ratingSetter = {setStickRating}
+                                currentRating = {stickRating}
+                                />
+                            )
+                        }
+                        return buttons
+                    })()
+                }
+            </div>
+            <div className = "daily-rating-window-sub-header">
+                How well did you avoid the habits you want to avoid today?
+            </div>
+            <div className = "daily-rating-input-panel">
+            {
+                    (function() {
+                        let buttons = [];
+                        for (let i = 1; i <= 5; i++) {
+                            buttons.push(
+                                <DailyRatingWindowStandardRatingButton
+                                thisRating = {i}
+                                ratingSetter = {setAvoidRating}
+                                currentRating = {avoidRating}
+                                />
+                            )
+                        }
+                        return buttons
+                    })()
+                }
+            </div>
+            <div className = "daily-rating-window-sub-header">
+                What is something memorable about today?
+            </div>
+            <input type="text" className = "daily-rating-text-input" />
             <div className = "daily-rating-submit-button">
                 Submit
             </div>
