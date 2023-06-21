@@ -150,7 +150,7 @@
     height: 50%;
     top: 25%;
     left: 25%;
-    background-color: $dark-slate;
+    background-color: $very-dark-slate;
     border-radius: 8px;
 
     @keyframes fly-in {
@@ -210,7 +210,7 @@
     height: fit-content;
     margin-left: auto;
     margin-right: auto;
-    background-color: $dark-slate;
+    background-color: $very-dark-slate;
     color: white;
 
 }
@@ -242,7 +242,7 @@
     padding: 1rem;
     font-size: 1.55rem;
     font-weight: bold;
-    color: black;
+    color: white;
     width: fit-content;
     height: fit-content;
     margin-top: 3rem;
@@ -308,6 +308,7 @@
 
 .server-join-server-invite-header {
     @extend .server-creation-server-name-header;
+    color: white;
 }
 
 #finish-joining-server-button {
@@ -429,7 +430,7 @@
     border-radius: 8px;
     padding: 1rem;
     font-size: 1.25rem;
-    background-color: $dark-slate;
+    background-color: $very-dark-slate;
     color: white;
     align-self: flex-start;
     margin-top: 1rem;
@@ -449,7 +450,7 @@
     margin-top: auto;
     &:hover {
         cursor: pointer;
-        background-color: $dark-slate;
+        background-color: $very-dark-slate;
         @include shadow;
     }
 }
@@ -462,7 +463,7 @@
     margin-right: 0px;
     width: fit-content;
     height: fit-content;
-    background-color: $dark-slate;
+    background-color: $very-dark-slate;
     color: white;
     padding: 1rem;
     border-radius: 8px;
@@ -475,7 +476,7 @@
 
 .server-options-window-add-invite-button {
     @extend .create-new-server-button;
-    background-color: $dark-slate;
+    background-color: $very-dark-slate;
     color: white;
     margin-bottom: auto;
     &:hover {

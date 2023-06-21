@@ -201,7 +201,7 @@ html {
   height: 50%;
   top: 25%;
   left: 25%;
-  background-color: #535353;
+  background-color: #2C2C2C;
   border-radius: 8px;
   animation: fly-in 1s ease;
   display: none;
@@ -255,7 +255,7 @@ html {
   height: fit-content;
   margin-left: auto;
   margin-right: auto;
-  background-color: #535353;
+  background-color: #2C2C2C;
   color: white;
 }
 
@@ -288,7 +288,7 @@ html {
   padding: 1rem;
   font-size: 1.55rem;
   font-weight: bold;
-  color: black;
+  color: white;
   width: fit-content;
   height: fit-content;
   margin-top: 3rem;
@@ -338,6 +338,10 @@ html {
   .server-bar-divider-vertical {
     display: none;
   }
+}
+
+.server-join-server-invite-header {
+  color: white;
 }
 
 .server-info-bar {
@@ -460,7 +464,7 @@ html {
   border-radius: 8px;
   padding: 1rem;
   font-size: 1.25rem;
-  background-color: #535353;
+  background-color: #2C2C2C;
   color: white;
   align-self: flex-start;
   margin-top: 1rem;
@@ -480,7 +484,7 @@ html {
 }
 .server-options-window-remove-invite-button:hover {
   cursor: pointer;
-  background-color: #535353;
+  background-color: #2C2C2C;
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
@@ -493,7 +497,7 @@ html {
   margin-right: 0px;
   width: fit-content;
   height: fit-content;
-  background-color: #535353;
+  background-color: #2C2C2C;
   color: white;
   padding: 1rem;
   border-radius: 8px;
@@ -504,7 +508,7 @@ html {
 }
 
 .server-options-window-add-invite-button {
-  background-color: #535353;
+  background-color: #2C2C2C;
   color: white;
   margin-bottom: auto;
   font-size: 5rem;
