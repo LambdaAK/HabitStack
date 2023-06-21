@@ -83,11 +83,12 @@
     &:hover {
         cursor: pointer;
         background-color: $slate;
-        @include shadow;
+        scale: 1.1;
+        color: black;
     }
     width: 90%;
 
-    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, padding 0.2s ease-in-out;   
+    transition: all 0.2s ease-in-out;
 
 
 }
@@ -175,23 +176,25 @@
     align-items: center;
     width: fit-content;
     height: fit-content;
-    padding: 10px;
     border-radius: 8px;
     background-color: $dark-slate;
     color: white;
 
     font-size: 1.55rem;
 
-    margin: 1rem 1rem 1rem 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 
     &:hover {
         cursor: pointer;
-        background-color: $dark-slate;
-        color: white;
-        @include shadow;
+        background-color: $slate;
+        color: black;
+        scale: 1.1;
     }
 
-    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, padding 0.2s ease-in-out, color 0.2s ease-in-out; 
+    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, padding 0.2s ease-in-out, scale 0.2s ease-in-out;
+
+   
 }
 
 .server-creation-window-header {
