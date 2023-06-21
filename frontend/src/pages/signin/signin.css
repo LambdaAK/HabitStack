@@ -84,10 +84,10 @@ html {
   border-radius: 8px;
   background-color: #2C2C2C;
   border: none;
+  color: white;
 }
 .signin-box-input:focus {
   background-color: #535353;
-  color: white;
 }
 @media (max-width: 480px) {
   .signin-box-input {

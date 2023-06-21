@@ -47,12 +47,10 @@
     border-radius: 8px;
     background-color: $very-dark-slate;
     border: none;
+    color: white;
 
     &:focus {
         background-color: $dark-slate;
-        color: white;
-        
-
     }
 
     @media (max-width: $breakpoint) {
