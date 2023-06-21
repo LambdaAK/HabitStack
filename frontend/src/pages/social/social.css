@@ -58,7 +58,7 @@ html {
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
-  background-color: #535353;
+  background-color: #2C2C2C;
 }
 .servers-bar::-webkit-scrollbar {
   display: none;
@@ -87,7 +87,7 @@ html {
   align-items: center;
   gap: 2rem;
   left: 11%;
-  background-color: #535353;
+  background-color: #2C2C2C;
 }
 
 .server-button {
@@ -161,7 +161,7 @@ html {
   border-radius: 8px;
   font-size: 2rem;
   color: white;
-  background-color: #535353;
+  background-color: #2C2C2C;
   border: none;
 }
 
@@ -227,7 +227,7 @@ html {
   width: fit-content;
   height: fit-content;
   border-radius: 8px;
-  background-color: #535353;
+  background-color: #2C2C2C;
   color: white;
   font-size: 1.55rem;
   margin-top: 1rem;
@@ -348,7 +348,7 @@ html {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  background-color: #535353;
+  background-color: #2C2C2C;
   border-radius: 8px;
   width: 94%;
   height: 12%;
@@ -367,7 +367,7 @@ html {
   display: none;
   width: 50%;
   text-align: center;
-  background-color: #535353;
+  background-color: #2C2C2C;
   color: white;
 }
 
@@ -388,7 +388,7 @@ html {
 }
 
 .server-options-button, .leave-server-button, .exit-open-server-button {
-  background-color: #535353;
+  background-color: #2C2C2C;
   color: white;
   flex-grow: 1;
 }

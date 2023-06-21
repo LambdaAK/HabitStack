@@ -64,7 +64,7 @@ html {
   flex-direction: column;
   gap: 1%;
   overflow-y: auto;
-  background-color: #535353;
+  background-color: #2C2C2C;
   color: white;
 }
 #habits-bar::-webkit-scrollbar {
