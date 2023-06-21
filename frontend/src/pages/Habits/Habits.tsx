@@ -334,6 +334,8 @@ function ratingOfNumber(number: number) {
             return "😀"
         case 10:
             return "😁"
+        default:
+            return ""
     }
 }
 
@@ -535,6 +537,58 @@ function ExitHabitStacksCreatorWindowButton() {
         >
            ✖️
         </div>
+    )
+}
+
+function stringOfMonth(month: number) {
+    switch (month) {
+        case 0:
+            return "January"
+        case 1:
+            return "February"
+        case 2:
+            return "March"
+        case 3:
+            return "April"
+        case 4:
+            return "May"
+        case 5:
+            return "June"
+        case 6:
+            return "July"
+        case 7:
+            return "August"
+        case 8:
+            return "September"
+        case 9:
+            return "October"
+        case 10:
+            return "November"
+        case 11:
+            return "December"
+        default:
+            return ""
+    }
+}
+
+function DayInfo(props: {month: number, day: number, year: number}) {
+    const monthString: string = stringOfMonth(props.month);
+    const dateString: string = `${monthString} ${props.day}, ${props.year}`
+    return (
+        <div id = "day-info-window">
+            <div className = "day-info-exit-button"
+            onClick = {
+                () => {
+                    $("#day-info-window").css("display", "none")
+                }
+            }
+            >
+                ✖️
+            </div>
+            <div className = "day-info-day">
+                {dateString}
+            </div>
+        </div>  
     )
 }
 
@@ -798,8 +852,6 @@ function HabitCardHabit(props: {habit: string, rating: number, habits: HabitCard
     )
 
 
-
-
 }
 
 
@@ -1007,6 +1059,7 @@ export default function Habits() {
                 <HabitResistorWindow />
                 <HabitStackCreatorWindow />
                 <HabitCardWindow />
+                <DayInfo month = {1} day = {1} year = {2021}/>
             </div>
         </>
     )

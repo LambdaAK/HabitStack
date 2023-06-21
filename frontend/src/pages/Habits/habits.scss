@@ -749,3 +749,35 @@
 .daily-completion-header {
     @extend .happiness-graph-header;
 }
+
+#day-info-window {
+    @include shadow;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    height: 50%;
+    margin-top: 1rem;
+    background-color: $very-dark-slate;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.day-info-day {
+    @include shadow;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1vh;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.day-info-exit-button {
+    @extend .daily-rating-window-exit-button;
+}

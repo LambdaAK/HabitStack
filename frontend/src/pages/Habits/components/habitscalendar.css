@@ -155,6 +155,7 @@ html {
 }
 .calendar-day:hover {
   transform: scale(1.15);
+  cursor: pointer;
 }
 @media (max-width: 480px) {
   .calendar-day {

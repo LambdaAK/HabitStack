@@ -1,6 +1,7 @@
 import date from "date-and-time"
 import "./habitscalendar.css"
 import { useEffect, useState } from "react"
+import $ from "jquery"
 
 
 interface MonthColorMapping {
@@ -440,7 +441,6 @@ function Day(props: {day: number, month: number, year: number}) {
             const extraClass: string = possibleExtraClasses[props.day % 4]
             setExtraClasses(extraClass)
         }, props.day * 100)
-
     }, [])
 
     useEffect(() => {
@@ -463,6 +463,12 @@ function Day(props: {day: number, month: number, year: number}) {
 
     return (
         <div className = {"calendar-day" + " " + extraClasses}
+        onClick = {
+            () => {
+                // make the day info window visible
+                $("#day-info-window").css("display", "flex")
+            }
+        }
         style = {extraCSS}
         >
             <div>
