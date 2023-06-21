@@ -103,8 +103,7 @@
 
 #daily-rating-window {
     @include shadow;
-    height: clamp(fit-content, 50%, 50vh);
-    min-width: clamp(fit-content, 50%, 50vw);
+    @include styled-scrollbar;
     margin-top: 1vh;
     padding: 2rem;
     border-radius: 8px;
@@ -116,7 +115,9 @@
     display: none;
     flex-direction: column;
 
-
+    height: 75%;
+    width: 50%;
+    overflow-y: scroll;
 }
 
 .daily-rating-window-exit-button {
@@ -418,7 +419,7 @@
     // this is the area where each individual habit is displayed
     @include shadow;
     @include styled-scrollbar;
-    background-color: $slate;
+    background-color: $dark-slate;
     margin-top: 2rem;
     height: 100%;
     display: flex;

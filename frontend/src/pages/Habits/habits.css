@@ -155,8 +155,10 @@ html {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  height: clamp(fit-content, 50%, 50vh);
-  min-width: clamp(fit-content, 50%, 50vw);
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
   margin-top: 1vh;
   padding: 2rem;
   border-radius: 8px;
@@ -167,8 +169,24 @@ html {
   transform: translate(-50%, -50%);
   display: none;
   flex-direction: column;
+  height: 75%;
+  width: 50%;
+  overflow-y: scroll;
 }
-
+#daily-rating-window::-webkit-scrollbar {
+  width: 10px;
+}
+#daily-rating-window::-webkit-scrollbar-track {
+  background: #535353;
+}
+#daily-rating-window::-webkit-scrollbar-thumb {
+  background: #2C2C2C;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
 .daily-rating-window-exit-button, .day-info-exit-button, .habit-card-window-exit-button, .habit-stack-creator-window-exit-button, .habit-resistor-window-exit-button, .habit-creator-window-exit-button {
   position: absolute;
   left: 0;
@@ -470,7 +488,7 @@ html {
   /* Track */
   /* Handle */
   /* Handle on hover */
-  background-color: #DDDDDD;
+  background-color: #535353;
   margin-top: 2rem;
   height: 100%;
   display: flex;
