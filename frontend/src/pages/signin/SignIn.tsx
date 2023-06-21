@@ -23,7 +23,7 @@ function signInProcedure() {
     signInWithEmailAndPassword(auth, email, password)
     .then((user) => {
         alert("Signed in successfully")
-        window.location.replace("/dashboard")
+        window.location.replace("/habits")
     })
     .catch((error: Error) => {
         alert(error.message)
