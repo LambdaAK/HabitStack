@@ -162,6 +162,7 @@ html {
   font-size: 2rem;
   color: white;
   background-color: #535353;
+  border: none;
 }
 
 .message {

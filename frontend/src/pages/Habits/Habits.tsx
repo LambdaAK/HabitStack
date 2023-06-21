@@ -50,13 +50,70 @@ function HappinessGraph() {
     )
 }
 
+function ToDoListItem(props: {name: string, index: number, itemsSetter: Function, items: string[]}) {
+    return (
+        <div className = "todo-list-item">
+            <div className = "todo-list-item-name">
+                {props.name}
+            </div>
+            <div className = "todo-list-item-remove-button"
+            onClick = {
+                () => {
+                    // remove the item from the list
+                }
+            }
+            >
+                ✖️
+            </div>
+        </div>
+    )
+}
+
 function ToDoList() {
+
+    /*
+        Whenever a new item is added to the list, it will be sent to the database.
+        To display the items, they will be fetched from the database.
+    */
+
+    const [items, setItems] = useState([
+
+        "Test item 1",
+        "Test item 2",
+        "Test item 3",
+        "Test item 4",
+        "Test item 5",
+
+    ])
+
     return (
         <div className = "todo-list">
             <div className = "todo-list-header">
                 Todo List
             </div>
+            <div className = "todo-list-items">
+                {
+                    // TODO: render the todo list items here
+                    items.map(item => 
+                            <ToDoListItem
+                                name = {item}
+                                index = {items.indexOf(item)}
+                                itemsSetter = {setItems}
+                                items = {items}
+                            />  
+                    )
+                }
+            </div>
 
+            <div className = "todo-list-input">
+                <input type="text" placeholder = "Item" className = "todo-list-name-input">
+
+                </input>
+                <div className = "todo-list-add-item-button">
+                    +
+                </div>
+
+            </div>
         </div>
     )
 }
