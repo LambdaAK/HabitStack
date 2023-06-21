@@ -107,6 +107,7 @@ html {
   margin-right: 0;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  color: white;
   width: 90%;
   transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, padding 0.2s ease-in-out;
 }
