@@ -179,7 +179,6 @@ function HabitsYouWantToDo() {
             <div className = "daily-completion-header">
                 Habits you want to do
             </div>
-            
             <div className = "habits-you-want-to-do-list">
                 {
                     Object.keys(habits).map(habitName =>
@@ -189,6 +188,8 @@ function HabitsYouWantToDo() {
                     )
                 }
             </div>
+                
+    
 
         </div>
     )

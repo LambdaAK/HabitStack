@@ -17,6 +17,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-items: center;
+    gap: 3vw;
 }
 
 #habits-bar {
@@ -884,11 +885,13 @@
 
 .habits-you-want-to-do-widget {
     @include shadow;
+    @include styled-scrollbar;
     background-color: $very-dark-slate;
     margin-left: auto;
     margin-right: auto;
-    width: 92%;
-    height: fit-content;
+    width: 100%;
+    height: fit-content
+
 }
 
 .habit-stacks-widget-habit-stacks {
@@ -906,10 +909,11 @@
     background-color: $very-dark-slate;
     margin-left: auto;
     margin-right: auto;
-    width: 90%;
-    height: 40vh;
+    width: 92%;
+    height: 50vh;
     overflow-y: scroll;
 }
+
 
 .habits-you-want-to-do-list-item {
     @include shadow;
@@ -917,7 +921,6 @@
     background-color: $very-dark-slate;
     margin-left: auto;
     margin-right: auto;
-    width: 90%;
     height: fit-content;
     color: white;
     text-align: center;
@@ -925,13 +928,12 @@
     font-size: 2rem;
     margin-bottom: 1rem;
     overflow-x: scroll;
+    width: 30vw;
 
     &:hover {
         cursor: pointer;
         background-color: $slate;
         color: black;
     }
-
-    transition: all 0.2s ease-in-out;
-
+    
 }
