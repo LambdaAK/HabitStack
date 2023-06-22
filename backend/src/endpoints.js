@@ -621,8 +621,105 @@ async function handleHabitDelete(req, res) {
     await set(habitRef, null)
     res.send(JSON.stringify({"message": "Habit deleted"}))
 
+}
+
+async function handleHabitResistCreate(req, res) {
+    // verify the id token
+    const uuid = await verifyIdToken(admin, req, res)
+    if (uuid == "") {
+        res.status(401).send(JSON.stringify({ "error": "Invalid id token" }))
+        return
+    }
+
+    // get the name of the habit
+    const name = req.body.name
+
+    // make sure it's not null or empty
+    if (name == undefined || name == null || name == "") {
+        res.status(400).send(JSON.stringify({ "error": "No name provided" }))
+        return
+    }
+
+    // check if there is already a habit resist with the same name
+
+    const userHabitResistsRef = ref(database, `users/${uuid}/habitresists`)
+    const userHabitResistsSnapshot = await get(userHabitResistsRef)
+    const userHabitResists = userHabitResistsSnapshot.val()
+
+    // make sure that the key is null
+    const duplicate = userHabitResists != null && userHabitResists[name] != null
+
+    // get the other attributes
+
+    const invisible = req.body.invisible
+    const unattractive = req.body.unattractive
+    const difficult = req.body.difficult
+    const unsatisfying = req.body.unsatisfying
+
+    // make sure they're not null or empty
+
+    if (invisible == undefined || invisible == null || invisible == "") {
+        res.status(400).send(JSON.stringify({ "error": "No invisible provided" }))
+        return
+    }
+
+    if (unattractive == undefined || unattractive == null || unattractive == "") {
+        res.status(400).send(JSON.stringify({ "error": "No unattractive provided" }))
+        return
+    }
+
+    if (difficult == undefined || difficult == null || difficult == "") {
+        res.status(400).send(JSON.stringify({ "error": "No difficult provided" }))
+        return
+    }
+
+    if (unsatisfying == undefined || unsatisfying == null || unsatisfying == "") {
+        res.status(400).send(JSON.stringify({ "error": "No unsatisfying provided" }))
+        return
+    }
+
+    // send it to the database
+
+    const habitResistRef = ref(database, `users/${uuid}/habitresists/${name}`)
+    await set(habitResistRef, {
+        "name": name,
+        "invisible": invisible,
+        "unattractive": unattractive,
+        "difficult": difficult,
+        "unsatisfying": unsatisfying,
+    })
 
 
+    if (!duplicate) {
+       res.send(JSON.stringify({"message": "Habit resist created"})) 
+    }
+    else {
+        res.send(JSON.stringify({"message": "Habit resist edited"}))
+    }
+
+}
+
+async function handleHabitResistDelete(req, res) {
+    // verify the id token
+    const uuid = await verifyIdToken(admin, req, res)
+    if (uuid == "") {
+        res.status(401).send(JSON.stringify({ "error": "Invalid id token" }))
+        return
+    }
+
+    // get the name of the habit
+    const name = req.body.name
+
+    // make sure it's not null or empty
+    if (name == undefined || name == null || name == "") {
+        res.status(400).send(JSON.stringify({ "error": "No name provided" }))
+        return
+    }
+
+    // delete it
+    const habitResistRef = ref(database, `users/${uuid}/habitresists/${name}`)
+    await set(habitResistRef, null)
+    res.send(JSON.stringify({"message": "Habit resist deleted"}))
 }
 
 
@@ -669,6 +766,14 @@ expressApp.post("/habit/create", bodyParser.json(), (req, res) => {
 
 expressApp.post("/habit/delete", bodyParser.json(), (req, res) => {
     handleHabitDelete(req, res)
+})
+
+expressApp.post("/habitresist/create", bodyParser.json(), (req, res) => {
+    handleHabitResistCreate(req, res)
+})
+
+expressApp.post("/habitresist/delete", bodyParser.json(), (req, res) => {
+    handleHabitResistDelete(req, res)
 })
 
 expressApp.listen(expressPort, () => {
