@@ -882,6 +882,15 @@
     @extend .daily-rating-window-exit-button;
 }
 
+.habits-you-want-to-do-widget {
+    @include shadow;
+    background-color: $very-dark-slate;
+    margin-left: auto;
+    margin-right: auto;
+    width: 92%;
+    height: fit-content;
+}
+
 .habit-stacks-widget-habit-stacks {
     @include shadow;
     background-color: $very-dark-slate;
@@ -889,4 +898,30 @@
     margin-right: auto;
     width: 90%;
     height: 80%;
+}
+
+.habits-you-want-to-do-list {
+    @include shadow;
+    @include styled-scrollbar;
+    background-color: $very-dark-slate;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: 40vh;
+    overflow-y: scroll;
+}
+
+.habits-you-want-to-do-list-item {
+    @include shadow;
+    background-color: $very-dark-slate;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: fit-content;
+    color: white;
+    text-align: center;
+    text-justify: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+
 }

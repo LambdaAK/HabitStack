@@ -365,3 +365,60 @@ export async function serverLeaveAPI(auth: Auth, server: string): Promise<APIRes
         }
     }
 }
+
+export async function habitCreateAPI(
+    auth: Auth,
+    name: string,
+    iWill: string,
+    atTime: string,
+    atLocation: string,
+    obvious: string,
+    attractive: string,
+    easy: string,
+    satisfying: string
+): Promise<APIResult>
+{
+    if (!auth.currentUser) {
+        return {
+            success: false,
+            errorMessage: "Not logged in"
+        }
+    }
+    const idToken = await auth.currentUser.getIdToken();
+    const response = await fetch(`${backendConfig.url}/habit/create`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin':'*',
+            'id-token': idToken,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "name": name,
+            "iWill": iWill,
+            "atTime": atTime,
+            "atLocation": atLocation,
+            "obvious": obvious,
+            "attractive": attractive,
+            "easy": easy,
+            "satisfying": satisfying
+        })
+    })
+
+    const result = await response.json();
+    
+    if (result.error == undefined || result.error == null) {
+        return {
+            success: true,
+            errorMessage: "",
+        }
+    }
+    else {
+        return {
+            success: false,
+            errorMessage: result.error
+        }
+    }
+
+}

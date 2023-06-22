@@ -3,6 +3,28 @@ import "./habits.css";
 import HabitsCalendar from "./components/HabitsCalendar"
 import $ from "jquery";
 import { Key, useEffect, useState } from "react";
+import { habitCreateAPI } from "../../utilities/backendRequests";
+import { FirebaseApp, initializeApp } from "firebase/app";
+import { Auth, getAuth } from "firebase/auth";
+import { DataSnapshot, Database, getDatabase, onValue, ref } from "firebase/database";
+import firebaseConfig from "../../firebaseConfig";
+
+
+const app: FirebaseApp = initializeApp(firebaseConfig);
+const database: Database = getDatabase(app)
+const auth: Auth = getAuth()
+
+
+function getCookie(name: string) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
 
 
 interface DayInterface {
@@ -138,10 +160,34 @@ function DailyCompletion() {
 }
 
 function HabitsYouWantToDo() {
+
+    const [habits, setHabits] = useState({})
+
+    useEffect(() => {
+        // fetch the habits from the database
+        const habitsRef = ref(database, "/users/" +  getCookie("user") + "/habits")
+        return onValue(habitsRef, (snapshot: DataSnapshot) => {
+            const data = snapshot.val();
+            setHabits(data);
+            console.log(data)
+        })
+    }, [])
+
+
     return (
-        <div className = "daily-completion">
+        <div className = "habits-you-want-to-do-widget">
             <div className = "daily-completion-header">
                 Habits you want to do
+            </div>
+            
+            <div className = "habits-you-want-to-do-list">
+                {
+                    Object.keys(habits).map(habitName =>
+                        <div className = "habits-you-want-to-do-list-item">
+                            {habitName}
+                        </div>
+                    )
+                }
             </div>
 
         </div>
@@ -200,15 +246,6 @@ function HabitCreatorWindow() {
     I will make it easy by (easy)
     I will make it satisfying by (satisfying)
     */
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [action, setAction] = useState("");
-    const [time, setTime] = useState("");
-    const [location, setLocation] = useState("");
-    const [obvious, setObvious] = useState("");
-    const [attractive, setAttractive] = useState("");
-    const [easy, setEasy] = useState("");
-    const [satisfying, setSatisfying] = useState("");
 
     return (
         <div id = "habit-creator-window">
@@ -232,6 +269,7 @@ function HabitCreatorWindow() {
                 </div>
                 <input className = "implementation-intention-input"
                 placeholder = "action"
+                id = "action-input"
                 >
                 </input>
                 <div className = "implementation-intention-sub-label">
@@ -239,6 +277,7 @@ function HabitCreatorWindow() {
                 </div>
                 <input className = "implementation-intention-input"
                 placeholder = "time"
+                id = "time-input"
                 >
                 </input>
                 <div className = "implementation-intention-sub-label">
@@ -246,6 +285,7 @@ function HabitCreatorWindow() {
                 </div>
                 <input className = "implementation-intention-input"
                 placeholder = "location"
+                id = "location-input"
                 >
                 </input>
             </div>
@@ -261,6 +301,7 @@ function HabitCreatorWindow() {
                 </div>
                 <input className = "implementation-intention-input"
                 placeholder = "obvious"
+                id = "obvious-input"
                 >
                 </input>
                 <div className = "implementation-intention-sub-label">
@@ -268,6 +309,7 @@ function HabitCreatorWindow() {
                 </div>
                 <input className = "implementation-intention-input"
                 placeholder = "attractive"
+                id = "attractive-input"
                 >
                 </input>
                 <div className = "implementation-intention-sub-label">
@@ -275,6 +317,7 @@ function HabitCreatorWindow() {
                 </div>
                 <input className = "implementation-intention-input"
                 placeholder = "easy"
+                id = "easy-input"
                 >
                 </input>
                 <div className = "implementation-intention-sub-label">
@@ -282,11 +325,44 @@ function HabitCreatorWindow() {
                 </div>
                 <input className = "implementation-intention-input"
                 placeholder = "satisfying"
+                id = "satisfying-input"
                 >
                 </input>
                 
             </div>
-            <div id = "create-habit-button">
+            <div id = "create-habit-button"
+            onClick = {
+                async () => {
+                    // get the properties
+                    const name: string = $("#habit-creator-window-name-input").val() as string;
+                    const action: string = $("#action-input").val() as string;
+                    const time: string = $("#time-input").val() as string;
+                    const location: string = $("#location-input").val() as string;
+                    const obvious: string = $("#obvious-input").val() as string;
+                    const attractive: string = $("#attractive-input").val() as string;
+                    const easy: string = $("#easy-input").val() as string;
+                    const satisfying: string = $("#satisfying-input").val() as string;
+
+                    // send the request
+                    const result =  await habitCreateAPI(auth, name, action, time, location, obvious, attractive, easy, satisfying)
+
+                    if (result.success) {
+                        // empty the fields
+                        $("#habit-creator-window-name-input").val("")
+                        $("#action-input").val("")
+                        $("#time-input").val("")
+                        $("#location-input").val("")
+                        $("#obvious-input").val("")
+                        $("#attractive-input").val("")
+                        $("#easy-input").val("")
+                        $("#satisfying-input").val("")
+                    }
+                    else {
+                        alert(result.errorMessage)
+                    }
+                }
+            }
+            >
                 Create Habit
             </div>
         </div>
