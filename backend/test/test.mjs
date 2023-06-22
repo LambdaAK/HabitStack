@@ -235,3 +235,56 @@ async function testListenServerMessages(email, password, server) {
     }, 2000)
 
 }
+
+async function testHabitCreate(email, password, name, iWill, atTime, atLocation, obvious, attractive, easy, satisfying) {
+    const user = await signInWithEmailAndPassword(auth, email, password)
+    const idToken = await user.user.getIdToken(true)
+
+    fetch('http://192.168.1.10:3000/habit/create', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'id-token': idToken
+        },
+        body: JSON.stringify({
+            "name": name,
+            "iWill": iWill,
+            "atTime": atTime,
+            "atLocation": atLocation,
+            "obvious": obvious,
+            "attractive": attractive,
+            "easy": easy,
+            "satisfying": satisfying,
+        })
+    })
+    .then(response => {
+        response.json()
+        .then(json => {
+            console.log(json)
+        })
+    })
+}
+
+async function testHabitDelete(email, password, name) {
+    const user = await signInWithEmailAndPassword(auth, email, password)
+    const idToken = await user.user.getIdToken(true)
+
+    fetch('http://192.168.1.10:3000/habit/delete', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'id-token': idToken,
+        },
+        body: JSON.stringify({
+            "name": name,
+        })
+    })
+    .then(response => {
+        response.json()
+        .then(json => {
+            console.log(json)
+        })
+    })
+}

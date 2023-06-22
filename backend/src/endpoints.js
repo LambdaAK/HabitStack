@@ -500,6 +500,132 @@ async function handleServerLeave(req, res) {
     res.send(JSON.stringify({"message": "Server left"}))
 }
 
+async function handleHabitCreatorCreate(req, res) {
+    // verify the id token
+    const uuid = await verifyIdToken(admin, req, res)
+    if (uuid == "") {
+        res.status(401).send(JSON.stringify({"error": "Invalid id token"}))
+        return
+    }
+
+    // get the name of the habit
+    const name = req.body.name
+
+    if (name == "") {
+        res.status(400).send(JSON.stringify({"error": "No name provided"}))
+        return
+    }
+
+    // make sure that there isn't already a habit with the same name
+
+    const userHabitsRef = ref(database, `users/${uuid}/habits`)
+    const userHabitsSnapshot = await get(userHabitsRef)
+    const userHabits = userHabitsSnapshot.val()
+
+    // make sure that the key is null
+
+    let duplicate = false;
+
+    if (userHabits != null && userHabits[name] != null) {
+        // if there are other habits, and there is a habit with the same name
+        duplicate = true;
+    }
+
+    // get the other properties of the habit from the request
+
+    const iWill = req.body.iWill
+    const atTime = req.body.atTime
+    const atLocation = req.body.atLocation
+    const obvious = req.body.obvious
+    const attractive = req.body.attractive
+    const easy = req.body.easy
+    const satisfying = req.body.satisfying
+
+    // make sure that all of the properties are defined and not empty strings
+
+    if (iWill == undefined || iWill == "") {
+        res.status(400).send(JSON.stringify({"error": "No iWill provided"}))
+        return
+    }
+
+    if (atTime == undefined || atTime == "") {
+        res.status(400).send(JSON.stringify({"error": "No atTime provided"}))
+        return
+    }
+
+    if (atLocation == undefined || atLocation == "") {
+        res.status(400).send(JSON.stringify({"error": "No atLocation provided"}))
+        return
+    }
+
+    if (obvious == undefined || obvious == "") {
+        res.status(400).send(JSON.stringify({"error": "No obvious provided"}))
+        return
+    }
+
+    if (attractive == undefined || attractive == "") {
+        res.status(400).send(JSON.stringify({"error": "No attractive provided"}))
+        return
+    }
+
+    if (easy == undefined || easy == "") {
+        res.status(400).send(JSON.stringify({"error": "No easy provided"}))
+        return
+    }
+
+    if (satisfying == undefined || satisfying == "") {
+        res.status(400).send(JSON.stringify({"error": "No satisfying provided"}))
+        return
+    }
+
+    // create the habit
+
+    const habitRef = ref(database, `users/${uuid}/habits/${name}`)
+    await set(habitRef, {
+        "iWill": iWill,
+        "atTime": atTime,
+        "atLocation": atLocation,
+        "obvious": obvious,
+        "attractive": attractive,
+        "easy": easy,
+        "satisfying": satisfying,
+    })
+
+    if (!duplicate) {
+      res.send(JSON.stringify({"message": "Habit created"}))  
+    }
+    else {
+        res.send(JSON.stringify({"message": "Habit edited"}))
+    }
+}
+
+async function handleHabitDelete(req, res) {
+    // verify the id token
+    const uuid = await verifyIdToken(admin, req, res)
+    if (uuid == "") {
+        res.status(401).send(JSON.stringify({ "error": "Invalid id token" }))
+        return
+    }
+
+    // get the name of the habit
+    const name = req.body.name
+
+    // make sure it's not null or empty
+    if (name == undefined || name == null || name == "") {
+        res.status(400).send(JSON.stringify({ "error": "No name provided" }))
+        return
+    }
+
+    // delete it
+    const habitRef = ref(database, `users/${uuid}/habits/${name}`)
+    await set(habitRef, null)
+    res.send(JSON.stringify({"message": "Habit deleted"}))
+
+
+
+}
+
+
 expressApp.post("/message/send", bodyParser.json(), (req, res) => {
     console.log("sending message")
     handleMessageSend(req, res)
@@ -535,6 +661,14 @@ expressApp.post("/server/name/change", bodyParser.json(), (req, res) => {
 
 expressApp.post("/server/leave", bodyParser.json(), (req, res) => {
     handleServerLeave(req, res)
+})
+
+expressApp.post("/habit/create", bodyParser.json(), (req, res) => {
+    handleHabitCreatorCreate(req, res)
+})
+
+expressApp.post("/habit/delete", bodyParser.json(), (req, res) => {
+    handleHabitDelete(req, res)
 })
 
 expressApp.listen(expressPort, () => {
