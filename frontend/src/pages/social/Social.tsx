@@ -237,9 +237,9 @@ function ServerCreationWindow() {
         <div id = "server-creation-window">
 
    
-            <button className = "exit-server-creation-window-button"
+            <div className = "exit-server-creation-window-button"
             onClick = {openOrCloseServerCreationWindow}
-            >✖️</button>
+            >✖️</div>
             <div className = "server-creation-window-header">
                 Create new server
             </div>
@@ -259,9 +259,9 @@ function ServerCreationWindow() {
 function JoinServerWindow() {
     return (
         <div id = "join-server-window">
-            <button className = "exit-server-creation-window-button"
+            <div className = "exit-server-creation-window-button"
             onClick = {openOrCloseJoinServerWindow}
-            >✖️</button>
+            >✖️</div>
             <div className = "join-server-header">
                 Join A Server
             </div>
@@ -494,9 +494,9 @@ function ServerOptionsWindow(props: {serverId: string}) {
 
     return (
         <div id = "server-options-window">
-            <button className = "exit-server-options-window-button"
+            <div className = "exit-server-options-window-button"
             onClick = {openOrCloseServerOptionsWindow}
-            >✖️</button>
+            >✖️</div>
             <div className = "server-options-window-header">
                 Server Options
             </div>
@@ -548,7 +548,16 @@ function ServerOptionsWindow(props: {serverId: string}) {
                         return (
                             arrayOfServerInvites.map((serverInvite) =>
                                 <li className = "server-options-window-server-invite-list-item" key = {serverInvite}>
-                                    {serverInvite}
+
+                                    <div style = {{
+                                        textAlign: "center",
+                                        marginTop: "auto",
+                                        marginBottom: "auto",
+                                        marginRight: "1.5rem"
+                                    }}>
+                                        {serverInvite}
+                                    </div>
+
                                     <div className = "server-options-window-remove-invite-button"
                                     onClick = {async () => {
                                         // delete the invite

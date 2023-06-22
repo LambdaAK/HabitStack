@@ -220,13 +220,14 @@
     margin-top: 1rem;
     width: 90%;
     height: 5%;
-    border-radius: 8px;
     font-size: 2rem;
     color: black;
-    background-color: $slate;
+    background-color: $very-dark-slate;
     font-family: "Quicksand", sans-serif;
     width: 75%;
     align-self: center;
+    border: none;
+    color: white;
 
     &:focus {
         cursor: text;
@@ -251,26 +252,31 @@
 }
 
 .exit-server-creation-window-button {
-    background-color: $slate;
+    @include shadow;
+    background-color: $very-dark-slate;
     border-radius: 8px;
     font-size: 3rem;
     align-self: flex-start;
     left: 1rem;
     top: 1rem;
+    border: none;
 
     text-align: center;
+    text-justify: center;
 
     width: 4rem;
     height: 4rem;
 
-    opacity: 50%;
+  
 
     &:hover {
         cursor: pointer;
-        opacity: 100%;
+        transform: translateY(-10px);
+        background-color: $slate;
+ 
     }
 
-    transition: opacity 0.3s ease;
+    transition: all 0.2s ease;
 
 }
 
@@ -409,8 +415,8 @@
     height: 36rem;
     overflow-y: scroll;
     overflow-x: hidden;
-    width: 40%;
-    background-color: $slate;
+    width: 60%;
+    background-color: $very-dark-slate;
     border-radius: 8px;
     margin-top: 3rem;
     margin-bottom: 3rem;
@@ -429,7 +435,7 @@
     height: fit-content;
     border-radius: 8px;
     padding: 1rem;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     background-color: $very-dark-slate;
     color: white;
     align-self: flex-start;
@@ -438,6 +444,7 @@
     flex-direction: row;
     justify-content: space-between;
     text-align: center;
+    text-justify: center;
     margin-left: auto;
     margin-right: auto;
     color: white;
@@ -445,14 +452,18 @@
 
 .server-options-window-remove-invite-button {
     @extend .create-new-server-button;
-    background-color: $slate;
+    background-color: $very-dark-slate;
     color: white;
     margin-top: auto;
     &:hover {
         cursor: pointer;
-        background-color: $very-dark-slate;
-        @include shadow;
+        background-color: $slate;
+        transform: translateY(-10px);
+        scale: 1;
+
     }
+
+    transition: all 0.2s ease-in-out;
 }
 
 .server-options-window-server-invite-list-header {
