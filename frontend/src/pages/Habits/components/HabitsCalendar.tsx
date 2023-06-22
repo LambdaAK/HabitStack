@@ -419,7 +419,7 @@ function EmptyCalendarCellEnd(props: {columnSpan: number}) {
 
 
 
-function Day(props: {day: number, month: number, year: number}) {
+function Day(props: {day: number, month: number, year: number, dayInfo: {day: number, month: number, year: number}, dayInfoSetter: Function}) {
 
     const [extraCSS, setExtraCSS] = useState({
         opacity: 0,
@@ -488,6 +488,14 @@ function Day(props: {day: number, month: number, year: number}) {
         <div className = {"calendar-day" + " " + extraClasses + " " + todayExtraClass}
         onClick = {
             () => {
+                // set the current day
+                props.dayInfoSetter(
+                    {
+                        day: props.day,
+                        month: props.month,
+                        year: props.year
+                    }
+                )
                 // make the day info window visible
                 $("#day-info-window").css("display", "flex")
             }
@@ -550,7 +558,7 @@ function MonthLabel(props: {monthNumber: number, yearNumber: number}) {
 
 
 
-export default function HabitsCalendar() {
+export default function HabitsCalendar(props: {dayInfo: {day: number, month: number, year: number}, dayInfoSetter: Function}) {
 
     // get the current day, month, and year
 
@@ -613,7 +621,13 @@ export default function HabitsCalendar() {
 
                         const components = eachday.map((day) => {
                             return (
-                                <Day day = {day} month = {monthNumber} year = {yearNumber}/>
+                                <Day
+                                    day = {day}
+                                    month = {monthNumber}
+                                    year = {yearNumber}
+                                    dayInfo = {props.dayInfo}
+                                    dayInfoSetter = {props.dayInfoSetter}
+                                />
                             )
                         })
                         return components

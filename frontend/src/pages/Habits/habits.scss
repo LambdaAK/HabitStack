@@ -881,3 +881,12 @@
 .day-info-exit-button {
     @extend .daily-rating-window-exit-button;
 }
+
+.habit-stacks-widget-habit-stacks {
+    @include shadow;
+    background-color: $very-dark-slate;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: 80%;
+}

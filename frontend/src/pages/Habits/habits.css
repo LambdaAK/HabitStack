@@ -1006,4 +1006,15 @@ html {
   margin-right: auto;
 }
 
+.habit-stacks-widget-habit-stacks {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #2C2C2C;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  height: 80%;
+}
+
 /*# sourceMappingURL=habits.css.map */

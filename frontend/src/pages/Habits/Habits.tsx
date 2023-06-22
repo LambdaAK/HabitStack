@@ -5,6 +5,14 @@ import $ from "jquery";
 import { Key, useEffect, useState } from "react";
 
 
+interface DayInterface {
+    day: number,
+    month: number,
+    year: number
+}
+
+
+
 function HabitsBar() {
     return (
         <div id = "habits-bar">
@@ -628,9 +636,9 @@ function stringOfMonth(month: number) {
     }
 }
 
-function DayInfo(props: {month: number, day: number, year: number}) {
-    const monthString: string = stringOfMonth(props.month);
-    const dateString: string = `${monthString} ${props.day}, ${props.year}`
+function DayInfo(props: {dayInfo: DayInterface, dayInfoSetter: Function}) {
+    const monthString: string = stringOfMonth(props.dayInfo.month);
+    const dateString: string = `${monthString} ${props.dayInfo.day}, ${props.dayInfo.year}`
     return (
         <div id = "day-info-window">
             <div className = "day-info-exit-button"
@@ -1046,11 +1054,23 @@ interface HabitCardWindowHabitWithRating {
     rating: number,
 }
 
+function HabitStacksWidget() {
+    return (
+        <div className = "todo-list">
+            <div className = "todo-list-header">
+                Habit Stacks
+            </div>
+            <div className = "habit-stacks-widget-habit-stacks">
+            
+            </div>
+        </div>
+    )
+}
+
 function HabitCardWindow() {
 
 
     const [habits, setHabits] =  useState<HabitCardWindowHabitWithRating[]>([])
-
 
     useEffect(() => {
         console.log(habits)
@@ -1097,26 +1117,33 @@ function HabitCardWindow() {
 }
 
 export default function Habits() {
+    const [dateToDisplayOnDayInfoWindow, setDateToDisplayOnDayInfoWindow] = useState({day: 1, month: 0, year: 0})
     return (
         <>
             <div className = "habits-container">
                 <HabitsBar />
                 <div className = "habits-grid">
-                    <HabitsCalendar/>
+                    <HabitsCalendar
+                        dayInfo = {dateToDisplayOnDayInfoWindow}
+                        dayInfoSetter = {setDateToDisplayOnDayInfoWindow}
+                    />
                     <HappinessGraph/>
                     <ToDoList/>
                     <DailyCompletion/>
                     <HabitsYouWantToDo/>
                     <HabitsYouWantToResist/>
+                    <HabitStacksWidget/>
                 </div>
-                
                 
                 <DailyRatingWindow />
                 <HabitCreatorWindow />
                 <HabitResistorWindow />
                 <HabitStackCreatorWindow />
                 <HabitCardWindow />
-                <DayInfo month = {1} day = {1} year = {2021}/>
+                <DayInfo
+                    dayInfo = {dateToDisplayOnDayInfoWindow}
+                    dayInfoSetter = {setDateToDisplayOnDayInfoWindow}
+                />
             </div>
         </>
     )
