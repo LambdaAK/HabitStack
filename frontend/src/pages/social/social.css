@@ -217,7 +217,7 @@ html {
   }
 }
 
-.create-new-server-button, .server-options-window-add-invite-button, .server-options-window-remove-invite-button, .server-options-button, .leave-server-button, .exit-open-server-button, .join-server-button, .finish-creating-server-button, .confirm-leave-server-window-no-button, .confirm-leave-server-window-yes-button, #server-options-window-apply-changes-button, #finish-joining-server-button {
+.create-new-server-button, .server-options-window-add-invite-button, .server-options-window-remove-invite-button, .join-server-button, .finish-creating-server-button, .confirm-leave-server-window-no-button, .confirm-leave-server-window-yes-button, #server-options-window-apply-changes-button, #finish-joining-server-button {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
@@ -234,7 +234,7 @@ html {
   margin-bottom: 1rem;
   transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, padding 0.2s ease-in-out, scale 0.2s ease-in-out;
 }
-.create-new-server-button:hover, .server-options-window-add-invite-button:hover, .server-options-window-remove-invite-button:hover, .server-options-button:hover, .leave-server-button:hover, .exit-open-server-button:hover, .join-server-button:hover, .finish-creating-server-button:hover, .confirm-leave-server-window-no-button:hover, .confirm-leave-server-window-yes-button:hover, #server-options-window-apply-changes-button:hover, #finish-joining-server-button:hover {
+.create-new-server-button:hover, .server-options-window-add-invite-button:hover, .server-options-window-remove-invite-button:hover, .join-server-button:hover, .finish-creating-server-button:hover, .confirm-leave-server-window-no-button:hover, .confirm-leave-server-window-yes-button:hover, #server-options-window-apply-changes-button:hover, #finish-joining-server-button:hover {
   cursor: pointer;
   background-color: #DDDDDD;
   color: black;
@@ -379,6 +379,7 @@ html {
   text-align: center;
   background-color: #2C2C2C;
   color: white;
+  flex-grow: 1;
 }
 
 .server-bar-owner-icon {
@@ -398,9 +399,20 @@ html {
 }
 
 .server-options-button, .leave-server-button, .exit-open-server-button {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
   background-color: #2C2C2C;
   color: white;
-  flex-grow: 1;
+  height: 2rem;
+  text-align: center;
+  text-justify: center;
+  transition: all 0.2s ease-in-out;
+}
+.server-options-button:hover, .leave-server-button:hover, .exit-open-server-button:hover {
+  cursor: pointer;
+  background-color: #DDDDDD;
+  transform: translateY(-10px);
 }
 
 #server-options-window {
@@ -535,6 +547,12 @@ html {
 
 .exit-open-server-button {
   font-size: 2rem;
+  transition: all 0.2s ease-in-out;
+}
+.exit-open-server-button:hover {
+  cursor: pointer;
+  transform: translateY(-10px);
+  background-color: #DDDDDD;
 }
 
 .leave-server-button {

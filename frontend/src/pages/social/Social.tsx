@@ -429,29 +429,23 @@ function ServerInfoBar(props: {serverId: string, currentServerSetter: Function})
 
     return (
         <div className = "server-info-bar">
-            <ExitOpenServerButton 
-                currentServerSetter={props.currentServerSetter}
-                currentServerNameSetter = {setServerName}
-                currentServer = {props.serverId}
-            />
+            <div style = {{
+                // use a flex box to put the buttons on top of one another
+                display: "flex",
+                flexDirection: "column",
+                marginRight: "2rem",
+                marginLeft: "1.2rem"
+            }}>
+                <ExitOpenServerButton 
+                    currentServerSetter={props.currentServerSetter}
+                    currentServerNameSetter = {setServerName}
+                    currentServer = {props.serverId}
+                />
+                <ServerOptionsButton/>
+            </div>
             <div id = "server-info-bar-server-name">
                 {serverName}
             </div>
-            {
-                // render the server-options button if and only if the user is the owner of the server
-                (function() {
-                    if (getCookie("user") == serverOwner && props.serverId) {
-                        return (
-                            <>
-                                <ServerOptionsButton/>
-                            </>
-                        )
-                    }
-                    else {
-                        return (<><ServerOptionsButton/></>)
-                    }
-                })()
-            }
         </div>
     )
 }
@@ -700,7 +694,7 @@ function ServerOptionsButton() {
         <div className = "server-options-button"
         onClick = {openOrCloseServerOptionsWindow}
         >
-            Options
+            ⚙️
         </div>
     )
 }
@@ -720,7 +714,7 @@ function ExitOpenServerButton(props: {currentServerSetter: Function, currentServ
             props.currentServerNameSetter("")
         }}
         >
-            ✖️
+        ✖️  
         </div>
     )
 }

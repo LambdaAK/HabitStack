@@ -347,6 +347,7 @@
     text-align: center;
     background-color: $very-dark-slate;
     color: white;
+    flex-grow: 1;
 }
 
 .server-bar-owner-icon {
@@ -364,10 +365,20 @@
 }
 
 .server-options-button {
-    @extend .create-new-server-button;
+    @include shadow;
     background-color: $very-dark-slate;
     color: white;
-    flex-grow: 1;
+    height: 2rem;
+    text-align: center;
+    text-justify: center;
+
+    &:hover {
+        cursor: pointer;
+        background-color: $slate;
+        transform: translateY(-10px);
+    }
+
+    transition: all 0.2s ease-in-out;
 }
 
 #server-options-window {
@@ -506,6 +517,14 @@
 .exit-open-server-button {
     @extend .server-options-button;
     font-size: 2rem;
+
+    &:hover {
+        cursor: pointer;
+        transform: translateY(-10px);
+        background-color: $slate;
+    }
+
+    transition: all 0.2s ease-in-out;
 }
 
 .leave-server-button {
