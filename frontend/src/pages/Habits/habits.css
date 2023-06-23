@@ -1035,6 +1035,41 @@ html {
   margin-left: 5px;
   margin-right: 5px;
 }
+.habits-you-want-to-do-widget-header {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  width: max;
+  flex-grow: 1;
+  background-color: #2C2C2C;
+  text-align: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.habits-you-want-to-do-widget-edit-button {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
+  background-color: #2C2C2C;
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: fit-content;
+  transition: all 0.2s ease-in-out;
+}
+.habits-you-want-to-do-widget-edit-button:hover {
+  cursor: pointer;
+  transform: translateY(-10px);
+}
+
 .habit-stacks-widget-habit-stacks {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
@@ -1094,6 +1129,7 @@ html {
   margin-bottom: 1rem;
   overflow-x: scroll;
   width: 30vw;
+  transition: all 0.2s ease-in-out;
 }
 .habits-you-want-to-do-list-item::-webkit-scrollbar {
   width: 10px;
@@ -1113,6 +1149,32 @@ html {
   cursor: pointer;
   background-color: #DDDDDD;
   color: black;
+}
+
+.habits-you-want-to-do-list-item-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  width: 50rem;
+}
+
+.habits-you-want-to-do-list-delete-item-button {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  background-color: #2C2C2C;
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: fit-content;
+  transition: all 0.2s ease-in-out;
+}
+.habits-you-want-to-do-list-delete-item-button:hover {
+  cursor: pointer;
+  transform: translateY(-10px);
 }
 
 /*# sourceMappingURL=habits.css.map */

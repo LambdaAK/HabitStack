@@ -3,7 +3,7 @@ import "./habits.css";
 import HabitsCalendar from "./components/HabitsCalendar"
 import $ from "jquery";
 import { Key, useEffect, useState } from "react";
-import { habitCreateAPI } from "../../utilities/backendRequests";
+import { habitCreateAPI, habitDeleteAPI } from "../../utilities/backendRequests";
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { Auth, getAuth } from "firebase/auth";
 import { DataSnapshot, Database, getDatabase, onValue, ref } from "firebase/database";
@@ -159,9 +159,14 @@ function DailyCompletion() {
     )
 }
 
+
+
 function HabitsYouWantToDo() {
 
     const [habits, setHabits] = useState({})
+    
+    const [editMode, setEditMode] = useState(false)
+
 
     useEffect(() => {
         // fetch the habits from the database
@@ -176,21 +181,63 @@ function HabitsYouWantToDo() {
 
     return (
         <div className = "habits-you-want-to-do-widget">
-            <div className = "daily-completion-header">
-                Habits you want to do
+            <div style = {{
+                display: "flex",
+            }}>            
+                <div className = "habits-you-want-to-do-widget-edit-button"
+                onClick = {
+                    () => {
+                        setEditMode(!editMode)
+                    }
+                }
+                >
+                    Edit
+                </div>
+                <div className = "habits-you-want-to-do-widget-header">
+                    Habits you want to do
+                </div>
             </div>
             <div className = "habits-you-want-to-do-list">
                 {
                     Object.keys(habits).map(habitName =>
-                        <div className = "habits-you-want-to-do-list-item">
-                            {habitName}
-                        </div>
+                        <HabitsYouWantToDoListItem
+                            editMode = {editMode}
+                            habitName = {habitName}
+                        />
                     )
                 }
             </div>
-                
-    
+        </div>
+    )
+}
 
+function HabitsYouWantToDoListItem(props: {editMode: boolean, habitName: string}) {
+    return (
+        <div className = "habits-you-want-to-do-list-item-container">
+            {
+                (function() {
+                    if (props.editMode) {
+                        return (
+                            <div className = "habits-you-want-to-do-list-delete-item-button"
+                            onClick = {
+                                async () => {
+                                    // delete the item from the database
+                                    const result = await habitDeleteAPI(auth, props.habitName)
+                                    if (!result.success) {
+                                        alert(result.errorMessage)
+                                    }  
+                                }
+                            }
+                            >
+                                ✖️
+                            </div>
+                        )
+                    }
+                })()
+            }
+            <div className = "habits-you-want-to-do-list-item">
+                {props.habitName}
+            </div>
         </div>
     )
 }
