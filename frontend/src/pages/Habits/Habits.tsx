@@ -203,6 +203,13 @@ function HabitsYouWantToDo() {
                         <HabitsYouWantToDoListItem
                             editMode = {editMode}
                             habitName = {habitName}
+                            action = {habits[habitName].iWill}
+                            time = {habits[habitName].atTime}
+                            location = {habits[habitName].atLocation}
+                            obvious = {habits[habitName].obvious}
+                            attractive = {habits[habitName].attractive}
+                            easy = {habits[habitName].easy}
+                            satisfying = {habits[habitName].satisfying}
                         />
                     )
                 }
@@ -211,7 +218,7 @@ function HabitsYouWantToDo() {
     )
 }
 
-function HabitsYouWantToDoListItem(props: {editMode: boolean, habitName: string}) {
+function HabitsYouWantToDoListItem(props: {editMode: boolean, habitName: string, action: string, time: string, location: string, obvious: string, attractive: string, easy: string, satisfying: string}) {
     return (
         <div className = "habits-you-want-to-do-list-item-container">
             {
@@ -235,12 +242,33 @@ function HabitsYouWantToDoListItem(props: {editMode: boolean, habitName: string}
                     }
                 })()
             }
-            <div className = "habits-you-want-to-do-list-item">
+            <div className = "habits-you-want-to-do-list-item"
+            onClick = {
+                () => {
+                    // if in edit mode, open up the habit creator
+                    if (props.editMode) {
+                        // set the properties
+                        $("#habit-creator-window-name-input").val(props.habitName)
+                        $("#action-input").val(props.action)
+                        $("#time-input").val(props.time)
+                        $("#location-input").val(props.location)
+                        $("#obvious-input").val(props.obvious)
+                        $("#attractive-input").val(props.attractive)
+                        $("#easy-input").val(props.easy)
+                        $("#satisfying-input").val(props.satisfying)
+
+                        // open the window
+                        openOrCloseHabitCreatorWindow()
+                    }
+                }
+            }
+            >
                 {props.habitName}
             </div>
         </div>
     )
 }
+
 
 function HabitsYouWantToResist() {
     return (
@@ -404,6 +432,7 @@ function HabitCreatorWindow() {
                         $("#attractive-input").val("")
                         $("#easy-input").val("")
                         $("#satisfying-input").val("")
+                        openOrCloseHabitCreatorWindow()
                     }
                     else {
                         alert(result.errorMessage)
