@@ -886,9 +886,8 @@
     background-color: $very-dark-slate;
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
-    height: fit-content
-
+    height: fit-content;
+    padding: 2rem;
 }
 
 .habits-you-want-to-do-widget-header {
@@ -941,9 +940,13 @@
     background-color: $very-dark-slate;
     margin-left: auto;
     margin-right: auto;
-    width: 92%;
+    width: fit-content;
     height: 50vh;
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
 }
 
 
@@ -951,8 +954,6 @@
     @include shadow;
     @include styled-scrollbar;
     background-color: $very-dark-slate;
-    margin-left: auto;
-    margin-right: auto;
     height: fit-content;
     color: white;
     text-align: center;
@@ -1063,9 +1064,12 @@
 
 .day-info-task-name {
     @include shadow;
+    @include styled-scrollbar;
     font-size: 2rem;
     flex-grow: 1;
     color: white;
+    max-width: 38vw;
+    overflow-x: scroll;
 }
 
 .day-info-task-complete-button {

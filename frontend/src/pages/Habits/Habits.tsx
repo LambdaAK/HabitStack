@@ -226,7 +226,7 @@ function HabitsYouWantToDo() {
                     }
                 }
                 >
-                    Edit
+                    ⚙️
                 </div>
                 <div className = "habits-you-want-to-do-widget-header">
                     Habits you want to do
