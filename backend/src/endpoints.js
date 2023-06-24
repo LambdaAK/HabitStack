@@ -30,6 +30,19 @@ const auth = getAuth(app);
 const database = admin.database()
 
 
+function deleteFromArrayLikeObject(arrayLikeObject, index) {
+    const newObject = {}
+    let i = 0
+    for (const key in arrayLikeObject) {
+        if (i != index) {
+            newObject[key] = arrayLikeObject[key]
+        }
+        i++
+    }
+    return newObject
+}
+
+
 // express stuff
 const expressApp = express()
 expressApp.use(cors())
@@ -699,6 +712,145 @@ async function handleHabitResistCreate(req, res) {
 
 }
 
+async function handleTasksAdd(req, res) {
+    // verify the id token
+    const uuid = await verifyIdToken(admin, req, res)
+    if (uuid == "") {
+        res.status(401).send(JSON.stringify({ "error": "Invalid id token" }))
+        return
+    }
+
+    // get the name of the task
+    const name = req.body.name
+
+    // make sure it's not null or empty
+
+    if (name == undefined || name == null || name == "") {
+        res.status(400).send(JSON.stringify({ "error": "No name provided" }))
+        return
+    }
+
+    // get the year month and day
+
+    const year = req.body.year
+
+    if (year == undefined || year == null) {
+        res.status(400).send(JSON.stringify({ "error": "No year provided" }))
+        return
+    }
+
+    const month = req.body.month
+
+    if (month == undefined || month == null) {
+        res.status(400).send(JSON.stringify({ "error": "No month provided" }))
+        return
+    }
+
+    const day = req.body.day
+
+    if (day == undefined || day == null) {
+        res.status(400).send(JSON.stringify({ "error": "No day provided" }))
+        return
+    }
+
+    // send it to the database
+
+    const taskRef = ref(database, `users/${uuid}/tasks/${year}/${month}/${day}`)
+
+    // get the current tasks, which is null if there are no tasks or an "array"
+
+    const taskSnapshot = await get(taskRef)
+    const tasks = taskSnapshot.val()
+
+    if (tasks == undefined || tasks == null) {
+        // we are adding the first task now
+        await set(taskRef, {
+            [0]: name
+        })
+
+        res.send(JSON.stringify({"message": "Task added"}))
+
+    }
+
+    else {
+        // append it
+        const newTasks = appendToArrayLikeObject(tasks, name)
+        await set(taskRef, newTasks)
+        res.send(JSON.stringify({"message": "Task added"}))
+    }
+
+}
+
+async function handleTasksDelete(req, res) {
+    // verify the id token
+    const uuid = await verifyIdToken(admin, req, res)
+    if (uuid == "") {
+        res.status(401).send(JSON.stringify({ "error": "Invalid id token" }))
+        return
+    }
+
+    // get the index of the task
+    const index = req.body.index
+
+    // make sure it's not null or empty
+
+    if (index == undefined || index == null) {
+        res.status(400).send(JSON.stringify({ "error": "No index provided" }))
+        return
+    }
+
+    // get the year month and day
+
+    const year = req.body.year
+
+    if (year == undefined || year == null) {
+        res.status(400).send(JSON.stringify({ "error": "No year provided" }))
+        return
+    }
+
+    const month = req.body.month
+
+    if (month == undefined || month == null) {
+        res.status(400).send(JSON.stringify({ "error": "No month provided" }))
+        return
+    }
+
+    const day = req.body.day
+
+    if (day == undefined || day == null) {
+        res.status(400).send(JSON.stringify({ "error": "No day provided" }))
+        return
+    }
+
+    // get the current list of tasks for the day
+
+    const taskRef = ref(database, `users/${uuid}/tasks/${year}/${month}/${day}`)
+    const taskSnapshot = await get(taskRef)
+    const tasks = taskSnapshot.val()
+
+    if (tasks == undefined || tasks == null) {
+        res.status(400).send(JSON.stringify({ "error": "No tasks for that day" }))
+        return
+    }
+
+    // make sure the index is valid
+
+    if (index < 0 || index >= tasks.length) {
+        res.status(400).send(JSON.stringify({ "error": "Invalid index" }))
+        return
+    }
+
+    // delete the task
+
+    const newTasks = deleteFromArrayLikeObject(tasks, index)
+
+    // send the updated list of tasks
+
+    await set(taskRef, newTasks)
+
+    res.send(JSON.stringify({"message": "Task deleted"}))
+}
+
 async function handleHabitResistDelete(req, res) {
     // verify the id token
     const uuid = await verifyIdToken(admin, req, res)
@@ -775,6 +927,15 @@ expressApp.post("/habitresist/create", bodyParser.json(), (req, res) => {
 expressApp.post("/habitresist/delete", bodyParser.json(), (req, res) => {
     handleHabitResistDelete(req, res)
 })
+
+expressApp.post("/tasks/add", bodyParser.json(), (req, res) => {
+    handleTasksAdd(req, res)
+})
+
+expressApp.post("/tasks/delete", bodyParser.json(), (req, res) => {
+    handleTasksDelete(req, res)
+})
+
 
 expressApp.listen(expressPort, () => {
     console.log(`Running express server on port ${expressPort}`)

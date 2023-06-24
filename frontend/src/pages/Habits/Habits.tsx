@@ -34,7 +34,6 @@ interface DayInterface {
 }
 
 
-
 function HabitsBar() {
     return (
         <div id = "habits-bar">
@@ -789,6 +788,21 @@ function stringOfMonth(month: number) {
     }
 }
 
+function DayInfoTask(props: {name: string}) {
+    return (
+        <div className = "day-info-task">
+            <div className = "day-info-task-name">
+                {props.name}
+            </div>
+
+            <div className = "day-info-task-complete-button">
+                ✔️
+            </div>
+
+        </div>
+    )
+}
+
 function DayInfo(props: {dayInfo: DayInterface, dayInfoSetter: Function}) {
     const monthString: string = stringOfMonth(props.dayInfo.month);
     const dateString: string = `${monthString} ${props.dayInfo.day}, ${props.dayInfo.year}`
@@ -805,6 +819,29 @@ function DayInfo(props: {dayInfo: DayInterface, dayInfoSetter: Function}) {
             </div>
             <div className = "day-info-day">
                 {dateString}
+            </div>
+            <div className = "day-info-tasks-header">
+                Tasks
+            </div>
+            <div className = "day-info-tasks">
+                <DayInfoTask name = "Test task 1" />
+                <DayInfoTask name = "Test task 2" />
+                <DayInfoTask name = "Test task 3" />
+                <DayInfoTask name = "Test task 4" />
+                <DayInfoTask name = "Test task 5" />
+                <DayInfoTask name = "Test task 6" />
+                <DayInfoTask name = "Test task 7" />
+            </div>
+
+            <div className = "day-info-create-task-section">
+                <input className = "day-info-create-task-name"
+                placeholder = "Add a new task"
+                >
+
+                </input>
+                <div className = "day-info-create-task-button">
+                    +
+                </div>
             </div>
         </div>  
     )

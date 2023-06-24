@@ -857,7 +857,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     width: 50%;
     height: 50%;
     margin-top: 1rem;
@@ -996,6 +995,82 @@
     &:hover {
         cursor: pointer;
         transform: translateY(-10px);
+    }
+
+    transition: all 0.2s ease-in-out;
+}
+
+.day-info-tasks-header {
+    @include shadow;
+    font-size: 2.5rem;
+    color: white;
+}
+
+.day-info-tasks {
+    @include shadow;
+    @include styled-scrollbar;
+    overflow-y: scroll;
+    width: 90%;
+    height: 80%;
+    margin-top: 1rem;
+}
+
+.day-info-create-task-section {
+    @include shadow;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    width: 90%;
+}
+
+.day-info-create-task-name {
+    @include shadow;
+    border: none;
+    flex-grow: 1;
+    background-color: $very-dark-slate;
+    font-size: 2rem;
+    color: white;
+}
+
+.day-info-create-task-button {
+    @include shadow;
+    color: white;
+    font-size: 2rem;
+
+    &:hover {
+        cursor: pointer;
+        transform: translateY(-10px);
+        background-color: $slate;
+        color: black;
+    }
+
+    transition: all 0.2s ease-in-out;
+}
+
+.day-info-task {
+    @include shadow;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.day-info-task-name {
+    @include shadow;
+    font-size: 2rem;
+    flex-grow: 1;
+    color: white;
+}
+
+.day-info-task-complete-button {
+    @include shadow;
+    font-size: 2rem;
+
+    &:hover {
+        cursor: pointer;
+        transform: translateY(-10px);
+        background-color: $slate;
     }
 
     transition: all 0.2s ease-in-out;

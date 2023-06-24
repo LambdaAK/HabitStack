@@ -984,7 +984,6 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   width: 50%;
   height: 50%;
   margin-top: 1rem;
@@ -1175,6 +1174,110 @@ html {
 .habits-you-want-to-do-list-delete-item-button:hover {
   cursor: pointer;
   transform: translateY(-10px);
+}
+
+.day-info-tasks-header {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 2.5rem;
+  color: white;
+}
+
+.day-info-tasks {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+  overflow-y: scroll;
+  width: 90%;
+  height: 80%;
+  margin-top: 1rem;
+}
+.day-info-tasks::-webkit-scrollbar {
+  width: 10px;
+}
+.day-info-tasks::-webkit-scrollbar-track {
+  background: #535353;
+}
+.day-info-tasks::-webkit-scrollbar-thumb {
+  background: #2C2C2C;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.day-info-create-task-section {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  width: 90%;
+}
+
+.day-info-create-task-name {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  border: none;
+  flex-grow: 1;
+  background-color: #2C2C2C;
+  font-size: 2rem;
+  color: white;
+}
+
+.day-info-create-task-button {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  color: white;
+  font-size: 2rem;
+  transition: all 0.2s ease-in-out;
+}
+.day-info-create-task-button:hover {
+  cursor: pointer;
+  transform: translateY(-10px);
+  background-color: #DDDDDD;
+  color: black;
+}
+
+.day-info-task {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.day-info-task-name {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 2rem;
+  flex-grow: 1;
+  color: white;
+}
+
+.day-info-task-complete-button {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 2rem;
+  transition: all 0.2s ease-in-out;
+}
+.day-info-task-complete-button:hover {
+  cursor: pointer;
+  transform: translateY(-10px);
+  background-color: #DDDDDD;
 }
 
 /*# sourceMappingURL=habits.css.map */
