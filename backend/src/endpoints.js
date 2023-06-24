@@ -713,6 +713,7 @@ async function handleHabitResistCreate(req, res) {
 }
 
 async function handleTasksAdd(req, res) {
+    console.log("adding task")
     // verify the id token
     const uuid = await verifyIdToken(admin, req, res)
     if (uuid == "") {

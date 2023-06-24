@@ -390,4 +390,13 @@ async function testTasksDelete(email, password, index, year, month, day) {
         })
     })
 }
+
+testTasksAdd(
+    "alex.kozik@yahoo.com",
+    "1234567890",
+    "First Task",
+    2023,
+    6,
+    24
+)
     

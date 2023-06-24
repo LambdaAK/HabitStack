@@ -461,3 +461,89 @@ export async function habitDeleteAPI(auth: Auth, name: string): Promise<APIResul
         }
     }
 }
+
+export async function taskCreateAPI(auth: Auth, name: string, year: number, month: number, day: number): Promise<APIResult> {
+    if (!auth.currentUser) {
+        return {
+            success: false,
+            errorMessage: "Not logged in",
+        }
+    }
+
+    const idToken = await auth.currentUser.getIdToken();
+    const response = await fetch(`${backendConfig.url}/tasks/add`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin':'*',
+            'id-token': idToken,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "name": name,
+            "year": year,
+            "month": month,
+            "day": day
+        })
+    })
+
+    const result = await response.json();
+
+    if (result.error == undefined || result.error == null) {
+        return {
+            success: true,
+            errorMessage: "",
+        }
+    }
+    else {
+        return {
+            success: false,
+            errorMessage: result.error
+        }
+    }
+
+}
+
+export async function taskDeleteAPI(auth: Auth, index: number, year: number, month: number, day: number): Promise<APIResult> {
+    if (!auth.currentUser) {
+        return {
+            success: false,
+            errorMessage: "Not logged in",
+        }
+    }
+
+    const idToken = await auth.currentUser.getIdToken();
+    const response = await fetch(`${backendConfig.url}/tasks/delete`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin':'*',
+            'id-token': idToken,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "index": index,
+            "year": year,
+            "month": month,
+            "day": day
+        })
+    })
+
+    const result = await response.json();
+
+    if (result.error == undefined || result.error == null) {
+        return {
+            success: true,
+            errorMessage: "",
+        }
+    }
+    else {
+        return {
+            success: false,
+            errorMessage: result.error
+        }
+    }
+
+}

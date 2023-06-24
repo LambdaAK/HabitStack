@@ -3,7 +3,7 @@ import "./habits.css";
 import HabitsCalendar from "./components/HabitsCalendar"
 import $ from "jquery";
 import { Key, useEffect, useState } from "react";
-import { habitCreateAPI, habitDeleteAPI } from "../../utilities/backendRequests";
+import { habitCreateAPI, habitDeleteAPI, taskCreateAPI, taskDeleteAPI } from "../../utilities/backendRequests";
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { Auth, getAuth } from "firebase/auth";
 import { DataSnapshot, Database, getDatabase, onValue, ref } from "firebase/database";
@@ -788,14 +788,24 @@ function stringOfMonth(month: number) {
     }
 }
 
-function DayInfoTask(props: {name: string}) {
+function DayInfoTask(props: {name: string, index: number, year: number, month: number, day: number}) {
     return (
         <div className = "day-info-task">
             <div className = "day-info-task-name">
                 {props.name}
             </div>
 
-            <div className = "day-info-task-complete-button">
+            <div className = "day-info-task-complete-button"
+            onClick = {
+                async () => {
+                    // delete the task from the database
+                    const result = await taskDeleteAPI(auth, props.index, props.year, props.month, props.day)
+                    if (!result.success) {
+                        alert(result.errorMessage)
+                    }
+                }
+            }
+            >
                 ✔️
             </div>
 
@@ -806,6 +816,20 @@ function DayInfoTask(props: {name: string}) {
 function DayInfo(props: {dayInfo: DayInterface, dayInfoSetter: Function}) {
     const monthString: string = stringOfMonth(props.dayInfo.month);
     const dateString: string = `${monthString} ${props.dayInfo.day}, ${props.dayInfo.year}`
+
+    const [tasks, setTasks] = useState({})
+
+    useEffect(() => {
+        // fetch the tasks from the database
+        const tasksRef = ref(database, "users/" +  getCookie("user") + "/tasks/" + props.dayInfo.year + "/" + props.dayInfo.month + "/" + props.dayInfo.day)
+        return onValue(tasksRef, (snapshot: DataSnapshot) => {
+            const data = snapshot.val();
+            setTasks(data);
+            console.log(data)
+        })
+    }, [props.dayInfo.day, props.dayInfo.month, props.dayInfo.year])
+
+
     return (
         <div id = "day-info-window">
             <div className = "day-info-exit-button"
@@ -824,22 +848,55 @@ function DayInfo(props: {dayInfo: DayInterface, dayInfoSetter: Function}) {
                 Tasks
             </div>
             <div className = "day-info-tasks">
-                <DayInfoTask name = "Test task 1" />
-                <DayInfoTask name = "Test task 2" />
-                <DayInfoTask name = "Test task 3" />
-                <DayInfoTask name = "Test task 4" />
-                <DayInfoTask name = "Test task 5" />
-                <DayInfoTask name = "Test task 6" />
-                <DayInfoTask name = "Test task 7" />
+                {
+                    // TODO: render the tasks here
+                    (function() {
+                        if (tasks == null || tasks == undefined) {
+                            return (
+                                <></>
+                            )
+                        }
+
+                        const components = []
+
+                        for (let i = 0; i < Object.keys(tasks).length; i++) {
+                            const key = Object.keys(tasks)[i];
+                            components.push(
+                                <DayInfoTask
+                                name = {tasks[key]}
+                                index = {i}
+                                year = {props.dayInfo.year}
+                                month = {props.dayInfo.month}
+                                day = {props.dayInfo.day}
+                                />
+                            )
+                        }
+                        return components
+                    })()
+                }
             </div>
 
             <div className = "day-info-create-task-section">
-                <input className = "day-info-create-task-name"
+                <input id = "day-info-create-task-name"
                 placeholder = "Add a new task"
                 >
 
                 </input>
-                <div className = "day-info-create-task-button">
+                <div className = "day-info-create-task-button"
+                onClick = {
+                    async () => {
+                        const taskName: string = $("#day-info-create-task-name").val() as string;
+                        
+                        const result = await taskCreateAPI(auth, taskName, props.dayInfo.year, props.dayInfo.month, props.dayInfo.day)
+                        if (!result.success) {
+                            alert(result.errorMessage)
+                        }
+                        else {
+                            $("#day-info-create-task-name").val("")
+                        }
+                    }
+                }
+                >
                     +
                 </div>
             </div>
