@@ -930,6 +930,7 @@ expressApp.post("/habitresist/delete", bodyParser.json(), (req, res) => {
 })
 
 expressApp.post("/tasks/add", bodyParser.json(), (req, res) => {
+    // TODO: verify that the date is valid
     handleTasksAdd(req, res)
 })
 

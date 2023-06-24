@@ -3,7 +3,7 @@
 .habits-container {
     height: 90vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
     gap: 4vw;
 
@@ -24,17 +24,17 @@
     @include fly-in-left;
     @include shadow;
     @include styled-scrollbar;
-    height: fit-content;
-    min-width: 10vw;
-    margin-left: 0.5vw;
-
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
     gap: 1%;
-    overflow-y: auto;
 
     background-color: $very-dark-slate;
     color: white;
+
 
     @media (max-width: $breakpoint) {
         margin-top: 4vh;
@@ -51,10 +51,8 @@
 
 .habits-bar-link {
     @include shadow-no-padding;
-    font-size: 24px;
+    font-size: 1.75rem;
     font-weight: bold;
-    margin-top: 10px;
-    margin-bottom: 50px;
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: center;

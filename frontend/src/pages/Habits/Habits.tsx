@@ -1352,7 +1352,6 @@ function HabitStacksWidget() {
 
 function HabitCardWindow() {
 
-
     const [habits, setHabits] =  useState<HabitCardWindowHabitWithRating[]>([])
 
     useEffect(() => {
@@ -1410,12 +1409,12 @@ export default function Habits() {
                         dayInfo = {dateToDisplayOnDayInfoWindow}
                         dayInfoSetter = {setDateToDisplayOnDayInfoWindow}
                     />
-                    <HappinessGraph/>
                     <ToDoList/>
                     <DailyCompletion/>
                     <HabitsYouWantToDo/>
                     <HabitsYouWantToResist/>
                     <HabitStacksWidget/>
+                    <HappinessGraph/>
                 </div>
                 
                 <DailyRatingWindow />
