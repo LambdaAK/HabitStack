@@ -973,7 +973,7 @@ html {
 }
 
 .todo-list {
-  height: 50vh;
+  height: fit-content;
 }
 
 #day-info-window {
@@ -1204,6 +1204,31 @@ html {
   background: #535353;
 }
 .day-info-tasks::-webkit-scrollbar-thumb {
+  background: #2C2C2C;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.day-info-tasks-widget {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+  height: 40rem;
+  overflow-y: scroll;
+}
+.day-info-tasks-widget::-webkit-scrollbar {
+  width: 10px;
+}
+.day-info-tasks-widget::-webkit-scrollbar-track {
+  background: #535353;
+}
+.day-info-tasks-widget::-webkit-scrollbar-thumb {
   background: #2C2C2C;
   border-radius: 8px;
   margin-top: 5px;

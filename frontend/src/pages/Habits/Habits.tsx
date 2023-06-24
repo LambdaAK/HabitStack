@@ -92,7 +92,7 @@ function ToDoListItem(props: {name: string, index: number, itemsSetter: Function
                 }
             }
             >
-                ✖️
+                ✔️
             </div>
         </div>
     )
@@ -105,40 +105,76 @@ function ToDoList() {
         To display the items, they will be fetched from the database.
     */
 
-    const [items, setItems] = useState([
+    const [tasks, setTasks] = useState({})
 
-        "Test item 1",
-        "Test item 2",
-        "Test item 3",
-        "Test item 4",
-        "Test item 5",
+    const day = new Date().getDate();
+    const month = new Date().getMonth();
+    const year = new Date().getFullYear();
 
-    ])
+    useEffect(() => {
+        // fetch the tasks from the database
+        const tasksRef = ref(database, "users/" +  getCookie("user") + "/tasks/" + year + "/" + month + "/" + day)
+        return onValue(tasksRef, (snapshot: DataSnapshot) => {
+            const data = snapshot.val();
+            setTasks(data);
+            console.log(data)
+        })
+    }, [])
+
 
     return (
         <div className = "todo-list">
             <div className = "todo-list-header">
-                Todo List
+                Tasks
             </div>
-            <div className = "todo-list-items">
+            <div className = "day-info-tasks-widget">
                 {
-                    // TODO: render the todo list items here
-                    items.map(item => 
-                            <ToDoListItem
-                                name = {item}
-                                index = {items.indexOf(item)}
-                                itemsSetter = {setItems}
-                                items = {items}
-                            />  
-                    )
+                    // TODO: render the tasks here
+                    (function() {
+                        if (tasks == null || tasks == undefined) {
+                            return (
+                                <></>
+                            )
+                        }
+
+                        const components = []
+
+                        for (let i = 0; i < Object.keys(tasks).length; i++) {
+                            const key = Object.keys(tasks)[i];
+                            components.push(
+                                <DayInfoTask
+                                name = {tasks[key]}
+                                index = {i}
+                                year = {year}
+                                month = {month}
+                                day = {day}
+                                />
+                            )
+                        }
+                        return components
+                    })()
                 }
             </div>
 
             <div className = "todo-list-input">
-                <input type="text" placeholder = "Item" className = "todo-list-name-input">
+                <input type="text" placeholder = "Add a new task" className = "todo-list-name-input" id = "todo-list-widget-name-input">
 
                 </input>
-                <div className = "todo-list-add-item-button">
+                <div className = "todo-list-add-item-button"
+                onClick = {
+                    async () => {
+                        const taskName: string = $("#todo-list-widget-name-input").val() as string;
+                        
+                        const result = await taskCreateAPI(auth, taskName, year, month, day)
+                        if (!result.success) {
+                            alert(result.errorMessage)
+                        }
+                        else {
+                            $("#todo-list-widget-name-input").val("")
+                        }
+                    }
+                }
+                >
                     +
                 </div>
 

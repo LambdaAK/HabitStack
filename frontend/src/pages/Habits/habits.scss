@@ -836,7 +836,7 @@
 
 .todo-list {
     @extend #happiness-graph;
-    height: 50vh;
+    height: fit-content;
 }
 
 .todo-list-header {
@@ -1013,6 +1013,13 @@
     width: 90%;
     height: 80%;
     margin-top: 1rem;
+}
+
+.day-info-tasks-widget {
+    @include shadow;
+    @include styled-scrollbar;
+    height: 40rem;
+    overflow-y: scroll;
 }
 
 .day-info-create-task-section {
