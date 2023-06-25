@@ -232,23 +232,36 @@ function HabitsYouWantToDo() {
                     Habits you want to do
                 </div>
             </div>
-            <div className = "habits-you-want-to-do-list">
-                {
-                    Object.keys(habits).map(habitName =>
-                        <HabitsYouWantToDoListItem
-                            editMode = {editMode}
-                            habitName = {habitName}
-                            action = {habits[habitName].iWill}
-                            time = {habits[habitName].atTime}
-                            location = {habits[habitName].atLocation}
-                            obvious = {habits[habitName].obvious}
-                            attractive = {habits[habitName].attractive}
-                            easy = {habits[habitName].easy}
-                            satisfying = {habits[habitName].satisfying}
-                        />
+
+            {
+
+                (function() {
+                    if (habits == null || habits == undefined) {
+                        return <></>
+                    }
+                    else return (
+                        <div className = "habits-you-want-to-do-list">
+                        {
+
+                            Object.keys(habits).map(habitName => // check for null
+                                <HabitsYouWantToDoListItem
+                                    editMode = {editMode}
+                                    habitName = {habitName}
+                                    action = {habits[habitName].iWill}
+                                    time = {habits[habitName].atTime}
+                                    location = {habits[habitName].atLocation}
+                                    obvious = {habits[habitName].obvious}
+                                    attractive = {habits[habitName].attractive}
+                                    easy = {habits[habitName].easy}
+                                    satisfying = {habits[habitName].satisfying}
+                                />
+                            )
+                        }
+                        </div>
                     )
-                }
-            </div>
+                })()
+            }
+            
         </div>
     )
 }
@@ -324,7 +337,13 @@ function HabitsYouWantToDoListItem(props: {editMode: boolean, habitName: string,
                     (function() {
                         if (!dropDown) return <></>
                         else return (
-                            <div className = "habits-you-want-to-do-list-name">
+                            <div className = "habits-you-want-to-do-list-name"
+                            style = {{
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: "2rem"
+                            }}
+                            >
                                     <div>
                                         {`I will ${props.action} at ${props.time} at ${props.location}`}
                                     </div>
@@ -386,20 +405,35 @@ function HabitsYouWantToResist() {
                     Habits you want to resist
                 </div>
             </div>
-            <div className = "habits-you-want-to-do-list">
-                {
-                    Object.keys(habits).map(habitName =>
-                        <HabitsYouWantToResistListItem
-                            editMode = {editMode}
-                            name = {habitName}
-                            invisible = {habits[habitName].invisible}
-                            unattractive = {habits[habitName].unattractive}
-                            difficult = {habits[habitName].difficult}
-                            unsatisfying = {habits[habitName].unsatisfying}
-                        />
+
+
+            {
+                (function() {
+                    
+                    if (habits == null || habits == undefined) {
+                        return <></>
+                    }
+                    else return (
+                        <div className = "habits-you-want-to-do-list">
+                        {
+
+                            Object.keys(habits).map(habitName => // check for null
+                                <HabitsYouWantToResistListItem
+                                    editMode = {editMode}
+                                    name = {habitName}
+                                    invisible = {habits[habitName].invisible}
+                                    unattractive = {habits[habitName].unattractive}
+                                    difficult = {habits[habitName].difficult}
+                                    unsatisfying = {habits[habitName].unsatisfying}
+                                />
+                            )
+                        }
+                        </div>
                     )
-                }
-            </div>
+
+
+                })()
+            }
         </div>
     )
 }
@@ -471,7 +505,13 @@ function HabitsYouWantToResistListItem(props: {editMode: boolean, name: string, 
                     (function() {
                         if (!dropDown) return <></>
                         else return (
-                            <div className = "habits-you-want-to-do-list-name">
+                            <div className = "habits-you-want-to-do-list-name"
+                            style = {{
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: "2rem"
+                            }}
+                            >
                                     <div>
                                         {`I will make it invisible by ${props.invisible}`}
                                     </div>
