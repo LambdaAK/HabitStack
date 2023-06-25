@@ -3,8 +3,8 @@
 #habits-calendar {
     @include shadow;
     height: fit-content;
-    width: fit-content;
-    margin-top: 1vh;
+    width: max-content;
+    margin: 1vh 2rem 2rem;
     padding: 3rem;
     border-radius: 8px;
     background-color: $very-dark-slate;

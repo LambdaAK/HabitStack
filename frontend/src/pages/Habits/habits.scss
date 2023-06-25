@@ -962,6 +962,8 @@
     margin-bottom: 1rem;
     overflow-x: scroll;
     width: 30vw;
+    display: flex;
+    flex-direction: column;
 
     &:hover {
         cursor: pointer;
@@ -997,6 +999,21 @@
     }
 
     transition: all 0.2s ease-in-out;
+}
+
+.habits-you-want-to-do-list-name {
+    @include shadow;
+    @include styled-scrollbar;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    width: max;
+    flex-grow: 1;
+    text-align: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    overflow-x: scroll;
 }
 
 .day-info-tasks-header {

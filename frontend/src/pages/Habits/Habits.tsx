@@ -254,8 +254,17 @@ function HabitsYouWantToDo() {
 }
 
 function HabitsYouWantToDoListItem(props: {editMode: boolean, habitName: string, action: string, time: string, location: string, obvious: string, attractive: string, easy: string, satisfying: string}) {
+    
+    const [dropDown, setDropDown] = useState(false) // whether the properties of the habit should be rendered
+    
     return (
-        <div className = "habits-you-want-to-do-list-item-container">
+        <div className = "habits-you-want-to-do-list-item-container"
+        onClick = {
+            () => {
+                setDropDown(!dropDown)
+            }
+        }
+        >
             {
                 (function() {
                     if (props.editMode) {
@@ -298,7 +307,44 @@ function HabitsYouWantToDoListItem(props: {editMode: boolean, habitName: string,
                 }
             }
             >
-                {props.habitName}
+                <div className = "habits-you-want-to-do-list-name"
+                style = {
+                    (function() {
+                        if (dropDown) return {
+                            marginBottom: "2rem"
+                        }
+                        else return {}
+                    })()
+                }
+                >
+                    {props.habitName}
+                </div>
+                {
+                    // if the drop down is open, render the properties
+                    (function() {
+                        if (!dropDown) return <></>
+                        else return (
+                            <div className = "habits-you-want-to-do-list-name">
+                                    <div>
+                                        {`I will ${props.action} at ${props.time} at ${props.location}`}
+                                    </div>
+                                    <div>
+                                        {`I will make it obvious by ${props.obvious}`}
+                                    </div>
+                                    <div>
+                                        {`I will make it attractive by ${props.attractive}`}
+                                    </div>
+                                    <div>
+                                        {`I will make it easy by ${props.easy}`}
+                                    </div>
+                                    <div>
+                                        {`I will make it satisfying by ${props.satisfying}`}
+                                    </div>
+                            </div>
+                            
+                        )
+                    })()
+                }
             </div>
         </div>
     )
