@@ -391,12 +391,50 @@ async function testTasksDelete(email, password, index, year, month, day) {
     })
 }
 
-testTasksAdd(
-    "alex.kozik@yahoo.com",
-    "1234567890",
-    "First Task",
-    2023,
-    6,
-    24
-)
-    
+async function testHabitStackCreate(email, password, name, habits) {
+    const user = await signInWithEmailAndPassword(auth, email, password)
+    const idToken = await user.user.getIdToken(true)
+
+    fetch('http://192.168.1.10:3000/habitstacks/create', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'id-token': idToken,
+        },
+        body: JSON.stringify({
+            "name": name,
+            "habits": habits,
+        })
+    })
+    .then(response => {
+        response.json()
+        .then(json => {
+            console.log(json)
+        })
+    })
+}
+
+async function testHabitStackDelete(email, password, name) {
+    const user = await signInWithEmailAndPassword(auth, email, password)
+    const idToken = await user.user.getIdToken(true)
+
+    fetch('http://192.168.1.10:3000/habitstacks/delete', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'id-token': idToken,
+        },
+        body: JSON.stringify({
+            "name": name,
+        })
+    })
+    .then(response => {
+        response.json()
+        .then(json => {
+            console.log(json)
+        })
+    })
+}
+

@@ -875,6 +875,66 @@ async function handleHabitResistDelete(req, res) {
     res.send(JSON.stringify({"message": "Habit resist deleted"}))
 }
 
+async function handleHabitStackCreate(req, res) {
+    // verify the id token
+    const uuid = await verifyIdToken(admin, req, res)
+    if (uuid == "") {
+        res.status(401).send(JSON.stringify({ "error": "Invalid id token" }))
+        return
+    }
+
+    // get the name of the habit stack
+    const name = req.body.name
+
+    // make sure it's not null or empty
+    if (name == undefined || name == null || name == "") {
+        res.status(400).send(JSON.stringify({ "error": "No name provided" }))
+        return
+    }
+
+    // get the habits in the stack
+
+    const habits = req.body.habits
+
+    // make sure it's not null or empty
+    if (habits == undefined || habits == null || habits.length == 0) {
+        res.status(400).send(JSON.stringify({ "error": "No habits provided" }))
+        return
+    }
+
+    // send it to the database
+
+    const habitStackRef = ref(database, `users/${uuid}/habitstacks/${name}`)
+    await set(habitStackRef, habits)
+    res.send(JSON.stringify({"message": "Habit stack created"}))
+}
+
+async function handleHabitStackDelete(req, res) {
+    // verify the id token
+    const uuid = await verifyIdToken(admin, req, res)
+    if (uuid == "") {
+        res.status(401).send(JSON.stringify({ "error": "Invalid id token" }))
+        return
+    }
+
+    // get the name of the habit stack
+
+    const name = req.body.name
+
+    // make sure it's not null or empty
+
+    if (name == undefined || name == null || name == "") {
+        res.status(400).send(JSON.stringify({ "error": "No name provided" }))
+        return
+    }
+
+    // delete it
+
+    const habitStackRef = ref(database, `users/${uuid}/habitstacks/${name}`)
+    await set(habitStackRef, null)
+    res.send(JSON.stringify({"message": "Habit stack deleted"}))
+}
+
 
 expressApp.post("/message/send", bodyParser.json(), (req, res) => {
     console.log("sending message")
@@ -936,6 +996,14 @@ expressApp.post("/tasks/add", bodyParser.json(), (req, res) => {
 
 expressApp.post("/tasks/delete", bodyParser.json(), (req, res) => {
     handleTasksDelete(req, res)
+})
+
+expressApp.post("/habitstacks/create", bodyParser.json(), (req, res) => {
+    handleHabitStackCreate(req, res)
+})
+
+expressApp.post("/habitstacks/delete", bodyParser.json(), (req, res) => {
+    handleHabitStackDelete(req, res)
 })
 
 
