@@ -309,6 +309,10 @@
     border: none;
 }
 
+#habit-resistor-window-name-input {
+    @extend #habit-creator-window-name-input;
+}
+
 .implementation-intention-header {
     @include shadow;
     font-size: 2rem;

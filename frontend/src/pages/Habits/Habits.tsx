@@ -3,7 +3,7 @@ import "./habits.css";
 import HabitsCalendar from "./components/HabitsCalendar"
 import $ from "jquery";
 import { Key, useEffect, useState } from "react";
-import { habitCreateAPI, habitDeleteAPI, taskCreateAPI, taskDeleteAPI } from "../../utilities/backendRequests";
+import { habitCreateAPI, habitDeleteAPI, habitResistCreateAPI, habitResistDeleteAPI, taskCreateAPI, taskDeleteAPI } from "../../utilities/backendRequests";
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { Auth, getAuth } from "firebase/auth";
 import { DataSnapshot, Database, getDatabase, onValue, ref } from "firebase/database";
@@ -352,12 +352,144 @@ function HabitsYouWantToDoListItem(props: {editMode: boolean, habitName: string,
 
 
 function HabitsYouWantToResist() {
-    return (
-        <div className = "daily-completion">
-            <div className = "daily-completion-header">
-                Habits you want to avoid
-            </div>
+    
+    const [habits, setHabits] = useState({})
+    
+    const [editMode, setEditMode] = useState(false)
 
+
+    useEffect(() => {
+        // fetch the habits from the database
+        const habitsRef = ref(database, "/users/" +  getCookie("user") + "/habitresists")
+        return onValue(habitsRef, (snapshot: DataSnapshot) => {
+            const data = snapshot.val();
+            setHabits(data);
+        })
+    }, [])
+
+
+    return (
+        <div className = "habits-you-want-to-do-widget">
+            <div style = {{
+                display: "flex",
+            }}>            
+                <div className = "habits-you-want-to-do-widget-edit-button"
+                onClick = {
+                    () => {
+                        setEditMode(!editMode)
+                    }
+                }
+                >
+                    ⚙️
+                </div>
+                <div className = "habits-you-want-to-do-widget-header">
+                    Habits you want to resist
+                </div>
+            </div>
+            <div className = "habits-you-want-to-do-list">
+                {
+                    Object.keys(habits).map(habitName =>
+                        <HabitsYouWantToResistListItem
+                            editMode = {editMode}
+                            name = {habitName}
+                            invisible = {habits[habitName].invisible}
+                            unattractive = {habits[habitName].unattractive}
+                            difficult = {habits[habitName].difficult}
+                            unsatisfying = {habits[habitName].unsatisfying}
+                        />
+                    )
+                }
+            </div>
+        </div>
+    )
+}
+
+function HabitsYouWantToResistListItem(props: {editMode: boolean, name: string, invisible: string, unattractive: string, difficult: string, unsatisfying: string}) {
+      
+    const [dropDown, setDropDown] = useState(false) // whether the properties of the habit should be rendered
+    
+    return (
+        <div className = "habits-you-want-to-do-list-item-container"
+        onClick = {
+            () => {
+                setDropDown(!dropDown)
+            }
+        }
+        >
+            {
+                (function() {
+                    if (props.editMode) {
+                        return (
+                            <div className = "habits-you-want-to-do-list-delete-item-button"
+                            onClick = {
+                                async () => {
+                                    // delete the item from the database
+                                    const result = await habitResistDeleteAPI(auth, props.name)
+                                    if (!result.success) {
+                                        alert(result.errorMessage)
+                                    }  
+                                }
+                            }
+                            >
+                                ✖️
+                            </div>
+                        )
+                    }
+                })()
+            }
+            <div className = "habits-you-want-to-do-list-item"
+            onClick = {
+                () => {
+                    // if in edit mode, open up the habit creator
+                    if (props.editMode) {
+                        // set the properties
+                        $("#habit-resistor-window-name-input").val(props.name)
+                        $("#invisible-input").val(props.invisible)
+                        $("#unattractive-input").val(props.unattractive)
+                        $("#difficult-input").val(props.difficult)
+                        $("#unsatisfying-input").val(props.unsatisfying)
+                        // open the window
+                        openOrCloseHabitResistorWindow()
+                    }
+                }
+            }
+            >
+                <div className = "habits-you-want-to-do-list-name"
+                style = {
+                    (function() {
+                        if (dropDown) return {
+                            marginBottom: "2rem"
+                        }
+                        else return {}
+                    })()
+                }
+                >
+                    {props.name}
+                </div>
+                {
+                    // if the drop down is open, render the properties
+                    (function() {
+                        if (!dropDown) return <></>
+                        else return (
+                            <div className = "habits-you-want-to-do-list-name">
+                                    <div>
+                                        {`I will make it invisible by ${props.invisible}`}
+                                    </div>
+                                    <div>
+                                        {`I will make it unattractive by ${props.unattractive}`}
+                                    </div>
+                                    <div>
+                                        {`I will make it difficult by ${props.difficult}`}
+                                    </div>
+                                    <div>
+                                        {`I will make it unsatisfying by ${props.unattractive}`}
+                                    </div>
+                            </div>
+                            
+                        )
+                    })()
+                }
+            </div>
         </div>
     )
 }
@@ -550,11 +682,6 @@ function ExitHabitResistorWindowButton() {
 }
 
 function HabitResistorWindow() {
-    const [name, setName] = useState("")
-    const [invisible, setInvisible] = useState("")
-    const [unattractive, setUnattractive] = useState("")
-    const [difficult, setDifficult] = useState("")
-    const [unsatisfying, setUnsatisfying] = useState("")
 
     return (
         <div id = "habit-resistor-window">
@@ -562,7 +689,7 @@ function HabitResistorWindow() {
             <div className = "habit-resistor-window-header">
                 Habit Resistor
             </div>
-            <input id = "habit-creator-window-name-input"
+            <input id = "habit-resistor-window-name-input"
             placeholder = "Habit Name"
             >
             </input>
@@ -577,6 +704,7 @@ function HabitResistorWindow() {
                 </div>
                 <input className = "implementation-intention-input"
                 placeholder = "invisible"
+                id = "invisible-input"
                 >
                 </input>
                 <div className = "implementation-intention-sub-label">
@@ -584,6 +712,7 @@ function HabitResistorWindow() {
                 </div>
                 <input className = "implementation-intention-input"
                 placeholder = "unattractive"
+                id = "unattractive-input"
                 >
                 </input>
                 <div className = "implementation-intention-sub-label">
@@ -591,6 +720,7 @@ function HabitResistorWindow() {
                 </div>
                 <input className = "implementation-intention-input"
                 placeholder = "difficult"
+                id = "difficult-input"
                 >
                 </input>
                 <div className = "implementation-intention-sub-label">
@@ -598,11 +728,41 @@ function HabitResistorWindow() {
                 </div>
                 <input className = "implementation-intention-input"
                 placeholder = "unsatisfying"
+                id = "unsatisfying-input"
                 >
                 </input>
                 
             </div>
-            <div id = "resist-habit-button">
+            <div id = "resist-habit-button"
+            onClick = {
+                async () => {
+                    // get the values
+                    const name: string = $("#habit-resistor-window-name-input").val() as string;
+                    const invisible: string = $("#invisible-input").val() as string;
+                    const unattractive: string = $("#unattractive-input").val() as string;
+                    const difficult: string = $("#difficult-input").val() as string;
+                    const unsatisfying: string = $("#unsatisfying-input").val() as string;
+
+                    // send the request
+
+                    alert(`name: ${name}, invisible: ${invisible}, unattractive: ${unattractive}, difficult: ${difficult}, unsatisfying: ${unsatisfying}`)
+
+                    const result = await habitResistCreateAPI(auth, name, invisible, unattractive, difficult, unsatisfying)
+                    if (!result.success) {
+                        alert(result.errorMessage)
+                    }
+                    else {
+                        // empty the fields and close the window
+                        $("#habit-resistor-window-name-input").val("")
+                        $("#invisible-input").val("")
+                        $("#unattractive-input").val("")
+                        $("#difficult-input").val("")
+                        $("#unsatisfying-input").val("")
+                        openOrCloseHabitResistorWindow()
+                    }
+                }
+            }
+            >
                 Resist Habit
             </div>
 

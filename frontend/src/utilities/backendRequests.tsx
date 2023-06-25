@@ -547,3 +547,93 @@ export async function taskDeleteAPI(auth: Auth, index: number, year: number, mon
     }
 
 }
+
+export async function habitResistCreateAPI(
+    auth: Auth,
+    name: string,
+    invisible: string,
+    unattractive: string,
+    difficult: string,
+    unsatisfying: string
+): Promise<APIResult>
+{
+    if (!auth.currentUser) {
+        return {
+            success: false,
+            errorMessage: "Not logged in"
+        }
+    }
+    const idToken = await auth.currentUser.getIdToken();
+    const response = await fetch(`${backendConfig.url}/habitresist/create`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin':'*',
+            'id-token': idToken,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "name": name,
+            "invisible": invisible,
+            "unattractive": unattractive,
+            "difficult": difficult,
+            "unsatisfying": unsatisfying
+        })
+    })
+
+    const result = await response.json();
+    
+    if (result.error == undefined || result.error == null) {
+        return {
+            success: true,
+            errorMessage: "",
+        }
+    }
+    else {
+        return {
+            success: false,
+            errorMessage: result.error
+        }
+    }
+
+}
+
+export async function habitResistDeleteAPI(auth: Auth, name: string): Promise<APIResult> {
+    if (!auth.currentUser) {
+        return {
+            success: false,
+            errorMessage: "Not logged in",
+        }
+    }
+
+    const idToken = await auth.currentUser.getIdToken();
+    const response = await fetch(`${backendConfig.url}/habitresist/delete`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin':'*',
+            'id-token': idToken,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "name": name
+        })
+    })
+
+    const result = await response.json();
+    
+    if (result.error == undefined || result.error == null) {
+        return {
+            success: true,
+            errorMessage: "",
+        }
+    }
+    else {
+        return {
+            success: false,
+            errorMessage: result.error
+        }
+    }
+}
