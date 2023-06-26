@@ -421,6 +421,134 @@
     @extend .daily-rating-window-header;
 }
 
+.habit-stack-item-name {
+    @include shadow;
+    @include styled-scrollbar;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    height: 4rem;
+    overflow-x: scroll;
+
+}
+
+.habit-stack-item {
+    @include shadow;
+    @include styled-scrollbar;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    color: white;
+    font-size: 2rem;
+
+    &:hover {
+        cursor: pointer;
+        background-color: $slate;
+        color: black;
+    }
+
+    transition: all 0.2s ease-in-out;
+}
+
+.habit-stack-item-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    width: 50rem;
+}
+
+.habit-stack-widget-delete-button {
+    @include shadow;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+
+    background-color: $very-dark-slate;
+    border-radius: 8px;
+    padding: 1.5rem;
+    height: 3rem;
+    width: 3rem;
+    text-align: center;
+    text-justify: center;
+    
+    &:hover {
+        cursor: pointer;
+        transform: translateY(-10px);
+    }
+
+    transition: all 0.2s ease-in-out;
+
+}
+
+.habit-stack-item-habits {
+    @include shadow;
+    @include styled-scrollbar;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    overflow-x: scroll;
+}
+
+.habit-stacks-widget {
+    @include shadow;
+    @include styled-scrollbar;
+    background-color: $very-dark-slate;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: 80%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+.habit-stacks-list {
+    @include shadow;
+    @include styled-scrollbar;
+    background-color: $very-dark-slate;
+    margin-left: auto;
+    margin-right: auto;
+    width: 94%;
+    height: 80%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+.habit-stacks-widget-edit-button {
+    @extend #create-habit-button;
+}
+
+.habit-stacks-widget-header {
+    @include shadow;
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    width: max;
+    flex-grow: 1;
+    background-color: $very-dark-slate;
+    text-align: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
 #habit-stack-area {
     // this is the area where each individual habit is displayed
     @include shadow;
@@ -936,6 +1064,21 @@
     margin-right: auto;
     width: 90%;
     height: 80%;
+}
+
+.habit-stack-widget {
+    @include shadow;
+    @include styled-scrollbar;
+    background-color: $very-dark-slate;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    height: 50vh;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
 }
 
 .habits-you-want-to-do-list {

@@ -3,7 +3,7 @@ import "./habits.css";
 import HabitsCalendar from "./components/HabitsCalendar"
 import $ from "jquery";
 import { Key, useEffect, useState } from "react";
-import { habitCreateAPI, habitDeleteAPI, habitResistCreateAPI, habitResistDeleteAPI, taskCreateAPI, taskDeleteAPI } from "../../utilities/backendRequests";
+import { habitCreateAPI, habitDeleteAPI, habitResistCreateAPI, habitResistDeleteAPI, habitStackCreateAPI, habitStackDeleteAPI, taskCreateAPI, taskDeleteAPI } from "../../utilities/backendRequests";
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { Auth, getAuth } from "firebase/auth";
 import { DataSnapshot, Database, getDatabase, onValue, ref } from "firebase/database";
@@ -1316,7 +1316,26 @@ function HabitStackCreatorWindow() {
                 placeholder = "Habit Name"
                 ></input>
             </div>
-            <div id = "finish-creating-habit-stack-button">
+            <div id = "finish-creating-habit-stack-button"
+            onClick = {
+                async () => {
+                    // get the name
+                    const name: string = $("#habit-stack-name-input").val() as string;
+                    
+                    const result = await habitStackCreateAPI(auth, name, habits)
+                    if (!result.success) {
+                        alert(result.errorMessage)
+                    }
+                    else {
+                        // empty the fields
+                        $("#habit-stack-name-input").val("")
+                        $("#habit-stack-habit-creation-input").val("")
+                        setHabits([])
+                        openOrCloseHabitStackCreatorWindow()
+                    }
+                }
+            }
+            >
                 Create Habit Stack
             </div>
             
@@ -1583,15 +1602,157 @@ interface HabitCardWindowHabitWithRating {
     rating: number,
 }
 
+function HabitStacksWidgetItem(props: {editMode: boolean, name: string, habits: string[]}) {
+    
+    const [dropDown, setDropDown] = useState(false);
+
+    const toggleDropDown = () => setDropDown(!dropDown)
+    
+    if (!dropDown) return (
+        <div className = "habit-stack-item-container">
+            {
+                (function() {
+                    if (props.editMode) return (
+                        <div className = "habit-stack-widget-delete-button"
+                        onClick = {
+                            async () => {
+                                // delete the habit stack
+                                const result = await habitStackDeleteAPI(auth, props.name)
+                                if (!result.success) {
+                                    alert(result.errorMessage)
+                                }
+                                
+                            }
+                        }
+                        >
+                            ✖️
+                        </div>
+                    )
+                })()
+            }
+            <div className = "habit-stack-item"
+            onClick = {toggleDropDown}
+            >
+                <div className = "habit-stack-item-name">
+                    {props.name}
+                </div>
+            </div>
+        </div>
+  
+    )
+    
+    else return (
+        <div className = "habit-stack-item-container">
+            {
+                (function() {
+                    if (props.editMode) return (
+                        <div className = "habit-stack-widget-delete-button"
+                        
+                        >
+                            ✖️
+                        </div>
+                    )
+                })()
+            }
+      
+            <div className = "habit-stack-item"
+            onClick = {toggleDropDown}
+            >
+                <div className = "habit-stack-item-name"
+                style = {{
+                    marginBottom: "2rem",
+                    height: "fit-content"
+                }}
+                >
+                    {props.name}
+                </div>
+
+                <div className = "habit-stack-item-habits">
+                    {
+                        props.habits.map(habit => {
+                            return (
+                                <div
+                                style = {{
+                                    marginBottom: "2rem"
+                                }}
+                                >
+                                    {habit}
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+        </div>
+    )
+}
+
 function HabitStacksWidget() {
+
+    const [stacks, setStacks] = useState({})
+    
+    const [editMode, setEditMode] = useState(false)
+
+
+    useEffect(() => {
+        // fetch the habits from the database
+        const stacksRef = ref(database, "/users/" +  getCookie("user") + "/habitstacks")
+        return onValue(stacksRef, (snapshot: DataSnapshot) => {
+            const data = snapshot.val();
+            setStacks(data);
+            console.log(`habit stacks: ${JSON.stringify(data)}`)
+        })
+    }, [])
+
+
     return (
-        <div className = "todo-list">
-            <div className = "todo-list-header">
-                Habit Stacks
+        <div className = "habit-stacks-widget">
+            <div id = "a" style = {{
+                display: "flex",
+                flexDirection: "row",
+                width: "100%",
+                marginBottom: "2rem"
+            }}>
+                <div className = "habit-stacks-widget-edit-button"
+                onClick = {
+                    () => {
+                        setEditMode(!editMode)
+                    }
+                }
+                >
+                    ⚙️
+                </div>
+                <div className = "habit-stacks-widget-header">
+                    Habit Stacks
+                </div>
             </div>
-            <div className = "habit-stacks-widget-habit-stacks">
+
+            {
+
+                (function() {
+                    if (stacks == null || stacks == undefined) {
+                        return <></>
+                    }
+                    else return (
+                        <div className = "habit-stacks-list">
+                        {
+                            // render each habit stack
+                            Object.keys(stacks).map(name => {
+                                console.log(`name: ${name}`)
+                                return (
+                                    <HabitStacksWidgetItem
+                                        editMode = {editMode}
+                                        name = {name}
+                                        habits = {stacks[name]}
+                                    />
+                                )
+                            })
+                        }
+                        </div>
+                    )
+                })()
+            }
             
-            </div>
         </div>
     )
 }

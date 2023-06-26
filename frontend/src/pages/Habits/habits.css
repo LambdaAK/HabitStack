@@ -456,7 +456,7 @@ html {
   border: none;
 }
 
-#create-habit-button, .habit-card-window-add-habit-button, .habit-card-window-complete-button, #finish-creating-habit-stack-button, #resist-habit-button {
+#create-habit-button, .habit-card-window-add-habit-button, .habit-card-window-complete-button, #finish-creating-habit-stack-button, .habit-stacks-widget-edit-button, #resist-habit-button {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
@@ -472,7 +472,7 @@ html {
   width: fit-content;
   transition: all 0.2s ease-in-out;
 }
-#create-habit-button:hover, .habit-card-window-add-habit-button:hover, .habit-card-window-complete-button:hover, #finish-creating-habit-stack-button:hover, #resist-habit-button:hover {
+#create-habit-button:hover, .habit-card-window-add-habit-button:hover, .habit-card-window-complete-button:hover, #finish-creating-habit-stack-button:hover, .habit-stacks-widget-edit-button:hover, #resist-habit-button:hover {
   cursor: pointer;
   transform: translateY(-10px);
 }
@@ -480,6 +480,218 @@ html {
 #habit-stack-creator-window {
   overflow-y: scroll;
   height: 90%;
+}
+
+.habit-stack-item-name {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  height: 4rem;
+  overflow-x: scroll;
+}
+.habit-stack-item-name::-webkit-scrollbar {
+  width: 10px;
+}
+.habit-stack-item-name::-webkit-scrollbar-track {
+  background: #535353;
+}
+.habit-stack-item-name::-webkit-scrollbar-thumb {
+  background: #2C2C2C;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.habit-stack-item {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  color: white;
+  font-size: 2rem;
+  transition: all 0.2s ease-in-out;
+}
+.habit-stack-item::-webkit-scrollbar {
+  width: 10px;
+}
+.habit-stack-item::-webkit-scrollbar-track {
+  background: #535353;
+}
+.habit-stack-item::-webkit-scrollbar-thumb {
+  background: #2C2C2C;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.habit-stack-item:hover {
+  cursor: pointer;
+  background-color: #DDDDDD;
+  color: black;
+}
+
+.habit-stack-item-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  width: 50rem;
+}
+
+.habit-stack-widget-delete-button {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  background-color: #2C2C2C;
+  border-radius: 8px;
+  padding: 1.5rem;
+  height: 3rem;
+  width: 3rem;
+  text-align: center;
+  text-justify: center;
+  transition: all 0.2s ease-in-out;
+}
+.habit-stack-widget-delete-button:hover {
+  cursor: pointer;
+  transform: translateY(-10px);
+}
+
+.habit-stack-item-habits {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  overflow-x: scroll;
+}
+.habit-stack-item-habits::-webkit-scrollbar {
+  width: 10px;
+}
+.habit-stack-item-habits::-webkit-scrollbar-track {
+  background: #535353;
+}
+.habit-stack-item-habits::-webkit-scrollbar-thumb {
+  background: #2C2C2C;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.habit-stacks-widget {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+  background-color: #2C2C2C;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  height: 80%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+.habit-stacks-widget::-webkit-scrollbar {
+  width: 10px;
+}
+.habit-stacks-widget::-webkit-scrollbar-track {
+  background: #535353;
+}
+.habit-stacks-widget::-webkit-scrollbar-thumb {
+  background: #2C2C2C;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.habit-stacks-list {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+  background-color: #2C2C2C;
+  margin-left: auto;
+  margin-right: auto;
+  width: 94%;
+  height: 80%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+.habit-stacks-list::-webkit-scrollbar {
+  width: 10px;
+}
+.habit-stacks-list::-webkit-scrollbar-track {
+  background: #535353;
+}
+.habit-stacks-list::-webkit-scrollbar-thumb {
+  background: #2C2C2C;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.habit-stacks-widget-header {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  width: max;
+  flex-grow: 1;
+  background-color: #2C2C2C;
+  text-align: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 #habit-stack-area {
@@ -1078,6 +1290,39 @@ html {
   height: 80%;
 }
 
+.habit-stack-widget {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+  background-color: #2C2C2C;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  height: 50vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+.habit-stack-widget::-webkit-scrollbar {
+  width: 10px;
+}
+.habit-stack-widget::-webkit-scrollbar-track {
+  background: #535353;
+}
+.habit-stack-widget::-webkit-scrollbar-thumb {
+  background: #2C2C2C;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
 .habits-you-want-to-do-list {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
