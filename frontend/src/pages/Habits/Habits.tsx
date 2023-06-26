@@ -911,9 +911,9 @@ function DailyRatingWindowStandardRatingButton(props: {thisRating: number, ratin
 
 function DailyRatingWindow() {
 
-    const [happinessRating, setHappinessRating] = useState(-1);
-    const [stickRating, setStickRating] = useState(-1);
-    const [avoidRating, setAvoidRating] = useState(-1);
+    const [happinessRating, setHappinessRating] = useState(null);
+    const [stickRating, setStickRating] = useState(null);
+    const [avoidRating, setAvoidRating] = useState(null);
 
 
 
