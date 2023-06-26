@@ -452,9 +452,6 @@ function Day(props: {day: number, month: number, year: number, dayInfo: {day: nu
         }
     })()
 
-
-
-
     useEffect(() => {
         setTimeout(() => {
                 // make it visible
@@ -591,9 +588,9 @@ export default function HabitsCalendar(props: {dayInfo: {day: number, month: num
                 />
                 <MonthLabel monthNumber = {monthNumber} yearNumber = {yearNumber} />
                 <MonthRightButton 
-                    monthNumberSetter={setMonthNumber} 
-                    yearNumberSetter={setYearNumber} 
-                    monthNumber = {monthNumber} 
+                    monthNumberSetter={setMonthNumber}
+                    yearNumberSetter={setYearNumber}
+                    monthNumber = {monthNumber}
                     yearNumber = {yearNumber}
                 />
             </div>

@@ -1195,7 +1195,7 @@ html {
   flex-direction: column;
   align-items: center;
   width: 50%;
-  height: 50%;
+  height: 100%;
   margin-top: 1rem;
   background-color: #2C2C2C;
   top: 50%;
@@ -1602,6 +1602,92 @@ html {
   cursor: pointer;
   transform: translateY(-10px);
   background-color: #DDDDDD;
+}
+
+.day-info-statistics {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  height: 80%;
+  margin-top: 1rem;
+}
+.day-info-statistics::-webkit-scrollbar {
+  width: 10px;
+}
+.day-info-statistics::-webkit-scrollbar-track {
+  background: #535353;
+}
+.day-info-statistics::-webkit-scrollbar-thumb {
+  background: #2C2C2C;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.daily-info-daily-statistics {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  height: 80%;
+  margin-top: 1rem;
+}
+.daily-info-daily-statistics::-webkit-scrollbar {
+  width: 10px;
+}
+.daily-info-daily-statistics::-webkit-scrollbar-track {
+  background: #535353;
+}
+.daily-info-daily-statistics::-webkit-scrollbar-thumb {
+  background: #2C2C2C;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.daily-info-row-double {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin-top: 1rem;
+}
+
+.daily-info-daily-statistics-header {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 2.5rem;
+  color: white;
+}
+
+.daily-info-daily-statistic {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 2rem;
+  color: white;
 }
 
 /*# sourceMappingURL=habits.css.map */

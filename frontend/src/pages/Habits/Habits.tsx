@@ -1214,7 +1214,72 @@ function DayInfo(props: {dayInfo: DayInterface, dayInfoSetter: Function}) {
                     +
                 </div>
             </div>
+            <div className = "day-info-tasks-header"
+            style = {{
+                marginTop: "2rem"
+            }}
+            >
+                Daily Statistics
+            </div>
+            <div className = "day-info-statistics">
+                <DailyInfoDailyStatistics dayInfo = {props.dayInfo}/>
+            </div>
         </div>  
+    )
+}
+
+function DailyInfoDailyStatistics(props: {dayInfo: DayInterface}) {
+    const [dailyStatistics, setDailyStatistics] = useState(null)
+
+    useEffect(() => {
+        // fetch the daily statistics from the database
+        const dailyStatisticsRef = ref(database, "users/" +  getCookie("user") + "/dailyratings/" + props.dayInfo.year + "/" + props.dayInfo.month + "/" + props.dayInfo.day)
+        return onValue(dailyStatisticsRef, (snapshot: DataSnapshot) => {
+            const data = snapshot.val();
+            setDailyStatistics(data);
+        })
+    }, [props.dayInfo.day, props.dayInfo.month, props.dayInfo.year])
+
+    const happyString: string =
+    (function() {
+        if (dailyStatistics == null) return ""
+        else return dailyStatistics.happy
+    })()
+
+    const stickString: string =
+    (function() {
+        if (dailyStatistics == null) return ""
+        else return dailyStatistics.stick
+    })()
+
+    const avoidString: string =
+    (function() {
+        if (dailyStatistics == null) return ""
+        else return dailyStatistics.avoid
+    })()
+
+    const descriptionString: string =
+    (function() {
+        if (dailyStatistics == null) return ""
+        else return dailyStatistics.description
+    })()
+
+    return (
+        <div className = "daily-info-daily-statistics">
+            <div className = "daily-info-daily-statistic">
+                Happiness Rating: {happyString}
+            </div>
+            <div className = "daily-info-daily-statistic">
+                Stick Rating: {stickString}
+            </div>
+
+            <div className = "daily-info-daily-statistic">
+                Avoid Rating: {avoidString}
+            </div>
+            <div className = "daily-info-daily-statistic">
+                Description: {descriptionString}
+            </div>
+        </div>
     )
 }
 

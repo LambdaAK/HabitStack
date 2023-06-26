@@ -988,7 +988,7 @@
     flex-direction: column;
     align-items: center;
     width: 50%;
-    height: 50%;
+    height: 100%;
     margin-top: 1rem;
     background-color: $very-dark-slate;
     top: 50%;
@@ -1247,4 +1247,48 @@
     }
 
     transition: all 0.2s ease-in-out;
+}
+
+.day-info-statistics {
+    @include shadow;
+    @include styled-scrollbar;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: 80%;
+    margin-top: 1rem;
+}
+
+.daily-info-daily-statistics {
+    @include shadow;
+    @include styled-scrollbar;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: 80%;
+    margin-top: 1rem;
+}
+
+.daily-info-row-double {
+    @include shadow;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 1rem;
+}
+
+.daily-info-daily-statistics-header {
+    @include shadow;
+    font-size: 2.5rem;
+    color: white;
+}
+
+.daily-info-daily-statistic {
+    @include shadow;
+    font-size: 2rem;
+    color: white;
 }
