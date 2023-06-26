@@ -716,3 +716,57 @@ export async function habitStackDeleteAPI(auth: Auth, name: string): Promise<API
         }
     }
 }
+
+export async function dailyRatingCreateAPI(
+    auth: Auth,
+    year: number,
+    month: number,
+    day: number,
+    happy: number,
+    stick: number,
+    avoid: number,
+    description: string
+): Promise<APIResult> {
+    if (!auth.currentUser) {
+        return {
+            success: false,
+            errorMessage: "Not logged in",
+        }
+    }
+
+    const idToken = await auth.currentUser.getIdToken();
+    const response = await fetch(`${backendConfig.url}/dailyratings/create`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin':'*',
+            'id-token': idToken,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "year": year,
+            "month": month,
+            "day": day,
+            "happy": happy,
+            "stick": stick,
+            "avoid": avoid,
+            "description": description
+        })
+    })
+
+    const result = await response.json();
+    
+    if (result.error == undefined || result.error == null) {
+        return {
+            success: true,
+            errorMessage: "",
+        }
+    }
+    else {
+        return {
+            success: false,
+            errorMessage: result.error
+        }
+    }
+}

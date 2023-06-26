@@ -3,7 +3,7 @@ import "./habits.css";
 import HabitsCalendar from "./components/HabitsCalendar"
 import $ from "jquery";
 import { Key, useEffect, useState } from "react";
-import { habitCreateAPI, habitDeleteAPI, habitResistCreateAPI, habitResistDeleteAPI, habitStackCreateAPI, habitStackDeleteAPI, taskCreateAPI, taskDeleteAPI } from "../../utilities/backendRequests";
+import { dailyRatingCreateAPI, habitCreateAPI, habitDeleteAPI, habitResistCreateAPI, habitResistDeleteAPI, habitStackCreateAPI, habitStackDeleteAPI, taskCreateAPI, taskDeleteAPI } from "../../utilities/backendRequests";
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { Auth, getAuth } from "firebase/auth";
 import { DataSnapshot, Database, getDatabase, onValue, ref } from "firebase/database";
@@ -915,6 +915,8 @@ function DailyRatingWindow() {
     const [stickRating, setStickRating] = useState(-1);
     const [avoidRating, setAvoidRating] = useState(-1);
 
+
+
     return (
         <div id = "daily-rating-window">
             <DailyRatingWindowExitButton />
@@ -984,8 +986,38 @@ function DailyRatingWindow() {
             <div className = "daily-rating-window-sub-header">
                 What is something memorable about today?
             </div>
-            <input type="text" className = "daily-rating-text-input" />
-            <div className = "daily-rating-submit-button">
+            <input type="text" className = "daily-rating-text-input" id = "daily-description-input"/>
+            <div className = "daily-rating-submit-button"
+            onClick = {
+                async () => {
+                    // get the current year month and day
+                    const date = new Date();
+                    const year = date.getFullYear();
+                    const month = date.getMonth();
+                    const day = date.getDate();
+
+                    // get the description
+                    const description: string = $("#daily-description-input").val() as string;
+
+                    // send the request
+                    const result = await dailyRatingCreateAPI(auth, year, month, day, happinessRating, stickRating, avoidRating, description)
+
+                    if (!result.success) {
+                        alert(result.errorMessage)
+                    }
+                    else {
+                        // empty the fields and close the window
+                        $("#daily-description-input").val("")
+                        setHappinessRating(-1)
+                        setStickRating(-1)
+                        setAvoidRating(-1)
+                        openOrCloseDailyRatingWindow()
+                    }
+                    
+
+                }
+            }
+            >
                 Submit
             </div>
 
