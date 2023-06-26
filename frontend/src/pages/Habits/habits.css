@@ -556,7 +556,7 @@ html {
   flex-direction: row;
   align-items: center;
   gap: 1rem;
-  width: 50rem;
+  width: 100%;
 }
 
 .habit-stack-widget-delete-button {

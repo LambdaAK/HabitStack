@@ -935,6 +935,76 @@ async function handleHabitStackDelete(req, res) {
     res.send(JSON.stringify({"message": "Habit stack deleted"}))
 }
 
+async function handleDailyRatingCreate(req, res) {
+    // verify the id token
+    const uuid = await verifyIdToken(admin, req, res)
+    if (uuid == "") {
+        res.status(401).send(JSON.stringify({ "error": "Invalid id token" }))
+        return
+    }
+
+    // get the properties
+
+    const year = req.body.year
+    const month = req.body.month
+    const day = req.body.day
+    const happy = req.body.happy
+    const stick = req.body.stick
+    const avoid = req.body.avoid
+    const description = req.body.description
+
+    // make sure they're not null or empty
+
+    if (year == undefined || year == null) {
+        res.status(400).send(JSON.stringify({ "error": "No year provided" }))
+        return
+    }
+
+    if (month == undefined || month == null) {
+        res.status(400).send(JSON.stringify({ "error": "No month provided" }))
+        return
+    }
+
+    if (day == undefined || day == null) {
+        res.status(400).send(JSON.stringify({ "error": "No day provided" }))
+        return
+    }
+
+    if (happy == undefined || happy == null || happy == "") {
+        res.status(400).send(JSON.stringify({ "error": "No happy provided" }))
+        return
+    }
+
+    if (stick == undefined || stick == null || stick == "") {
+        res.status(400).send(JSON.stringify({ "error": "No stick provided" }))
+        return
+    }
+
+    if (avoid == undefined || avoid == null || avoid == "") {
+        res.status(400).send(JSON.stringify({ "error": "No avoid provided" }))
+        return
+    }
+
+    if (description == undefined || description == null || description == "") {
+        res.status(400).send(JSON.stringify({ "error": "No description provided" }))
+        return
+    }
+
+    const dailyRatingRef = ref(database, `users/${uuid}/dailyratings/${year}/${month}/${day}`)
+
+    // set the daily rating
+
+    await set(dailyRatingRef, {
+        "happy": happy,
+        "stick": stick,
+        "avoid": avoid,
+        "description": description,
+    })
+
+    res.send(JSON.stringify({"message": "Daily rating created"}))
+
+}
+
 
 expressApp.post("/message/send", bodyParser.json(), (req, res) => {
     console.log("sending message")
@@ -1006,6 +1076,9 @@ expressApp.post("/habitstacks/delete", bodyParser.json(), (req, res) => {
     handleHabitStackDelete(req, res)
 })
 
+expressApp.post("/dailyratings/create", bodyParser.json(), (req, res) => {
+    handleDailyRatingCreate(req, res)
+})
 
 expressApp.listen(expressPort, () => {
     console.log(`Running express server on port ${expressPort}`)

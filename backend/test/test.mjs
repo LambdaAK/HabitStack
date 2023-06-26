@@ -438,3 +438,34 @@ async function testHabitStackDelete(email, password, name) {
     })
 }
 
+async function testDailyRatingCreate(email, password, year, month, day, happy, stick, avoid, description) {
+    const user = await signInWithEmailAndPassword(auth, email, password)
+    const idToken = await user.user.getIdToken(true)
+
+    const date = new Date(year, month, day)
+
+    fetch('http://192.168.1.10:3000/dailyratings/create', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'id-token': idToken,
+        },
+        body: JSON.stringify({
+            "date": date,
+            "happy": happy,
+            "stick": stick,
+            "avoid": avoid,
+            "description": description,
+            "year": year,
+            "month": month,
+            "day": day,
+        })
+    })
+    .then(response => {
+        response.json()
+        .then(json => {
+            console.log(json)
+        })
+    })
+}
