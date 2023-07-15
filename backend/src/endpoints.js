@@ -51,7 +51,7 @@ const expressPort = 3000
 /**
  * 
  * @param {Request} req 
- * @param {Response} res 
+ * @param {Response} res
  */
 async function handleMessageSend(req, res) {
     const uuid = await verifyIdToken(admin, req, res)

@@ -13,6 +13,11 @@
     // add a shadow manually
     @include shadow-no-padding;
 
+    @media (max-width: $breakpoint) {
+        width: 80%;
+        margin-top: 0;
+    }
+
 }
 
 .animate-title {

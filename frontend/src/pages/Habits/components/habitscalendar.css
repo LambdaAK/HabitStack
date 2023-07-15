@@ -41,8 +41,10 @@ html {
 }
 @media (max-width: 480px) {
   #habits-calendar {
-    width: 100%;
+    width: 100vw;
     padding: 1rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 

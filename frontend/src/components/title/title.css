@@ -41,6 +41,12 @@ html {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.2);
   border-radius: 8px;
 }
+@media (max-width: 480px) {
+  #title {
+    width: 80%;
+    margin-top: 0;
+  }
+}
 
 .animate-title {
   animation: header-animation 1s ease-in-out, second-header-animation 2s ease-in-out 1s infinite;

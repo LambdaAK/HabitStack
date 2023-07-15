@@ -10,8 +10,10 @@
     background-color: $very-dark-slate;
 
     @media (max-width: $breakpoint) {
-        width: 100%;
+        width: 100vw;
         padding: 1rem;
+        margin-left: auto;
+        margin-right: auto;
     }
     
 

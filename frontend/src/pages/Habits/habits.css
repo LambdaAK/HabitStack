@@ -44,9 +44,14 @@ html {
 
 .habits-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   justify-items: center;
   gap: 3vw;
+}
+@media (max-width: 480px) {
+  .habits-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 #habits-bar {
