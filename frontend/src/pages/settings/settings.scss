@@ -83,27 +83,34 @@
 
 .button-input-pair {
     display: flex;
-    flex-direction: row;
     justify-content: space-evenly;
     gap: 14px;
-    
-    @media (max-width: $breakpoint) {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+    flex-direction: column;
 }
 
 .change-username-button {
     @extend .settings-box-button;
-    width: 25%;
+    @include xs {
+        font-size: 2rem;
+    }
+    @include sm {
+        font-size: 2.5rem;
+    }
 }
 
 
 .reset-password-button {
     @extend .settings-box-button;
-    width: 84%;
+    width: fit-content;
+    padding: 1rem;
     text-align: center;
+    @include xs {
+        font-size: 2rem;
+    }
+    @include sm {
+        font-size: 2.5rem;
+    }
+
 }
 
 .change-email-button {
