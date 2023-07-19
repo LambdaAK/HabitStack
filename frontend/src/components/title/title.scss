@@ -16,17 +16,11 @@
     // do the sizing
 
     @include xs {
-        width: 65vw;
+        width: 45vw;
 
     }
 
-    @include lg {
-        width: 40vw;
-    }
-    
-    @include xl {
-        width: 35vw;
-    }
+
 
 }
 
