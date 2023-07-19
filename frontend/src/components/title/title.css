@@ -43,7 +43,22 @@ html {
 }
 @media (min-width: 0px) {
   #title {
-    width: 45vw;
+    width: 20rem;
+  }
+}
+@media (min-width: 600px) {
+  #title {
+    width: 25rem;
+  }
+}
+@media (min-width: 768px) {
+  #title {
+    width: 30rem;
+  }
+}
+@media (min-width: 992px) {
+  #title {
+    width: 35rem;
   }
 }
 

@@ -16,8 +16,16 @@
     // do the sizing
 
     @include xs {
-        width: 45vw;
-
+        width: 20rem;
+    }
+    @include sm {
+        width: 25rem;
+    }
+    @include md {
+        width: 30rem;
+    }
+    @include lg {
+        width: 35rem;
     }
 
 }
