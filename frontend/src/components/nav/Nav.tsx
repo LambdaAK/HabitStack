@@ -79,11 +79,12 @@ export default function Nav() {
         })
 
         $(window).resize(function() {
-            if (window.innerWidth <= 480 && $('#div-container').css('display') === 'flex') {
+            if (window.innerWidth <= 992) {
+                console.log('aaaa')
                 $('#div-container').css('display', 'none')
             }
 
-            else if (window.innerWidth > 480) {
+            else if (window.innerWidth > 992) {
                 $('#div-container').css('display', 'flex')
               
             }

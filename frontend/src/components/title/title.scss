@@ -13,9 +13,19 @@
     // add a shadow manually
     @include shadow-no-padding;
 
-    @media (max-width: $breakpoint) {
-        width: 80%;
-        margin-top: 0;
+    // do the sizing
+
+    @include xs {
+        width: 65vw;
+
+    }
+
+    @include lg {
+        width: 40vw;
+    }
+    
+    @include xl {
+        width: 35vw;
     }
 
 }

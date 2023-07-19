@@ -25,8 +25,7 @@
 
 #div-container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     height: min-content;
     width: 75%;
    
@@ -39,25 +38,30 @@
     font-size: 36px;
     font-weight: bold;
 
-    @media (max-width: $breakpoint) {
-        @include shadow;
-        flex-direction: column;
+    @include xs {
         display: none;
+        flex-direction: column;
     }
-    
 
-
+    @include lg {
+        display: block;
+        flex-direction: row;
+    }
 
 }
 
-
 #nav-button {
     display: none;
-    width: 100px;
-    height: 100px;
 
-    @media (max-width: $breakpoint) {
-        display: block;
+    display: block;
+
+    @include lg {
+        display: none;
     }
+
+    @include xs {
+        width: 20vw;
+    }
+
 }
 

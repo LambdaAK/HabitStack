@@ -41,10 +41,19 @@ html {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.2);
   border-radius: 8px;
 }
-@media (max-width: 480px) {
+@media (min-width: 0px) {
   #title {
-    width: 80%;
-    margin-top: 0;
+    width: 65vw;
+  }
+}
+@media (min-width: 992px) {
+  #title {
+    width: 40vw;
+  }
+}
+@media (min-width: 1200px) {
+  #title {
+    width: 35vw;
   }
 }
 

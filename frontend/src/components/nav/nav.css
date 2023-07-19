@@ -51,8 +51,7 @@ html {
 
 #div-container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   height: min-content;
   width: 75%;
   border-radius: 8px;
@@ -62,24 +61,31 @@ html {
   font-size: 36px;
   font-weight: bold;
 }
-@media (max-width: 480px) {
+@media (min-width: 0px) {
   #div-container {
-    box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
-    border-radius: 8px;
-    padding: 15px;
-    flex-direction: column;
     display: none;
+    flex-direction: column;
+  }
+}
+@media (min-width: 992px) {
+  #div-container {
+    display: block;
+    flex-direction: row;
   }
 }
 
 #nav-button {
   display: none;
-  width: 100px;
-  height: 100px;
+  display: block;
 }
-@media (max-width: 480px) {
+@media (min-width: 992px) {
   #nav-button {
-    display: block;
+    display: none;
+  }
+}
+@media (min-width: 0px) {
+  #nav-button {
+    width: 20vw;
   }
 }
 

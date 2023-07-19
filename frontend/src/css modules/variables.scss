@@ -6,6 +6,8 @@ $very-dark-slate: #2C2C2C;
 $green: #54F291;
 $light-blue: #54CFF2;
 
+
+
 html {
     background-color: $very-dark-slate;
 }
@@ -27,6 +29,33 @@ html {
     margin-left: 5%;
     margin-right: 5%;
 }
+
+$extra-small: 0px;
+$small: 600px;
+$medium: 768px;
+$large: 992px;
+$extra-large: 1200px;
+
+@mixin xs {
+    @media (min-width: $extra-small) {@content}
+}
+
+@mixin sm {
+    @media (min-width: $small) {@content}
+}
+
+@mixin md {
+    @media (min-width: $medium) {@content}
+}
+
+@mixin lg {
+    @media (min-width: $large) {@content}
+}
+
+@mixin xl {
+    @media (min-width: $extra-large) {@content}
+}
+
 
 @mixin visible-only-below-breakpoint ($standard-display) {
     display: $standard-display;

@@ -56,7 +56,6 @@ function SubDescription() {
 
 export default function Home() {
 
-
     return (
         <>
           <Title animate={true}/>
