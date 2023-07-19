@@ -69,7 +69,7 @@ html {
 }
 @media (min-width: 992px) {
   #div-container {
-    display: block;
+    display: flex;
     flex-direction: row;
   }
 }

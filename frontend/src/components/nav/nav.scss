@@ -44,7 +44,7 @@
     }
 
     @include lg {
-        display: block;
+        display: flex;
         flex-direction: row;
     }
 
