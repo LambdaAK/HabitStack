@@ -29,37 +29,33 @@ html {
   }
 }
 #terms-container {
-  height: 90vh;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   gap: 4vw;
   color: white;
 }
-@media (max-width: 480px) {
+@media (min-width: 992px) {
   #terms-container {
-    flex-direction: column;
-    height: fit-content;
+    flex-direction: row;
   }
 }
 
 #terms-bar {
-  animation: fly-in-left 1s ease;
-  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
-  border-radius: 8px;
-  padding: 15px;
   /* width */
   /* Track */
   /* Handle */
   /* Handle on hover */
-  height: 50vh;
-  min-width: 10vw;
-  margin-left: 1vw;
-  background-color: #2C2C2C;
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  animation: fly-in-left 1s ease;
   display: flex;
-  flex-direction: column;
-  gap: 1%;
-  overflow-y: auto;
+  flex-direction: row;
+  width: 80vw;
+  overflow-x: scroll;
+  margin-left: auto;
+  margin-right: auto;
 }
 #terms-bar::-webkit-scrollbar {
   width: 10px;
@@ -75,16 +71,13 @@ html {
   margin-left: 5px;
   margin-right: 5px;
 }
-@media (max-width: 480px) {
+@media (min-width: 992px) {
   #terms-bar {
-    margin-top: 4vh;
-    margin-bottom: 4vh;
-    width: 100%;
-    height: fit-content;
-    margin-right: auto;
-    margin-left: auto;
-    overflow-x: auto;
-    flex-direction: row;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 15vw;
+    height: 40vh;
   }
 }
 
@@ -103,11 +96,6 @@ html {
   margin-right: 1vw;
   animation: load-content 1s ease;
 }
-@media (max-width: 480px) {
-  .terms-content {
-    width: 90vw;
-  }
-}
 
 @keyframes load-content {
   0% {
@@ -121,7 +109,7 @@ html {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  font-size: 140px;
+  font-size: 8rem;
   color: white;
   margin-top: 20px;
   text-align: center;
@@ -129,11 +117,6 @@ html {
   padding: 8px;
   min-width: 20vw;
   margin-bottom: 20px;
-}
-@media (max-width: 480px) {
-  .term-header {
-    font-size: 64px;
-  }
 }
 
 .term-name {
@@ -164,8 +147,7 @@ html {
   margin-left: 50px;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
+  height: fit-content;
 }
 
 .related-terms-header {
@@ -178,12 +160,7 @@ html {
   padding: 10px;
   color: white;
   margin-bottom: 25px;
-  font-size: 68px;
-}
-@media (max-width: 480px) {
-  .related-terms-header {
-    font-size: 40px;
-  }
+  font-size: 4rempx;
 }
 
 .related-terms {
