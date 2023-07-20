@@ -18,16 +18,15 @@
 
     display: flex;
     flex-direction: row;
-    width: 80vw;
     overflow-x: scroll;
     margin-left: auto;
     margin-right: auto;
+    width: fit-content;
 
     @include lg {
         flex-direction: column;
         overflow-x: hidden;
         overflow-y: scroll;
-        width: 15vw;
         height: 40vh;
     }
 }
@@ -103,6 +102,7 @@
     display: flex;
     flex-direction: column;
     height: fit-content;
+    width: 100%;
 
     
 }
@@ -115,16 +115,23 @@
     padding: 10px;
     color: white;
     margin-bottom: 25px;
+    font-size: 4rem;
+    margin-left: auto;
+    margin-right: auto;
 
-    font-size: 4rempx;
-
-    
 }
 
 .related-terms {
+    @include shadow;
+    @include styled-scrollbar;
     display: flex;
     flex-direction: row;
     gap: 25px;
+    width: 80%;
+    overflow-x: scroll;
+    margin-left: auto;
+    margin-right: auto;
+    
 }
 
 

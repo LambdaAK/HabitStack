@@ -11,7 +11,7 @@ html {
   border-radius: 8px;
 }
 
-.vertical-divider, .server-bar-divider-vertical {
+.vertical-divider {
   border-left: 6px solid #535353;
   border-radius: 8px;
   height: 200px;
@@ -30,15 +30,9 @@ html {
 }
 #social-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 1.5rem;
   transition: opacity 0.2s ease-in-out;
-}
-@media (max-width: 480px) {
-  #social-container {
-    flex-direction: column;
-    align-items: center;
-  }
 }
 
 .servers-bar {
@@ -49,36 +43,26 @@ html {
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-  width: 12%;
-  height: 83vh;
+  width: 98%;
+  height: fit-content;
   border-radius: 8px;
   margin-left: 0.5rem;
   overflow-y: scroll;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  overflow-x: hidden;
+  overflow-x: scroll;
   background-color: #2C2C2C;
 }
 .servers-bar::-webkit-scrollbar {
   display: none;
-}
-@media (max-width: 480px) {
-  .servers-bar {
-    flex-direction: row;
-    height: fit-content;
-    overflow-x: scroll;
-    width: 88%;
-    margin-left: auto;
-    margin-right: auto;
-  }
 }
 
 .open-server {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  width: 84%;
+  width: 98%;
   height: 83vh;
   border-radius: 8px;
   margin-right: 0.5rem;
@@ -98,7 +82,6 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: fit-content;
   height: fit-content;
   padding: 10px;
   border-radius: 8px;
@@ -108,14 +91,7 @@ html {
   margin-top: 1rem;
   margin-bottom: 1rem;
   color: white;
-  width: 90%;
   transition: all 0.2s ease-in-out;
-}
-@media (max-width: 480px) {
-  .server-button {
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-  }
 }
 .server-button:hover {
   cursor: pointer;
@@ -249,7 +225,7 @@ html {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  font-size: 3rem;
+  font-size: 1.5rem;
   font-weight: bold;
   width: fit-content;
   height: fit-content;
@@ -257,6 +233,11 @@ html {
   margin-right: auto;
   background-color: #2C2C2C;
   color: white;
+}
+@media (min-width: 768px) {
+  .server-creation-window-header, .confirm-leave-server-window-header, .server-options-window-header, .server-options-header, .join-server-header {
+    font-size: 2rem;
+  }
 }
 
 .text-input, #server-options-window-server-name-input {
@@ -266,7 +247,7 @@ html {
   margin-top: 1rem;
   width: 90%;
   height: 5%;
-  font-size: 2rem;
+  font-size: 1rem;
   color: black;
   background-color: #2C2C2C;
   font-family: "Quicksand", sans-serif;
@@ -277,6 +258,11 @@ html {
 }
 .text-input:focus, #server-options-window-server-name-input:focus {
   cursor: text;
+}
+@media (min-width: 992px) {
+  .text-input, #server-options-window-server-name-input {
+    font-size: 1.25rem;
+  }
 }
 
 .server-creation-server-name-header, .server-options-window-server-invite-list-header, .server-join-server-invite-header {
@@ -302,15 +288,13 @@ html {
   padding: 15px;
   background-color: #2C2C2C;
   border-radius: 8px;
-  font-size: 3rem;
+  font-size: 1.25rem;
   align-self: flex-start;
   left: 1rem;
   top: 1rem;
   border: none;
   text-align: center;
   text-justify: center;
-  width: 4rem;
-  height: 4rem;
   transition: all 0.2s ease;
 }
 .exit-server-creation-window-button:hover, .exit-server-options-window-button:hover {
@@ -334,15 +318,6 @@ html {
 @media (min-width: 480px) {
   .server-bar-divider-horizontal {
     display: flex;
-  }
-}
-
-.server-bar-divider-vertical {
-  display: flex;
-}
-@media (min-width: 480px) {
-  .server-bar-divider-vertical {
-    display: none;
   }
 }
 
@@ -420,7 +395,7 @@ html {
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-  width: 50%;
+  width: 90%;
   height: fit-content;
   flex-direction: column;
   overflow-y: scroll;
@@ -430,6 +405,31 @@ html {
 }
 #server-options-window::-webkit-scrollbar {
   display: none;
+}
+@media (min-width: 600px) {
+  #server-options-window {
+    width: 80%;
+  }
+}
+@media (min-width: 992px) {
+  #server-options-window {
+    width: 70%;
+  }
+}
+@media (min-width: 1200px) {
+  #server-options-window {
+    width: 50%;
+  }
+}
+
+.exit-server-options-window-button {
+  font-size: 2rem;
+  height: fit-content;
+  width: fit-content;
+}
+
+.server-options-window-header {
+  margin-bottom: 2rem;
 }
 
 #server-options-window-server-name-input {
@@ -481,7 +481,7 @@ html {
   height: fit-content;
   border-radius: 8px;
   padding: 1rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   background-color: #2C2C2C;
   color: white;
   align-self: flex-start;
@@ -494,6 +494,11 @@ html {
   margin-left: auto;
   margin-right: auto;
   color: white;
+}
+@media (min-width: 992px) {
+  .server-options-window-server-invite-list-item {
+    font-size: 1.25rem;
+  }
 }
 
 .server-options-window-remove-invite-button {

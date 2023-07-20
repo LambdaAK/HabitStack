@@ -47,11 +47,7 @@ html {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   justify-items: center;
   gap: 3vw;
-}
-@media (max-width: 480px) {
-  .habits-grid {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: 1fr;
 }
 
 #habits-bar {
@@ -118,7 +114,7 @@ html {
   color: black;
 }
 
-#happiness-graph, .daily-completion, .todo-list {
+#happiness-graph, .daily-completion {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
@@ -129,17 +125,6 @@ html {
   border-radius: 8px;
   height: 50%;
   background-color: #2C2C2C;
-}
-@media (max-width: 480px) {
-  #happiness-graph, .daily-completion, .todo-list {
-    margin-top: 4vh;
-    margin-bottom: 4vh;
-    width: 100%;
-    height: fit-content;
-    margin-right: auto;
-    margin-left: auto;
-    overflow-x: auto;
-  }
 }
 
 .happiness-graph-header, .daily-completion-header, .todo-list-header {
@@ -1188,9 +1173,39 @@ html {
 }
 
 .todo-list {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+  background-color: #2C2C2C;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  height: 80%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
   height: fit-content;
 }
-
+.todo-list::-webkit-scrollbar {
+  width: 10px;
+}
+.todo-list::-webkit-scrollbar-track {
+  background: #535353;
+}
+.todo-list::-webkit-scrollbar-thumb {
+  background: #2C2C2C;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
 #day-info-window {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
@@ -1232,6 +1247,16 @@ html {
   background-color: #2C2C2C;
   margin-left: auto;
   margin-right: auto;
+  width: 90%;
+  height: 80%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: #2C2C2C;
+  margin-left: auto;
+  margin-right: auto;
   height: fit-content;
   padding: 2rem;
 }
@@ -1264,6 +1289,7 @@ html {
   text-align: center;
   margin-left: 1rem;
   margin-right: 1rem;
+  margin-bottom: 2rem;
 }
 
 .habits-you-want-to-do-widget-edit-button {
@@ -1277,6 +1303,7 @@ html {
   border-radius: 8px;
   padding: 1.5rem;
   width: fit-content;
+  height: fit-content;
   transition: all 0.2s ease-in-out;
 }
 .habits-you-want-to-do-widget-edit-button:hover {
@@ -1377,9 +1404,11 @@ html {
   font-size: 2rem;
   margin-bottom: 1rem;
   overflow-x: scroll;
-  width: 30vw;
+  width: 60%;
   display: flex;
   flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
   transition: all 0.2s ease-in-out;
 }
 .habits-you-want-to-do-list-item::-webkit-scrollbar {
@@ -1506,6 +1535,7 @@ html {
   /* Handle on hover */
   height: 40rem;
   overflow-y: scroll;
+  width: 90%;
 }
 .day-info-tasks-widget::-webkit-scrollbar {
   width: 10px;
@@ -1566,6 +1596,9 @@ html {
   flex-direction: row;
   align-items: center;
   gap: 1rem;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .day-info-task-name {

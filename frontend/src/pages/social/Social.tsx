@@ -791,7 +791,7 @@ export default function Social() {
                              
                         )
                     }
-                    <hr className = "server-bar-divider-horizontal"/>
+                    
                     <div className = "server-bar-divider-vertical"> </div>
                     <CreateNewServerButton/>
                     <JoinServerButton/>

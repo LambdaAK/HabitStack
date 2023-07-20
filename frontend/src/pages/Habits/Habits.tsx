@@ -1914,11 +1914,9 @@ export default function Habits() {
                         dayInfoSetter = {setDateToDisplayOnDayInfoWindow}
                     />
                     <ToDoList/>
-                    <DailyCompletion/>
                     <HabitsYouWantToDo/>
                     <HabitsYouWantToResist/>
                     <HabitStacksWidget/>
-                    <HappinessGraph/>
                 </div>
                 
                 <DailyRatingWindow />

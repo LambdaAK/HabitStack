@@ -13,11 +13,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth"
 import firebaseConfig from "../firebaseConfig"
 import { useEffect } from "react"
 
-
-
 const auth = getAuth()
-
-
 
 function setCookie(name: string, value: string, days: number) {
   var expires = "";
@@ -40,7 +36,6 @@ function getCookie(name: string) {
   }
   return null;
 }
-
 
 export default function App() {
 

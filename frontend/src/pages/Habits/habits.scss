@@ -1,5 +1,21 @@
 @import "./../../css\ modules/variables";
 
+@mixin widget {
+    @include shadow;
+    @include styled-scrollbar;
+    background-color: $very-dark-slate;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: 80%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+
 .habits-container {
     height: 90vh;
     display: flex;
@@ -19,9 +35,7 @@
     justify-items: center;
     gap: 3vw;
 
-    @media (max-width: $breakpoint) {
-        grid-template-columns: 1fr;
-    }
+    grid-template-columns: 1fr;
 }
 
 #habits-bar {
@@ -82,15 +96,7 @@
     height: 50%;
     background-color: $very-dark-slate;
 
-    @media (max-width: $breakpoint) {
-        margin-top: 4vh;
-        margin-bottom: 4vh;
-        width: 100%;
-        height: fit-content;
-        margin-right: auto;
-        margin-left: auto;
-        overflow-x: auto;
-    }
+  
 }
 
 .happiness-graph-header {
@@ -969,7 +975,7 @@
 }
 
 .todo-list {
-    @extend #happiness-graph;
+    @include widget;
     height: fit-content;
 }
 
@@ -1017,8 +1023,7 @@
 }
 
 .habits-you-want-to-do-widget {
-    @include shadow;
-    @include styled-scrollbar;
+    @include widget;
     background-color: $very-dark-slate;
     margin-left: auto;
     margin-right: auto;
@@ -1039,6 +1044,7 @@
     text-align: center;
     margin-left: 1rem;
     margin-right: 1rem;
+    margin-bottom: 2rem;
 }
 
 .habits-you-want-to-do-widget-edit-button {
@@ -1051,6 +1057,7 @@
     border-radius: 8px;
     padding: 1.5rem;
     width: fit-content;
+    height: fit-content;
 
     
     &:hover {
@@ -1112,9 +1119,11 @@
     font-size: 2rem;
     margin-bottom: 1rem;
     overflow-x: scroll;
-    width: 30vw;
+    width: 60%;
     display: flex;
     flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
 
     &:hover {
         cursor: pointer;
@@ -1187,6 +1196,7 @@
     @include styled-scrollbar;
     height: 40rem;
     overflow-y: scroll;
+    width: 90%;
 }
 
 .day-info-create-task-section {
@@ -1228,6 +1238,9 @@
     flex-direction: row;
     align-items: center;
     gap: 1rem;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .day-info-task-name {

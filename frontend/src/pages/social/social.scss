@@ -2,47 +2,36 @@
 
 #social-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 1.5rem;
 
     transition: opacity 0.2s ease-in-out;
 
-    @media (max-width: $breakpoint) {
-        flex-direction: column;
-        align-items: center;
-    }
+    
     
 }
 
 .servers-bar {
     @include shadow;
     @include hide-scrollbar;
-    width: 12%;
-    height: 83vh;
+    width: 98%;
+    height: fit-content;
     border-radius: 8px;
     margin-left: 0.5rem;
     overflow-y: scroll;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    overflow-x: hidden;
+    overflow-x: scroll;
     background-color: $very-dark-slate;
 
-    @media (max-width: $breakpoint) {
-        flex-direction: row;
-        height: fit-content;
-        overflow-x: scroll;
-        width: 88%;
-        margin-left: auto;
-        margin-right: auto;
-        
-    }
+    
 
 }
 
 .open-server {
     @include shadow;
-    width: 84%;
+    width: 98%;
     height: 83vh;
     border-radius: 8px;
     margin-right: 0.5rem;
@@ -60,7 +49,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: fit-content;
     height: fit-content;
     padding: 10px;
     border-radius: 8px;
@@ -74,10 +62,8 @@
 
     color: white;
 
-    @media (max-width: $breakpoint) {
-        margin-left: 0.5rem;
-        margin-right: 0.5rem;
-    }
+
+
     
 
     &:hover {
@@ -86,7 +72,8 @@
         scale: 1.1;
         color: black;
     }
-    width: 90%;
+ 
+
 
     transition: all 0.2s ease-in-out;
 
@@ -204,7 +191,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    font-size: 3rem;
+    font-size: 1.5rem;
     font-weight: bold;
     width: fit-content;
     height: fit-content;
@@ -213,6 +200,10 @@
     background-color: $very-dark-slate;
     color: white;
 
+    @include md {
+        font-size: 2rem;
+    }
+
 }
 
 .text-input {
@@ -220,7 +211,7 @@
     margin-top: 1rem;
     width: 90%;
     height: 5%;
-    font-size: 2rem;
+    font-size: 1rem;
     color: black;
     background-color: $very-dark-slate;
     font-family: "Quicksand", sans-serif;
@@ -231,6 +222,10 @@
 
     &:focus {
         cursor: text;
+    }
+
+    @include lg {
+        font-size: 1.25rem;
     }
 
 }
@@ -255,7 +250,7 @@
     @include shadow;
     background-color: $very-dark-slate;
     border-radius: 8px;
-    font-size: 3rem;
+    font-size: 1.25rem;
     align-self: flex-start;
     left: 1rem;
     top: 1rem;
@@ -264,10 +259,6 @@
     text-align: center;
     text-justify: center;
 
-    width: 4rem;
-    height: 4rem;
-
-  
 
     &:hover {
         cursor: pointer;
@@ -295,10 +286,7 @@
     @extend .divider;
 }
 
-.server-bar-divider-vertical {
-    @include visible-only-below-breakpoint (flex);
-    @extend .vertical-divider;
-}
+
 
 .join-server-button {
     @extend .create-new-server-button;
@@ -385,13 +373,25 @@
     @extend #server-creation-window;
     @include hide-scrollbar;
     // make it larger than the other windows
-    width: 50%;
+    width: 90%;
     height: fit-content;
     flex-direction: column;
     overflow-y: scroll;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    @include sm {
+        width: 80%;
+    }
+
+    @include lg {
+        width: 70%;
+    }
+    
+    @include xl {
+        width: 50%;
+    }
 }
 
 .server-options-header {
@@ -400,10 +400,14 @@
 
 .exit-server-options-window-button {
     @extend .exit-server-creation-window-button;
+    font-size: 2rem;
+    height: fit-content;
+    width: fit-content;
 }
 
 .server-options-window-header {
     @extend .server-creation-window-header;
+    margin-bottom: 2rem;
 }
 
 #server-options-window-server-name-input {
@@ -446,7 +450,7 @@
     height: fit-content;
     border-radius: 8px;
     padding: 1rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
     background-color: $very-dark-slate;
     color: white;
     align-self: flex-start;
@@ -459,6 +463,11 @@
     margin-left: auto;
     margin-right: auto;
     color: white;
+
+    @include lg {
+        font-size: 1.25rem;
+    }
+    
 }
 
 .server-options-window-remove-invite-button {

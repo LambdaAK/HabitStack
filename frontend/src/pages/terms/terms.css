@@ -52,10 +52,10 @@ html {
   animation: fly-in-left 1s ease;
   display: flex;
   flex-direction: row;
-  width: 80vw;
   overflow-x: scroll;
   margin-left: auto;
   margin-right: auto;
+  width: fit-content;
 }
 #terms-bar::-webkit-scrollbar {
   width: 10px;
@@ -76,7 +76,6 @@ html {
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: scroll;
-    width: 15vw;
     height: 40vh;
   }
 }
@@ -148,6 +147,7 @@ html {
   display: flex;
   flex-direction: column;
   height: fit-content;
+  width: 100%;
 }
 
 .related-terms-header {
@@ -160,15 +160,41 @@ html {
   padding: 10px;
   color: white;
   margin-bottom: 25px;
-  font-size: 4rempx;
+  font-size: 4rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .related-terms {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
   display: flex;
   flex-direction: row;
   gap: 25px;
+  width: 80%;
+  overflow-x: scroll;
+  margin-left: auto;
+  margin-right: auto;
 }
-
+.related-terms::-webkit-scrollbar {
+  width: 10px;
+}
+.related-terms::-webkit-scrollbar-track {
+  background: #535353;
+}
+.related-terms::-webkit-scrollbar-thumb {
+  background: #2C2C2C;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
 .term-link {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
