@@ -35,12 +35,6 @@ html {
   width: 100%;
   gap: 4vw;
 }
-@media (max-width: 480px) {
-  .habits-container {
-    flex-direction: column;
-    height: fit-content;
-  }
-}
 
 .habits-grid {
   display: grid;
@@ -63,8 +57,6 @@ html {
   flex-direction: row;
   justify-content: center;
   width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
   gap: 1%;
   background-color: #2C2C2C;
   color: white;
@@ -83,19 +75,6 @@ html {
   margin-left: 5px;
   margin-right: 5px;
 }
-@media (max-width: 480px) {
-  #habits-bar {
-    margin-top: 4vh;
-    margin-bottom: 4vh;
-    width: 100%;
-    height: fit-content;
-    overflow-x: auto;
-    flex-direction: row;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
 .habits-bar-link {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.2);
   border-radius: 8px;
@@ -1222,6 +1201,11 @@ html {
   left: 50%;
   transform: translate(-50%, -50%);
   display: none;
+}
+@media (min-width: 0px) {
+  #day-info-window {
+    width: 100%;
+  }
 }
 
 .day-info-day {

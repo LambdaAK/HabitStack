@@ -19,9 +19,8 @@
     display: flex;
     flex-direction: row;
     overflow-x: scroll;
-    margin-left: auto;
-    margin-right: auto;
-    width: fit-content;
+    margin-left: 5%;
+    margin-right: 5%;
 
     @include lg {
         flex-direction: column;
@@ -35,7 +34,7 @@
     @include shadow;
     height: fit-content;
     width: 90%;
-    font-size: 50px;
+    font-size: 2rem;
     background-color: $very-dark-slate;
 
     display: flex;
@@ -60,8 +59,7 @@
 
 .term-header {
     @include shadow;
-
-    font-size: 8rem;
+    font-size: 4rem;
     color: white;
     margin-top: 20px;
     text-align: center;
@@ -69,6 +67,10 @@
     padding: 8px;
     min-width: 20vw;
     margin-bottom: 20px;
+
+    @include lg {
+        font-size: 6rem;
+    }
 
 }
 
@@ -103,8 +105,6 @@
     flex-direction: column;
     height: fit-content;
     width: 100%;
-
-    
 }
 
 .related-terms-header {
@@ -115,7 +115,7 @@
     padding: 10px;
     color: white;
     margin-bottom: 25px;
-    font-size: 4rem;
+    font-size: 2.5rem;
     margin-left: auto;
     margin-right: auto;
 
@@ -131,6 +131,10 @@
     overflow-x: scroll;
     margin-left: auto;
     margin-right: auto;
+
+    @include md {
+        width: 60%;
+    }
     
 }
 

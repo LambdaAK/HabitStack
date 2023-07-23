@@ -20,9 +20,7 @@ function RelatedTermsList(props: {relatedTerms: string[], termSetter: Function})
   return (
       <>
       <div className = "related-terms-wrapper">
-        <div className = "related-terms-header">
-          Related Terms
-      </div>
+        
       <div className = "related-terms">
           {
           props.relatedTerms.map(term => {

@@ -23,10 +23,7 @@
     width: 100%;
     gap: 4vw;
 
-    @media (max-width: $breakpoint) {
-        flex-direction: column;
-        height: fit-content;
-    }
+
 }
 
 .habits-grid {
@@ -46,24 +43,9 @@
     flex-direction: row;
     justify-content: center;
     width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
     gap: 1%;
-
     background-color: $very-dark-slate;
     color: white;
-
-
-    @media (max-width: $breakpoint) {
-        margin-top: 4vh;
-        margin-bottom: 4vh;
-        width: 100%;
-        height: fit-content;
-        overflow-x: auto;
-        flex-direction: row;
-        margin-left: auto;
-        margin-right: auto;
-    }
 
 }
 
@@ -1005,6 +987,10 @@
     left: 50%;
     transform: translate(-50%, -50%);
     display: none;
+
+    @include xs {
+        width: 100%;
+    }
 }
 
 .day-info-day {

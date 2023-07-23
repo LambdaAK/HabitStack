@@ -53,9 +53,8 @@ html {
   display: flex;
   flex-direction: row;
   overflow-x: scroll;
-  margin-left: auto;
-  margin-right: auto;
-  width: fit-content;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 #terms-bar::-webkit-scrollbar {
   width: 10px;
@@ -86,7 +85,7 @@ html {
   padding: 15px;
   height: fit-content;
   width: 90%;
-  font-size: 50px;
+  font-size: 2rem;
   background-color: #2C2C2C;
   display: flex;
   flex-direction: column;
@@ -108,7 +107,7 @@ html {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  font-size: 8rem;
+  font-size: 4rem;
   color: white;
   margin-top: 20px;
   text-align: center;
@@ -116,6 +115,11 @@ html {
   padding: 8px;
   min-width: 20vw;
   margin-bottom: 20px;
+}
+@media (min-width: 992px) {
+  .term-header {
+    font-size: 6rem;
+  }
 }
 
 .term-name {
@@ -160,7 +164,7 @@ html {
   padding: 10px;
   color: white;
   margin-bottom: 25px;
-  font-size: 4rem;
+  font-size: 2.5rem;
   margin-left: auto;
   margin-right: auto;
 }
@@ -195,6 +199,12 @@ html {
   margin-left: 5px;
   margin-right: 5px;
 }
+@media (min-width: 768px) {
+  .related-terms {
+    width: 60%;
+  }
+}
+
 .term-link {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
