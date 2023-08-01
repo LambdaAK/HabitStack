@@ -11,7 +11,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 50rem;
 
 }
 
@@ -131,9 +130,8 @@
     transform: translate(-50%, -50%);
     display: none;
     flex-direction: column;
-
+    width: min(90%, 45rem);
     height: 75%;
-    width: 50%;
     overflow-y: scroll;
 }
 
@@ -164,7 +162,7 @@
 
 .daily-rating-window-sub-header {
     @include shadow;
-    font-size: 2.5rem;
+    font-size: 1rem;
     font-weight: bold;
     margin-top: 1.5vh;
     margin-bottom: 1vh;
@@ -182,8 +180,8 @@
     color: white;
     margin-left: auto;
     margin-right: auto;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 1vw;
     align-items: center;
     justify-content: center;
@@ -191,7 +189,7 @@
 
 .daily-rating-input-button {
     @include shadow;
-    font-size: 2.5rem;
+    font-size: 1rem;
     font-weight: bold;
     margin-bottom: 1vh;
     color: white;
@@ -297,6 +295,7 @@
     display: none;
     flex-direction: column;
     overflow-y: scroll;
+    font-size: 1rem;
 }
 
 .habit-creator-window-header {
@@ -315,7 +314,6 @@
 
 #habit-creator-window-name-input {
     @include shadow;
-    font-size: 2.5rem;
     margin-bottom: 1vh;
     color: white;
     margin-left: auto;
@@ -349,38 +347,44 @@
 .implementation-intention-input-area {
     // I will [BEHAVIOR] at [TIME] in [LOCATION]
     // grid
-    display: grid;
-    grid-template-columns: 1fr 5fr;
+
+    display: flex;
+    flex-direction: column;
+
+
+    @include sm {
+        display: grid;
+        grid-template-columns: 1fr 5fr;
+    }
+
+    
     justify-content: center;
     align-items: center;
 }
 
 .implementation-intention-sub-label {
     @include shadow;
-    font-size: 1.5rem;
     font-weight: bold;
     color: white;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    padding: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
     text-align: center;
+    width: 100%;
+
+    @include sm {
+        width: 75%;
+    }
 }
 
 .implementation-intention-input {
     @include shadow;
-    font-size: 2rem;
     margin-bottom: 1vh;
     color: white;
     margin-left: 1.75rem;
     background-color: $very-dark-slate;
     border-radius: 8px;
     width: max;
-    height: 4rem;
     border: none;
-}
-
-.the-laws-header {
-    @extend .implementation-intention-header;
 }
 
 .the-laws-input-area {
@@ -429,6 +433,25 @@
     @extend #habit-creator-window;
     overflow-y: scroll;
     height: 90%;
+}
+
+.window {
+    @include shadow;
+    @include styled-scrollbar;
+    height: fit-content;
+    width: 75%;
+    margin-top: 1vh;
+    padding: 2rem;
+    border-radius: 8px;
+    background-color: $very-dark-slate;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    flex-direction: column;
+    overflow-y: scroll;
+    font-size: 1rem;
 }
 
 .habit-stack-creator-window-exit-button {
@@ -720,11 +743,6 @@
     border: none;
 }
 
-#habit-card-window {
-    @extend #habit-creator-window;
-    height: 80%;
-}
-
 .habit-card-window-exit-button {
     @extend .daily-rating-window-exit-button;
 }
@@ -738,11 +756,11 @@
     @include styled-scrollbar;
     background-color: $very-dark-slate;
     margin-top: 2rem;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow-y: scroll;
+    min-height: 20rem;
 }
 
 .habit-card-window-complete-button {
@@ -787,8 +805,8 @@
     transition: all 0.2s ease-in-out;
 }
 
-.habit-card-habit-delete-button {
-    @extend .habit-stack-delete-habit-button
+.delete-button {
+
 }
 
 .habit-card-habit-rate-buttons {
@@ -799,14 +817,14 @@
     justify-content: space-between;
     border-radius: 8px;
     background-color: $very-dark-slate;
-    height: 100%;
     width: fit-content;
+    margin-bottom: 2rem;
 }
 
 .habit-card-habit-rate-button {
     // the individual button with a + = or - sign
     flex-grow: 1;
-    font-size: 3rem;
+    font-size: 1.5rem;
     color: white;
     margin-left: 1.5rem;
     margin-right: 1.5rem;
@@ -841,11 +859,11 @@
     height: 70%;
     color: white;
     background-color: $very-dark-slate;
-    font-size: 2rem;
     text-align: center;
-    max-width: 80%;
     overflow-x: scroll;
     border: none;
+    width: 80%;
+    margin-top: 1rem;
     
 }
 
@@ -873,23 +891,17 @@
     justify-content: center;
     background-color: $very-dark-slate;
     color: white;
-    font-size: 3.5rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    font-size: 2rem;
+    text-align: center;
+    text-justify: center;
 }
 
 .habit-card-habit-input {
-    @include shadow;
-    font-size: 2rem;
-    color: white;
-    background-color: $very-dark-slate;
-    width: 92%;
-    height: 4rem;
-    margin-top: 2.5rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: 2rem;
+    gap: 1rem;
 }
 
 

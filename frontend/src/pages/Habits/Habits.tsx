@@ -595,7 +595,7 @@ function HabitCreatorWindow() {
 
             </input>
 
-            <div className = "implementation-intention-header">
+            <div className = "widget-header">
                 Implementation Intention
             </div>
 
@@ -626,7 +626,7 @@ function HabitCreatorWindow() {
                 </input>
             </div>
 
-            <div className = "the-laws-header">
+            <div className = "widget-header">
                     The Habit Change Laws
             </div>
             <div className = "the-laws-input-area">
@@ -740,7 +740,7 @@ function HabitResistorWindow() {
             placeholder = "Habit Name"
             >
             </input>
-            <div className = "the-laws-header">
+            <div className = "widget-header">
                     The Inversions of the Habit Change Laws
             </div>
             <div className = "the-laws-input-area">
@@ -1553,7 +1553,7 @@ function HabitCardHabit(props: {habit: string, rating: number, habits: HabitCard
                 {props.habit}
             </div>
 
-            <div className = "habit-card-habit-delete-button"
+            <div className = "delete-button"
             onClick = {
                 () => {
                     const newHabits = [...props.habits];
@@ -1871,9 +1871,9 @@ function HabitCardWindow() {
     })
 
     return (
-        <div id = "habit-card-window">
+        <div className = "window" id = "habit-card-window">
             <ExitHabitCardWindowButton />
-            <div className = "habit-card-window-header">
+            <div className = "widget-header">
                 Habit Card
             </div>
             <div className = "habit-card-window-habits-field">
@@ -1918,6 +1918,11 @@ export default function Habits() {
                 <HabitsYouWantToDo />
                 <HabitsYouWantToResist />
                 <HabitStacksWidget />
+
+                <DailyRatingWindow />
+                <HabitCreatorWindow />
+                <HabitResistorWindow />
+                <HabitCardWindow />
             </div>
         </>
     )

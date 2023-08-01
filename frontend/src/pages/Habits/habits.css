@@ -44,7 +44,6 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 50rem;
 }
 .widget::-webkit-scrollbar {
   width: 10px;
@@ -201,8 +200,8 @@ html {
   transform: translate(-50%, -50%);
   display: none;
   flex-direction: column;
+  width: min(90%, 45rem);
   height: 75%;
-  width: 50%;
   overflow-y: scroll;
 }
 #daily-rating-window::-webkit-scrollbar {
@@ -249,7 +248,7 @@ html {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  font-size: 2.5rem;
+  font-size: 1rem;
   font-weight: bold;
   margin-top: 1.5vh;
   margin-bottom: 1vh;
@@ -269,8 +268,8 @@ html {
   color: white;
   margin-left: auto;
   margin-right: auto;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   gap: 1vw;
   align-items: center;
   justify-content: center;
@@ -280,7 +279,7 @@ html {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  font-size: 2.5rem;
+  font-size: 1rem;
   font-weight: bold;
   margin-bottom: 1vh;
   color: white;
@@ -373,7 +372,7 @@ html {
   transform: translateY(-10px);
 }
 
-#habit-creator-window, #habit-card-window, #habit-stack-creator-window, #habit-resistor-window {
+#habit-creator-window, #habit-stack-creator-window, #habit-resistor-window {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
@@ -394,14 +393,15 @@ html {
   display: none;
   flex-direction: column;
   overflow-y: scroll;
+  font-size: 1rem;
 }
-#habit-creator-window::-webkit-scrollbar, #habit-card-window::-webkit-scrollbar, #habit-stack-creator-window::-webkit-scrollbar, #habit-resistor-window::-webkit-scrollbar {
+#habit-creator-window::-webkit-scrollbar, #habit-stack-creator-window::-webkit-scrollbar, #habit-resistor-window::-webkit-scrollbar {
   width: 10px;
 }
-#habit-creator-window::-webkit-scrollbar-track, #habit-card-window::-webkit-scrollbar-track, #habit-stack-creator-window::-webkit-scrollbar-track, #habit-resistor-window::-webkit-scrollbar-track {
+#habit-creator-window::-webkit-scrollbar-track, #habit-stack-creator-window::-webkit-scrollbar-track, #habit-resistor-window::-webkit-scrollbar-track {
   background: #535353;
 }
-#habit-creator-window::-webkit-scrollbar-thumb, #habit-card-window::-webkit-scrollbar-thumb, #habit-stack-creator-window::-webkit-scrollbar-thumb, #habit-resistor-window::-webkit-scrollbar-thumb {
+#habit-creator-window::-webkit-scrollbar-thumb, #habit-stack-creator-window::-webkit-scrollbar-thumb, #habit-resistor-window::-webkit-scrollbar-thumb {
   background: #2C2C2C;
   border-radius: 8px;
   margin-top: 5px;
@@ -425,7 +425,6 @@ html {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  font-size: 2.5rem;
   margin-bottom: 1vh;
   color: white;
   margin-left: auto;
@@ -437,7 +436,7 @@ html {
   border: none;
 }
 
-.implementation-intention-header, .the-laws-header {
+.implementation-intention-header {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
@@ -455,37 +454,45 @@ html {
 }
 
 .implementation-intention-input-area, .the-laws-input-area {
-  display: grid;
-  grid-template-columns: 1fr 5fr;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+@media (min-width: 600px) {
+  .implementation-intention-input-area, .the-laws-input-area {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+  }
 }
 
 .implementation-intention-sub-label {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  font-size: 1.5rem;
   font-weight: bold;
   color: white;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  padding: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
   text-align: center;
+  width: 100%;
+}
+@media (min-width: 600px) {
+  .implementation-intention-sub-label {
+    width: 75%;
+  }
 }
 
 .implementation-intention-input {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  font-size: 2rem;
   margin-bottom: 1vh;
   color: white;
   margin-left: 1.75rem;
   background-color: #2C2C2C;
   border-radius: 8px;
   width: max;
-  height: 4rem;
   border: none;
 }
 
@@ -515,6 +522,43 @@ html {
   height: 90%;
 }
 
+.window {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+  height: fit-content;
+  width: 75%;
+  margin-top: 1vh;
+  padding: 2rem;
+  border-radius: 8px;
+  background-color: #2C2C2C;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  flex-direction: column;
+  overflow-y: scroll;
+  font-size: 1rem;
+}
+.window::-webkit-scrollbar {
+  width: 10px;
+}
+.window::-webkit-scrollbar-track {
+  background: #535353;
+}
+.window::-webkit-scrollbar-thumb {
+  background: #2C2C2C;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
 .habit-stack-item-name {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
@@ -798,7 +842,7 @@ html {
   transform: translateY(-10px);
 }
 
-.habit-stack-delete-habit-button, .habit-card-habit-delete-button {
+.habit-stack-delete-habit-button {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
@@ -813,7 +857,7 @@ html {
   border-radius: 8px;
   transition: all 0.2s ease-in-out;
 }
-.habit-stack-delete-habit-button:hover, .habit-card-habit-delete-button:hover {
+.habit-stack-delete-habit-button:hover {
   cursor: pointer;
   transform: translateY(-10px);
 }
@@ -914,10 +958,6 @@ html {
   border: none;
 }
 
-#habit-card-window {
-  height: 80%;
-}
-
 .habit-card-window-habits-field {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
@@ -928,11 +968,11 @@ html {
   /* Handle on hover */
   background-color: #2C2C2C;
   margin-top: 2rem;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow-y: scroll;
+  min-height: 20rem;
 }
 .habit-card-window-habits-field::-webkit-scrollbar {
   width: 10px;
@@ -990,13 +1030,13 @@ html {
   justify-content: space-between;
   border-radius: 8px;
   background-color: #2C2C2C;
-  height: 100%;
   width: fit-content;
+  margin-bottom: 2rem;
 }
 
 .habit-card-habit-rate-button, .habit-card-habit-rate-button-selected {
   flex-grow: 1;
-  font-size: 3rem;
+  font-size: 1.5rem;
   color: white;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
@@ -1033,11 +1073,11 @@ html {
   height: 70%;
   color: white;
   background-color: #2C2C2C;
-  font-size: 2rem;
   text-align: center;
-  max-width: 80%;
   overflow-x: scroll;
   border: none;
+  width: 80%;
+  margin-top: 1rem;
 }
 #habit-card-habit-name-input::-webkit-scrollbar, .habit-card-habit-name::-webkit-scrollbar {
   width: 10px;
@@ -1080,25 +1120,17 @@ html {
   justify-content: center;
   background-color: #2C2C2C;
   color: white;
-  font-size: 3.5rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  font-size: 2rem;
+  text-align: center;
+  text-justify: center;
 }
 
 .habit-card-habit-input {
-  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
-  border-radius: 8px;
-  padding: 15px;
-  font-size: 2rem;
-  color: white;
-  background-color: #2C2C2C;
-  width: 92%;
-  height: 4rem;
-  margin-top: 2.5rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 2rem;
+  gap: 1rem;
 }
 
 .todo-list-item {
