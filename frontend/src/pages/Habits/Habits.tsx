@@ -1895,8 +1895,6 @@ function HabitCardWindow() {
             <div className = "habit-card-window-complete-button">
                 Complete
             </div>
-            
-            
 
         </div>
     )
@@ -1907,27 +1905,9 @@ export default function Habits() {
     return (
         <>
             <div className = "habits-container">
-                <HabitsBar />
-                <div className = "habits-grid">
-                    <HabitsCalendar
-                        dayInfo = {dateToDisplayOnDayInfoWindow}
-                        dayInfoSetter = {setDateToDisplayOnDayInfoWindow}
-                    />
-                    <ToDoList/>
-                    <HabitsYouWantToDo/>
-                    <HabitsYouWantToResist/>
-                    <HabitStacksWidget/>
-                </div>
-                
-                <DailyRatingWindow />
-                <HabitCreatorWindow />
-                <HabitResistorWindow />
-                <HabitStackCreatorWindow />
-                <HabitCardWindow />
-                <DayInfo
-                    dayInfo = {dateToDisplayOnDayInfoWindow}
-                    dayInfoSetter = {setDateToDisplayOnDayInfoWindow}
-                />
+                <HabitsBar/>
+                <ToDoList />
+              
             </div>
         </>
     )

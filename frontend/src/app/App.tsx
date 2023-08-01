@@ -61,7 +61,6 @@ export default function App() {
 
     return (
         <>
-        <UserLoggedIn/>
         <Nav />
         <BrowserRouter>
         <Routes>

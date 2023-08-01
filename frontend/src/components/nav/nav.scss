@@ -54,13 +54,13 @@
 
     display: block;
 
+    width: min(25vw, 100px);
+
     @include lg {
         display: none;
     }
 
-    @include xs {
-        width: 20vw;
-    }
+   
 
 }
 

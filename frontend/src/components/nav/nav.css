@@ -76,15 +76,11 @@ html {
 #nav-button {
   display: none;
   display: block;
+  width: min(25vw, 100px);
 }
 @media (min-width: 992px) {
   #nav-button {
     display: none;
-  }
-}
-@media (min-width: 0px) {
-  #nav-button {
-    width: 20vw;
   }
 }
 

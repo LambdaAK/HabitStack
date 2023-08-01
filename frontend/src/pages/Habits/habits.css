@@ -36,6 +36,14 @@ html {
   gap: 4vw;
 }
 
+.widget-header {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 1rem;
+  color: white;
+}
+
 .habits-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -53,13 +61,14 @@ html {
   /* Track */
   /* Handle */
   /* Handle on hover */
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: fit-content;
-  gap: 1%;
-  background-color: #2C2C2C;
+  font-size: 0.75rem;
   color: white;
+  background-color: #2C2C2C;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  gap: 1rem;
+  width: min(90%, 45rem);
 }
 #habits-bar::-webkit-scrollbar {
   width: 10px;
@@ -75,10 +84,21 @@ html {
   margin-left: 5px;
   margin-right: 5px;
 }
+@media (min-width: 0px) {
+  #habits-bar {
+    flex-direction: column;
+  }
+}
+@media (min-width: 600px) {
+  #habits-bar {
+    font-size: 1.25rem;
+    flex-direction: row;
+  }
+}
+
 .habits-bar-link {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.2);
   border-radius: 8px;
-  font-size: 1.75rem;
   font-weight: bold;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -1034,38 +1054,6 @@ html {
   margin-right: auto;
 }
 
-.todo-list-items {
-  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
-  border-radius: 8px;
-  padding: 15px;
-  /* width */
-  /* Track */
-  /* Handle */
-  /* Handle on hover */
-  display: flex;
-  flex-direction: column;
-  margin-top: 1.5rem;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-  background-color: #2C2C2C;
-  height: 60%;
-  overflow-y: scroll;
-}
-.todo-list-items::-webkit-scrollbar {
-  width: 10px;
-}
-.todo-list-items::-webkit-scrollbar-track {
-  background: #535353;
-}
-.todo-list-items::-webkit-scrollbar-thumb {
-  background: #2C2C2C;
-  border-radius: 8px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
-}
 .todo-list-item {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
@@ -1080,6 +1068,7 @@ html {
   align-items: center;
   margin-left: auto;
   margin-right: auto;
+  background-color: red;
 }
 
 .todo-list-item-name {
@@ -1122,7 +1111,7 @@ html {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  font-size: 2rem;
+  font-size: 1rem;
   color: white;
   background-color: #2C2C2C;
   width: 80%;
@@ -1133,6 +1122,11 @@ html {
   text-align: center;
   flex-grow: 1;
   border: none;
+}
+@media (min-width: 600px) {
+  .todo-list-name-input {
+    font-size: 2rem;
+  }
 }
 
 .todo-list-add-item-button {
@@ -1162,13 +1156,12 @@ html {
   background-color: #2C2C2C;
   margin-left: auto;
   margin-right: auto;
-  width: 90%;
+  width: min(90%, 75rem);
   height: 80%;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
   height: fit-content;
 }
 .todo-list::-webkit-scrollbar {
@@ -1201,6 +1194,7 @@ html {
   left: 50%;
   transform: translate(-50%, -50%);
   display: none;
+  background-color: red;
 }
 @media (min-width: 0px) {
   #day-info-window {
@@ -1231,18 +1225,19 @@ html {
   background-color: #2C2C2C;
   margin-left: auto;
   margin-right: auto;
-  width: 90%;
+  width: min(90%, 75rem);
   height: 80%;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
   background-color: #2C2C2C;
   margin-left: auto;
   margin-right: auto;
   height: fit-content;
   padding: 2rem;
+  max-width: clamp(fit-content, fit-content, 94%);
+  background-color: red;
 }
 .habits-you-want-to-do-widget::-webkit-scrollbar {
   width: 10px;
@@ -1577,12 +1572,13 @@ html {
   border-radius: 8px;
   padding: 15px;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
+  flex-direction: column;
+  font-size: 1rem;
+}
+@media (min-width: 600px) {
+  .day-info-task {
+    flex-direction: row;
+  }
 }
 
 .day-info-task-name {
@@ -1593,10 +1589,8 @@ html {
   /* Track */
   /* Handle */
   /* Handle on hover */
-  font-size: 2rem;
   flex-grow: 1;
   color: white;
-  max-width: 38vw;
   overflow-x: scroll;
 }
 .day-info-task-name::-webkit-scrollbar {
@@ -1613,12 +1607,26 @@ html {
   margin-left: 5px;
   margin-right: 5px;
 }
+@media (min-width: 600px) {
+  .day-info-task-name {
+    font-size: 1.5rem;
+  }
+}
+
 .day-info-task-complete-button {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  font-size: 2rem;
+  text-align: center;
+  width: min(25%, 10rem);
+  margin-left: auto;
+  margin-right: auto;
   transition: all 0.2s ease-in-out;
+}
+@media (min-width: 600px) {
+  .day-info-task-complete-button {
+    width: auto;
+  }
 }
 .day-info-task-complete-button:hover {
   cursor: pointer;
