@@ -784,7 +784,7 @@ html {
   /* Handle on hover */
   background-color: #2C2C2C;
   margin-top: 2rem;
-  height: 100%;
+  min-height: 20rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -830,7 +830,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
+  font-size: 1.5rem;
   background-color: #2C2C2C;
   border-radius: 8px;
   padding: 0px;
@@ -846,13 +846,11 @@ html {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  height: 2rem;
-  width: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   justify-self: flex-start;
-  font-size: 2rem;
+  font-size: 1rem;
   background-color: #2C2C2C;
   border-radius: 8px;
   transition: all 0.2s ease-in-out;
@@ -870,7 +868,7 @@ html {
   /* Track */
   /* Handle */
   /* Handle on hover */
-  font-size: 2rem;
+  font-size: 1rem;
   color: white;
   margin-left: 1rem;
   margin-right: 1rem;
@@ -910,13 +908,12 @@ html {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-weight: bold;
   color: white;
   margin-top: 2rem;
   background-color: #2C2C2C;
   border-radius: 8px;
-  padding: 1.5rem;
   width: fit-content;
   transition: all 0.2s ease-in-out;
 }
@@ -929,7 +926,7 @@ html {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  font-size: 2rem;
+  font-size: 1rem;
   margin-bottom: 1vh;
   color: white;
   margin-left: 1.75rem;
@@ -945,7 +942,7 @@ html {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  font-size: 2rem;
+  font-size: 1rem;
   margin-bottom: 1vh;
   color: white;
   background-color: #2C2C2C;

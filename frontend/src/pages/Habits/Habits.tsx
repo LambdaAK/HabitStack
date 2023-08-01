@@ -1372,9 +1372,9 @@ function HabitStackCreatorWindow() {
 
 
     return (
-        <div id = "habit-stack-creator-window">
+        <div className = "window" id = "habit-stack-creator-window">
             <ExitHabitStacksCreatorWindowButton />
-            <div className = "habit-stack-creator-window-header">
+            <div className = "widget-header">
                 Habit Stack Creator
             </div>
             <input id = "habit-stack-name-input" placeholder = "Habit Stack Name">
@@ -1923,6 +1923,7 @@ export default function Habits() {
                 <HabitCreatorWindow />
                 <HabitResistorWindow />
                 <HabitCardWindow />
+                <HabitStackCreatorWindow />
             </div>
         </>
     )

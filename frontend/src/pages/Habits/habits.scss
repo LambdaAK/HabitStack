@@ -452,6 +452,7 @@
     flex-direction: column;
     overflow-y: scroll;
     font-size: 1rem;
+    
 }
 
 .habit-stack-creator-window-exit-button {
@@ -589,15 +590,13 @@
     
 }
 
-
-
 #habit-stack-area {
     // this is the area where each individual habit is displayed
     @include shadow;
     @include styled-scrollbar;
     background-color: $very-dark-slate;
     margin-top: 2rem;
-    height: 100%;
+    min-height: 20rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -631,7 +630,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 3rem;
+    font-size: 1.5rem;
     background-color: $very-dark-slate;
     border-radius: 8px;
     padding: 0px;
@@ -647,13 +646,11 @@
 
 .habit-stack-delete-habit-button {
     @include shadow;
-    height: 2rem;
-    width: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     justify-self: flex-start;
-    font-size: 2rem;
+    font-size: 1rem;
     background-color: $very-dark-slate;
     border-radius: 8px;
 
@@ -670,7 +667,7 @@
     @include shadow;
     @include styled-scrollbar;
     
-    font-size: 2rem;
+    font-size: 1rem;
     color: white;
     margin-left: 1rem;
     margin-right: 1rem;
@@ -696,13 +693,12 @@
 
 #habit-stack-add-habit-button {
     @include shadow;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: white;
     margin-top: 2rem;
     background-color: $very-dark-slate;
     border-radius: 8px;
-    padding: 1.5rem;
     width: fit-content;
 
     
@@ -716,7 +712,7 @@
 
 #habit-stack-habit-creation-input {
     @include shadow;
-    font-size: 2rem;
+    font-size: 1rem;
     margin-bottom: 1vh;
     color: white;
     margin-left: 1.75rem;
@@ -730,7 +726,7 @@
 
 #habit-stack-name-input {
     @include shadow;
-    font-size: 2rem;
+    font-size: 1rem;
     margin-bottom: 1vh;
     color: white;
     background-color: $very-dark-slate;
