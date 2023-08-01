@@ -1,29 +1,26 @@
 @import "./../../css\ modules/variables";
 
-@mixin widget {
+.widget {
     @include shadow;
     @include styled-scrollbar;
     background-color: $very-dark-slate;
     margin-left: auto;
     margin-right: auto;
     width: min(90%, 75rem);
-    height: 80%;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 50rem;
 
 }
 
 
 .habits-container {
-    height: 90vh;
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 4vw;
-
-
 }
 
 
@@ -31,6 +28,17 @@
     @include shadow;
     font-size: 1rem;
     color: white;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include sm {
+        font-size: 1.5rem;
+    }
+
+    @include md {
+        font-size: 2rem;
+    }
 }
 
 .habits-grid {
@@ -381,7 +389,7 @@
 
 #create-habit-button {
     @include shadow;
-    font-size: 2.5rem;
+    font-size: 1rem;
     font-weight: bold;
     color: white;
     margin-left: auto;
@@ -389,8 +397,8 @@
     margin-top: 2rem;
     background-color: $very-dark-slate;
     border-radius: 8px;
-    padding: 1.5rem;
     width: fit-content;
+    text-align: center;
 
     
     &:hover {
@@ -440,7 +448,6 @@
     justify-content: space-between;
     width: 90%;
     margin-bottom: 1rem;
-    font-size: 2rem;
     height: 4rem;
     overflow-x: scroll;
 
@@ -455,7 +462,11 @@
     justify-content: space-between;
     width: 90%;
     color: white;
-    font-size: 2rem;
+    font-size: 1rem;
+
+    @include sm {
+        font-size: 1.5rem;
+    }
 
     &:hover {
         cursor: pointer;
@@ -468,25 +479,32 @@
 
 .habit-stack-item-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
     align-items: center;
     gap: 1rem;
     width: 100%;
+
+    @include sm {
+        flex-direction: row;
+    }
 }
 
 .habit-stack-widget-delete-button {
     @include shadow;
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: bold;
     color: white;
 
     background-color: $very-dark-slate;
     border-radius: 8px;
-    padding: 1.5rem;
-    height: 3rem;
-    width: 3rem;
     text-align: center;
     text-justify: center;
+
+    width: 90%;
+
+    @include sm {
+        width: auto;
+    }
     
     &:hover {
         cursor: pointer;
@@ -506,7 +524,6 @@
     justify-content: space-between;
     width: 90%;
     margin-bottom: 1rem;
-    font-size: 2rem;
     overflow-x: scroll;
 }
 
@@ -531,33 +548,25 @@
     background-color: $very-dark-slate;
     margin-left: auto;
     margin-right: auto;
-    width: 94%;
+    width: 75%;
     height: 80%;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem;
+
+    @include sm {
+        width: 90%;
+    }
 }
 
 .habit-stacks-widget-edit-button {
     @extend #create-habit-button;
+    width: min(90%, 20rem);
+    
 }
 
-.habit-stacks-widget-header {
-    @include shadow;
-    font-size: 3rem;
-    font-weight: bold;
-    color: white;
-    margin-left: auto;
-    margin-right: auto;
-    width: max;
-    flex-grow: 1;
-    background-color: $very-dark-slate;
-    text-align: center;
-    margin-left: 1rem;
-    margin-right: 1rem;
-}
+
 
 #habit-stack-area {
     // this is the area where each individual habit is displayed
@@ -967,11 +976,6 @@
     transition: all 0.2s ease-in-out;
 }
 
-.todo-list {
-    @include widget;
-    height: fit-content;
-}
-
 .todo-list-header {
     @extend .happiness-graph-header;
 }
@@ -1020,16 +1024,7 @@
     @extend .daily-rating-window-exit-button;
 }
 
-.habits-you-want-to-do-widget {
-    @include widget;
-    background-color: $very-dark-slate;
-    margin-left: auto;
-    margin-right: auto;
-    height: fit-content;
-    padding: 2rem;
-    max-width: clamp(fit-content, fit-content, 94%);
-    background-color: red;
-}
+
 
 .habits-you-want-to-do-widget-header {
     @include shadow;
@@ -1049,20 +1044,24 @@
 
 .habits-you-want-to-do-widget-edit-button {
     @include shadow;
-    font-size: 2.5rem;
+    font-size: 1rem;
     font-weight: bold;
     color: white;
 
     background-color: $very-dark-slate;
     border-radius: 8px;
-    padding: 1.5rem;
-    width: fit-content;
+    padding: 0.5rem;
+    width: 90%;
     height: fit-content;
+    text-align: center;
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 
     
     &:hover {
         cursor: pointer;
-        transform: translateY(-10px);
+        transform: translateX(10px);
     }
 
     transition: all 0.2s ease-in-out;
@@ -1098,7 +1097,7 @@
     background-color: $very-dark-slate;
     margin-left: auto;
     margin-right: auto;
-    width: fit-content;
+    width: min(90%, 50rem);
     height: 50vh;
     overflow-y: scroll;
     display: flex;
@@ -1119,7 +1118,7 @@
     font-size: 2rem;
     margin-bottom: 1rem;
     overflow-x: scroll;
-    width: 60%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     margin-left: auto;
@@ -1139,19 +1138,20 @@
     flex-direction: row;
     align-items: center;
     gap: 1rem;
-    width: 50rem;
+    width: 100%;
 }
 
 .habits-you-want-to-do-list-delete-item-button {
     @include shadow;
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: bold;
     color: white;
 
     background-color: $very-dark-slate;
     border-radius: 8px;
-    padding: 1.5rem;
-    width: fit-content;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
     
     &:hover {
         cursor: pointer;
@@ -1162,9 +1162,8 @@
 }
 
 .habits-you-want-to-do-list-name {
-    @include shadow;
     @include styled-scrollbar;
-    font-size: 2rem;
+    font-size: 0.75rem;
     font-weight: bold;
     margin-left: auto;
     margin-right: auto;
@@ -1173,7 +1172,10 @@
     text-align: center;
     margin-left: 1rem;
     margin-right: 1rem;
-    overflow-x: scroll;
+
+    @include sm {
+        font-size: 1.25rem;
+    }
 }
 
 .day-info-tasks-header {

@@ -28,8 +28,39 @@ html {
     transform: translateX(0%);
   }
 }
+.widget {
+  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
+  border-radius: 8px;
+  padding: 15px;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+  background-color: #2C2C2C;
+  margin-left: auto;
+  margin-right: auto;
+  width: min(90%, 75rem);
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 50rem;
+}
+.widget::-webkit-scrollbar {
+  width: 10px;
+}
+.widget::-webkit-scrollbar-track {
+  background: #535353;
+}
+.widget::-webkit-scrollbar-thumb {
+  background: #2C2C2C;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
 .habits-container {
-  height: 90vh;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -42,6 +73,19 @@ html {
   padding: 15px;
   font-size: 1rem;
   color: white;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: 600px) {
+  .widget-header {
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: 768px) {
+  .widget-header {
+    font-size: 2rem;
+  }
 }
 
 .habits-grid {
@@ -449,7 +493,7 @@ html {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  font-size: 2.5rem;
+  font-size: 1rem;
   font-weight: bold;
   color: white;
   margin-left: auto;
@@ -457,8 +501,8 @@ html {
   margin-top: 2rem;
   background-color: #2C2C2C;
   border-radius: 8px;
-  padding: 1.5rem;
   width: fit-content;
+  text-align: center;
   transition: all 0.2s ease-in-out;
 }
 #create-habit-button:hover, .habit-card-window-add-habit-button:hover, .habit-card-window-complete-button:hover, #finish-creating-habit-stack-button:hover, .habit-stacks-widget-edit-button:hover, #resist-habit-button:hover {
@@ -485,7 +529,6 @@ html {
   justify-content: space-between;
   width: 90%;
   margin-bottom: 1rem;
-  font-size: 2rem;
   height: 4rem;
   overflow-x: scroll;
 }
@@ -517,7 +560,7 @@ html {
   justify-content: space-between;
   width: 90%;
   color: white;
-  font-size: 2rem;
+  font-size: 1rem;
   transition: all 0.2s ease-in-out;
 }
 .habit-stack-item::-webkit-scrollbar {
@@ -534,6 +577,11 @@ html {
   margin-left: 5px;
   margin-right: 5px;
 }
+@media (min-width: 600px) {
+  .habit-stack-item {
+    font-size: 1.5rem;
+  }
+}
 .habit-stack-item:hover {
   cursor: pointer;
   background-color: #DDDDDD;
@@ -542,27 +590,35 @@ html {
 
 .habit-stack-item-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column-reverse;
   align-items: center;
   gap: 1rem;
   width: 100%;
+}
+@media (min-width: 600px) {
+  .habit-stack-item-container {
+    flex-direction: row;
+  }
 }
 
 .habit-stack-widget-delete-button {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: bold;
   color: white;
   background-color: #2C2C2C;
   border-radius: 8px;
-  padding: 1.5rem;
-  height: 3rem;
-  width: 3rem;
   text-align: center;
   text-justify: center;
+  width: 90%;
   transition: all 0.2s ease-in-out;
+}
+@media (min-width: 600px) {
+  .habit-stack-widget-delete-button {
+    width: auto;
+  }
 }
 .habit-stack-widget-delete-button:hover {
   cursor: pointer;
@@ -583,7 +639,6 @@ html {
   justify-content: space-between;
   width: 90%;
   margin-bottom: 1rem;
-  font-size: 2rem;
   overflow-x: scroll;
 }
 .habit-stack-item-habits::-webkit-scrollbar {
@@ -644,13 +699,12 @@ html {
   background-color: #2C2C2C;
   margin-left: auto;
   margin-right: auto;
-  width: 94%;
+  width: 75%;
   height: 80%;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
 }
 .habit-stacks-list::-webkit-scrollbar {
   width: 10px;
@@ -666,21 +720,14 @@ html {
   margin-left: 5px;
   margin-right: 5px;
 }
-.habit-stacks-widget-header {
-  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
-  border-radius: 8px;
-  padding: 15px;
-  font-size: 3rem;
-  font-weight: bold;
-  color: white;
-  margin-left: auto;
-  margin-right: auto;
-  width: max;
-  flex-grow: 1;
-  background-color: #2C2C2C;
-  text-align: center;
-  margin-left: 1rem;
-  margin-right: 1rem;
+@media (min-width: 600px) {
+  .habit-stacks-list {
+    width: 90%;
+  }
+}
+
+.habit-stacks-widget-edit-button {
+  width: min(90%, 20rem);
 }
 
 #habit-stack-area {
@@ -1145,39 +1192,6 @@ html {
   color: black;
 }
 
-.todo-list {
-  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
-  border-radius: 8px;
-  padding: 15px;
-  /* width */
-  /* Track */
-  /* Handle */
-  /* Handle on hover */
-  background-color: #2C2C2C;
-  margin-left: auto;
-  margin-right: auto;
-  width: min(90%, 75rem);
-  height: 80%;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: fit-content;
-}
-.todo-list::-webkit-scrollbar {
-  width: 10px;
-}
-.todo-list::-webkit-scrollbar-track {
-  background: #535353;
-}
-.todo-list::-webkit-scrollbar-thumb {
-  background: #2C2C2C;
-  border-radius: 8px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
-}
 #day-info-window {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
@@ -1214,45 +1228,6 @@ html {
   margin-right: auto;
 }
 
-.habits-you-want-to-do-widget {
-  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
-  border-radius: 8px;
-  padding: 15px;
-  /* width */
-  /* Track */
-  /* Handle */
-  /* Handle on hover */
-  background-color: #2C2C2C;
-  margin-left: auto;
-  margin-right: auto;
-  width: min(90%, 75rem);
-  height: 80%;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #2C2C2C;
-  margin-left: auto;
-  margin-right: auto;
-  height: fit-content;
-  padding: 2rem;
-  max-width: clamp(fit-content, fit-content, 94%);
-  background-color: red;
-}
-.habits-you-want-to-do-widget::-webkit-scrollbar {
-  width: 10px;
-}
-.habits-you-want-to-do-widget::-webkit-scrollbar-track {
-  background: #535353;
-}
-.habits-you-want-to-do-widget::-webkit-scrollbar-thumb {
-  background: #2C2C2C;
-  border-radius: 8px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
-}
 .habits-you-want-to-do-widget-header {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
@@ -1275,19 +1250,22 @@ html {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  font-size: 2.5rem;
+  font-size: 1rem;
   font-weight: bold;
   color: white;
   background-color: #2C2C2C;
   border-radius: 8px;
-  padding: 1.5rem;
-  width: fit-content;
+  padding: 0.5rem;
+  width: 90%;
   height: fit-content;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   transition: all 0.2s ease-in-out;
 }
 .habits-you-want-to-do-widget-edit-button:hover {
   cursor: pointer;
-  transform: translateY(-10px);
+  transform: translateX(10px);
 }
 
 .habit-stacks-widget-habit-stacks {
@@ -1345,7 +1323,7 @@ html {
   background-color: #2C2C2C;
   margin-left: auto;
   margin-right: auto;
-  width: fit-content;
+  width: min(90%, 50rem);
   height: 50vh;
   overflow-y: scroll;
   display: flex;
@@ -1383,7 +1361,7 @@ html {
   font-size: 2rem;
   margin-bottom: 1rem;
   overflow-x: scroll;
-  width: 60%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   margin-left: auto;
@@ -1415,20 +1393,21 @@ html {
   flex-direction: row;
   align-items: center;
   gap: 1rem;
-  width: 50rem;
+  width: 100%;
 }
 
 .habits-you-want-to-do-list-delete-item-button {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;
   padding: 15px;
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: bold;
   color: white;
   background-color: #2C2C2C;
   border-radius: 8px;
-  padding: 1.5rem;
-  width: fit-content;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
   transition: all 0.2s ease-in-out;
 }
 .habits-you-want-to-do-list-delete-item-button:hover {
@@ -1437,14 +1416,11 @@ html {
 }
 
 .habits-you-want-to-do-list-name {
-  box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
-  border-radius: 8px;
-  padding: 15px;
   /* width */
   /* Track */
   /* Handle */
   /* Handle on hover */
-  font-size: 2rem;
+  font-size: 0.75rem;
   font-weight: bold;
   margin-left: auto;
   margin-right: auto;
@@ -1453,7 +1429,6 @@ html {
   text-align: center;
   margin-left: 1rem;
   margin-right: 1rem;
-  overflow-x: scroll;
 }
 .habits-you-want-to-do-list-name::-webkit-scrollbar {
   width: 10px;
@@ -1469,6 +1444,12 @@ html {
   margin-left: 5px;
   margin-right: 5px;
 }
+@media (min-width: 600px) {
+  .habits-you-want-to-do-list-name {
+    font-size: 1.25rem;
+  }
+}
+
 .day-info-tasks-header {
   box-shadow: 0 30px 30px hsla(0, 0%, 0%, 0.25);
   border-radius: 8px;

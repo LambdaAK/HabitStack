@@ -123,8 +123,8 @@ function ToDoList() {
 
 
     return (
-        <div className = "todo-list">
-            <div className = "todo-list-header">
+        <div className = "widget">
+            <div className = "widget-header">
                 Tasks
             </div>
             <div className = "day-info-tasks-widget">
@@ -215,10 +215,14 @@ function HabitsYouWantToDo() {
 
 
     return (
-        <div className = "habits-you-want-to-do-widget">
+        <div className = "widget">
             <div style = {{
                 display: "flex",
+                flexDirection: "column",
             }}>            
+                <div className = "widget-header">
+                    Habits you want to do
+                </div>
                 <div className = "habits-you-want-to-do-widget-edit-button"
                 onClick = {
                     () => {
@@ -227,9 +231,6 @@ function HabitsYouWantToDo() {
                 }
                 >
                     ⚙️
-                </div>
-                <div className = "habits-you-want-to-do-widget-header">
-                    Habits you want to do
                 </div>
             </div>
 
@@ -388,10 +389,14 @@ function HabitsYouWantToResist() {
 
 
     return (
-        <div className = "habits-you-want-to-do-widget">
+        <div className = "widget">
             <div style = {{
                 display: "flex",
-            }}>            
+                flexDirection: "column",
+            }}>
+                <div className = "widget-header">
+                    Habits you want to resist
+                </div>        
                 <div className = "habits-you-want-to-do-widget-edit-button"
                 onClick = {
                     () => {
@@ -401,9 +406,7 @@ function HabitsYouWantToResist() {
                 >
                     ⚙️
                 </div>
-                <div className = "habits-you-want-to-do-widget-header">
-                    Habits you want to resist
-                </div>
+                
             </div>
 
 
@@ -443,34 +446,17 @@ function HabitsYouWantToResistListItem(props: {editMode: boolean, name: string, 
     const [dropDown, setDropDown] = useState(false) // whether the properties of the habit should be rendered
     
     return (
-        <div className = "habits-you-want-to-do-list-item-container"
+        <div style = {{
+            display: "flex",
+            flexDirection: "column",
+        }}
         onClick = {
             () => {
                 setDropDown(!dropDown)
             }
         }
         >
-            {
-                (function() {
-                    if (props.editMode) {
-                        return (
-                            <div className = "habits-you-want-to-do-list-delete-item-button"
-                            onClick = {
-                                async () => {
-                                    // delete the item from the database
-                                    const result = await habitResistDeleteAPI(auth, props.name)
-                                    if (!result.success) {
-                                        alert(result.errorMessage)
-                                    }  
-                                }
-                            }
-                            >
-                                ✖️
-                            </div>
-                        )
-                    }
-                })()
-            }
+            
             <div className = "habits-you-want-to-do-list-item"
             onClick = {
                 () => {
@@ -529,6 +515,27 @@ function HabitsYouWantToResistListItem(props: {editMode: boolean, name: string, 
                         )
                     })()
                 }
+                {
+                (function() {
+                    if (props.editMode) {
+                        return (
+                            <div className = "habits-you-want-to-do-list-delete-item-button"
+                            onClick = {
+                                async () => {
+                                    // delete the item from the database
+                                    const result = await habitResistDeleteAPI(auth, props.name)
+                                    if (!result.success) {
+                                        alert(result.errorMessage)
+                                    }  
+                                }
+                            }
+                            >
+                                ✖️
+                            </div>
+                        )
+                    }
+                })()
+            }
             </div>
         </div>
     )
@@ -1803,13 +1810,16 @@ function HabitStacksWidget() {
 
 
     return (
-        <div className = "habit-stacks-widget">
+        <div className = "widget">
             <div id = "a" style = {{
                 display: "flex",
-                flexDirection: "row",
+                flexDirection: "column",
                 width: "100%",
                 marginBottom: "2rem"
             }}>
+                <div className = "widget-header">
+                    Habit Stacks
+                </div>
                 <div className = "habit-stacks-widget-edit-button"
                 onClick = {
                     () => {
@@ -1819,9 +1829,7 @@ function HabitStacksWidget() {
                 >
                     ⚙️
                 </div>
-                <div className = "habit-stacks-widget-header">
-                    Habit Stacks
-                </div>
+                
             </div>
 
             {
@@ -1907,7 +1915,9 @@ export default function Habits() {
             <div className = "habits-container">
                 <HabitsBar/>
                 <ToDoList />
-              
+                <HabitsYouWantToDo />
+                <HabitsYouWantToResist />
+                <HabitStacksWidget />
             </div>
         </>
     )
