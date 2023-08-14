@@ -1924,6 +1924,10 @@ export default function Habits() {
                 <HabitResistorWindow />
                 <HabitCardWindow />
                 <HabitStackCreatorWindow />
+                <DayInfo
+                    dayInfo = {dateToDisplayOnDayInfoWindow}
+                    dayInfoSetter = {setDateToDisplayOnDayInfoWindow}
+			    />
             </div>
         </>
     )
